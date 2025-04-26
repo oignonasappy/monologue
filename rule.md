@@ -1,0 +1,153 @@
+# 開発上のルール
+をまとめます  
+このブログは静的サイトです。
+
+    これは私ひとりのブログなので、この`rule.md`を人様に見られたらなんだか恥ずかしいですね。
+    どのように開発してるのかバレバレです。ご容赦ください。
+
+# ディレクトリ構成
+    monologue/
+      - index.html
+      - 404.html
+      - pages.json
+      - favicon.ico
+      - _config.yml(サイトマップ生成)
+      - README.md
+      - [その他gitignoreしたもの]
+      - pages/
+          - [ページのフォルダ名]/
+              - index.html
+              - style.css(任意)
+              - script.js(任意)
+              - images/(任意)
+                  - [画像ファイル]
+      - general/
+          - css/
+              - common.css
+          - js/
+              - common.js
+          - images/
+              - [画像ファイル]
+          - sidebar/
+              - sidebar.html
+              - sidebar.css
+              - sidebar.js
+## monologue(root)/
+#### index.html
+ホーム。サイト全体の紹介と自己紹介。
+#### 404.html
+ページが見つからない場合にgithub pagesが自動で表示するページ。
+#### pages.json
+全ページの情報を管理する。最重要。
+#### favicon.ico
+lorem ipsum
+#### _config.yml
+Jekyllがサイトマップを生成する為の設定ファイル。  
+これを置くことで`sitemap.xml`がJekyllによって自動生成される。  
+(Jekyllがあるなら_posts/を使えばいいって話はおいとく。結局私はフレームワーク等に頼らない。)
+#### README.md
+github用のREADME。
+
+## pages/
+### [ページのフォルダ名]/
+一意であり、ページの意味が分かる名前を入力すること。
+#### index.html
+ページ本体。
+#### style.css
+ページ固有のcss。
+#### script.js
+ページ固有のスクリプト。
+### images/[画像ファイル]
+ページで使用する画像フォルダ。  
+頻繁に使い回すものは`/general/images/`から使うこと。
+
+## general/
+### css/
+#### common.css
+全ページ共通のスタイルシート。
+### js/
+#### common.js
+全ページ共通のスクリプト。  
+これによりサイドバーの読み込みをする。
+### images/[画像ファイル]
+頻繁に使う画像のフォルダ。
+### sidebar/
+全ページ共通の、他ページのリンクなどを表示するサイドバー。  
+`width`が小さい場合はサイト最下部に移動する。
+#### sidebar.html
+サイドバーのhtml。
+#### sidebar.css
+サイドバーのスタイル。  
+メディアクエリで表示位置を操作する。
+#### sidebar.js
+サイドバーに表示する内容を`pages.json`から取得する。
+
+# pages.json
+これは現時点では手動での設定になる。  
+いずれは全自動で...
+- `"title"` **[必須]**
+    - タイトル。
+    - `<title>`要素と同一であること。
+    - フォルダ名と同一でなくても構わない。
+- `"url"` **[必須]**
+    - ルートからのurl。
+    - `/`から始めること。 (例)`"/pages/test/"`
+    - 末尾の`index.html`は記述しない。
+    - 大抵、`/pages/`から始まるが、そうとも限らない。
+- `"create-date"`
+    - 書き始めの日付。
+    - `"YYYY-MM-DD"` の書式で記述すること。
+    - `null`は許されない。
+- `"update-date"`
+    - 最後に編集・追記した日付。
+    - `"YYYY-MM-DD"` の書式で記述すること。
+    - `null`でも構わない。nullチェックをすること。
+- `"category"`
+    - 記事のカテゴリ
+    - これは一つだけ設定する。広い範囲を意識。
+    - `null`でも構わない。nullチェックをすること。
+- `"tag"`
+    - 記事のタグ、配列。
+    - 複数設定する。
+    - `[](空配列)`でも構わない。nullチェックをすること。
+
+# ページのhtml
+- `<head>`
+    - `<head prefix="og: https://ogp.me/ns#">` <- のようにOGP用に記述すること。
+    - 共通
+        - 下のこれらを必ず記述すること。
+            - `<link rel="stylesheet" href="/general/css/common.css">`
+            - `<script src="/general/js/common.js" defer></script>`
+            - `<meta property="og:site_name" content="Monologue">`
+            - `<meta property="og:type" content="article">`
+            - `<meta property="og:locale" content="ja_JP">`(英記事なら、"en_US")
+    - 個別
+        - `<title>`は`pages.json`に設定した`"title"`と同一にすること。
+        - `<meta property="og:title" content="[]">`SNS上で異なるタイトルを表示させたい場合は設定。
+        - `<meta name="description">`はできるだけ設定しましょう。
+        - `<meta property="og:description" content="[]">`SNS上で...～同上～
+        - `<meta property="og:url" content="[ここにページのURLを絶対パスで]">`
+        - メインの画像があれば`<meta property="og:image" content="[ここに画像のURLを絶対パスで]">`
+- `<body>`
+    - 共通
+        - `<div id="container"><main></main></div>`を必ず記述すること。
+        - 記事は`<main>`の中に全て書く。
+        - (`<header>`, `<aside>`, `<footer>`はcommon.jsで補完する)
+    - 個別
+        - あとはセンスで記事を書く
+
+# common.js
+## sidebarを表示
+## headerを表示
+## footerを表示
+lorem ipsum
+
+###### ついでにネタ帳
+- Maj7, min7とSLIDE技法の拡張について
+- コード・スケール対応表
+- 応用情報技術者試験を受けた話
+- github copilotが性に合わない話 alt+C
+- Emmet wrap変換にショートカットキーを付けろという話
+- Mystia言語でMystia Loreleiをレンダリングする
+- うちのChatGPT、どう設定したのか知らねぇが、こんな喋り方になっちまった。かわいくない？  
+AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。

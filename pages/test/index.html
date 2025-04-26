@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/general/css/common.css">
+    <script src="/general/js/common.js" defer></script>
+
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+
+    <title>Test</title>
+    <meta property="og:title" content="Test">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        header {
+            width: 100%;
+            background-color: aqua;
+            padding: 10px;
+        }
+
+        footer {
+            width: 100%;
+            background-color: aquamarine;
+            padding: 10px;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        main {
+            flex: 0 0 75%;
+            padding: 20px;
+            background-color: brown;
+        }
+
+        aside {
+            flex: 0 0 25%;
+            padding: 20px;
+            background-color: blue;
+        }
+
+        @media (max-width: 700px) {
+            #container {
+                flex-direction: column;
+            }
+
+            main,
+            aside {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        ヘッダですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    </header>
+    <div id="container">
+        <main>
+            メインですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+            <a href="/nothing.html">存在しないリンク</a>
+        </main>
+        <aside>
+            サイドバーですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        </aside>
+    </div>
+    <footer>
+        フッタですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    </footer>
+</body>
+
+</html>
