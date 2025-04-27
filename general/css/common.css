@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Moralerspace Neon';
+    font-weight: normal;
+    font-style: normal;
+    src: url(/general/fonts/MoralerspaceNeon-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Moralerspace Neon';
+    font-weight: bold;
+    font-style: normal;
+    src: url(/general/fonts/MoralerspaceNeon-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Moralerspace Neon';
+    font-weight: normal;
+    font-style: italic;
+    src: url(/general/fonts/MoralerspaceNeon-Italic.ttf);
+}
+
+@font-face {
+    font-family: 'Moralerspace Neon';
+    font-weight: bold;
+    font-style: italic;
+    src: url(/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Moralerspace Neon';
+}

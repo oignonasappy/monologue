@@ -30,7 +30,6 @@
               - [画像ファイル]
           - sidebar/
               - sidebar.html
-              - sidebar.css
               - sidebar.js
 ## monologue(root)/
 #### index.html
@@ -64,7 +63,9 @@ github用のREADME。
 ## general/
 ### css/
 #### common.css
-全ページ共通のスタイルシート。
+全ページ共通のスタイルシート。  
+メディアクエリで表示位置を操作する。  
+サイドバーのスタイルもここで設定する。 
 ### js/
 #### common.js
 全ページ共通のスクリプト。  
@@ -76,9 +77,6 @@ github用のREADME。
 `width`が小さい場合はサイト最下部に移動する。
 #### sidebar.html
 サイドバーのhtml。
-#### sidebar.css
-サイドバーのスタイル。  
-メディアクエリで表示位置を操作する。
 #### sidebar.js
 サイドバーに表示する内容を`pages.json`から取得する。
 
@@ -121,6 +119,14 @@ github用のREADME。
             - `<meta property="og:site_name" content="Monologue">`
             - `<meta property="og:type" content="article">`
             - `<meta property="og:locale" content="ja_JP">`(英記事なら、"en_US")
+        - ページ内でコードを記述する場合は以下、Prism.jsを使用する。
+            - CSS(TOMORROW NIGHTテーマ)`<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">`
+            - Prism.js本体`<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>`
+            - 言語ローダー`<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>`
+            - 空白整形プラグイン`<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>`
+            - 行番号プラグインCSS`<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>`
+            - 行番号プラグインJS`<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">`
+                - 行番号プラグインは、`<pre>`内の`<code>`のクラスに`line-numbers`を追加して使用する。
     - 個別
         - `<title>`は`pages.json`に設定した`"title"`と同一にすること。
         - `<meta property="og:title" content="[]">`SNS上で異なるタイトルを表示させたい場合は設定。
@@ -134,7 +140,10 @@ github用のREADME。
         - 記事は`<main>`の中に全て書く。
         - (`<header>`, `<aside>`, `<footer>`はcommon.jsで補完する)
     - 個別
-        - あとはセンスで記事を書く
+        - センスで記事を書く
+        - Prism.jsによるコード記述
+            - コードブロックは`<pre><code class="lang-[言語名]"></code></pre>`
+            - インラインコードは`<code class="lang-[言語名]"></code>`
 
 # common.js
 ## sidebarを表示
