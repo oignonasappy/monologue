@@ -154,6 +154,7 @@ lorem ipsum
 ###### ついでにネタ帳
 - Maj7, min7とSLIDE技法の拡張について
 - コード・スケール対応表
+- Whole tone, Altererd, Lydian dominant, Diminishedたち
 - 応用情報技術者試験を受けた話
 - github copilotが性に合わない話 alt+C
 - Emmet wrap変換にショートカットキーを付けろという話
