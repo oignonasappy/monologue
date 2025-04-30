@@ -4,9 +4,9 @@
 
     これは私ひとりのブログなので、この`rule.md`を人様に見られたらなんだか恥ずかしいですね。
     どのように開発してるのかバレバレです。ご容赦ください。
-  
-___
-  
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 # ディレクトリ構成
     monologue/
       - index.html
@@ -75,7 +75,8 @@ github用のREADME。
 #### common.css
 全ページ共通のスタイルシート。  
 メディアクエリで表示位置を操作する。  
-サイドバー・ヘッダ・フッタのスタイルもここで設定する。 
+サイドバー・ヘッダ・フッタのスタイルもここで設定する。  
+(light-dark()があってもいいかも)
 ### js/
 #### common.js
 全ページ共通のスクリプト。  
@@ -89,9 +90,9 @@ github用のREADME。
 サイドバーのhtml。
 #### sidebar.js
 サイドバーに表示する内容を`pages.json`から取得する。
-  
-___
-  
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 # pages.json
 これは現時点では手動での設定になる。  
 いずれは全自動で...
@@ -120,9 +121,9 @@ ___
     - 記事のタグ、配列。
     - 複数設定する。
     - `[](空配列)`でも構わない。nullチェックをすること。
-  
-___
-  
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 # ページのhtml
 - `<head>`
     - `<head prefix="og: https://ogp.me/ns#">` <- のようにOGP用に記述すること。
@@ -158,26 +159,32 @@ ___
         - Prism.jsによるコード記述
             - コードブロックは`<pre><code class="lang-[言語名]"></code></pre>`
             - インラインコードは`<code class="lang-[言語名]"></code>`
-  
-___
-  
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
+# common.css
+- `box-sizing`は`border-box`を既定とする。
+- `font-family`は`'Moralerspace Neon'`を既定とする。
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 # common.js
 ## sidebarを表示
 ## headerを表示
 ## footerを表示
 lorem ipsum
-  
-___
-  
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 # 全カテゴリ・タグ
 ## category
 - 音楽
 ## tag
 - コード
 - スケール
-  
-___
-  
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 ###### ついでにネタ帳
 - Maj7, min7とSLIDE技法の拡張について
 - コード・スケール対応表

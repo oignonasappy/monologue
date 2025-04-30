@@ -34,68 +34,29 @@
     <meta property="og:description" content="">
 
     <style>
-        header {
-            width: 100%;
-            background-color: aqua;
-            padding: 10px;
-        }
-
-        footer {
-            width: 100%;
-            background-color: aquamarine;
-            padding: 10px;
-        }
-
-        #container {
-            display: flex;
-            flex-wrap: nowrap;
-        }
-
-        main {
-            flex: 0 0 75%;
-            padding: 20px;
-            background-color: brown;
-        }
-
-        aside {
-            flex: 0 0 25%;
-            padding: 20px;
-            background-color: blue;
-        }
-
-        @media (max-width: 700px) {
-            #container {
-                flex-direction: column;
-            }
-
-            main,
-            aside {
-                flex: 0 0 100%;
-            }
-        }
+        
     </style>
 </head>
 
 <body>
-    <header>
-        ヘッダですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-    </header>
+    <!-- <header> is here -->
     <div id="container">
         <main>
             メインですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
             <a href="/nothing.html">存在しないリンク</a>
             <pre><code class="lang-java line-numbers">
-                    System.out.println("hello");
+                public class App {
+                    public static void main(String[] args){
+                        System.out.println("hello");
+                    }
+                }    
             </code></pre>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias aut, non neque excepturi distinctio incidunt quas id provident voluptas assumenda blanditiis minima! Eveniet optio repellat unde saepe aperiam iusto veritatis?</p>
+            <p>あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。</p>
         </main>
-        <aside>
-            サイドバーですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        </aside>
+        <!-- <aside> is here -->
     </div>
-    <footer>
-        フッタですーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-        Alphabet <b>Mystia</b> <i>lorelei</i>
-    </footer>
+    <!-- <footer> is here -->
 </body>
 
 </html>
