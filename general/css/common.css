@@ -26,7 +26,9 @@
     src: url(/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
 }
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 

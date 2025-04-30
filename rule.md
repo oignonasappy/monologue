@@ -4,7 +4,9 @@
 
     これは私ひとりのブログなので、この`rule.md`を人様に見られたらなんだか恥ずかしいですね。
     どのように開発してるのかバレバレです。ご容赦ください。
-
+  
+___
+  
 # ディレクトリ構成
     monologue/
       - index.html
@@ -22,6 +24,9 @@
               - images/(任意)
                   - [画像ファイル]
       - general/
+          - html/
+              - header.html
+              - footer.html
           - css/
               - common.css
           - js/
@@ -61,11 +66,16 @@ github用のREADME。
 頻繁に使い回すものは`/general/images/`から使うこと。
 
 ## general/
+### html/
+#### header.html
+全ページ共通のヘッダー。
+#### footer.html
+全ページ共通のフッター。
 ### css/
 #### common.css
 全ページ共通のスタイルシート。  
 メディアクエリで表示位置を操作する。  
-サイドバーのスタイルもここで設定する。 
+サイドバー・ヘッダ・フッタのスタイルもここで設定する。 
 ### js/
 #### common.js
 全ページ共通のスクリプト。  
@@ -79,7 +89,9 @@ github用のREADME。
 サイドバーのhtml。
 #### sidebar.js
 サイドバーに表示する内容を`pages.json`から取得する。
-
+  
+___
+  
 # pages.json
 これは現時点では手動での設定になる。  
 いずれは全自動で...
@@ -108,7 +120,9 @@ github用のREADME。
     - 記事のタグ、配列。
     - 複数設定する。
     - `[](空配列)`でも構わない。nullチェックをすること。
-
+  
+___
+  
 # ページのhtml
 - `<head>`
     - `<head prefix="og: https://ogp.me/ns#">` <- のようにOGP用に記述すること。
@@ -138,26 +152,32 @@ github用のREADME。
     - 共通
         - `<div id="container"><main></main></div>`を必ず記述すること。
         - 記事は`<main>`の中に全て書く。
-        - (`<header>`, `<aside>`, `<footer>`はcommon.jsで補完する)
+        - (`<header>`, `<aside>`(サイドバー), `<footer>`はcommon.jsで補完する)
     - 個別
         - センスで記事を書く
         - Prism.jsによるコード記述
             - コードブロックは`<pre><code class="lang-[言語名]"></code></pre>`
             - インラインコードは`<code class="lang-[言語名]"></code>`
-
+  
+___
+  
 # common.js
 ## sidebarを表示
 ## headerを表示
 ## footerを表示
 lorem ipsum
-
+  
+___
+  
 # 全カテゴリ・タグ
 ## category
 - 音楽
 ## tag
 - コード
 - スケール
-
+  
+___
+  
 ###### ついでにネタ帳
 - Maj7, min7とSLIDE技法の拡張について
 - コード・スケール対応表
