@@ -44,7 +44,7 @@
 #### pages.json
 全ページの情報を管理する。最重要。
 #### favicon.ico
-lorem ipsum
+全ページに適用されるアイコン。
 #### _config.yml
 Jekyllがサイトマップを生成する為の設定ファイル。  
 これを置くことで`sitemap.xml`がJekyllによって自動生成される。  
@@ -189,6 +189,7 @@ lorem ipsum
 - Maj7, min7とSLIDE技法の拡張について
 - コード・スケール対応表
 - Whole tone, Altererd, Lydian dominant, Diminishedたち
+- jacob collierの微分音・A≠440Hzチューニング集
 - 応用情報技術者試験を受けた話
 - github copilotが性に合わない話 alt+C
 - Emmet wrap変換にショートカットキーを付けろという話

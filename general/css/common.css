@@ -26,6 +26,14 @@
     src: url(/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
 }
 
+/* Variables */
+:root {
+    --main-bg-color: #D0D0D0;
+    --header-bg-color: #D0E0E0;
+    --footer-bg-color: #C0C0C0;
+    --sidebar-bg-color: #B0B0B0;
+}
+
 /* Common throughout */
 *,
 *::before,
@@ -35,20 +43,30 @@
 
 body {
     margin: 0;
+    position: relative;
     font-family: 'Moralerspace Neon';
 }
 
 /* Basic structure */
+header,
+footer,
+main,
+aside {
+    /* Ensuring independence */
+    contain: layout style paint;
+}
+
 header {
     width: 100%;
-    background-color: aqua;
+    background-color: var(--header-bg-color);
     padding: 10px;
 }
 
 footer {
     width: 100%;
-    background-color: aquamarine;
-    padding: 10px;
+    background-color: var(--footer-bg-color);
+    padding: 15px;
+    border-top: 16px groove #A0B0B0;
 }
 
 #container {
@@ -58,14 +76,18 @@ footer {
 
 main {
     flex: 0 0 75%;
+    min-width: 0;
     padding: 20px;
-    background-color: brown;
+    background-color: var(--main-bg-color);
+    border: 8px solid #A0A0A0;
 }
 
 aside {
     flex: 0 0 25%;
+    min-width: 0;
     padding: 20px;
-    background-color: blue;
+    background-color: var(--sidebar-bg-color);
+    border: 8px solid #A0A0A0;
 }
 
 @media (max-width: 700px) {
@@ -80,9 +102,18 @@ aside {
 }
 
 /* Various styles */
+main{
+    p{
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+    }
+}
 
 /* Prism.js override */
 code[class*="language-"],
 pre[class*="language-"] {
     font-family: 'Moralerspace Neon', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+}
+pre[class*="language-"]{
+    max-width: 100%;
 }
