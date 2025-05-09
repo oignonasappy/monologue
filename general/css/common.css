@@ -2,28 +2,28 @@
     font-family: 'Moralerspace Neon';
     font-weight: normal;
     font-style: normal;
-    src: url(/general/fonts/MoralerspaceNeon-Regular.ttf);
+    src: url(/monologue/general/fonts/MoralerspaceNeon-Regular.ttf);
 }
 
 @font-face {
     font-family: 'Moralerspace Neon';
     font-weight: bold;
     font-style: normal;
-    src: url(/general/fonts/MoralerspaceNeon-Bold.ttf);
+    src: url(/monologue/general/fonts/MoralerspaceNeon-Bold.ttf);
 }
 
 @font-face {
     font-family: 'Moralerspace Neon';
     font-weight: normal;
     font-style: italic;
-    src: url(/general/fonts/MoralerspaceNeon-Italic.ttf);
+    src: url(/monologue/general/fonts/MoralerspaceNeon-Italic.ttf);
 }
 
 @font-face {
     font-family: 'Moralerspace Neon';
     font-weight: bold;
     font-style: italic;
-    src: url(/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
+    src: url(/monologue/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
 }
 
 /* Variables */
@@ -153,6 +153,20 @@ aside {
 }
 
 header {
+    a {
+        color: #FAFAFA;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #00E0E0;
+        text-decoration: underline;
+    }
+    
+    a:visited {
+        color: #FAFAFA;
+    }
+
     .site-title {
         font-family: "Georgia", "Times New Roman", serif;
         font-size: 1.8rem;
@@ -172,6 +186,30 @@ main {
     p {
         word-break: keep-all;
         overflow-wrap: anywhere;
+    }
+}
+
+footer {
+    p {
+        text-align: center;
+        width: max-content;
+        margin: 5px auto;
+        padding: 10px 20px 5px 20px;
+        border-bottom: 1px solid #303030;
+    }
+    a {
+        color: #00C0FF;
+    }
+    a:hover {
+        color: #00A0C0;
+        text-decoration: underline;
+    }
+    
+    a:visited {
+        color: #9090FF;
+    }
+    .oignon-icon {
+        height: 45px;
     }
 }
 

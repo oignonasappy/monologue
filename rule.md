@@ -96,8 +96,11 @@ github用のREADME。
 # 共通事項
 - パス指定は基本的に全て相対パスで指定すること！  
 なぜならローカル環境のrootは`/`だがgithub pagesのrootは`/monologue/`だからである  
-    開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。  
-    **コミット時には必ず消去すること！**
+絶対パス指定をする際は、rootが`/monologue/`であることを留意すること。  
+開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。  
+**コミット時には必ず消去すること！**
+
+<hr style="margin:60px 0;border:6px dashed #282828">
 
 # pages.json
 これは現時点では手動での設定になる。  
@@ -139,6 +142,7 @@ github用のREADME。
         - 下のこれらを必ず記述すること。
             - `<link rel="stylesheet" href="../../general/css/common.css">`
             - `<script src="../../general/js/common.js" defer></script>`
+            - `<link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">`
             - `<meta property="og:site_name" content="Monologue">`
             - `<meta property="og:type" content="article">`
             - `<meta property="og:locale" content="ja_JP">`(英記事なら、"en_US")
