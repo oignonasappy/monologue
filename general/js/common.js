@@ -1,3 +1,4 @@
+/* Basic structure */
 fetch("/general/html/header.html")
     .then(res => res.text())
     .then(html => {
@@ -15,3 +16,5 @@ fetch("/general/sidebar/sidebar.html")
     .then(html => {
         document.getElementById('container').insertAdjacentHTML('beforeend', html);
     });
+
+/* footnote */

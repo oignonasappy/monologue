@@ -129,6 +129,7 @@ github用のREADME。
     - `<head prefix="og: https://ogp.me/ns#">` <- のようにOGP用に記述すること。
     - 共通
         - 下のこれらを必ず記述すること。
+            - `<base href="/monologue/">`
             - `<link rel="stylesheet" href="/general/css/common.css">`
             - `<script src="/general/js/common.js" defer></script>`
             - `<meta property="og:site_name" content="Monologue">`
@@ -159,6 +160,8 @@ github用のREADME。
         - Prism.jsによるコード記述
             - コードブロックは`<pre><code class="lang-[言語名]"></code></pre>`
             - インラインコードは`<code class="lang-[言語名]"></code>`
+        - 脚注
+            - `<sup>$</sup>`
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 

@@ -146,10 +146,12 @@ aside {
     from {
         letter-spacing: 0.5em;
     }
+
     to {
         letter-spacing: 0.05em;
     }
 }
+
 header {
     .site-title {
         font-family: "Georgia", "Times New Roman", serif;
@@ -160,7 +162,8 @@ header {
         letter-spacing: 0.05em;
         animation: tightenSpacing 2.5s cubic-bezier(0, 0, 0.2, 1);
     }
-    .site-title::first-letter{
+
+    .site-title::first-letter {
         color: #A0B0C0;
     }
 }
