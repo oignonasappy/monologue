@@ -202,11 +202,10 @@ lorem ipsum
 ###### ついでにネタ帳
 - introduction
     - 若年者ものづくり競技大会ITソフトウェア・ソリューションズ部門出場予定
-    - よく言われる話ですが、アウトプットをすれば知識の抜け漏れを探すことができるというものです。
 - Maj7, min7とSLIDE技法の拡張について
 - コード・スケール対応表
 - Whole tone, Altererd, Lydian dominant, Diminishedたち
-- jacob collierの微分音・A≠440Hzチューニング集
+- jacob collierの微分音・A4≠440Hzチューニング集
 - 応用情報技術者試験を受けた話
 - github copilotが性に合わない話 alt+C
 - Emmet wrap変換にショートカットキーを付けろという話
