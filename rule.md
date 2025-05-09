@@ -95,7 +95,9 @@ github用のREADME。
 
 # 共通事項
 - パス指定は基本的に全て相対パスで指定すること！  
-なぜならローカル環境のrootは`/`だがgithub pagesのrootは`/monologue/`だからである
+なぜならローカル環境のrootは`/`だがgithub pagesのrootは`/monologue/`だからである  
+    開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。  
+    **コミット時には必ず消去すること！**
 
 # pages.json
 これは現時点では手動での設定になる。  
@@ -131,6 +133,8 @@ github用のREADME。
 # ページのhtml
 - `<head>`
     - `<head prefix="og: https://ogp.me/ns#">` <- のようにOGP用に記述すること。
+    - 開発中は`<meta name="local-env">`を記述することで開発用のパス指定になる。  
+**コミット時には必ず消去すること！**
     - 共通
         - 下のこれらを必ず記述すること。
             - `<link rel="stylesheet" href="../../general/css/common.css">`
