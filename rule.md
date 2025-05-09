@@ -63,7 +63,7 @@ github用のREADME。
 ページ固有のスクリプト。
 ### images/[画像ファイル]
 ページで使用する画像フォルダ。  
-頻繁に使い回すものは`/general/images/`から使うこと。
+頻繁に使い回すものは`(/monologue)/general/images/`から使うこと。
 
 ## general/
 ### html/
@@ -92,6 +92,10 @@ github用のREADME。
 サイドバーに表示する内容を`pages.json`から取得する。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
+
+# 共通事項
+- パス指定は基本的に全て相対パスで指定すること！  
+なぜならローカル環境のrootは`/`だがgithub pagesのrootは`/monologue/`だからである
 
 # pages.json
 これは現時点では手動での設定になる。  
@@ -129,9 +133,8 @@ github用のREADME。
     - `<head prefix="og: https://ogp.me/ns#">` <- のようにOGP用に記述すること。
     - 共通
         - 下のこれらを必ず記述すること。
-            - `<base href="/monologue/">`
-            - `<link rel="stylesheet" href="/general/css/common.css">`
-            - `<script src="/general/js/common.js" defer></script>`
+            - `<link rel="stylesheet" href="../../general/css/common.css">`
+            - `<script src="../../general/js/common.js" defer></script>`
             - `<meta property="og:site_name" content="Monologue">`
             - `<meta property="og:type" content="article">`
             - `<meta property="og:locale" content="ja_JP">`(英記事なら、"en_US")
