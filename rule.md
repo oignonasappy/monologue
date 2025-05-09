@@ -36,6 +36,10 @@
           - sidebar/
               - sidebar.html
               - sidebar.js
+          - pageSearch/
+              - allPages.html
+              - category.html
+              - tag.html
 ## monologue(root)/
 #### index.html
 ホーム。サイト全体の紹介と自己紹介。
@@ -90,6 +94,15 @@ github用のREADME。
 サイドバーのhtml。
 #### sidebar.js
 サイドバーに表示する内容を`pages.json`から取得する。
+### pageSearch
+様々な方法のページ検索ページ。並び替えができたら美しい。  
+URLに検索する内容を含める。
+#### allPages.html
+全ページを検索する。
+#### category.html
+カテゴリ内で検索する。
+#### tag.html
+タグ内で検索する。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
@@ -140,8 +153,8 @@ github用のREADME。
 **コミット時には必ず消去すること！**
     - 共通
         - 下のこれらを必ず記述すること。
-            - `<link rel="stylesheet" href="../../general/css/common.css">`
-            - `<script src="../../general/js/common.js" defer></script>`
+            - `<link rel="stylesheet" href="../../general/css/common.css">` (`/pages/`にある場合)
+            - `<script src="../../general/js/common.js" defer></script>` (`/pages/`にある場合)
             - `<link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">`
             - `<meta property="og:site_name" content="Monologue">`
             - `<meta property="og:type" content="article">`
@@ -179,14 +192,22 @@ github用のREADME。
 # common.css
 - `box-sizing`は`border-box`を既定とする。
 - `font-family`は`'Moralerspace Neon'`を既定とする。(等幅フォントはナンセンスかも)
+- Prism.jsのスタイルをオーバーライドする。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
 # common.js
-## sidebarを表示
-## headerを表示
-## footerを表示
-lorem ipsum
+### ROOT調整
+ローカル環境ではルートが`/`、github pages環境ではルートが`/monologue/`になるため、`<head>`内の`<meta name="local-env">`を読み取り、その存在によってルートを置き換える。
+### header・footer・sidebarを表示
+`fetch`してそれぞれ、  
+header : `<body>`の開始直後  
+footer : `<body>`の終了直前  
+sidebar : `#container`の終了直前  
+に配置する。
+### ページ情報を作成
+カテゴリ・タグ・作成日・更新日をメインの始めに表示する。  
+`pages.json`を`fetch`し、そのJSONの`url`が現在のページのURLと完全一致したものから取得する。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 

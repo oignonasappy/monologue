@@ -56,8 +56,8 @@ const currentPath = window.location.pathname;
 function pageInfo(pages) {
     let pageIndex = -1;
     for (let i = 0; i < pages.length; i++) {
-        if (pages[i]['url'] === currentPath ||
-            pages[i]['url'] + 'index.html' === currentPath
+        if (ROOT + pages[i]['url'] === currentPath ||
+            ROOT + pages[i]['url'] + 'index.html' === currentPath
         ) {
             pageIndex = i;
             break;
