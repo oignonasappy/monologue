@@ -1,7 +1,7 @@
 [
     {
         "title": "Monologue - ホーム",
-        "url": "/",
+        "url": "",
         "create-date": "2025-05-10",
         "update-date": null,
         "category": null,
@@ -9,7 +9,7 @@
     },
     {
         "title": "テスト",
-        "url": "/pages/test/",
+        "url": "pages/test/",
         "create-date": "0000-00-00",
         "update-date": "1111-11-11",
         "category": "テストカテゴリ",

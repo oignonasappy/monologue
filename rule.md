@@ -111,7 +111,7 @@ URLに検索する内容を含める。
 なぜならローカル環境のrootは`/`だがgithub pagesのrootは`/monologue/`だからである  
 絶対パス指定をする際は、rootが`/monologue/`であることを留意すること。  
 開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。  
-**コミット時には必ず消去すること！**
+**コミット時には必ず消去すること！** <small>CI/CDの大事さがよくわかる...</small>
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
