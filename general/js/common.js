@@ -74,13 +74,15 @@ function pageInfo(pages) {
 
         const category = document.createElement('div');
         category.setAttribute('class', 'info-category');
-        category.innerHTML = "カテゴリ：" + pages[pageIndex]['category'];
+        category.innerHTML = `カテゴリ：<a href="${ROOT}general/page-search/category.html?category=${pages[pageIndex]['category']}">${pages[pageIndex]['category']}</a>`;
 
         const tags = document.createElement('div');
         tags.setAttribute('class', 'info-tags');
         tagsText = "タグ：";
         for (let i = 0; i < pages[pageIndex]['tag'].length; i++) {
+            tagsText += `<a href="${ROOT}general/page-search/tag.html?tag=${pages[pageIndex]['tag'][i]}">`;
             tagsText += pages[pageIndex]['tag'][i];
+            tagsText += `</a>`;
             if (i + 1 < pages[pageIndex]['tag'].length) {
                 tagsText += ", ";
             }

@@ -36,7 +36,7 @@
           - sidebar/
               - sidebar.html
               - sidebar.js
-          - pageSearch/
+          - page-search/
               - allPages.html
               - category.html
               - tag.html
@@ -52,6 +52,7 @@
 #### _config.yml
 Jekyllがサイトマップを生成する為の設定ファイル。  
 これを置くことで`sitemap.xml`がJekyllによって自動生成される。  
+google検索でヒットするようにするにはこれが必要である。
 (Jekyllがあるなら_posts/を使えばいいって話はおいとく。結局私はフレームワーク等に頼らない。)
 #### README.md
 github用のREADME。
@@ -94,7 +95,7 @@ github用のREADME。
 サイドバーのhtml。
 #### sidebar.js
 サイドバーに表示する内容を`pages.json`から取得する。
-### pageSearch
+### page-search
 様々な方法のページ検索ページ。並び替えができたら美しい。  
 URLに検索する内容を含める。
 #### allPages.html
@@ -144,6 +145,9 @@ URLに検索する内容を含める。
     - 複数設定する。
     - `[](空配列)`でも構わない。nullチェックをすること。
 
+ここに書いていない記事は存在しないに等しい。  
+(完全に隠されているわけではないため、プライベート記事は`/hidden-pages/`へ)
+
 <hr style="margin:60px 0;border:6px dashed #282828">
 
 # ページのhtml
@@ -192,6 +196,7 @@ URLに検索する内容を含める。
 # common.css
 - `box-sizing`は`border-box`を既定とする。
 - `font-family`は`'Moralerspace Neon'`を既定とする。(等幅フォントはナンセンスかも)
+- `<wbr>`を正常に機能させるには`.use-wbr`を使う。
 - Prism.jsのスタイルをオーバーライドする。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
@@ -212,11 +217,19 @@ sidebar : `#container`の終了直前
 <hr style="margin:60px 0;border:6px dashed #282828">
 
 # 全カテゴリ・タグ
+大文字・小文字区別  
+英語は頭文字大文字を基本とする
 ## category
+- プログラミング
 - 音楽
 ## tag
+- HTML
+- CSS
+- JavaScript
+- Java
 - コード
 - スケール
+- AI
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
@@ -226,11 +239,11 @@ sidebar : `#container`の終了直前
 - Maj7, min7とSLIDE技法の拡張について
 - コード・スケール対応表
 - Whole tone, Altererd, Lydian dominant, Diminishedたち
+- さて、音楽を何倍速にしたら半音上の転調になるでしょうか？(正解は1.06倍)
 - jacob collierの微分音・A4≠440Hzチューニング集
 - 応用情報技術者試験を受けた話
 - github copilotが性に合わない話 alt+C
 - Emmet wrap変換にショートカットキーを付けろという話
-- Mystia言語でMystia Loreleiをレンダリングする
 - git、有能すぎん？特にmerge
 - 突然だが、(チェドノフスキー級数で)πを計算したくなった！そこで階乗の計算をするんだが、「美しい」階乗のプログラムを書きたくなったんだ、ラムダ式で。  
 そこで、このプログラム。再帰関数は通常、ラムダ式で書くことは出来ないのだが、ここでYコンビネータ或は固定点コンビネータの考え方を...おい。一体何を言っているんだ、この話はやめだ。  
@@ -238,4 +251,5 @@ sidebar : `#container`の終了直前
 ちゃんともっと大きな桁で計算しないのかって？日が暮れるだろ。
 - 勘違いしないパス指定
 - うちのChatGPT、どう設定したのか知らねぇが、こんな喋り方になっちまった。かわいくない？確か、建設的な意見を好む性格に。とでも言ったんだっけな  
-AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。引っ張られるのではなく、背中を押してもらうように、自分の足で歩くよう意識しよ
+AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。引っ張られるのではなく、背中を押してもらうように、自分の足で歩くよう意識しよ  
+chatGPTの性格を変えると、トークンの効率が大きく落ちるといわれています。ですが、やっぱり人間である以上、モチベーションによって得られるエネルギーは、何事にも代えがたいものだと思うんです。しがない一般人の一意見として。

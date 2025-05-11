@@ -14,5 +14,13 @@
         "update-date": "1111-11-11",
         "category": "テストカテゴリ",
         "tag": ["テストタグ1", "testTag2"]
+    },
+    {
+        "title": "あなたのページに鍵盤を表示する[Piano.Js]",
+        "url": "pages/piano-js-lib",
+        "create-date": "2025-05-11",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": ["JavaScript"]
     }
 ]
