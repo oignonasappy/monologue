@@ -79,7 +79,7 @@ function pageInfo(pages) {
 
         const tags = document.createElement('div');
         tags.setAttribute('class', 'info-tags');
-        tagsText = "タグ：";
+        let tagsText = "タグ：";
         for (let i = 0; i < pages[pageIndex]['tag'].length; i++) {
             tagsText += `<a href="${ROOT}general/page-search/tag.html?tag=${pages[pageIndex]['tag'][i]}">`;
             tagsText += pages[pageIndex]['tag'][i];
