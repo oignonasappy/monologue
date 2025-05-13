@@ -81,6 +81,5 @@ function recent(pages) {
         if (total >= 10) break; 
     }
 
-    console.log(recent);
     recent.appendChild(recentList);
 }

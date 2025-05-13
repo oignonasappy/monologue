@@ -92,18 +92,19 @@ function pageInfo(pages) {
 
         const date = document.createElement('div');
         date.setAttribute('class', 'info-date');
-        let dateText = "作成日：";
-        const createDateTextArray = pages[pageIndex]['create-date'].split('-');
-        dateText += createDateTextArray[0] + "年 ";
-        dateText += createDateTextArray[1] + "月 ";
-        dateText += createDateTextArray[2] + "日 ";
+        let dateText = "";
         if (pages[pageIndex]['update-date'] !== null) {
             dateText += "更新日：";
             const updateDateTextArray = pages[pageIndex]['update-date'].split('-');
             dateText += updateDateTextArray[0] + "年 ";
             dateText += updateDateTextArray[1] + "月 ";
-            dateText += updateDateTextArray[2]/*.replace(/^0+/, '')*/ + "日";
+            dateText += updateDateTextArray[2]/*.replace(/^0+/, '')*/ + "日 ";
         }
+        dateText += "作成日：";
+        const createDateTextArray = pages[pageIndex]['create-date'].split('-');
+        dateText += createDateTextArray[0] + "年 ";
+        dateText += createDateTextArray[1] + "月 ";
+        dateText += createDateTextArray[2] + "日";
         date.textContent = dateText;
 
         if (pages[pageIndex]['category'] !== null) {
