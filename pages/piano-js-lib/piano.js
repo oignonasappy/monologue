@@ -1,4 +1,4 @@
-(function () {
+(() => {
     // 全てのclass="piano"に対し処理
     const pianos = document.querySelectorAll('.piano');
     pianos.forEach(piano => {

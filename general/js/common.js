@@ -27,7 +27,7 @@ const ROOT = (() => {
         });
 })();
 
-/* Loading pages.json -> Next process */
+/* Load pages.json -> Next process */
 let pages = [];
 (async () => {
     try {
@@ -37,6 +37,7 @@ let pages = [];
         const data = await res.json();
         pages = data;
 
+        // Methods that use json
         try {
             pageInfo(pages);
         } catch (error) {

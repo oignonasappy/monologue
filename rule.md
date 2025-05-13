@@ -65,7 +65,7 @@ github用のREADME。
 #### style.css
 ページ固有のcss。
 #### script.js
-ページ固有のスクリプト。
+ページ固有のスクリプト。  
 ### images/[画像ファイル]
 ページで使用する画像フォルダ。  
 頻繁に使い回すものは`(/monologue)/general/images/`から使うこと。
@@ -85,7 +85,8 @@ github用のREADME。
 ### js/
 #### common.js
 全ページ共通のスクリプト。  
-これによりサイドバーの読み込みをする。
+これによりサイドバーの読み込みをする。  
+ESM
 ### images/[画像ファイル]
 頻繁に使う画像のフォルダ。
 ### sidebar/
@@ -94,7 +95,8 @@ github用のREADME。
 #### sidebar.html
 サイドバーのhtml。
 #### sidebar.js
-サイドバーに表示する内容を`pages.json`から取得する。
+サイドバーに表示する内容を`pages.json`から取得する。  
+ESM
 ### page-search
 様々な方法のページ検索ページ。並び替えができたら美しい。  
 URLに検索する内容を含める。
@@ -158,7 +160,8 @@ URLに検索する内容を含める。
     - 共通
         - 下のこれらを必ず記述すること。
             - `<link rel="stylesheet" href="../../general/css/common.css">` (`/pages/`にある場合)
-            - `<script src="../../general/js/common.js" defer></script>` (`/pages/`にある場合)
+            - `<script src="../../general/js/common.js" type="module"></script>` (`/pages/`にある場合)
+            - `<script src="../../general/sidebar/sidebar.js" type="module"></script>` (`/pages/`にある場合)
             - `<link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">`
             - `<meta property="og:site_name" content="Monologue">`
             - `<meta property="og:type" content="article">`
@@ -202,6 +205,9 @@ URLに検索する内容を含める。
 <hr style="margin:60px 0;border:6px dashed #282828">
 
 # common.js
+### 注意事項 : `type="module"`による影響
+この属性はこの`<script>`がESモジュールであることを表す。  
+そのため**CORS制約**を考慮する必要がある。
 ### ROOT調整
 ローカル環境ではルートが`/`、github pages環境ではルートが`/monologue/`になるため、`<head>`内の`<meta name="local-env">`を読み取り、その存在によってルートを置き換える。
 ### header・footer・sidebarを表示
@@ -213,6 +219,11 @@ sidebar : `#container`の終了直前
 ### ページ情報を作成
 カテゴリ・タグ・作成日・更新日をメインの始めに表示する。  
 `pages.json`を`fetch`し、そのJSONの`url`が現在のページのURLと完全一致したものから取得する。
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
+# sidebar.js
+### [同一の注意事項](#注意事項--typemoduleによる影響)
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
