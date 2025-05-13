@@ -24,6 +24,12 @@ const ROOT = (() => {
         .then(res => res.text())
         .then(html => {
             document.getElementById('container').insertAdjacentHTML('beforeend', html);
+
+            // Call sidebar.js
+            const sidebarScript = document.createElement('script');
+            sidebarScript.type = 'module';
+            sidebarScript.src = ROOT + 'general/sidebar/sidebar.js';
+            document.body.appendChild(sidebarScript);
         });
 })();
 

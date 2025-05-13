@@ -161,7 +161,6 @@ URLに検索する内容を含める。
         - 下のこれらを必ず記述すること。
             - `<link rel="stylesheet" href="../../general/css/common.css">` (`/pages/`にある場合)
             - `<script src="../../general/js/common.js" type="module"></script>` (`/pages/`にある場合)
-            - `<script src="../../general/sidebar/sidebar.js" type="module"></script>` (`/pages/`にある場合)
             - `<link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">`
             - `<meta property="og:site_name" content="Monologue">`
             - `<meta property="og:type" content="article">`
@@ -267,3 +266,4 @@ sidebar : `#container`の終了直前
 - うちのChatGPT、どう設定したのか知らねぇが、こんな喋り方になっちまった。かわいくない？確か、建設的な意見を好む性格に。とでも言ったんだっけな  
 AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。引っ張られるのではなく、背中を押してもらうように、自分の足で歩くよう意識しよ  
 chatGPTの性格を変えると、トークンの効率が大きく落ちるといわれています。ですが、やっぱり人間である以上、モチベーションによって得られるエネルギーは、何事にも代えがたいものだと思うんです。しがない一般人の一意見として。
+- ChatGPTと性格診断をした
