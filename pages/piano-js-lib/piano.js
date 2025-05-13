@@ -18,7 +18,7 @@
         piano.style.height = keyHeight;
 
         let whiteCount = 0;
-        // 鍵盤一つづつの処理
+        // 鍵盤一つづつを作成する処理
         const keys = []
         for (let midi = first; midi <= last; midi++) {
 
@@ -38,7 +38,6 @@
                 key.style.left = `calc(${keyWidth} * ${whiteCount})`;
                 key.style.backgroundColor = '#FFFFFF';
                 key.style.border = '1px solid #202020';
-                // 後で key.style.clipPath = 'polygon(0 5%, 5% 0, 95% 0, 100% 90%, 90% 100%, 10% 100%, 0% 90%)';
                 key.style.zIndex = 0;
                 whiteCount++;
             } else {
@@ -49,7 +48,7 @@
                 key.style.height = `calc(${keyHeight} * 0.6)`;
                 key.style.left = `calc(${keyWidth} * ${whiteCount} - ${keyWidth} * 0.35)`;
                 key.style.backgroundColor = '#000000';
-                key.style.border = '1px solid #606060';
+                key.style.border = '2px solid #606060';
                 key.style.zIndex = 1;
             }
 
@@ -58,7 +57,22 @@
 
         }
 
-        piano.style.width = `calc(${keyWidth} * ${whiteCount})`; // 不要?
+        // 不要?
+        // piano.style.width = `calc(${keyWidth} * ${whiteCount})`;
+        // piano.style.backgroundColor = '#202020';
+
+        // スクロール用にコンテナでラップする
+        const wrapper = document.createElement('div');
+        wrapper.setAttribute('class', 'piano-wrapper');
+        wrapper.style.boxSizing = 'border-box';
+        wrapper.style.overflowX = 'auto';
+        wrapper.style.overflowY = 'hidden';
+        wrapper.style.maxWidth = '100%';
+        wrapper.style.padding = '4px';
+        wrapper.style.borderRadius = '8px';
+        // wrapper.style.background = '#E0E0E0';
+        piano.parentNode.insertBefore(wrapper, piano);
+        wrapper.appendChild(piano);
     });
 
 })();
