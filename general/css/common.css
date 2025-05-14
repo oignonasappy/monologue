@@ -196,6 +196,11 @@ main {
         border-bottom: 1px solid #D0D0D0;
         padding-bottom: 6px;
     }
+
+    p {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
 }
 
 footer {

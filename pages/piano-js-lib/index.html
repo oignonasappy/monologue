@@ -43,7 +43,7 @@
 <body>
     <div id="container">
         <main>
-
+            <h1>Piano.js</h1>
             <h3>プレビュー</h3>
             <div class="piano" data-first="60" data-last="84" data-key-width="20px" data-key-height="60px"
                 data-highlight="72 75 79" data-highlight-color="#FFE0E0" data-notename="true" data-key-signature="F dor"></div>
@@ -51,23 +51,103 @@
             <div class="piano-hover" data-first="48" data-last="60" data-highlight="52 54" data-highlight-color="#E0FFFF"></div>
             <div class="piano-play" data-first="36" data-last="67" data-key-width="30px" data-key-height="90px" data-highlight="52 54" data-highlight-color="#E0FFFF"></div>
             <div id="piano1" class="piano" data-first="48" data-last="72" data-key-width="30px" data-key-height="120px" data-highlight="48 51 55 58 62 65 69" data-highlight-color="#FFFF00" data-notename="true" data-key-signature="C dor"></div>
-            <button onclick="playHighlighted('piano1', 0.2, 3, 'sawtooth')">PLAY CHORD</button>
+            <button onclick="playHighlighted('piano1', 0.2, 3, 'sawtooth', 432)">PLAY CHORD</button>
             <button onclick="playNote(40, 0.2, 3, 'square')">PLAY NOTE</button>
+
+            <h2>つかいかた</h2>
+                <h3>呼び出し</h3>
+                <ol>
+                    <li>
+                        <h4>JavaScriptの読み込み</h4>
+                        <p>Lorem, ipsum.</p>
+                    </li>
+                    <li>
+                        <h4>&lt;div&gt;の配置</h4>
+                        <p>記述例：</p>
+                        <ul>
+                            <li><code class="lang-html">&lt;div class="piano"&gt;&lt;/div&gt;</code></li>
+                            <li><code class="lang-html">&lt;div&gt;&lt;/div&gt;</code></li>
+                        </ul>
+
+                        <h3>種類</h3>
+                        <ul>
+                            <li>
+                                <h4>.piano</h4>
+                            </li>
+                            <li>
+                                <h4>.piano-hover</h4>
+                            </li>
+                            <li>
+                                <h4>.piano-play</h4>
+                            </li>
+                        </ul>
+                        <h3>データ属性</h3>
+                        <p><code class="lang-html">data-*=""</code></p>
+                        <ul>
+                            <li>
+                                <h4>data-first, data-last</h4>
+                            </li>
+                            <li>
+                                <h4>data-</h4>
+                            </li>
+                            <li>
+                                <h4>data-volume ※.piano-playのみ</h4>
+                            </li>
+                            <li>
+                                <h4>data-duration ※.piano-playのみ</h4>
+                            </li>
+                            <li>
+                                <h4>data-osc-type ※.piano-playのみ</h4>
+                                <a href="https://developer.mozilla.org/ja/docs/Web/API/OscillatorNode/type">ドキュメント</a>を参照
+                            </li>
+                            <li>
+                                <h4>data-tuning ※.piano-playのみ</h4>
+                                私得である。
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+                <h3>メソッド</h3>
+                <ol>
+                    <li>
+                        <h4>playNote()</h4>
+                        <p>
+                            デフォルトを呼び出す際は引数に<code class="lang-js">undefined</code>を設定する
+                            今後オブジェクト引数に書き直すかも
+                        </p>
+                    </li>
+                    <li>
+                        <h4>playHighlighted()</h4>
+                    </li>
+                </ol>
+            
+            
+            <p>
+                ピアノ全体に対してスタイリングする時は、<wbr>
+                <code class="lang-html">.piano-wrapper</code>に対して行うことを<wbr>推奨します。
+                (このクラスはピアノ全体をラップしています)<br>
+                <code class="lang-css">margin: auto</code>などを設定する際に適しています。
+            </p>
+            <h3>感想</h3>
+            <p>
+                要件定義は大事ですね。<br>
+                今回、何もかも思いつきで機能を追加していったので、ソースコードにまとまりがなくなってしまってます。
+            </p>
             <p>
                 非効率だと分かっていながら、cssもhoverも何もかも一つのJavaScriptで実装しました。<br>
                 なぜかと言えばこのpiano.jsを呼び出すとき、そのJavaScriptをただ一つだけ呼び出せばよくなるから。ホントにただそれだけです。
             </p>
 
-            <pre><code class="lang-js line-numbers" id="piano-js-src"></code></pre>
+            <pre style="height: 600px;"><code class="lang-js line-numbers" id="piano-js-src"></code></pre>
             <script>
                 fetch('./piano.js')
-                .then(responce => responce.text())
-                .then(text => {
-                    document.getElementById('piano-js-src').textContent = text;
-                })
-                .catch(e => {
-                    document.getElementById('piano-js-src').textContent = "/* うまくよみこめんかった */";
-                });
+                    .then(responce => responce.text())
+                    .then(text => {
+                        document.getElementById('piano-js-src').textContent = text;
+                    })
+                    .catch(e => {
+                        document.getElementById('piano-js-src').textContent = "/* うまくよみこめんかった */";
+                    });
             </script>
 
             <p>

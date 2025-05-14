@@ -4,7 +4,7 @@ const pianoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const pianoActiveNotes = new Map();
 
 (() => {
-    // 全てのclass="piano"に対し処理
+    // 全てのpianoに対し処理
     const pianos = document.querySelectorAll(`[class*='piano']`);
     pianos.forEach(piano => {
         // 属性
@@ -18,8 +18,11 @@ const pianoActiveNotes = new Map();
         const notename = piano.dataset.notename === "true" ? true : false;
         const keySignature = piano.dataset.keySignature ?? 'C';
         const customNotename = piano.dataset.customNotename;
-        console.log("piano.js attributes", first, last, keyWidth, keyHeight, highlight, highlightColor, notename);
-
+        // .piano-playでのみ使用
+        const volume = parseFloat(piano.dataset.volume) || 0.25;
+        const duration = parseFloat(piano.dataset.duration) || 2;
+        const oscType = parseFloat(piano.dataset.oscType) || 'triangle';
+        const tuning = parseFloat(piano.dataset.tuning) || 440;
         // custom-notenameのパース
         const customNameMap = new Map();
         if (customNotename != undefined) {
@@ -155,7 +158,7 @@ const pianoActiveNotes = new Map();
                 key.addEventListener('mouseover', () => {
                     if (mouseDown) {
                         key.style.filter = 'invert(40%)';
-                        playNote(midi);
+                        playNote(midi, volume, duration, oscType, tuning);
                     } else {
                         key.style.filter = 'invert(20%)';
                     }
@@ -166,7 +169,7 @@ const pianoActiveNotes = new Map();
                     if (e.button !== 0) return;
                     key.style.filter = 'invert(40%)';
                     stopNote(midi);
-                    playNote(midi);
+                    playNote(midi, volume, duration, oscType, tuning);
                 })
                 // 退出時
                 key.addEventListener('mouseleave', () => {
@@ -311,7 +314,7 @@ function midiToNoteName(midi, keySignature = 'C maj', hasOctave = true) {
     return TONALITY_LIST_FLAT[tonality][midi % 12];
 }
 
-function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle") {
+function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle", tuning = 440) {
     // 同じ番号の既存の音を止める
     stopNote(midi);
 
@@ -319,7 +322,7 @@ function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle") {
     volume = Math.pow(10, (-40 + (0 - -40) * volume) / 20);
 
     // 基本設定
-    const freq = 440 * Math.pow(2, (midi - 69) / 12);
+    const freq = tuning * Math.pow(2, (midi - 69) / 12);
     const osc = pianoAudioCtx.createOscillator();
     const gain = pianoAudioCtx.createGain();
 
@@ -373,7 +376,7 @@ function stopNote(midi) {
  * @param {string} oscType OscillatorNode.type
  * @returns 
  */
-function playHighlighted(id, volume = 0.25, duration = 2, oscType = "triangle") {
+function playHighlighted(id, volume = 0.25, duration = 2, oscType = "triangle", tuning = 440) {
     const piano = document.getElementById(id);
     if (piano == undefined) {
         console.error("id not found");
@@ -385,7 +388,7 @@ function playHighlighted(id, volume = 0.25, duration = 2, oscType = "triangle") 
     }
     piano.dataset.highlight.trim().split(/\s+/).map(n => parseInt(n)).forEach(midi => {
         stopNote(midi);
-        playNote(midi, volume, duration, oscType);
+        playNote(midi, volume, duration, oscType, tuning);
 
         if (piano.animationValidFlgs[midi]) {
             piano.animationValidFlgs[midi] = false;

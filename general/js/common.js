@@ -75,7 +75,6 @@ function pageInfo(pages) {
         console.log("window.location.pathname: " + currentPath);
         return;
     } else {
-
         const info = document.createElement('section');
         info.setAttribute('class', 'page-info');
 
