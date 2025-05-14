@@ -113,7 +113,7 @@ URLに検索する内容を含める。
 - パス指定は基本的に全て相対パスで指定すること！  
 なぜならローカル環境のrootは`/`だがgithub pagesのrootは`/monologue/`だからである  
 絶対パス指定をする際は、rootが`/monologue/`であることを留意すること。  
-開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。  
+開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。(JavaScriptの範疇でないものは多少404が出てしまうが、仕方ない許容)  
 **コミット時には必ず消去すること！** <small>CI/CDの大事さがよくわかる...</small>
 
 <hr style="margin:60px 0;border:6px dashed #282828">
@@ -249,7 +249,7 @@ sidebar : `#container`の終了直前
 ###### ついでにネタ帳
 - introduction
     - 若年者ものづくり競技大会ITソフトウェア・ソリューションズ部門出場予定
-- Maj7, min7とSLIDE技法の拡張について
+- Maj7, min7とSLIDE技法の拡張について(Super Ultra Hyper Mega Meta Lydian)
 - コード・スケール対応表
 - Whole tone, Altererd, Lydian dominant, Diminishedたち
 - さて、音楽を何倍速にしたら半音上の転調になるでしょうか？(正解は1.06倍)

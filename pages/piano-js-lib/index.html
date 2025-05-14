@@ -21,14 +21,14 @@
 
     <!--Prism.js-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js" defer></script>
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
     <!--Prism.js plugins-->
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" defer></script>
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
 
@@ -44,12 +44,35 @@
     <div id="container">
         <main>
 
-            <p>プレビュー</p>
+            <h3>プレビュー</h3>
             <div class="piano" data-first="60" data-last="84" data-key-width="20px" data-key-height="60px"
-                data-highlight="72 76 79" data-highlight-color="#FFE0E0" data-notename="true"></div>
-            <div class="piano" data-first="57" data-last="81" data-key-width="30px" data-key-height="70px"></div>
+                data-highlight="72 75 79" data-highlight-color="#FFE0E0" data-notename="true" data-key-signature="F dor"></div>
+            <div class="piano" data-first="57" data-last="81" data-key-width="30px" data-key-height="70px" data-custom-notename="65 Gbb, 69 Gx"></div>
+            <div class="piano-hover" data-first="48" data-last="60" data-highlight="52 54" data-highlight-color="#E0FFFF"></div>
+            <div class="piano-play" data-first="36" data-last="67" data-key-width="30px" data-key-height="90px" data-highlight="52 54" data-highlight-color="#E0FFFF"></div>
+            <div id="piano1" class="piano" data-first="48" data-last="72" data-key-width="30px" data-key-height="120px" data-highlight="48 51 55 58 62 65 69" data-highlight-color="#FFFF00" data-notename="true" data-key-signature="C dor"></div>
+            <button onclick="playHighlighted('piano1', 0.2, 3, 'sawtooth')">PLAY CHORD</button>
+            <button onclick="playNote(40, 0.2, 3, 'square')">PLAY NOTE</button>
+            <p>
+                非効率だと分かっていながら、cssもhoverも何もかも一つのJavaScriptで実装しました。<br>
+                なぜかと言えばこのpiano.jsを呼び出すとき、そのJavaScriptをただ一つだけ呼び出せばよくなるから。ホントにただそれだけです。
+            </p>
 
+            <pre><code class="lang-js line-numbers" id="piano-js-src"></code></pre>
+            <script>
+                fetch('./piano.js')
+                .then(responce => responce.text())
+                .then(text => {
+                    document.getElementById('piano-js-src').textContent = text;
+                })
+                .catch(e => {
+                    document.getElementById('piano-js-src').textContent = "/* うまくよみこめんかった */";
+                });
+            </script>
 
+            <p>
+                ソースコードがいささか汚いので、いつかリファクタリングするかも。
+            </p>
         </main>
     </div>
 </body>
