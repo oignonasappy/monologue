@@ -270,3 +270,6 @@ chatGPTの性格を変えると、トークンの効率が大きく落ちると�
 
 ###### メモ
 - 更新日時の改行を禁止する
+- piano.js
+    - playNoteAll() playNote()の拡張
+    - playKeys() playHighlighted()の一般化
