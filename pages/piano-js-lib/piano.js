@@ -9,7 +9,7 @@ const pianoActiveNotes = new Map();
     pianos.forEach(piano => {
         // 属性
         const first = parseInt(piano.dataset.first) ?? 60;
-        const last = parseInt(piano.dataset.last) ?? 72;
+        const last = parseInt(piano.dataset.last) ?? first + 12;
         const keyWidth = piano.dataset.keyWidth ?? '20px';
         const keyHeight = piano.dataset.keyHeight ?? '60px';
         const highlight = piano.dataset.highlight === undefined ? undefined
@@ -18,10 +18,10 @@ const pianoActiveNotes = new Map();
         const notename = piano.dataset.notename === "true" ? true : false;
         const keySignature = piano.dataset.keySignature ?? 'C';
         const customNotename = piano.dataset.customNotename;
-        // .piano-playでのみ使用
+        // .piano-play, playKeys(), playHighlighted()で使用
         const volume = parseFloat(piano.dataset.volume) || 0.25;
         const duration = parseFloat(piano.dataset.duration) || 2;
-        const oscType = parseFloat(piano.dataset.oscType) || 'triangle';
+        const oscType = piano.dataset.oscType || 'triangle';
         const tuning = parseFloat(piano.dataset.tuning) || 440;
         // custom-notenameのパース
         const customNameMap = new Map();
@@ -349,6 +349,12 @@ function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle", tunin
     pianoActiveNotes.set(midi, osc);
 }
 
+function playNoteAll(midiArray, volume = 0.25, duration = 2, oscType = "triangle", tuning = 440) {
+    midiArray.forEach(midi => {
+        playNote(midi, volume, duration, oscType, tuning);
+    });
+}
+
 function stopNote(midi) {
     const osc = pianoActiveNotes.get(midi);
     if (osc) {
@@ -368,29 +374,22 @@ function stopNote(midi) {
     }
 }
 
-/**
- * 
- * @param {string} id piano id
- * @param {number} volume 
- * @param {number} duration 
- * @param {string} oscType OscillatorNode.type
- * @returns 
- */
-function playHighlighted(id, volume = 0.25, duration = 2, oscType = "triangle", tuning = 440) {
+function playKeys(id, midiArray) {
     const piano = document.getElementById(id);
     if (piano == undefined) {
         console.error("id not found");
         return;
     }
-    if (piano.dataset.highlight == undefined) {
-        console.error("data-highlight has no valid value");
-        return;
-    }
-    piano.dataset.highlight.trim().split(/\s+/).map(n => parseInt(n)).forEach(midi => {
+    const volume = parseFloat(piano.dataset.volume) || undefined;
+    const duration = parseFloat(piano.dataset.duration) || undefined;
+    const oscType = piano.dataset.oscType || undefined;
+    const tuning = parseFloat(piano.dataset.tuning) || undefined;
+
+    midiArray.forEach(midi => {
         stopNote(midi);
         playNote(midi, volume, duration, oscType, tuning);
 
-        if (piano.animationValidFlgs[midi]) {
+        if (piano.keys[midi] != null && piano.animationValidFlgs[midi]) {
             piano.animationValidFlgs[midi] = false;
             const beforeTransition = piano.keys[midi].style.transition;
             const beforefilter = piano.keys[midi].style.filter;
@@ -403,4 +402,18 @@ function playHighlighted(id, volume = 0.25, duration = 2, oscType = "triangle", 
             }, 150);
         }
     });
+}
+
+function playHighlighted(id) {
+    const piano = document.getElementById(id);
+    if (piano == undefined) {
+        console.error("id not found");
+        return;
+    }
+    if (piano.dataset.highlight == undefined) {
+        console.error("data-highlight has no valid value");
+        return;
+    }
+
+    playKeys(id, piano.dataset.highlight.trim().split(/\s+/).map(n => parseInt(n)));
 }

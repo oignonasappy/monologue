@@ -97,20 +97,27 @@ function pageInfo(pages) {
 
         const date = document.createElement('div');
         date.setAttribute('class', 'info-date');
-        let dateText = "";
+
+        const updateDate = document.createElement('span');
+        updateDate.setAttribute('class', 'no-wrap');
+        let updateText = "";
         if (pages[pageIndex]['update-date'] !== null) {
-            dateText += "更新日：";
+            updateText += "更新日：";
             const updateDateTextArray = pages[pageIndex]['update-date'].split('-');
-            dateText += updateDateTextArray[0] + "年 ";
-            dateText += updateDateTextArray[1] + "月 ";
-            dateText += updateDateTextArray[2]/*.replace(/^0+/, '')*/ + "日 ";
+            updateText += updateDateTextArray[0] + "年 ";
+            updateText += updateDateTextArray[1] + "月 ";
+            updateText += updateDateTextArray[2]/*.replace(/^0+/, '')*/ + "日 ";
         }
-        dateText += "作成日：";
+        updateDate.textContent = updateText;
+
+        const createDate = document.createElement('span');
+        createDate.setAttribute('class', 'no-wrap');
+        let createText = "作成日：";
         const createDateTextArray = pages[pageIndex]['create-date'].split('-');
-        dateText += createDateTextArray[0] + "年 ";
-        dateText += createDateTextArray[1] + "月 ";
-        dateText += createDateTextArray[2] + "日";
-        date.textContent = dateText;
+        createText += createDateTextArray[0] + "年 ";
+        createText += createDateTextArray[1] + "月 ";
+        createText += createDateTextArray[2] + "日";
+        createDate.textContent = createText;
 
         if (pages[pageIndex]['category'] !== null) {
             info.appendChild(category);
@@ -118,6 +125,8 @@ function pageInfo(pages) {
         if (pages[pageIndex]['tag'] != 0) {
             info.appendChild(tags);
         }
+        date.appendChild(updateDate);
+        date.appendChild(createDate);
         info.appendChild(date);
         document.querySelector('main').insertAdjacentElement('afterbegin', info);
     }
