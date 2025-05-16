@@ -3,48 +3,65 @@ const pianoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
 // piano-play用の再生中リスト
 const pianoActiveNotes = new Map();
 
+/* 初期読み込み時処理 */
 (() => {
     // 全てのpianoに対し処理
     const pianos = document.querySelectorAll(`[class*='piano']`);
     pianos.forEach(piano => {
-        // 属性
-        const first = parseInt(piano.dataset.first) ?? 60;
-        const last = parseInt(piano.dataset.last) ?? first + 12;
-        const keyWidth = piano.dataset.keyWidth ?? '20px';
-        const keyHeight = piano.dataset.keyHeight ?? '60px';
-        const highlight = piano.dataset.highlight === undefined ? undefined
+        /* 属性 */
+        piano.first = parseInt(piano.dataset.first) ?? 60;
+        piano.last = parseInt(piano.dataset.last) ?? first + 12;
+        piano.keyWidth = piano.dataset.keyWidth ?? '20px';
+        piano.keyHeight = piano.dataset.keyHeight ?? '60px';
+        piano.highlight = piano.dataset.highlight === undefined ? undefined
             : piano.dataset.highlight.trim().split(/\s+/).map(n => parseInt(n));
-        const highlightColor = piano.dataset.highlightColor ?? '#FFE0E0';
-        const notename = piano.dataset.notename === "true" ? true : false;
-        const keySignature = piano.dataset.keySignature ?? 'C';
-        const customNotename = piano.dataset.customNotename;
+        piano.highlightColor = piano.dataset.highlightColor ?? '#FFE0E0';
+        piano.notename = piano.dataset.notename === "true" ? true : false;
+        piano.keySignature = piano.dataset.keySignature ?? 'C';
+        piano.customNotename = piano.dataset.customNotename;
         // .piano-play, playKeys(), playHighlighted()で使用
-        const volume = parseFloat(piano.dataset.volume) || 0.25;
-        const duration = parseFloat(piano.dataset.duration) || 2;
-        const oscType = piano.dataset.oscType || 'triangle';
-        const tuning = parseFloat(piano.dataset.tuning) || 440;
+        piano.volume = parseFloat(piano.dataset.volume) || 0.25;
+        piano.duration = parseFloat(piano.dataset.duration) || 2;
+        piano.oscType = piano.dataset.oscType || 'triangle';
+        piano.tuning = parseFloat(piano.dataset.tuning) || 440;
         // custom-notenameのパース
-        const customNameMap = new Map();
-        if (customNotename != undefined) {
+        piano.customNameMap = new Map();
+        if (piano.customNotename != undefined) {
             // カンマ区切り ->
-            customNotename.split(',').forEach(pair => {
+            piano.customNotename.split(',').forEach(pair => {
                 // -> スペース区切り
                 const [midiNum, name] = pair.trim().split(/\s+/);
-                customNameMap.set(parseInt(midiNum), name);
+                piano.customNameMap.set(parseInt(midiNum), name);
             });
         }
-
+        
         // timeoutを伴うアニメーションのフラグ
         piano.animationValidFlgs = [];
 
         // ピアノのCSS
         piano.style.position = 'relative';
-        piano.style.height = keyHeight;
+        piano.style.height = piano.keyHeight;
+        // 不要?
+        // piano.style.width = `calc(${piano.keyWidth} * ${whiteCount})`;
+        // piano.style.backgroundColor = '#202020';
+
+        // スクロール用にコンテナでラップする
+        const wrapper = document.createElement('div');
+        wrapper.className = 'piano-wrapper';
+        wrapper.style.boxSizing = 'border-box';
+        wrapper.style.overflowX = 'auto';
+        wrapper.style.overflowY = 'hidden';
+        wrapper.style.maxWidth = '100%';
+        wrapper.style.padding = '4px';
+        wrapper.style.borderRadius = '8px';
+        // wrapper.style.background = '#E0E0E0';
+        piano.parentNode.insertBefore(wrapper, piano);
+        wrapper.appendChild(piano);
 
         /* 鍵盤一つづつを作成する処理 */
         let whiteCount = 0;
         piano.keys = {};
-        for (let midi = first; midi <= last; midi++) {
+        for (let midi = piano.first; midi <= piano.last; midi++) {
 
             // 鍵盤はそれぞれ<div>で構成
             const key = document.createElement('div');
@@ -59,16 +76,16 @@ const pianoActiveNotes = new Map();
             if (!isBlackKey(midi)) {
                 // 白鍵の処理
                 key.className = 'white-key';
-                key.style.width = keyWidth;
-                key.style.height = keyHeight;
-                key.style.left = `calc(${keyWidth} * ${whiteCount})`;
+                key.style.width = piano.keyWidth;
+                key.style.height = piano.keyHeight;
+                key.style.left = `calc(${piano.keyWidth} * ${whiteCount})`;
                 key.style.backgroundColor = '#FFFFFF';
                 key.style.border = '1px solid #202020';
                 key.style.zIndex = 0;
 
                 // ハイライトされる鍵盤
-                if (highlight !== undefined && highlight.includes(midi)) {
-                    key.style.backgroundColor = highlightColor;
+                if (piano.highlight !== undefined && piano.highlight.includes(midi)) {
+                    key.style.backgroundColor = piano.highlightColor;
                 }
 
                 whiteCount++;
@@ -77,16 +94,16 @@ const pianoActiveNotes = new Map();
                 // 最初の鍵盤が黒鍵だった場合、最初の黒鍵が左側にずれることを防ぐ
                 if (whiteCount === 0) whiteCount = 1;
                 key.className = 'black-key';
-                key.style.width = `calc(${keyWidth} * 0.7)`;
-                key.style.height = `calc(${keyHeight} * 0.6)`;
-                key.style.left = `calc(${keyWidth} * ${whiteCount} - ${keyWidth} * 0.35)`;
+                key.style.width = `calc(${piano.keyWidth} * 0.7)`;
+                key.style.height = `calc(${piano.keyHeight} * 0.6)`;
+                key.style.left = `calc(${piano.keyWidth} * ${whiteCount} - ${piano.keyWidth} * 0.35)`;
                 key.style.backgroundColor = '#000000';
                 key.style.border = '2px solid #606060';
                 key.style.zIndex = 1;
 
                 // ハイライトされる鍵盤
-                if (highlight !== undefined && highlight.includes(midi)) {
-                    key.style.backgroundColor = highlightColor;
+                if (piano.highlight !== undefined && piano.highlight.includes(midi)) {
+                    key.style.backgroundColor = piano.highlightColor;
                     key.style.filter = 'brightness(55%) contrast(300%)';
                 }
             }
@@ -95,27 +112,27 @@ const pianoActiveNotes = new Map();
             const label = document.createElement('div');
             label.className = 'key-label';
             label.style.position = 'absolute';
-            label.style.bottom = `calc(${keyHeight} / 30 + 2px)`;
+            label.style.bottom = `calc(${piano.keyHeight} / 30 + 2px)`;
             label.style.width = '100%';
             label.style.fontFamily = 'monospace';
             label.style.textAlign = 'center';
-            label.style.fontSize = `calc(${keyWidth} / 2 - 1px)`;
+            label.style.fontSize = `calc(${piano.keyWidth} / 2 - 1px)`;
             label.style.pointerEvents = 'none';
             label.style.userSelect = 'none';
-            if (notename) {
+            if (piano.notename) {
                 if (!isBlackKey(midi)) {
                     // 白鍵の処理
-                    label.innerText = midiToNoteName(midi, keySignature);
+                    label.innerText = midiToNoteName(midi, piano.keySignature);
                     label.style.color = '#404040';
                 } else {
                     // 黒鍵の処理
-                    label.innerText = midiToNoteName(midi, keySignature, false);
+                    label.innerText = midiToNoteName(midi, piano.keySignature, false);
                     label.style.color = '#C0C0C0';
                 }
             }
             // カスタムな音名の設定
-            if (customNameMap.has(midi)) {
-                label.innerText = customNameMap.get(midi);
+            if (piano.customNameMap.has(midi)) {
+                label.innerText = piano.customNameMap.get(midi);
             }
             key.appendChild(label);
 
@@ -129,7 +146,7 @@ const pianoActiveNotes = new Map();
                 key.addEventListener('mouseleave', () => {
                     key.style.filter = '';
                     // ハイライトのfilterを元に戻す
-                    if (isBlackKey(midi) && highlight !== undefined && highlight.includes(midi)) {
+                    if (isBlackKey(midi) && piano.highlight !== undefined && piano.highlight.includes(midi)) {
                         key.style.filter = 'brightness(55%) contrast(300%)';
                     }
                 });
@@ -158,7 +175,7 @@ const pianoActiveNotes = new Map();
                 key.addEventListener('mouseover', () => {
                     if (mouseDown) {
                         key.style.filter = 'invert(40%)';
-                        playNote(midi, volume, duration, oscType, tuning);
+                        playNote(midi, piano.volume, piano.duration, piano.oscType, piano.tuning);
                     } else {
                         key.style.filter = 'invert(20%)';
                     }
@@ -169,13 +186,13 @@ const pianoActiveNotes = new Map();
                     if (e.button !== 0) return;
                     key.style.filter = 'invert(40%)';
                     stopNote(midi);
-                    playNote(midi, volume, duration, oscType, tuning);
-                })
+                    playNote(midi, piano.volume, piano.duration, piano.oscType, piano.tuning);
+                });
                 // 退出時
                 key.addEventListener('mouseleave', () => {
                     key.style.filter = '';
                     // ハイライトのfilterを元に戻す
-                    if (isBlackKey(midi) && highlight !== undefined && highlight.includes(midi)) {
+                    if (isBlackKey(midi) && piano.highlight !== undefined && piano.highlight.includes(midi)) {
                         key.style.filter = 'brightness(55%) contrast(300%)';
                     }
                 });
@@ -185,30 +202,17 @@ const pianoActiveNotes = new Map();
                 });
             }
 
-
             // ピアノに鍵盤を追加
             piano.appendChild(key);
         }
-
-        // 不要?
-        // piano.style.width = `calc(${keyWidth} * ${whiteCount})`;
-        // piano.style.backgroundColor = '#202020';
-
-        // スクロール用にコンテナでラップする
-        const wrapper = document.createElement('div');
-        wrapper.className = 'piano-wrapper';
-        wrapper.style.boxSizing = 'border-box';
-        wrapper.style.overflowX = 'auto';
-        wrapper.style.overflowY = 'hidden';
-        wrapper.style.maxWidth = '100%';
-        wrapper.style.padding = '4px';
-        wrapper.style.borderRadius = '8px';
-        // wrapper.style.background = '#E0E0E0';
-        piano.parentNode.insertBefore(wrapper, piano);
-        wrapper.appendChild(piano);
     });
 })();
 
+/**
+ * そのmidiが黒鍵であるか判定する。
+ * @param {number} midi 
+ * @returns true | false
+ */
 function isBlackKey(midi) {
     const blackNotes = [1, 3, 6, 8, 10]; // C#, D#, F#, G#, A#
     return blackNotes.includes(midi % 12);
@@ -314,6 +318,15 @@ function midiToNoteName(midi, keySignature = 'C maj', hasOctave = true) {
     return TONALITY_LIST_FLAT[tonality][midi % 12];
 }
 
+/**
+ * 指定したmidiを再生する。
+ * ピアノと紐づける必要はない。
+ * @param {*} midi 
+ * @param {*} volume 
+ * @param {*} duration 
+ * @param {*} oscType 
+ * @param {*} tuning 
+ */
 function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle", tuning = 440) {
     // 同じ番号の既存の音を止める
     stopNote(midi);
@@ -349,12 +362,18 @@ function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle", tunin
     pianoActiveNotes.set(midi, osc);
 }
 
+/**
+ * 配列の全てのmidiに対してplayNote()を呼び出す。
+ */
 function playNoteAll(midiArray, volume = 0.25, duration = 2, oscType = "triangle", tuning = 440) {
     midiArray.forEach(midi => {
         playNote(midi, volume, duration, oscType, tuning);
     });
 }
 
+/**
+ * 強制的に音を止める。
+ */
 function stopNote(midi) {
     const osc = pianoActiveNotes.get(midi);
     if (osc) {
@@ -374,21 +393,28 @@ function stopNote(midi) {
     }
 }
 
+/**
+ * ピアノに設定されているデータ属性を使用してplayNote()を呼び出す。
+ * @param {*} id 
+ * @param {*} midiArray 
+ * @returns 
+ */
 function playKeys(id, midiArray) {
     const piano = document.getElementById(id);
     if (piano == undefined) {
         console.error("id not found");
         return;
     }
-    const volume = parseFloat(piano.dataset.volume) || undefined;
-    const duration = parseFloat(piano.dataset.duration) || undefined;
-    const oscType = piano.dataset.oscType || undefined;
-    const tuning = parseFloat(piano.dataset.tuning) || undefined;
 
+    // midiArrayの全てのmidiに対してplayNote()を呼び出す
+    // ピアノの鍵盤を短時間光らせる
     midiArray.forEach(midi => {
         stopNote(midi);
-        playNote(midi, volume, duration, oscType, tuning);
+        playNote(midi, piano.volume, piano.duration, piano.oscType, piano.tuning);
 
+        // アニメーションの途中で再び再生することはできない
+        // (animationDurationより短い間隔で再生することはできない)
+        const animationDuration = 150;
         if (piano.keys[midi] != null && piano.animationValidFlgs[midi]) {
             piano.animationValidFlgs[midi] = false;
             const beforeTransition = piano.keys[midi].style.transition;
@@ -399,21 +425,63 @@ function playKeys(id, midiArray) {
                 piano.keys[midi].style.transition = beforeTransition;
                 piano.keys[midi].style.filter = beforefilter;
                 piano.animationValidFlgs[midi] = true;
-            }, 150);
+            }, animationDuration);
         }
     });
 }
 
+/**
+ * ハイライトされた鍵盤でplayKeys()を呼び出す。
+ * @param {*} id 
+ */
 function playHighlighted(id) {
     const piano = document.getElementById(id);
     if (piano == undefined) {
         console.error("id not found");
         return;
     }
-    if (piano.dataset.highlight == undefined) {
+    if (piano.highlight == undefined) {
         console.error("data-highlight has no valid value");
         return;
     }
 
-    playKeys(id, piano.dataset.highlight.trim().split(/\s+/).map(n => parseInt(n)));
+    // ハイライトされているmidiの配列を渡す
+    playKeys(id, piano.highlight);
+}
+
+/**
+ * タイミング(リズム)に合わせてコールバック関数を実行する。
+ * 
+ * @param {Function} callback sequence[i-1]の間遅延して実行される関数。この関数には引数としてvalues[i]が渡される。
+ * @param {Array} sequence 次のcallbackの実行までの待機時間の配列。valuesと要素数が等しい、もしくは要素数-1である必要がある。
+ * @param {Array} values callbackに渡される値の配列。sequenceと要素数が等しい、もしくは要素数+1である必要がある。
+ * @param {number} [bpm=240] sequence[]に設定されている値の1を全音符、1/4を1拍とした時のBPM。
+ */
+function sequencer(callback, sequence, values, bpm = 240) {
+    // sequenceとvaluesは完全に1対1で対応している必要がある
+    // sequenceの最後の値は意味をなさないため省略できる
+    if (sequence.length !== values.length && sequence.length - 1 !== values.length) {
+        throw new Error("The length of sequence and values do not match");
+    }
+
+    // 全てのvalues[i]をsequence[0:i]の遅延で呼び出す
+    let totalTime = 0;
+    for (let i = 0; i < sequence.length; i++) {
+        // 秒をミリ秒に変換し、BPMを乗する
+        // 240BPM全音符 = 60BPM4分音符 = 1000ms
+        const waitTime = 0;
+        if (sequence[i]) {
+            waitTime = sequence[i] * 1000 / (bpm / 240);
+        }
+
+        const value = values[i];
+
+        // sequence[i]以前の全てを足した分だけ待機する
+        setTimeout(() => {
+            // 関数呼び出し
+            callback(value);
+        }, totalTime);
+
+        totalTime += waitTime;
+    }
 }

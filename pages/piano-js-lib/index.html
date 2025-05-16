@@ -3,7 +3,7 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-    <!--<meta name="local-env">-->
+    <meta name="local-env">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
     <title>あなたのページに鍵盤を表示する[Piano.js]</title>
     <meta property="og:title" content="あなたのページに鍵盤を表示する[Piano.js]">
     <meta name="description" content="Lorem, ipsum.">
-    <meta property="og:description" content="Lorem, ipsum.">
+    <meta property="og:description" content="サイト上でピアノが弾けます！">
 
     <link rel="stylesheet" href="./style.css">
     <script src="./piano.js" defer></script>
@@ -166,7 +166,9 @@
                                     既定 : <span class="code">0.25</span>
                                 </p>
                                 <p>
-                                    とても音が大きい場合があります！必ず小さい音量からお試しください。耳を痛めないように
+                                    振幅。<br>
+                                    入力は対数スケールに変換され、線形な音量変化になる。<br>
+                                    <b>とても音が大きい場合があります！</b>必ず小さい音量からお試しください。耳を痛めないように
                                 </p>
                             </li>
                             <li>
@@ -191,7 +193,7 @@
                             <li>
                                 <h4>data-tuning ※再生用</h4>
                                 <p>
-                                    <span class="code">data-tuning: &lt;number&gt; = 0.0 &lt;= x</span><br>
+                                    <span class="code">data-tuning: &lt;number&gt; = 0.0 &lt; x</span><br>
                                     記述例 : <code class="lang-html"></code><br>
                                     既定 : <span class="code">440</span>
                                 </p>
@@ -204,17 +206,69 @@
                 <ol>
                     <li>
                         <h4>playNote()</h4>
+                        引数
+                        <ol>
+                            <li>
+                                midi<br>
+                                実は小数も指定することができる。これにより微分音を再生することができる。
+                            </li>
+                            <li>
+                                volume
+                            </li>
+                            <li>
+                                duration
+                            </li>
+                            <li>
+                                tuning
+                            </li>
+                        </ol>
                         <p>
                             デフォルトを呼び出す際は引数に<code class="lang-js">undefined</code>を設定する
                             今後オブジェクト引数に書き直すかも
                         </p>
                     </li>
                     <li>
+                        <h4>playNoteAll()</h4>
+                    </li>
+                    <li>
+                        <h4>playKeys()</h4>
+                        ピアノに設定されているパラメータで音を鳴らします。<br>
+                        これらの属性に設定されている値を使用します。
+                        <ul>
+                            <li>data-volume</li>
+                            <li>data-duration</li>
+                            <li>data-osc-type</li>
+                            <li>data-tuning</li>
+                        </ul>
+                    </li>
+                    <li>
                         <h4>playHighlighted()</h4>
                     </li>
+                    <li>
+                        <h4>sequencer()</h4>
+                        引数
+                        <ol>
+                            <li>
+                                call<br>
+                                ラムダ推奨
+                            </li>
+                            <li>
+                                sequence<br>
+                                秒数
+                            </li>
+                            <li>
+                                values<br>
+
+                            </li>
+                            <li>
+                                bpm<br>
+
+                            </li>
+                        </ol>
+                    </li>
                 </ol>
-            
-            
+
+            <h3>その他</h3>
             <p>
                 ピアノ全体に対してスタイリングする時は、<wbr>
                 <code class="lang-html">.piano-wrapper</code>に対して行うことを<wbr>推奨します。

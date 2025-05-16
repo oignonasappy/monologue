@@ -3,7 +3,7 @@ const ROOT = (() => {
     const isLocal = !!document.querySelector('meta[name="local-env"]');
     // If current environment is local env, Root is `/`
     // Else if deploy environment, Root is `/monologue/`
-    return isLocal ? '/' : '/monologue/'
+    return isLocal ? '/' : '/monologue/';
 })();
 
 /* Loading pages.json -> Next process */
@@ -78,7 +78,7 @@ function recent(pages) {
         contentByDayLi.appendChild(contentByDayUl);
         recentList.appendChild(contentByDayLi);
 
-        if (total >= 10) break; 
+        if (total >= 10) break;
     }
 
     recent.appendChild(recentList);

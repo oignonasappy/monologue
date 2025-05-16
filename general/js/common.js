@@ -3,7 +3,7 @@ const ROOT = (() => {
     const isLocal = !!document.querySelector('meta[name="local-env"]');
     // If current environment is local env, Root is `/`
     // Else if deploy environment, Root is `/monologue/`
-    return isLocal ? '/' : '/monologue/'
+    return isLocal ? '/' : '/monologue/';
 })();
 
 /* Basic structure */
