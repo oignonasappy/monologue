@@ -3,11 +3,34 @@ const pianoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
 // piano-play用の再生中リスト
 const pianoActiveNotes = new Map();
 
-/* 初期読み込み時処理 */
-(() => {
+// マウス入力の状態管理
+let pianoMouseDown = false;
+document.addEventListener('mousedown', (e) => {
+    if (e.button === 0) pianoMouseDown = true;
+});
+document.addEventListener('mouseup', (e) => {
+    pianoMouseDown = false;
+})
+
+// AudioContextのアクティブ化
+document.addEventListener('click', () => {
+    if (pianoAudioCtx.state === 'suspended') {
+        pianoAudioCtx.resume();
+    }
+});
+
+// 初期読み込み
+pianoLoad();
+
+/**
+ * 全てのピアノを読み込む処理
+ */
+function pianoLoad() {
     // 全てのpianoに対し処理
     const pianos = document.querySelectorAll(`[class*='piano']`);
     pianos.forEach(piano => {
+        if (piano.loaded) return;
+        piano.loaded = true;
         /* 属性 */
         piano.first = parseInt(piano.dataset.first) ?? 60;
         piano.last = parseInt(piano.dataset.last) ?? first + 12;
@@ -34,15 +57,13 @@ const pianoActiveNotes = new Map();
                 piano.customNameMap.set(parseInt(midiNum), name);
             });
         }
-        
+
         // timeoutを伴うアニメーションのフラグ
         piano.animationValidFlgs = [];
 
         // ピアノのCSS
         piano.style.position = 'relative';
         piano.style.height = piano.keyHeight;
-        // 不要?
-        // piano.style.width = `calc(${piano.keyWidth} * ${whiteCount})`;
         // piano.style.backgroundColor = '#202020';
 
         // スクロール用にコンテナでラップする
@@ -51,6 +72,7 @@ const pianoActiveNotes = new Map();
         wrapper.style.boxSizing = 'border-box';
         wrapper.style.overflowX = 'auto';
         wrapper.style.overflowY = 'hidden';
+        wrapper.style.width = 'max-content';
         wrapper.style.maxWidth = '100%';
         wrapper.style.padding = '4px';
         wrapper.style.borderRadius = '8px';
@@ -153,27 +175,10 @@ const pianoActiveNotes = new Map();
             }
 
             /* piano-play */
-            // マウス入力の状態管理
-            let mouseDown = false;
-            document.addEventListener('mousedown', (e) => {
-                if (e.button === 0) mouseDown = true;
-            });
-            document.addEventListener('mouseup', (e) => {
-                mouseDown = false;
-            })
-
-            // AudioContextのアクティブ化
-            document.addEventListener('click', () => {
-                if (pianoAudioCtx.state === 'suspended') {
-                    pianoAudioCtx.resume();
-                }
-            });
-
-            // メイン
             if (piano.className === 'piano-play') {
                 // 侵入時
                 key.addEventListener('mouseover', () => {
-                    if (mouseDown) {
+                    if (pianoMouseDown) {
                         key.style.filter = 'invert(40%)';
                         playNote(midi, piano.volume, piano.duration, piano.oscType, piano.tuning);
                     } else {
@@ -202,11 +207,14 @@ const pianoActiveNotes = new Map();
                 });
             }
 
+            // ピアノの横幅を鍵盤数に合わせる
+            piano.style.width = `calc(${piano.keyWidth} * ${whiteCount})`;
+
             // ピアノに鍵盤を追加
             piano.appendChild(key);
         }
     });
-})();
+}
 
 /**
  * そのmidiが黒鍵であるか判定する。
@@ -395,9 +403,9 @@ function stopNote(midi) {
 
 /**
  * ピアノに設定されているデータ属性を使用してplayNote()を呼び出す。
- * @param {*} id 
- * @param {*} midiArray 
- * @returns 
+ * 再生された鍵盤は発光する。
+ * @param {string} id HTMlに設定したid
+ * @param {Array} midiArray 再生するmidiが列挙された配列
  */
 function playKeys(id, midiArray) {
     const piano = document.getElementById(id);
@@ -409,18 +417,17 @@ function playKeys(id, midiArray) {
     // midiArrayの全てのmidiに対してplayNote()を呼び出す
     // ピアノの鍵盤を短時間光らせる
     midiArray.forEach(midi => {
-        stopNote(midi);
         playNote(midi, piano.volume, piano.duration, piano.oscType, piano.tuning);
 
         // アニメーションの途中で再び再生することはできない
         // (animationDurationより短い間隔で再生することはできない)
         const animationDuration = 150;
-        if (piano.keys[midi] != null && piano.animationValidFlgs[midi]) {
+        if (piano.keys[midi] != undefined && piano.animationValidFlgs[midi]) {
             piano.animationValidFlgs[midi] = false;
             const beforeTransition = piano.keys[midi].style.transition;
             const beforefilter = piano.keys[midi].style.filter;
             piano.keys[midi].style.transition = '';
-            piano.keys[midi].style.filter = beforefilter + ' sepia(100%)';
+            piano.keys[midi].style.filter = beforefilter + ' sepia(100%) invert(15%)';
             setTimeout(() => {
                 piano.keys[midi].style.transition = beforeTransition;
                 piano.keys[midi].style.filter = beforefilter;
@@ -452,7 +459,7 @@ function playHighlighted(id) {
 /**
  * タイミング(リズム)に合わせてコールバック関数を実行する。
  * 
- * @param {Function} callback sequence[i-1]の間遅延して実行される関数。この関数には引数としてvalues[i]が渡される。
+ * @param {Function} callback 1つ前の実行からsequence[i-1]の間待機して実行される関数。この関数には引数としてvalues[i]が渡される。
  * @param {Array} sequence 次のcallbackの実行までの待機時間の配列。valuesと要素数が等しい、もしくは要素数-1である必要がある。
  * @param {Array} values callbackに渡される値の配列。sequenceと要素数が等しい、もしくは要素数+1である必要がある。
  * @param {number} [bpm=240] sequence[]に設定されている値の1を全音符、1/4を1拍とした時のBPM。
@@ -460,19 +467,16 @@ function playHighlighted(id) {
 function sequencer(callback, sequence, values, bpm = 240) {
     // sequenceとvaluesは完全に1対1で対応している必要がある
     // sequenceの最後の値は意味をなさないため省略できる
-    if (sequence.length !== values.length && sequence.length - 1 !== values.length) {
+    if (sequence.length !== values.length && sequence.length + 1 !== values.length) {
         throw new Error("The length of sequence and values do not match");
     }
 
     // 全てのvalues[i]をsequence[0:i]の遅延で呼び出す
     let totalTime = 0;
-    for (let i = 0; i < sequence.length; i++) {
+    for (let i = 0; i < values.length; i++) {
         // 秒をミリ秒に変換し、BPMを乗する
         // 240BPM全音符 = 60BPM4分音符 = 1000ms
-        const waitTime = 0;
-        if (sequence[i]) {
-            waitTime = sequence[i] * 1000 / (bpm / 240);
-        }
+        const waitTime = sequence[i] ? sequence[i] * 1000 / (bpm / 240) : 0;
 
         const value = values[i];
 
