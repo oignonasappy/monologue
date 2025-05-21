@@ -4,6 +4,7 @@ const pianoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const pianoActiveNotes = new Map();
 
 // マウス入力の状態管理
+// piano-playのクリックの状態を整理するために使用する
 let pianoMouseDown = false;
 document.addEventListener('mousedown', (e) => {
     if (e.button === 0) pianoMouseDown = true;
@@ -24,6 +25,7 @@ pianoLoad();
 
 /**
  * 全てのピアノを読み込む処理
+ * 複数回の呼び出しが可能
  */
 function pianoLoad() {
     // 全てのpianoに対し処理
@@ -80,9 +82,11 @@ function pianoLoad() {
         piano.parentNode.insertBefore(wrapper, piano);
         wrapper.appendChild(piano);
 
-        /* 鍵盤一つづつを作成する処理 */
+        // 白鍵の数。鍵盤の位置を決定するために使用する
         let whiteCount = 0;
+        // 鍵盤のHTMLElementを保存する領域
         piano.keys = {};
+        /* 鍵盤一つづつを作成する処理 */
         for (let midi = piano.first; midi <= piano.last; midi++) {
 
             // 鍵盤はそれぞれ<div>で構成
@@ -427,7 +431,7 @@ function playKeys(id, midiArray) {
             const beforeTransition = piano.keys[midi].style.transition;
             const beforefilter = piano.keys[midi].style.filter;
             piano.keys[midi].style.transition = '';
-            piano.keys[midi].style.filter = beforefilter + ' sepia(100%) invert(15%)';
+            piano.keys[midi].style.filter = beforefilter + ' sepia(100%) invert(30%)';
             setTimeout(() => {
                 piano.keys[midi].style.transition = beforeTransition;
                 piano.keys[midi].style.filter = beforefilter;
