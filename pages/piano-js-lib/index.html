@@ -3,7 +3,7 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-    <meta name="local-env">
+    <!--<meta name="local-env">-->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,11 +74,13 @@
                             基本の機能はpiano.jsのみを読み込むことで利用可能です。<br>
                             <strong>defer属性</strong>を付与する必要があることに注意してください。
                         </p>
+
                         <h4>ダウンロードして読み込み</h4>
                         <p>
                             以下のリンクから該当バージョンを選択し、内部のpiano.jsをダウンロード<br>
                             <a href="https://github.com/oignonasappy/pianojs/" target="_blank" rel="noopener noreferrer">https://github.com/oignonasappy/pianojs/</a>
                         </p>
+
                         <h4>github.ioからの読み込み(疑似CDN)</h4>
                         <p>
                             以下コードを<span class="code">&lt;head&gt;</span>内にコピー [version : xxx]<br>
@@ -98,15 +100,26 @@
                         <ul>
                             <li>
                                 <h4>.piano</h4>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>.piano-hover</h4>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>.piano-play</h4>
-                                <p>残念ながらスマホ上では弾けないこともないですが、非常に不自由です。</p>
+                                <p>
+                                    残念ながらスマホ上では弾けないこともないですが、非常に不自由です。
+                                </p>
                             </li>
                         </ul>
+
                         <h3>データ属性</h3>
                         <p><code class="lang-html">data-*=""</code></p>
                         <ul>
@@ -123,49 +136,63 @@
                                     midi番号で指定する、表示する鍵盤の範囲です。
                                 </p>
                             </li>
+
                             <li>
                                 <h4>data-key-width, data-key-width</h4>
                                 <ul>
-                                    <span class="code">data-key-width: &lt;length&gt; = 0 &lt; x</span>
-                                    <span class="code">data-key-height: &lt;length&gt; = 0 &lt; x</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    data-key-width既定 : <span class="code">20px</span>
-                                    data-key-width既定 : <span class="code">60px</span>
+                                    <li><span class="code">data-key-width: &lt;length&gt; = 0 &lt; x</span></li>
+                                    <li><span class="code">data-key-height: &lt;length&gt; = 0 &lt; x</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>data-key-width既定 : <span class="code">20px</span></li>
+                                    <li>data-key-width既定 : <span class="code">60px</span></li>
                                 </ul>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>data-highlight</h4>
                                 <ul>
-                                    <span class="code">data-highlight: &lt;integer[*]&gt; = [data-first &lt;= x &lt;= data-last]*</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code"><i>なし</i></span>
+                                    <li><span class="code">data-highlight: &lt;integer[*]&gt; = [data-first &lt;= x &lt;= data-last]*</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code"><i>なし</i></span></li>
                                 </ul>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>data-highlight-color</h4>
                                 <ul>
-                                    <span class="code">data-highlight-color: &lt;color&gt; = x</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code">#FFE0E0</span>
+                                    <li><span class="code">data-highlight-color: &lt;color&gt; = x</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code">#FFE0E0</span></li>
                                 </ul>
                                 <p>
                                     ※このデータ属性は<span class="code">data-highlight</span>が設定されているときのみ機能します。<br>
                                 </p>
                             </li>
+
                             <li>
                                 <h4>data-notename</h4>
                                 <ul>
-                                    <span class="code">data-notename: &lt;boolean&gt; = "true" | "false"</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code">false</span>
+                                    <li><span class="code">data-notename: &lt;boolean&gt; = "true" | "false"</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code">false</span></li>
                                 </ul>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>data-key-signature</h4>
                                 <ul>
-                                    <span class="code">data-key-signature: &lt;string[2]&gt; = (C ~ B) (lyd ~ loc)</span>
-                                    記述例 : <code class="lang-html">data-key-signature="F Phr"</code>
-                                    既定 : <span class="code">C Maj</span>
+                                    <li><span class="code">data-key-signature: &lt;string[2]&gt; = (C ~ B) (lyd ~ loc)</span></li>
+                                    <li>記述例 : <code class="lang-html">data-key-signature="F Phr"</code></li>
+                                    <li>既定 : <span class="code">C Maj</span></li>
                                 </ul>
                                 <p>
                                     ※このデータ属性は<span class="code">data-notename="true"</span>のときのみ機能します。<br>
@@ -175,20 +202,25 @@
                                     調号が6個つく「bと#が切り替わる地点」(例えば、変ト長調と嬰ヘ長調)の場合bが6個の表記を採用します。(つまり、BはCbとして表記します。)
                                 </p>
                             </li>
+
                             <li>
                                 <h4>data-custom-notename</h4>
                                 <ul>
-                                    <span class="code">data-: &lt;integer, string&gt;[*] = [(data-first &lt;= x &lt;= data-last) (string)]*</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code"><i>なし</i></span>
+                                    <li><span class="code">data-: &lt;integer, string&gt;[*] = [(data-first &lt;= x &lt;= data-last) (string)]*</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code"><i>なし</i></span></li>
                                 </ul>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>data-volume ※再生用</h4>
                                 <ul>
-                                    <span class="code">data-volume: &lt;number&gt; = 0.0 &lt; x (&lt;= 1.0)</span>
-                                    記述例 : <code class="lang-html">data-volume="0.25"</code>
-                                    既定 : <span class="code">0.25</span>
+                                    <li><span class="code">data-volume: &lt;number&gt; = 0.0 &lt; x (&lt;= 1.0)</span></li>
+                                    <li>記述例 : <code class="lang-html">data-volume="0.25"</code></li>
+                                    <li>既定 : <span class="code">0.25</span></li>
                                 </ul>
                                 <p>
                                     振幅。<br>
@@ -196,41 +228,54 @@
                                     <b>とても音が大きい場合があります！</b>必ず小さい音量からお試しください。耳を痛めないように
                                 </p>
                             </li>
+
                             <li>
                                 <h4>data-duration ※再生用</h4>
                                 <ul>
-                                    <span class="code">data-duration: &lt;number&gt; = 0.0 &lt; x</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code">2</span>
+                                    <li><span class="code">data-duration: &lt;number&gt; = 0.0 &lt; x</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code">2</span></li>
                                 </ul>
+                                <p>
+                                    lorem, ipsum.
+                                </p>
                             </li>
+
                             <li>
                                 <h4>data-osc-type ※再生用</h4>
                                 <ul>
-                                    <span class="code">data-osc-type: &lt;string&gt; = sine | triangle | square | sawtooth</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code">triangle</span>
+                                    <li><span class="code">data-osc-type: &lt;string&gt; = sine | triangle | square | sawtooth</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code">triangle</span></li>
                                 </ul>
                                 <p>
                                     詳しくは<span class="code">OscillatorNode</span>の<a href="https://developer.mozilla.org/ja/docs/Web/API/OscillatorNode/type">ドキュメント</a>を参照
                                 </p>
                             </li>
+
                             <li>
                                 <h4>data-tuning ※再生用</h4>
                                 <ul>
-                                    <span class="code">data-tuning: &lt;number&gt; = 0.0 &lt; x</span>
-                                    記述例 : <code class="lang-html"></code>
-                                    既定 : <span class="code">440</span>
+                                    <li><span class="code">data-tuning: &lt;number&gt; = 0.0 &lt; x</span></li>
+                                    <li>記述例 : <code class="lang-html"></code></li>
+                                    <li>既定 : <span class="code">440</span></li>
                                 </ul>
-                                <s>私得である。</s>
+                                <p>
+                                    lorem, ipsum.
+                                    <s>私得である。</s>
+                                </p>
                             </li>
                         </ul>
                     </li>
                 </ol>
+
                 <h3>メソッド</h3>
                 <ol>
                     <li>
                         <h4>playNote()</h4>
+                        <p>
+                            lorem, ipsum.
+                        </p>
                         引数
                         <dl>
                             <dt>1. midi</dt>
@@ -250,6 +295,9 @@
 
                     <li>
                         <h4>playNoteAll()</h4>
+                        <p>
+                            lorem, ipsum.
+                        </p>
                     </li>
 
                     <li>
@@ -268,10 +316,16 @@
 
                     <li>
                         <h4>playHighlighted()</h4>
+                        <p>
+                            lorem, ipsum.
+                        </p>
                     </li>
 
                     <li>
                         <h4>sequencer()</h4>
+                        <p>
+                            lorem, ipsum.
+                        </p>
                         引数
                         <dl>
                             <dt>1. callback</dt>
