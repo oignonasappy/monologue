@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <meta name="local-env">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+
+    <title>Sample</title>
+    <meta property="og:title" content="Sample">
+    <meta name="description" content="Lorem, ipsum.">
+    <meta property="og:description" content="Lorem, ipsum.">
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <p>以前私が作成したpiano.jsに、midiを読み込んで再生する機能をつけてみようと思いました。</p>
+            <p>midiってフォーマットが複雑ですし、凄く難しそうです。とりあえず最初、何すればいいかわからないのでChatGPTに訊いてみます。</p>
+            <img src="./images/chatgpt-ans.png" alt="ChatGPT 必要なのは「MIDIファイルの読み込みとパース」だけ！" width="80%">
+            <p>そしたら驚き、凄く簡単そうです。てっきり一晩かかるものかと思ってました。
+                どうやら、<a href="https://github.com/Tonejs/Midi">tone.js</a>というとっても便利なライブラリがあるようです。
+                これらの機能の中でmidiに関する操作を簡潔に行うことができるようなので、今回はこちらを使います。
+                バイナリデータを直読みする恐ろしいことにはならずに済みそうです。よかった。</p>
+
+        </main>
+    </div>
+</body>
+
+</html>

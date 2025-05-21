@@ -22,5 +22,13 @@
         "update-date": "2025-05-16",
         "category": "プログラミング",
         "tag": ["JavaScript"]
+    },
+    {
+        "title": "",
+        "url": "pages/pianojs-extention",
+        "create-date": "2025-05-16",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": ["JavaScript"]
     }
 ]
