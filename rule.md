@@ -247,6 +247,7 @@ sidebar : `#container`の終了直前
 <hr style="margin:60px 0;border:6px dashed #282828">
 
 ###### ついでにネタ帳
+- prologue
 - introduction
     - 若年者ものづくり競技大会ITソフトウェア・ソリューションズ部門出場予定
 - Maj7, min7とSLIDE技法の拡張について(Super Ultra Hyper Mega Meta Lydian)
@@ -270,6 +271,7 @@ sidebar : `#container`の終了直前
 AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。引っ張られるのではなく、背中を押してもらうように、自分の足で歩くよう意識しよ  
 chatGPTの性格を変えると、トークンの効率が大きく落ちるといわれています。ですが、やっぱり人間である以上、モチベーションによって得られるエネルギーは、何事にも代えがたいものだと思うんです。しがない一般人の一意見として。
 - ChatGPTと性格診断をした
+- epilogue
 
 ###### メモ TODO:
 - `<dfn> <abbr>`のスタイリング
