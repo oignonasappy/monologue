@@ -137,7 +137,7 @@
                     <p>
                         midi番号で指定する、表示する鍵盤の範囲です。<br>
                         0以上であり、data-lastはdata-first以上である必要があります。<br>
-                        data-lastはそれ自身の値も含みます(要するに、"以下")
+                        data-lastはそれ自身の値も含みます(要するに"以下")
                     </p>
                 </li>
 
@@ -353,19 +353,33 @@
                 <li>
                     <h4>sequencer()</h4>
                     <p>
-                        lorem, ipsum.
+                        タイミング(リズム)に合わせてコールバック関数を実行します。<br>
+                        この関数は、<span class="code">values</span>の値で
+                        引数の関数を<span class="code">sequence</span>の分だけ遅延させて実行する関数です。<br>
+                        本piano.jsの<span class="code">playKeys()</span>等と併用すると効果的でしょう。
                     </p>
                     <h5>引数</h5>
                     <dl>
                         <dt>1. callback</dt>
-                        <dd>ラムダ推奨</dd>
+                        <dd>指定されたタイミングに呼び出される関数です。ラムダ推奨</dd>
                         <dt>2. sequence</dt>
-                        <dd>秒数</dd>
+                        <dd>次の関数呼び出しの際に待機させる秒数です。</dd>
                         <dt>3. values</dt>
-                        <dd></dd>
+                        <dd><span class="code">callback</span>に渡す任意の値をもつ配列です。</dd>
                         <dt>4. bpm</dt>
-                        <dd></dd>
+                        <dd><span class="code">sequence</span>に設定されている値の1を全音符、1/4を1拍とした時のBPMです。</dd>
                     </dl>
+                    <h5>記述例</h5>
+                    <pre><code class="lang-js">
+                        sequencer(
+                            (value) => {
+                                playKeys('piano2', value);
+                            },
+                            [1/8, 1/8, 1/8, 1/8, 1/8, 1/8, 1/8+0.01, 1/8+0.02, 1/8+0.03, 1/8+0.025, 1/8+0.02, 1/8+0.016, 1/8+0.012, 1/8+0.008, 1/8+0.004, 1/8, 3/8, 1/24, 1/24, 1/24, 0],
+                            [[89,48,52,55],[88],[86],[84],[82,53,57,60],[81],[79],[77],[76,40,45,50,55],[74],[84,44,48,51],[82],[80],[78],[77,49,53,56],[75],[77,41,48,52,57],[29],[36],[43],[50]],
+                            120
+                        )
+                    </code></pre>
                 </li>
             </ol>
 
@@ -386,6 +400,7 @@
                 なぜかと言えばこのpiano.jsを使用するとき、このJavaScriptをただ一つだけ呼び出せばよくなるから。ホントにただそれだけです。
             </p>
 
+            以下、piano.jsソースコードです。[version : vx.x.x]
             <pre style="height: 600px;"><code class="lang-js line-numbers" id="piano-js-src"></code></pre>
 
             <small>このページは当ブログでもっとも古い記事です。</small>
