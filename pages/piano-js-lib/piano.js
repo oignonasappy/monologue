@@ -344,7 +344,7 @@ function playNote(midi, volume = 0.25, duration = 2, oscType = "triangle", tunin
     stopNote(midi);
 
     // volumeを対数スケールにする
-    volume = Math.pow(10, (-40 + (0 - -40) * volume) / 20);
+    volume = Math.pow(10, (-40 + 40 * volume) / 20);
 
     // 基本設定
     const freq = tuning * Math.pow(2, (midi - 69) / 12);

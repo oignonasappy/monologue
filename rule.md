@@ -192,6 +192,7 @@ URLに検索する内容を含める。
             - インラインコードは`<code class="lang-[言語名]"></code>`
         - 脚注
             - `<sup>$</sup>`
+        - ソースコードの可読性を高めるため、インライン要素中に改行を挿入する場合は、改行の直前に`<wbr>`を追加するとよい。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
@@ -274,7 +275,6 @@ chatGPTの性格を変えると、トークンの効率が大きく落ちると�
 - epilogue
 
 ###### メモ TODO:
-- `<dfn> <abbr>`のスタイリング
 - `<del> <ins>`のスタイリング
 - `<blockquote> <cite>`のスタイリング
 - `<kbd>`のスタイリング

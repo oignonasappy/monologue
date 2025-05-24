@@ -176,6 +176,7 @@ main {
         .info-date {}
     }
 
+    /* Making <wbr> work in Japanese contents*/
     p,
     .use-wbr {
         word-break: keep-all;
@@ -242,6 +243,20 @@ main {
     .attention {
         color: #E00000;
         font-weight: bold;
+    }
+
+    :where(button, input, select, textarea) {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    :where(dfn[title]) {
+        cursor: help;
+    }
+    :where(abbr[title]) {
+        cursor: help;
+        text-decoration: underline;
+        text-decoration-style: dotted;
     }
 }
 

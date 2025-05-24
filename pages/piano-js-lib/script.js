@@ -1,5 +1,7 @@
 fetch('https://oignonasappy.github.io/monologue/pages/piano-js-lib/piano.js')
-    .then(responce => responce.text())
+    .then(responce => {
+        return responce.text();
+    })
     .then(text => {
         document.getElementById('piano-js-src').textContent = text;
 
