@@ -1,10 +1,16 @@
-// piano-play用の再生機能
+/**
+ * piano-play用の再生機能
+*/
 const pianoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-// piano-play用の再生中リスト
+/**
+ * piano-play用の再生中リスト
+ */
 const pianoActiveNotes = new Map();
 
-// マウス入力の状態管理
-// piano-playのクリックの状態を整理するために使用する
+/**
+ * マウス入力の状態管理
+ * piano-playのクリックの状態を整理するために使用する
+ */
 let pianoMouseDown = false;
 document.addEventListener('mousedown', (e) => {
     if (e.button === 0) pianoMouseDown = true;
@@ -34,8 +40,8 @@ function pianoLoad() {
         if (piano.loaded) return;
         piano.loaded = true;
         /* 属性 */
-        piano.first = parseInt(piano.dataset.first) ?? 60;
-        piano.last = parseInt(piano.dataset.last) ?? first + 12;
+        piano.first = parseInt(piano.dataset.first) || 60;
+        piano.last = parseInt(piano.dataset.last) || first + 12;
         piano.keyWidth = piano.dataset.keyWidth ?? '20px';
         piano.keyHeight = piano.dataset.keyHeight ?? '60px';
         piano.highlight = piano.dataset.highlight === undefined ? undefined
@@ -426,16 +432,19 @@ function playKeys(id, midiArray) {
         // アニメーションの途中で再び再生することはできない
         // (animationDurationより短い間隔で再生することはできない)
         const animationDuration = 150;
-        if (piano.keys[midi] != undefined && piano.animationValidFlgs[midi]) {
-            piano.animationValidFlgs[midi] = false;
-            const beforeTransition = piano.keys[midi].style.transition;
-            const beforefilter = piano.keys[midi].style.filter;
-            piano.keys[midi].style.transition = '';
-            piano.keys[midi].style.filter = beforefilter + ' sepia(100%) invert(30%)';
+        // midi番号が小数で与えられた場合、最も近い鍵盤を発光させる
+        // (主に、2つの単純な周波数比になる音の干渉を防ぐ意図による、僅かなずらしの考慮解釈)
+        const nearKey = Math.floor(midi);
+        if (piano.keys[nearKey] != undefined && piano.animationValidFlgs[nearKey]) {
+            piano.animationValidFlgs[nearKey] = false;
+            const beforeTransition = piano.keys[nearKey].style.transition;
+            const beforefilter = piano.keys[nearKey].style.filter;
+            piano.keys[nearKey].style.transition = '';
+            piano.keys[nearKey].style.filter = beforefilter + ' sepia(100%) invert(30%)';
             setTimeout(() => {
-                piano.keys[midi].style.transition = beforeTransition;
-                piano.keys[midi].style.filter = beforefilter;
-                piano.animationValidFlgs[midi] = true;
+                piano.keys[nearKey].style.transition = beforeTransition;
+                piano.keys[nearKey].style.filter = beforefilter;
+                piano.animationValidFlgs[nearKey] = true;
             }, animationDuration);
         }
     });

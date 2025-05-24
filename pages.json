@@ -19,16 +19,8 @@
         "title": "あなたのページに鍵盤を表示する[piano.js]",
         "url": "pages/piano-js-lib",
         "create-date": "2025-05-11",
-        "update-date": "2025-05-23",
+        "update-date": "2025-05-24",
         "category": "プログラミング",
-        "tag": ["JavaScript"]
-    },
-    {
-        "title": "piano.js midiインポート拡張機能",
-        "url": "pages/pianojs-extention-midi",
-        "create-date": "2025-05-16",
-        "update-date": null,
-        "category": "プログラミング",
-        "tag": ["JavaScript"]
+        "tag": ["JavaScript", "クリエイティブ"]
     }
 ]

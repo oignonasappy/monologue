@@ -220,6 +220,7 @@ main {
     p {
         margin-top: 1rem;
         margin-bottom: 2rem;
+        line-height: 1.5em;
     }
 
     dt {
@@ -228,6 +229,17 @@ main {
         text-decoration: underline;
         text-decoration-color: #C0C0C0;
         text-decoration-style: dashed;
+        text-underline-offset: 0.05em;
+    }
+
+    dl[class="ordered-dl"] {
+        counter-reset: n 0;
+    }
+
+    dl[class="ordered-dl"] > dt::before{
+        counter-increment: n 1;
+        content: counter(n) ". ";
+        pointer-events: none;
     }
 
     span[class="code"] {
@@ -252,12 +264,19 @@ main {
 
     :where(dfn[title]) {
         cursor: help;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: #A0A0A0;
+        text-underline-offset: 0.1em;
     }
     :where(abbr[title]) {
         cursor: help;
         text-decoration: underline;
         text-decoration-style: dotted;
+        text-underline-offset: 0.1em;
     }
+
+    /* Footnote */
 }
 
 footer {
