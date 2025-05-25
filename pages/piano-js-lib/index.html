@@ -132,8 +132,18 @@
                     <h4>&lt;div&gt;の配置</h4>
                     <p>記述例：</p>
                     <ul>
-                        <li><code class="lang-html" title="最小例">&lt;div class="piano"&gt;&lt;/div&gt;</code></li>
-                        <li><code class="lang-html">&lt;div&gt;&lt;/div&gt;</code></li>
+                        <li>
+                            <code class="lang-html" title=".piano 最小例">&lt;div class="piano" data-first="48" data-last="60"&gt;&lt;/div&gt;</code>
+                            <div class="piano" data-first="48" data-last="60"></div>
+                        </li>
+                        <li>
+                            <code class="lang-html" title=".piano-hover 最大例">&lt;div class="piano-hover" data-first="21" data-last="108" data-key-width="10px" data-key-height="40px" data-highlight="46 50 57" data-highlight-color="#A0FFA0" data-notename="true" data-key-signature="G min" data-custom-notename="46 I, 50 III, 57 VII"&gt;&lt;/div&gt;</code>
+                            <div class="piano-hover" data-first="21" data-last="108" data-key-width="10px" data-key-height="40px" data-highlight="46 50 57" data-highlight-color="#A0FFA0" data-notename="true" data-key-signature="G min" data-custom-notename="46 I, 50 III, 57 VII"></div>
+                        </li>
+                        <li>
+                            <code class="lang-html" title=".piano-play 最大例">&lt;div class="piano-play" data-first="28" data-last="103" data-key-width="16px" data-key-height="60px" data-highlight="40 45 50 55 59 64" data-highlight-color="rgb(128,128,255)" data-notename="true" data-key-signature="e AEO" data-custom-notename="40 6, 45 5, 50 4, 55 3, 59 2, 64 1" data-volume="0.35" data-duration="2.5" data-osc-type="sawtooth" data-tuning="427.474"&gt;&lt;/div&gt;</code>
+                            <div class="piano-play" data-first="28" data-last="103" data-key-width="16px" data-key-height="60px" data-highlight="40 45 50 55 59 64" data-highlight-color="rgb(128,128,255)" data-notename="true" data-key-signature="e AEO" data-custom-notename="40 6, 45 5, 50 4, 55 3, 59 2, 64 1" data-volume="0.15" data-duration="2.5" data-osc-type="sine" data-tuning="427.474"></div>
+                        </li>
                     </ul>
 
                     <h3>種類</h3>
@@ -361,20 +371,24 @@
                     <h5>引数</h5>
                     <dl class="ordered-dl">
                         <dt>midi</dt>
-                        <dd>再生するmidi番号です。実は小数も指定することができます。これにより微分音を再生することが可能です。</dd>
+                        <dd>{number} 再生するmidi番号です。実は小数も指定することができます。これにより微分音を再生することが可能です。</dd>
                         <dt>volume</dt>
-                        <dd><span class="code">data-volume</span>と同等です。</dd>
+                        <dd>{number} <span class="code">data-volume</span>と同等です。</dd>
                         <dt>duration</dt>
-                        <dd><span class="code">data-duration</span>と同等です。</dd>
+                        <dd>{number} <span class="code">data-duration</span>と同等です。</dd>
                         <dt>oscType</dt>
-                        <dd><span class="code">data-osc-type</span>と同等です。</dd>
+                        <dd>{string} <span class="code">data-osc-type</span>と同等です。</dd>
                         <dt>tuning</dt>
-                        <dd><span class="code">data-tuning</span>と同等です。</dd>
+                        <dd>{number} <span class="code">data-tuning</span>と同等です。</dd>
                     </dl>
                     <p>
                         デフォルトを呼び出す際は引数に<code class="lang-js">undefined</code>を設定します。
                         <!--今後オブジェクト引数に書き直すかも-->
                     </p>
+                    <h5>記述例</h5>
+                    <pre><code class="lang-js">
+                        playNote(60, 0.2, 1.5, "square", 442);
+                    </code></pre>
                 </li>
 
                 <li>
@@ -386,16 +400,20 @@
                     <h5>引数</h5>
                     <dl class="ordered-dl">
                         <dt>midiArray</dt>
-                        <dd>再生するmidi番号を列挙した配列です。</dd>
+                        <dd>{Array} 再生するmidi番号を列挙した配列です。</dd>
                         <dt>volume</dt>
-                        <dd><span class="code">data-volume</span>と同等です。</dd>
+                        <dd>{number} <span class="code">data-volume</span>と同等です。</dd>
                         <dt>duration</dt>
-                        <dd><span class="code">data-duration</span>と同等です。</dd>
+                        <dd>{number} <span class="code">data-duration</span>と同等です。</dd>
                         <dt>oscType</dt>
-                        <dd><span class="code">data-osc-type</span>と同等です。</dd>
+                        <dd>{string} <span class="code">data-osc-type</span>と同等です。</dd>
                         <dt>tuning</dt>
-                        <dd><span class="code">data-tuning</span>と同等です。</dd>
+                        <dd>{number} <span class="code">data-tuning</span>と同等です。</dd>
                     </dl>
+                    <h5>記述例</h5>
+                    <pre><code class="lang-js">
+                        playNoteAll([60, 65, 69], 0.18, 3, "triangle", 415);
+                    </code></pre>
                 </li>
 
                 <li>
@@ -414,11 +432,15 @@
                     </ol>
                     <h5>引数</h5>
                     <dl class="ordered-dl">
-                        <dt>id</dt>
+                        <dt>{string} id</dt>
                         <dd>紐づけるピアノのidです。</dd>
                         <dt>midiArray</dt>
-                        <dd>再生する鍵盤(midi番号)を列挙した配列です。</dd>
+                        <dd>{Array} 再生する鍵盤(midi番号)を列挙した配列です。</dd>
                     </dl>
+                    <h5>記述例</h5>
+                    <pre><code class="lang-js">
+                        playKeys("piano-alpha", [65, 69, 72, 76]);
+                    </code></pre>
                 </li>
 
                 <li>
@@ -430,8 +452,12 @@
                     <h5>引数</h5>
                     <dl class="ordered-dl">
                         <dt>id</dt>
-                        <dd>紐づけるピアノのidです。</dd>
+                        <dd>{string} 紐づけるピアノのidです。</dd>
                     </dl>
+                    <h5>記述例</h5>
+                    <pre><code class="lang-js">
+                        playHighLighted("piano-bravo");
+                    </code></pre>
                 </li>
 
                 <li>
@@ -445,13 +471,13 @@
                     <h5>引数</h5>
                     <dl class="ordered-dl">
                         <dt>callback</dt>
-                        <dd>指定されたタイミングに呼び出される関数です。ラムダ推奨</dd>
+                        <dd>{Function} 指定されたタイミングに呼び出される関数です。ラムダ推奨</dd>
                         <dt>sequence</dt>
-                        <dd>次の関数呼び出しの際に待機させる秒数です。</dd>
+                        <dd>{number} 次の関数呼び出しの際に待機させる秒数です。</dd>
                         <dt>values</dt>
-                        <dd><span class="code">callback</span>に渡す任意の値をもつ配列です。</dd>
+                        <dd>{Array} <span class="code">callback</span>に渡す任意の値をもつ配列です。</dd>
                         <dt>bpm</dt>
-                        <dd><span class="code">sequence</span>に設定されている値の1を全音符、1/4を1拍とした時のBPMです。</dd>
+                        <dd>{number} <span class="code">sequence</span>に設定されている値の1を全音符、1/4を1拍とした時のBPMです。</dd>
                     </dl>
                     <h5>記述例 (PLAY SONGボタン)</h5>
                     <pre><code class="lang-js">
