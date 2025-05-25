@@ -60,6 +60,9 @@ google検索でヒットするようにするにはこれが必要である。
 github用のREADME。
 
 ## pages/
+### template/index.html
+記事を書く際の基本のテンプレート。  
+このindex.htmlをコピーして使用する。
 ### [ページのフォルダ名]/
 一意であり、ページの意味が分かる名前を入力すること。
 #### index.html
