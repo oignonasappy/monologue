@@ -22,7 +22,7 @@ fetch('https://oignonasappy.github.io/pianojs/v1.0.0/piano.js')
             prismLineNumber.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js';
             prismLineNumber.defer = true;
             document.head.appendChild(prismLineNumber);
-        }, 200);
+        }, 1000);
     })
     .catch(e => {
         document.getElementById('piano-js-src').textContent = "/* うまくよみこめんかった */";
