@@ -210,7 +210,7 @@ function pageInfo(pages) {
         return;
     }
 
-    const TOCBox = document.createElement('div');
+    const TOCBox = document.createElement('section');
     TOCBox.className = "toc-box";
     const TOCTitle = document.createElement('div');
     TOCTitle.className = "toc-title";
