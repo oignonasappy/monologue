@@ -5,3 +5,33 @@
 .github-mark {
     height: 1em;
 }
+
+.deaf-to-all-but-the-song > img{
+    display: block;
+    margin: auto auto;
+}
+
+.deaf-to-all-but-the-song > .mystia1 {
+    position: absolute;
+    z-index: 1;
+}
+
+.deaf-to-all-but-the-song > .mystia2 {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+}
+
+.deaf-to-all-but-the-song:hover > .mystia2 {
+    opacity: 1;
+}
+
+.deaf-to-all-but-the-song > .mystia3 {
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+}
+
+.deaf-to-all-but-the-song:active > .mystia3 {
+    opacity: 1;
+}
