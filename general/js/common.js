@@ -34,8 +34,8 @@ const ROOT = (() => {
 })();
 
 /* Load pages.json -> Next process */
-let pages = [];
 (async () => {
+    let pages = [];
     try {
         const res = await fetch(ROOT + "pages.json");
         if (!res.ok) throw new Error("Response was not ok");
@@ -132,4 +132,13 @@ function pageInfo(pages) {
     }
 }
 
-/* footnote */
+/* Tooltip for mobile */
+(() => {
+    document.querySelectorAll(':where(abbr[title], dfn[title])').forEach(elem => {
+        elem.addEventListener('click', () => {
+            elem.classList.toggle('show-tooltip');
+        });
+    });
+})();
+
+/* Footnote */

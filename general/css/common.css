@@ -236,7 +236,7 @@ main {
         counter-reset: n 0;
     }
 
-    dl[class="ordered-dl"] > dt::before{
+    dl[class="ordered-dl"] > dt::before {
         counter-increment: n 1;
         content: counter(n) ". ";
         pointer-events: none;
@@ -263,17 +263,40 @@ main {
     }
 
     :where(dfn[title]) {
+        position: relative;
         cursor: help;
         text-decoration: underline;
         text-decoration-style: dotted;
         text-decoration-color: #A0A0A0;
         text-underline-offset: 0.1em;
     }
+
     :where(abbr[title]) {
+        position: relative;
         cursor: help;
         text-decoration: underline;
         text-decoration-style: dotted;
         text-underline-offset: 0.1em;
+    }
+
+    /* Tooltip for mobile */
+    :where(dfn[title], abbr[title])::after {
+        content: attr(title);
+        position: absolute;
+        bottom: 125%;
+        left: 0;
+        background: #333;
+        color: #fff;
+        opacity: 0.8;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        white-space: nowrap;
+        display: none;
+    }
+    
+    :where(dfn[title], abbr[title]).show-tooltip::after {
+        display: block;
     }
 
     /* Footnote */
