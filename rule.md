@@ -23,6 +23,8 @@
               - script.js(任意)
               - images/(任意)
                   - [画像ファイル]
+          - template/
+              - index.html
       - general/
           - html/
               - header.html
@@ -185,6 +187,7 @@ URLに検索する内容を含める。
         - `<div id="container"><main></main></div>`を必ず記述すること。
         - 記事は`<main>`の中に全て書く。
         - (`<header>`, `<aside>`(サイドバー), `<footer>`はcommon.jsで補完する)
+        - 目次は自動生成される。`<h1>`直下に配置される。`<meta name="no-toc">`を記述すると無効化できる。
     - 個別
         - センスで記事を書く
         - Prism.jsによるコード記述
@@ -287,4 +290,6 @@ chatGPTの性格を変えると、トークンの効率が大きく落ちると�
 - piano.js
     - コメントをもっとしっかり書く
     - sequencer()とplayKeys()で他フォーマットと連携
+    - あとがき
 - カテゴリ検索　タグ検索　時系列順全記事検索
+- プルダウン

@@ -78,10 +78,12 @@ function pageInfo(pages) {
         const info = document.createElement('section');
         info.setAttribute('class', 'page-info');
 
+        // category
         const category = document.createElement('div');
         category.setAttribute('class', 'info-category');
         category.innerHTML = `カテゴリ：<a href="${ROOT}general/page-search/category.html?category=${pages[pageIndex]['category']}">${pages[pageIndex]['category']}</a>`;
 
+        // tag
         const tags = document.createElement('div');
         tags.setAttribute('class', 'info-tags');
         let tagsText = "タグ：";
@@ -95,9 +97,11 @@ function pageInfo(pages) {
         }
         tags.innerHTML = tagsText;
 
+        // date
         const date = document.createElement('div');
         date.setAttribute('class', 'info-date');
 
+        // update date
         const updateDate = document.createElement('span');
         updateDate.setAttribute('class', 'no-wrap');
         let updateText = "";
@@ -110,6 +114,7 @@ function pageInfo(pages) {
         }
         updateDate.textContent = updateText;
 
+        // create date
         const createDate = document.createElement('span');
         createDate.setAttribute('class', 'no-wrap');
         let createText = "作成日：";
@@ -119,6 +124,7 @@ function pageInfo(pages) {
         createText += createDateTextArray[2] + "日";
         createDate.textContent = createText;
 
+        // add pageinfo to main adterbegin
         if (pages[pageIndex]['category'] !== null) {
             info.appendChild(category);
         }
@@ -126,6 +132,8 @@ function pageInfo(pages) {
             info.appendChild(tags);
         }
         date.appendChild(updateDate);
+        // add single space
+        date.appendChild(document.createTextNode(" "));
         date.appendChild(createDate);
         info.appendChild(date);
         document.querySelector('main').insertAdjacentElement('afterbegin', info);
@@ -193,4 +201,70 @@ function pageInfo(pages) {
 
     document.querySelector('main').appendChild(footnotesTitle);
     document.querySelector('main').appendChild(footnotes);
+})();
+
+/* TOC */
+(() => {
+    if (document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6').length === 0 ||
+        !!document.querySelector('meta[name="no-toc"]')) {
+        return;
+    }
+
+    const TOCBox = document.createElement('div');
+    TOCBox.className = "toc-box";
+    const TOCTitle = document.createElement('div');
+    TOCTitle.className = "toc-title";
+    TOCTitle.textContent = "目次";
+    const TOCList = document.createElement('ul');
+    TOCList.className = "toc-list";
+
+    let hIndex = 0;
+    document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6').forEach((elem) => {
+        // set anchor to all heading
+        const anchor = document.createElement('span');
+        anchor.id = "h-index-" + hIndex;
+        elem.insertAdjacentElement('beforebegin', anchor);
+
+        // TOC contents
+        const content = document.createElement('li');
+
+        switch (elem.tagName) {
+            case "H1":
+                content.className = "toc-content-h1";
+                break;
+            case "H2":
+                content.className = "toc-content-h2";
+                break;
+            case "H3":
+                content.className = "toc-content-h3";
+                break;
+            case "H4":
+                content.className = "toc-content-h4";
+                break;
+            case "H5":
+                content.className = "toc-content-h5";
+                break;
+            case "H6":
+                content.className = "toc-content-h6";
+                break;
+        }
+
+        const toHeadingAnchor = document.createElement('a');
+        toHeadingAnchor.href = "./#h-index-" + hIndex;
+        toHeadingAnchor.textContent = elem.textContent;
+        toHeadingAnchor.title = elem.textContent;
+
+        content.appendChild(toHeadingAnchor);
+        TOCList.appendChild(content);
+
+        hIndex++;
+    });
+
+    TOCBox.appendChild(TOCTitle);
+    TOCBox.appendChild(TOCList);
+    if (document.querySelectorAll('main h1').length !== 0) {
+        document.querySelectorAll('main h1')[0].insertAdjacentElement('afterend', TOCBox);
+    } else {
+        document.querySelector('main').insertAdjacentElement('afterbegin', TOCBox);
+    }
 })();
