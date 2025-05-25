@@ -244,6 +244,7 @@ sidebar : `#container`の終了直前
 - CSS
 - JavaScript
 - Java
+- 音楽理論
 - コード
 - スケール
 - AI

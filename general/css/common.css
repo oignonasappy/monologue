@@ -300,6 +300,16 @@ main {
     }
 
     /* Footnote */
+    .footnotes {
+        list-style-type: none;
+        padding-inline-start: 0;
+        .anchor-to-referent {
+            margin-right: 0.5em;
+        }
+        .footnote-text {
+            font-size: 0.9em;
+        }
+    }
 }
 
 footer {

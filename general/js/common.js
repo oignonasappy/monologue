@@ -142,3 +142,55 @@ function pageInfo(pages) {
 })();
 
 /* Footnote */
+(() => {
+    if (document.querySelectorAll('sup[class="footnote"]').length === 0) {
+        return;
+    }
+
+    const footnotesTitle = document.createElement('h3');
+    footnotesTitle.className = "footnotes-title"
+    footnotesTitle.textContent = "このページの脚注";
+
+    const footnotes = document.createElement('ul');
+    footnotes.className = "footnotes";
+
+    let noteNumber = 1;
+    document.querySelectorAll('sup[class="footnote"]').forEach((referent) => {
+        const note = referent.textContent;
+        // referent
+        referent.textContent = "";
+
+        const anchorToFootnote = document.createElement('a');
+        anchorToFootnote.className = "anchor-to-footnote";
+        anchorToFootnote.textContent = "[" + noteNumber + "]";
+        anchorToFootnote.id = "referent-" + noteNumber;
+        anchorToFootnote.href = "./#footnote-" + noteNumber;
+        anchorToFootnote.title = note;
+        referent.appendChild(anchorToFootnote);
+
+        // footnote
+        const footnote = document.createElement('li');
+        footnote.className = "footnote";
+
+        const anchorToReferent = document.createElement('a');
+        anchorToReferent.className = "anchor-to-referent"
+        anchorToReferent.textContent = "[" + noteNumber + "]";
+        anchorToReferent.id = "footnote-" + noteNumber;
+        anchorToReferent.href = "#referent-" + noteNumber;
+        anchorToReferent.title = "参照箇所へ";
+
+        const footnoteText = document.createElement('span');
+        footnoteText.className = "footnote-text";
+        footnoteText.textContent = note;
+
+        footnote.appendChild(anchorToReferent);
+        footnote.appendChild(footnoteText);
+
+        footnotes.appendChild(footnote);
+
+        noteNumber++;
+    });
+
+    document.querySelector('main').appendChild(footnotesTitle);
+    document.querySelector('main').appendChild(footnotes);
+})();
