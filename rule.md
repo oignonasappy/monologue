@@ -128,7 +128,7 @@ URLに検索する内容を含める。
 - `"url"` **[必須]**
     - ルートからのurl。
     - `/`から始めること。 (例)`"/pages/test/"`
-    - 末尾の`index.html`は記述しない。
+    - `/`で終わること。末尾の`index.html`は記述しない。
     - 大抵、`/pages/`から始まるが、そうとも限らない。
 - `"create-date"`
     - 書き始めの日付。
@@ -191,7 +191,7 @@ URLに検索する内容を含める。
             - コードブロックは`<pre><code class="lang-[言語名]"></code></pre>`
             - インラインコードは`<code class="lang-[言語名]"></code>`
         - 脚注
-            - `<sup>$</sup>`
+            - `<sup class="footnote">補遺文章...</sup>`とすると脚注を自動生成する。
         - ソースコードの可読性を高めるため、インライン要素中に改行を挿入する場合は、改行の直前に`<wbr>`を追加するとよい。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
@@ -284,10 +284,7 @@ chatGPTの性格を変えると、トークンの効率が大きく落ちると�
 - `<del> <ins>`のスタイリング
 - `<blockquote> <cite>`のスタイリング
 - `<kbd>`のスタイリング
-- ordered definition list(CSS)
 - piano.js
     - コメントをもっとしっかり書く
-    - 記事を書く
-    - `<wbr>`を増やす
     - sequencer()とplayKeys()で他フォーマットと連携
 - カテゴリ検索　タグ検索　時系列順全記事検索
