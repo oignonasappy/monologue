@@ -257,6 +257,10 @@ main {
         font-weight: bold;
     }
 
+    .wide-img {
+        width: 100%;
+    }
+
     :where(button, input, select, textarea) {
         font-family: inherit;
         font-size: inherit;
@@ -264,6 +268,7 @@ main {
 
     :where(dfn[title]) {
         position: relative;
+        display: inline-block;
         cursor: help;
         text-decoration: underline;
         text-decoration-style: dotted;
@@ -273,30 +278,11 @@ main {
 
     :where(abbr[title]) {
         position: relative;
+        display: inline-block;
         cursor: help;
         text-decoration: underline;
         text-decoration-style: dotted;
         text-underline-offset: 0.1em;
-    }
-
-    /* Tooltip for mobile */
-    :where(dfn[title], abbr[title])::after {
-        content: attr(title);
-        position: absolute;
-        bottom: 125%;
-        left: 0;
-        background: #333;
-        color: #fff;
-        opacity: 0.8;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 0.8em;
-        white-space: nowrap;
-        display: none;
-    }
-
-    :where(dfn[title], abbr[title]).show-tooltip::after {
-        display: block;
     }
 
     /* Footnote */
@@ -340,7 +326,7 @@ main {
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                
+
             }
 
             .toc-content-h1 {
@@ -480,6 +466,26 @@ aside {
             }
         }
     }
+}
+
+/* Tooltip for mobile */
+.tooltip {
+    display: inline-block;
+    width: fit-content;
+    position: absolute;
+    background: #333;
+    color: #fff;
+    opacity: 0.8;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    max-width: 200px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* Responsive */

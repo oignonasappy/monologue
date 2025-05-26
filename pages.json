@@ -22,5 +22,13 @@
         "update-date": "2025-05-26",
         "category": "プログラミング",
         "tag": ["JavaScript", "クリエイティブ", "音楽理論"]
+    },
+    {
+        "title": "Emmet Wrapにショートカットキーを付けろという話",
+        "url": "pages/vscode-emmet-wrap/",
+        "create-date": "2025-05-26",
+        "update-date": "2025-05-26",
+        "category": "プログラミング",
+        "tag": ["HTML"]
     }
 ]

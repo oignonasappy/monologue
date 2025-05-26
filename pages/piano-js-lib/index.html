@@ -3,8 +3,6 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-    <!--<meta name="local-env">-->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -114,7 +112,7 @@
                                 </p>
                                 <h4>ダウンロードして読み込み</h4>
                                 <p>
-                                    以下のリンクから<wbr>該当バージョンを選択し、内部のpiano.jsをダウンロード<br>
+                                    以下のリンクから<wbr>該当バージョンを選択し、<wbr>内部のpiano.jsをダウンロード<br>
                                     <a href="https://github.com/oignonasappy/pianojs/" target="_blank" rel="noopener noreferrer">https://github.com/oignonasappy/pianojs/</a>
                                 </p>
                                 <h4>github.ioからの読み込み(疑似<abbr title="Content Delivery Network">CDN</abbr>)</h4>
@@ -163,7 +161,7 @@
                                         <p>
                                             <span class="code">.piano-hover</span>の機能に追加で、<wbr>
                                             マウスでクリックすることで<wbr>音を鳴らすことができます。<br>
-                                            残念ながら<wbr>スマホ上では弾けないこともないですが、非常に不自由です。
+                                            残念ながら<wbr>スマホ上では弾けないこともないですが、<wbr>非常に不自由です。
                                         </p>
                                     </li>
                                 </ul>
@@ -190,8 +188,8 @@
                             </ul>
                             <p>
                                 <abbr title="Musical Instrument Digital Interface">midi</abbr>の<wbr>
-                                <dfn title="MIDI規格のノートナンバー">midi番号</dfn>で指定する、表示する鍵盤の範囲です。<br>
-                                0以上の整数であり、data-lastは<wbr>data-first以上である<wbr>必要があります。<br>
+                                <dfn title="MIDI規格のノートナンバー">midi番号</dfn>で指定する、<wbr>表示する鍵盤の範囲です。<br>
+                                0以上の整数であり、<wbr>data-lastは<wbr>data-first以上である<wbr>必要があります。<br>
                                 data-lastは<wbr>それ自身の値も含みます(要するに"以下")
                             </p>
                         </li>
@@ -206,9 +204,9 @@
                             </ul>
                             <p>
                                 白鍵一つあたりのサイズです。<br>
-                                <span class="code">30px</span>など、CSSで使用可能な構文で<wbr>設定できます。<br>
+                                <span class="code">30px</span>など、<wbr>CSSで使用可能な構文で<wbr>設定できます。<br>
                                 黒鍵のサイズは<wbr>横幅0.7倍,縦幅0.6倍となります。<br>
-                                ピアノ全体のサイズから<wbr>設定することはできません。ｺﾞﾒﾝ＜(_ _)＞
+                                ピアノ全体のサイズから<wbr>設定することはできません。<wbr>ｺﾞﾒﾝ＜(_ _)＞
                             </p>
                         </li>
                         <li>
@@ -262,8 +260,8 @@
                             <p>
                                 <u>※このデータ属性は<span class="code">data-notename="true"</span>のときのみ機能します。</u><br>
                                 <dfn title="スケールの七つの音の主音などを定めるもの">教会旋法</dfn><sup class="footnote">七つの正格旋法のみ</sup>に基づいた<wbr>調号を付与します。<br>
-                                音名・<dfn title="教会旋法とおおむね同義">モード</dfn>を半角スペースで<wbr>区切ります。大文字、小文字の区別は<wbr>ありません。<br>
-                                音名には臨時記号を含めることができます。シャープは'#'で表し、フラットは'b'で表します。<wbr>
+                                音名・<dfn title="教会旋法とおおむね同義">モード</dfn>を半角スペースで<wbr>区切ります。<wbr>大文字、小文字の区別は<wbr>ありません。<br>
+                                音名には臨時記号を含めることができます。<wbr>シャープは'#'で表し、<wbr>フラットは'b'で表します。<wbr>
                                 ここに含まれない臨時記号は<wbr>使用することができません。<br>
                                 モードはモード名の<wbr>頭三文字の表記<wbr>
                                 [<abbr title="リディアン旋法">Lyd</abbr>,
@@ -275,7 +273,7 @@
                                 <abbr title="ロクリアン旋法">Loc</abbr>]<wbr>の中から<wbr>選択します。<wbr>
                                 ここに含まれない<dfn title="音階">スケール</dfn>は<wbr><span class="code">data-custom-notename</span>から手動で<wbr>設定してください。<br>
                                 調号が6個つく<wbr>「bと#が切り替わる地点」<wbr>(例えば、<dfn title="Gb Major">変ト長調</dfn>と<dfn title="F# Major">嬰ヘ長調</dfn>)<wbr>の場合<wbr>
-                                bが6個の表記を<wbr>採用します。(つまり、BはCbとして<wbr>表記します。)
+                                bが6個の表記を<wbr>採用します。<wbr>(つまり、BはCbとして<wbr>表記します。)
                             </p>
                         </li>
                         <li>
@@ -288,7 +286,7 @@
                             <p>
                                 鍵盤上に任意の<wbr>ラベルを表示します。<br>
                                 <span class="code">midi番号 文字列</span>のように2つセットで記述し、<wbr>
-                                それぞれを<wbr>半角スペースで区切ります。複数設定する際は<wbr>カンマ区切りで記述します。
+                                それぞれを<wbr>半角スペースで区切ります。<wbr>複数設定する際は<wbr>カンマ区切りで記述します。
                             </p>
                         </li>
                         <li>
@@ -301,9 +299,9 @@
                             <p>
                                 音量・振幅です。<br>
                                 0.0以上1.0以下の<wbr>小数で設定します。<small style="font-size:0.5em;color:#888;">もし1.0以上の値に設定すると、音が歪みディストーションになります。後悔しても知りません。</small><br>
-                                入力は対数スケールに変換され、線形な音量変化になります。<br>
+                                入力は対数スケールに変換され、<wbr>線形な音量変化になります。<br>
                                 <strong>とても音が大きい<wbr>場合があります！</strong><wbr>
-                                必ず小さい音量から<wbr>お試しください。耳を痛めないように
+                                必ず小さい音量から<wbr>お試しください。<wbr>耳を痛めないように
                             </p>
                         </li>
                         <li>
@@ -362,7 +360,7 @@
                             <h5>引数</h5>
                             <dl class="ordered-dl">
                                 <dt>midi</dt>
-                                <dd>{number} 再生する<wbr>midi番号です。実は小数も指定する<wbr>ことができます。これにより<wbr>微分音を再生することが<wbr>可能です。</dd>
+                                <dd>{number} 再生する<wbr>midi番号です。<wbr>実は小数も指定する<wbr>ことができます。これにより<wbr>微分音を再生することが<wbr>可能です。</dd>
                                 <dt>volume</dt>
                                 <dd>{number} <span class="code">data-volume</span>と<wbr>同等です。</dd>
                                 <dt>duration</dt>
@@ -421,8 +419,8 @@
                             </ol>
                             <h5>引数</h5>
                             <dl class="ordered-dl">
-                                <dt>{string} id</dt>
-                                <dd>紐づける<wbr>ピアノのidです。</dd>
+                                <dt>id</dt>
+                                <dd>{string} 紐づける<wbr>ピアノのidです。</dd>
                                 <dt>midiArray</dt>
                                 <dd>{Array} 再生する鍵盤(midi番号)を<wbr>列挙した配列です。</dd>
                             </dl>
@@ -496,17 +494,17 @@
                 <h3>感想</h3>
                 <p>
                     要件定義は大事ですね。<br>
-                    今回、何もかも思いつきで<wbr>機能を追加していったので、ソースコードに<wbr>まとまりが<wbr>なくなってしまいました。今は多少改善していますが...
+                    今回、<wbr>何もかも思いつきで<wbr>機能を追加していったので、<wbr>ソースコードに<wbr>まとまりが<wbr>なくなってしまいました。<wbr>今は多少改善していますが...
                 </p>
                 <p>
-                    このブログで<wbr>記事を書いていくにあたって、音楽についての<wbr>解説をするとき、どうするか。<br>
-                    きっと、目で見て分かる形で<wbr>解説できた方が<wbr>ずっといい。<br>
-                    そう思って、此れを作るに至ったのですね。<br>
+                    このブログで<wbr>記事を書いていくにあたって、<wbr>音楽についての<wbr>解説をするとき、どうするか。<br>
+                    きっと、<wbr>目で見て分かる形で<wbr>解説できた方が<wbr>ずっといい。<br>
+                    そう思って、<wbr>此れを作るに至ったのですね。<br>
                     このブログの一番目の記事に<wbr>ふさわしい内容にはなったかな？
                 </p>
                 <p>
-                    非効率だと分かっていながら、cssもhoverも<wbr>何もかも<wbr>一つのJavaScriptで<wbr>実装しました。<br>
-                    なぜかと言えば<wbr>このpiano.jsを使用するとき、このJavaScriptを<wbr>ただ一つだけ呼び出せば<wbr>よくなるから。ホントにただそれだけです。
+                    非効率だと分かっていながら、<wbr>cssもhoverも<wbr>何もかも<wbr>一つのJavaScriptで<wbr>実装しました。<br>
+                    なぜかと言えば<wbr>このpiano.jsを使用するとき、<wbr>このJavaScriptを<wbr>ただ一つだけ呼び出せば<wbr>よくなるから。<wbr>ホントにただそれだけです。
                 </p>
             </section>
 

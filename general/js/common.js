@@ -144,7 +144,43 @@ function pageInfo(pages) {
 (() => {
     document.querySelectorAll(':where(abbr[title], dfn[title])').forEach(elem => {
         elem.addEventListener('click', () => {
-            elem.classList.toggle('show-tooltip');
+            // get tooltip area
+            const rect = elem.getBoundingClientRect();
+            // get <main> element
+            const main = document.querySelector('main');
+            // get <main> area
+            const mainRect = main.getBoundingClientRect();
+
+            // create tooltip element
+            const tooltip = document.createElement('div');
+            tooltip.textContent = elem.title;
+            tooltip.className = 'tooltip';
+            document.body.appendChild(tooltip);
+
+            // position adjustment (keep it within <main>)
+            const tooltipRect = tooltip.getBoundingClientRect();
+            let left = rect.left;
+            if (left + tooltipRect.width > mainRect.right) {
+                left = mainRect.right - tooltipRect.width - 8;
+            }
+            if (left < mainRect.left) {
+                left = mainRect.left + 8;
+            }
+            // apply position
+            tooltip.style.position = 'absolute';
+            tooltip.style.top = (window.scrollY + rect.top - tooltipRect.height - 8) + 'px';
+            tooltip.style.left = window.scrollX + left + 'px';
+
+            // delete tooltip
+            const remover = (e) => {
+                if (!tooltip.contains(e.target)) {
+                    tooltip.remove();
+                    document.removeEventListener('click', remover);
+                }
+            };
+            setTimeout(() => {
+                document.addEventListener('click', remover);
+            }, 10);
         });
     });
 })();
