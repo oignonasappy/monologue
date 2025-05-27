@@ -1,0 +1,33 @@
+h1 u {
+    text-decoration-style: dotted;
+}
+
+.piano-wrapper:has(.piano-align) {
+    margin: 0 auto;
+}
+
+.flex-pianos-container {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-evenly;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.flex-pianos {
+    display: flex;
+    width: max-content;
+    padding: 8px;
+    background-color: #C8C8C8;
+    border: 3px dashed #B8B8B8;
+    border-radius: 6px;
+
+    justify-content: center;
+    gap: 12px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+}

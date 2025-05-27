@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <meta name="local-env">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/dominant7th-scales/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+
+    <title>Dominant7thに頻繁に載せるスケールの相関について</title>
+    <meta property="og:title" content="Dominant7thに頻繁に載せるスケールの相関について">
+    <meta name="description"
+        content="Whole Tone Scale, Altered Scale, Lydian Dominant Scale, Combination of Diminished Scale。これらのスケールには構造的な一貫性がある。それを図解してみる。">
+    <meta property="og:description"
+        content="Whole Tone Scale, Altered Scale, Lydian Dominant Scale, Combination of Diminished Scale。これらにはパターンがある。それを知っておけば、これらのスケールが少し覚えやすくなるかも。">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://oignonasappy.github.io/pianojs/v1.0.2/piano.js" defer></script>
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1 class="use-wbr">
+                <u>Whole Tone</u> |
+                <u>Altered</u> |
+                <u>Lydian Dominant</u> |
+                <u>Combination of Diminished</u>
+                <i>Scale</i>の<wbr>相関について
+            </h1>
+            <p>
+                タイトルに書いた、<wbr>4つの<dfn title="音階">スケール</dfn>。<br>
+                これらは頻繁に<wbr><dfn title="主音Ⅰへ向かう属音Ⅴの 7thコード{1, 3, (5), b7} (属七の和音)">ドミナントセブンス</dfn>上などで<wbr>
+                演奏されるスケール群ですが、<wbr><dfn title="コードとスケールを関連付ける ジャズ理論">(コードスケール理論(<abbr>CST</abbr>)</dfn>において)<br>
+                それぞれには<wbr>「形状から見て」<wbr>パターン的な<wbr>一貫性があるのです。<wbr>
+                これを知っておくことで、<wbr>ちょっと覚えるのが億劫な<wbr>スケールたちがすこし<wbr>覚えやすくなるかもしれません。
+            </p>
+
+            <section>
+                <h2>前提</h2>
+
+                <p>
+                    おさらいとして、<wbr>この4つのスケールの構成音を<wbr>ここに図解しましょう。<wbr>
+                    (<a href="https://oignonasappy.github.io/monologue/pages/piano-js-lib/" target="_blank"
+                        rel="noopener noreferrer">piano.js</a>で！)<wbr>
+                    <small>(臨時記号の解釈は諸説あり)</small>
+                </p>
+                <h3>C Whole Tone Scale</h3>
+                <div id="whole-tone" class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
+                    data-key-height="108px" data-volume="0.15" data-osc-type="square"
+                    data-highlight="60 62 64 66 68 70 72"
+                    data-custom-notename="60 C, 62 D, 64 E, 66 F#, 68 G#, 70 A#, 72 C">
+                </div>
+                <button type="button" onclick="sequencer((value) => {
+                    playKeys('whole-tone', value);
+                }, [1/8,1/8,1/8,1/8,1/8,1/8,0],
+                [[60,64,68,48.1],[62,66,70,50.1],[64,68,72,52.1],[62,66,70,54.1],[64,68,72,56.1],[62,66,70,58.1],[64,68,72,60.1]],
+                120)">PLAY TRIAD</button>
+
+                <h3>C Altered Scale</h3>
+                <div id="altered" class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
+                    data-key-height="108px" data-volume="0.15" data-osc-type="square"
+                    data-highlight="60 61 63 64 66 68 70 72"
+                    data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C">
+                </div>
+                <button type="button" onclick="sequencer((value) => {
+                    playKeys('altered', value);
+                }, [1/8,1/8,1/8,1/8,1/8,1/8,1/8,0],
+                [[60,63,66,48.1],[61,64,68,49.1],[63,66,70,51.1],[64,68,72,52.1],[66,70,61,54.1],[68,72,63,56.1],[70,61,64,58.1],[72,63,66,60.1]],
+                120)">PLAY TRIAD</button>
+
+                <h3>C Lydian Dominant Scale</h3>
+                <div id="lydian-dominant" class="piano-play piano-align" data-first="60" data-last="72"
+                    data-key-width="36px" data-key-height="108px" data-volume="0.15" data-osc-type="square"
+                    data-highlight="60 62 64 66 67 69 70 72"
+                    data-custom-notename="60 C, 62 D, 64 E, 66 F#, 67 G, 69 A, 70 Bb, 72 C">
+                </div>
+                <button type="button" onclick="sequencer((value) => {
+                    playKeys('lydian-dominant', value);
+                }, [1/8,1/8,1/8,1/8,1/8,1/8,1/8,0],
+                [[60,64,67,48.1],[62,66,69,50.1],[64,67,70,52.1],[66,69,72,54.1],[67,70,62,55.1],[69,72,64,57.1],[70,62,66,58.1],[72,64,67,60.1]],
+                120)">PLAY TRIAD</button>
+
+                <h3>C Combination of Diminished Scale</h3>
+                <p><small>
+                        (もしくは、Dominant Diminished Scale。<wbr>
+                        もしくは、Symmetric Dominant Scale。<wbr>
+                        Diminished Scaleとは異なる。)
+                </p></small>
+                <div id="c-diminished" class="piano-play piano-align" data-first="60" data-last="72"
+                    data-key-width="36px" data-key-height="108px" data-volume="0.15" data-osc-type="square"
+                    data-highlight="60 61 63 64 66 67 69 70 72"
+                    data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 67 Abb, 69 Bbb, 70 Cbb, 72 C">
+                </div>
+                <button type="button" onclick="sequencer((value) => {
+                    playKeys('c-diminished', value);
+                }, [1/8,1/8,1/8,1/8,1/8,1/8,1/8,1/8,0],
+                [[60,63,66,48.1],[61,64,67,49.1],[63,66,69,51.1],[64,67,70,52.1],[66,69,72,54.1],[67,70,61,55.1],[69,72,63,57.1],[70,61,64,58.1],[72,63,66,60.1]],
+                120)">PLAY TRIAD</button>
+
+            </section>
+
+            <section>
+                <h2>形状のパターンの発見</h2>
+
+                <p>
+                    これら全てのスケールは<wbr>ドミナントセブンス上で<wbr>使用できるということで、<wbr>
+                    完全1度(C), 長3度(E), 短7度(Bb), ついでに増11度(F#)を<wbr>含んでいますね。
+                </p>
+                <div id="c7sharp11" class="piano piano-align" data-first="60" data-last="71" data-key-width="24px"
+                    data-key-height="72px" data-volume="0.15" data-osc-type="sawtooth" data-highlight="60 64 66 70"
+                    data-highlight-color="#FFE0FF" data-custom-notename="60 C, 64 E, 66 F#, 70 Bb">
+                </div>
+                <button type="button" onclick="sequencer((value) => {
+                        playKeys('c7sharp11', value);
+                    }, [1/24,1/24,1/24,0],
+                    [[60,48.1],[64],[66],[70,35.9]],
+                    120)">PLAY C7#11</button>
+
+                <p>
+                    上記の図解から<wbr>よく観察してみれば、<wbr>それぞれ4つのスケールで<wbr>「セット」「四者択一」であるように<wbr>感じますね。<br>
+                    完全1度～長3度の間には<wbr>一つの音が入るのか、<wbr>二つの音が入るのか。<br>
+                    増11度～短7度の間には<wbr>一つの音が入るのか、<wbr>二つの音が入るのか...
+                </p>
+                <div class="flex-pianos-container">
+                    <div class="flex-pianos">
+                        <div class="piano-hover" data-first="60" data-last="64" data-key-width="24px"
+                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="60 62 64"
+                            data-custom-notename="60 C, 64 E">
+                        </div>
+                        <div class="piano-hover" data-first="60" data-last="64" data-key-width="24px"
+                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="60 61 63 64"
+                            data-custom-notename="60 C, 64 E">
+                        </div>
+                    </div>
+                    <div class="flex-pianos">
+                        <div class="piano-hover" data-first="65" data-last="71" data-key-width="24px"
+                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="66 68 70"
+                            data-custom-notename="66 F#, 70 Bb">
+                        </div>
+                        <div class="piano-hover" data-first="65" data-last="71" data-key-width="24px"
+                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="66 67 69 70"
+                            data-custom-notename="66 F#, 70 Bb">
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    間に一つなら<wbr>マイルドな<wbr><dfn title="既存のコードに追加で付加する音">テンション</dfn>、<br>
+                    間に二つなら<wbr>緊張感高めな<wbr>テンションが<wbr>追加されますね。
+                </p>
+
+            </section>
+
+            <section>
+                <h2>あとがき</h2>
+
+                <p>
+                    これらのスケールは、<wbr>響きも<wbr>使用するケースも<wbr>僅かに違います。<wbr>
+                    僅かな違いでも、<wbr>その演奏の文脈に<wbr>最も適したスケールを<wbr>選択できると、<wbr>
+                    なんだか一歩だけ<wbr>成長できた<wbr>感覚がします。
+                </p>
+
+            </section>
+
+            <section>
+                <h2>おまけ</h2>
+
+                <p>
+                    Altered Scaleは特に<wbr><dfn title="属音">ドミナント</dfn>の<wbr>
+                    <dfn title="ドミナントセブンスにオルタードテンションを付加したコード">オルタードコード</dfn>に、<br>
+                    Lydian Dominant Scaleは特に<wbr>ドミナントの<wbr>
+                    <dfn title="ドミナントセブンスを トライトーンで反転させ、解決先の短二度上に 移動したコード">裏コード</dfn>に<wbr>乗せるコードですが...
+                </p>
+                <p>
+                    例えば、<dfn title="Fメジャーコードもしくは Fメジャーセブンスコード ジャズでは主に後者に解釈される">F∆</dfn>に向かうのは<br>
+                    オルタードコードであれば<abbr title="Cオルタードコード">C7alt.</abbr> -> <u>C Altered Scale</u><br>
+                    裏コードであればGb7 -> <u>Gb Lydian Dominant Scale</u><br>
+                    これらのスケールを<wbr>比較してみると...
+                </p>
+                <h5 style="text-align:center;margin-bottom:4px;">:C Altered Scale:</h5>
+                <div class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
+                    data-key-height="108px" data-volume="0.3" data-osc-type="sine" data-highlight="60 61 63 64 66 68 70 72"
+                    data-highlight-color="#E0E0FF" data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C">
+                </div>
+                <h5 style="text-align:center;margin-bottom:4px;">:Gb Lydian Dominant Scale:</h5>
+                <div class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
+                    data-key-height="108px" data-volume="0.3" data-osc-type="sine" data-highlight="60 61 63 64 66 68 70 72"
+                    data-highlight-color="#E0E0FF" data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C">
+                </div>
+                <p>
+                    面白いでしょう。<br>
+                    同じですね～<br>
+                    これら二つ、<wbr>オルタードコードと<wbr>裏コードは<wbr>
+                    機能が同一であると<wbr>言っても<wbr>よいのでしょうか？
+                </p>
+
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>
