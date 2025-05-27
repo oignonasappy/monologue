@@ -120,6 +120,7 @@ URLに検索する内容を含める。
 絶対パス指定をする際は、rootが`/monologue/`であることを留意すること。  
 開発中はhtmlに`<meta name="local-env">`を記述することで開発用のパス指定になる。(JavaScriptの範疇でないものは多少404が出てしまうが、仕方ない許容)  
 **コミット時には必ず消去すること！** <small>CI/CDの大事さがよくわかる...</small>
+- ディレクトリ・ファイル名の命名規則は基本kebab-case
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
@@ -290,7 +291,6 @@ chatGPTの性格を変えると、トークンの効率が大きく落ちると�
 ###### メモ TODO:
 - `<del> <ins>`のスタイリング
 - `<blockquote> <cite>`のスタイリング
-- `<kbd>`のスタイリング
 - piano.js
     - コメントをもっとしっかり書く
     - sequencer()とplayKeys()で他フォーマットと連携
