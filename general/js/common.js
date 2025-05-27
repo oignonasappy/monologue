@@ -1,3 +1,5 @@
+"use strict";
+
 /* Local env check */
 const ROOT = (() => {
     const isLocal = !!document.querySelector('meta[name="local-env"]');
@@ -235,6 +237,7 @@ function pageInfo(pages) {
         noteNumber++;
     });
 
+    // put footnotes to bottom of <main>
     document.querySelector('main').appendChild(footnotesTitle);
     document.querySelector('main').appendChild(footnotes);
 })();
@@ -296,11 +299,14 @@ function pageInfo(pages) {
         hIndex++;
     });
 
+    // put TOC
     TOCBox.appendChild(TOCTitle);
     TOCBox.appendChild(TOCList);
     if (document.querySelectorAll('main h1').length !== 0) {
+        // to first <h1>
         document.querySelectorAll('main h1')[0].insertAdjacentElement('afterend', TOCBox);
     } else {
+        // or top of <main>
         document.querySelector('main').insertAdjacentElement('afterbegin', TOCBox);
     }
 })();

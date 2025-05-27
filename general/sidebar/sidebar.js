@@ -1,3 +1,5 @@
+"use strict";
+
 /* Local env check */
 const ROOT = (() => {
     const isLocal = !!document.querySelector('meta[name="local-env"]');
