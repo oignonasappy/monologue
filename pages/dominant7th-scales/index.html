@@ -60,7 +60,7 @@
                 </p>
                 <h3>C Whole Tone Scale</h3>
                 <div id="whole-tone" class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
-                    data-key-height="108px" data-volume="0.15" data-osc-type="square"
+                    data-key-height="108px" data-volume="0.15" data-duration="1.5" data-osc-type="square"
                     data-highlight="60 62 64 66 68 70 72"
                     data-custom-notename="60 C, 62 D, 64 E, 66 F#, 68 G#, 70 A#, 72 C">
                 </div>
@@ -72,10 +72,14 @@
 
                 <h3>C Altered Scale</h3>
                 <div id="altered" class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
-                    data-key-height="108px" data-volume="0.15" data-osc-type="square"
+                    data-key-height="108px" data-volume="0.15" data-duration="1.5" data-osc-type="square"
                     data-highlight="60 61 63 64 66 68 70 72"
                     data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C">
                 </div>
+                <p><small>
+                        (もしくは、Altered Dominant Scale。<wbr>
+                        もしくは、Super Locrian Scale。)
+                </p></small>
                 <button type="button" onclick="sequencer((value) => {
                     playKeys('altered', value);
                 }, [1/8,1/8,1/8,1/8,1/8,1/8,1/8,0],
@@ -84,10 +88,13 @@
 
                 <h3>C Lydian Dominant Scale</h3>
                 <div id="lydian-dominant" class="piano-play piano-align" data-first="60" data-last="72"
-                    data-key-width="36px" data-key-height="108px" data-volume="0.15" data-osc-type="square"
-                    data-highlight="60 62 64 66 67 69 70 72"
+                    data-key-width="36px" data-key-height="108px" data-volume="0.15" data-duration="1.5"
+                    data-osc-type="square" data-highlight="60 62 64 66 67 69 70 72"
                     data-custom-notename="60 C, 62 D, 64 E, 66 F#, 67 G, 69 A, 70 Bb, 72 C">
                 </div>
+                <p><small>
+                        (もしくは、Super Lydian Scale)
+                </p></small>
                 <button type="button" onclick="sequencer((value) => {
                     playKeys('lydian-dominant', value);
                 }, [1/8,1/8,1/8,1/8,1/8,1/8,1/8,0],
@@ -101,8 +108,8 @@
                         Diminished Scaleとは異なる。)
                 </p></small>
                 <div id="c-diminished" class="piano-play piano-align" data-first="60" data-last="72"
-                    data-key-width="36px" data-key-height="108px" data-volume="0.15" data-osc-type="square"
-                    data-highlight="60 61 63 64 66 67 69 70 72"
+                    data-key-width="36px" data-key-height="108px" data-volume="0.15" data-duration="1.5"
+                    data-osc-type="square" data-highlight="60 61 63 64 66 67 69 70 72"
                     data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 67 Abb, 69 Bbb, 70 Cbb, 72 C">
                 </div>
                 <button type="button" onclick="sequencer((value) => {
@@ -121,8 +128,9 @@
                     完全1度(C), 長3度(E), 短7度(Bb), ついでに増11度(F#)を<wbr>含んでいますね。
                 </p>
                 <div id="c7sharp11" class="piano piano-align" data-first="60" data-last="71" data-key-width="24px"
-                    data-key-height="72px" data-volume="0.15" data-osc-type="sawtooth" data-highlight="60 64 66 70"
-                    data-highlight-color="#FFE0FF" data-custom-notename="60 C, 64 E, 66 F#, 70 Bb">
+                    data-key-height="72px" data-volume="0.15" data-duration="2.5" data-osc-type="sawtooth"
+                    data-highlight="60 64 66 70" data-highlight-color="#FFE0FF"
+                    data-custom-notename="60 C, 64 E, 66 F#, 70 Bb">
                 </div>
                 <button type="button" onclick="sequencer((value) => {
                         playKeys('c7sharp11', value);
@@ -158,8 +166,8 @@
                     </div>
                 </div>
                 <p>
-                    間に一つなら<wbr>マイルドな<wbr><dfn title="既存のコードに追加で付加する音">テンション</dfn>、<br>
-                    間に二つなら<wbr>緊張感高めな<wbr>テンションが<wbr>追加されますね。
+                    場合によりマイルドな<wbr><dfn title="既存のコードに追加で付加する音">テンション</dfn>、<wbr>
+                    緊張感高めな<wbr>テンションが<wbr>追加されますね。
                 </p>
 
             </section>
@@ -192,13 +200,15 @@
                 </p>
                 <h5 style="text-align:center;margin-bottom:4px;">:C Altered Scale:</h5>
                 <div class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
-                    data-key-height="108px" data-volume="0.3" data-osc-type="sine" data-highlight="60 61 63 64 66 68 70 72"
-                    data-highlight-color="#E0E0FF" data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C, 65 F">
+                    data-key-height="108px" data-volume="0.3" data-osc-type="sine"
+                    data-highlight="60 61 63 64 66 68 70 72" data-highlight-color="#E0E0FF"
+                    data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C, 65 F">
                 </div>
                 <h5 style="text-align:center;margin-bottom:4px;">:Gb Lydian Dominant Scale:</h5>
                 <div class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
-                    data-key-height="108px" data-volume="0.3" data-osc-type="sine" data-highlight="60 61 63 64 66 68 70 72"
-                    data-highlight-color="#E0E0FF" data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C, 65 F">
+                    data-key-height="108px" data-volume="0.3" data-osc-type="sine"
+                    data-highlight="60 61 63 64 66 68 70 72" data-highlight-color="#E0E0FF"
+                    data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C, 65 F">
                 </div>
                 <p>
                     面白いでしょう。<br>
