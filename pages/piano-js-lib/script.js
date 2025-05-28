@@ -1,4 +1,4 @@
-fetch('https://oignonasappy.github.io/pianojs/v1.0.2/piano.js')
+fetch('https://oignonasappy.github.io/pianojs/v1.1.0/piano.js')
     .then(responce => {
         return responce.text();
     })
