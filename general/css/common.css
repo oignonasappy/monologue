@@ -72,6 +72,7 @@ main,
 aside {
     /* Ensuring independence */
     contain: layout style paint;
+    position: relative;
 }
 
 header {
@@ -84,7 +85,7 @@ header {
 
 footer {
     width: 100%;
-    padding: 16px;
+    padding: 16px 24px 32px 24px;
     color: var(--footer-text-color);
     background-color: var(--footer-bg-color);
     border-top: 1px solid #606060;
@@ -437,6 +438,13 @@ footer {
 
     .oignon-icon {
         height: 45px;
+    }
+
+    .powered {
+        position: relative;
+        margin-top: 20px;
+        width: 60%;
+        font-size: 0.9em;
     }
 }
 
