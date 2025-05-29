@@ -144,7 +144,7 @@ function pageInfo(pages) {
 
 /* Tooltip for mobile */
 (() => {
-    document.querySelectorAll(':where(abbr[title], dfn[title])').forEach(elem => {
+    document.querySelectorAll('abbr[title], dfn[title]').forEach(elem => {
         elem.addEventListener('click', () => {
             // get tooltip area
             const rect = elem.getBoundingClientRect();
@@ -189,7 +189,7 @@ function pageInfo(pages) {
 
 /* Footnote */
 (() => {
-    if (document.querySelectorAll('sup[class="footnote"]').length === 0) {
+    if (document.querySelectorAll('sup.footnote').length === 0) {
         return;
     }
 
@@ -258,7 +258,7 @@ function pageInfo(pages) {
     TOCList.className = "toc-list";
 
     let hIndex = 0;
-    document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6').forEach((elem) => {
+    document.querySelectorAll('main :is(h1, h2, h3, h4, h5, h6').forEach((elem) => {
         // set anchor to all heading
         const anchor = document.createElement('span');
         anchor.id = "h-index-" + hIndex;
