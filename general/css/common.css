@@ -184,7 +184,7 @@ main {
         overflow-wrap: break-word;
     }
 
-    span[class="no-wrap"] {
+    span.no-wrap {
         white-space: nowrap;
     }
 
@@ -233,17 +233,17 @@ main {
         text-underline-offset: 0.05em;
     }
 
-    dl[class="ordered-dl"] {
+    dl.ordered-dl {
         counter-reset: n 0;
     }
 
-    dl[class="ordered-dl"] > dt::before {
+    dl.ordered-dl > dt::before {
         counter-increment: n 1;
         content: counter(n) ". ";
         pointer-events: none;
     }
 
-    span[class="code"] {
+    span.code {
         white-space: pre-wrap;
         background-color: #C0C0C0;
         font-family: 'Moralerspace Neon', monospace;
