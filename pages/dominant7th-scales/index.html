@@ -3,7 +3,7 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-    <!--<meta name="local-env">-->
+    <meta name="local-env">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,30 +145,70 @@
                 </p>
                 <div class="flex-pianos-container">
                     <div class="flex-pianos">
-                        <div class="piano-hover" data-first="60" data-last="64" data-key-width="24px"
-                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="60 62 64"
-                            data-custom-notename="60 C, 64 E">
+                        <div class="piano-box">
+                            <div class="p-box-capt">マイルド</div>
+                            <div class="piano-hover" data-first="60" data-last="64" data-key-width="24px"
+                                data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="60 62 64"
+                                data-custom-notename="60 C, 64 E">
+                            </div>
                         </div>
-                        <div class="piano-hover" data-first="60" data-last="64" data-key-width="24px"
-                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="60 61 63 64"
-                            data-custom-notename="60 C, 64 E">
+                        <div class="piano-box">
+                            <div class="p-box-capt">ハード</div>
+                            <div class="piano-hover" data-first="60" data-last="64" data-key-width="24px"
+                                data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="60 61 63 64"
+                                data-custom-notename="60 C, 64 E">
+                            </div>
                         </div>
                     </div>
                     <div class="flex-pianos">
-                        <div class="piano-hover" data-first="65" data-last="71" data-key-width="24px"
-                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="66 68 70"
-                            data-custom-notename="66 F#, 70 Bb">
+                        <div class="piano-box">
+                            <div class="p-box-capt">ハード</div>
+                            <div class="piano-hover" data-first="65" data-last="71" data-key-width="24px"
+                                data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="66 68 70"
+                                data-custom-notename="66 F#, 70 Bb">
+                            </div>
                         </div>
-                        <div class="piano-hover" data-first="65" data-last="71" data-key-width="24px"
-                            data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="66 67 69 70"
-                            data-custom-notename="66 F#, 70 Bb">
+                        <div class="piano-box">
+                            <div class="p-box-capt">マイルド</div>
+                            <div class="piano-hover" data-first="65" data-last="71" data-key-width="24px"
+                                data-key-height="72px" data-highlight-color="#E0FFE0" data-highlight="66 67 69 70"
+                                data-custom-notename="66 F#, 70 Bb">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <p>
-                    場合によりマイルドな<wbr><dfn title="既存のコードに追加で付加する音">テンション</dfn>、<wbr>
-                    緊張感高めな<wbr>テンションが<wbr>追加されますね。
+                    場合により<wbr>マイルドな<wbr><dfn title="既存のコードに追加で付加する音">テンション</dfn>、<wbr>
+                    緊張感高めな<wbr>ハードな<wbr>テンションが<wbr>追加されますね。
                 </p>
+                <p>
+                    つまり、<wbr>緊張感・インパクト強め順に<wbr>並べると、<wbr>こうでしょうか。
+                </p>
+                <div class="tension-order-container">
+                    <div class="t-o-col-left">
+                        <div class="t-o-scale">
+                            <div class="t-o-scale-name">Lydian Dominant</div>
+                            <img src="./images/lydian-dominant.png" alt="リディアンドミナントスケール">
+                        </div>
+                        <div class="t-o-scale">
+                            <div class="t-o-scale-name">Whole Tone</div>
+                            <img src="./images/whole-tone.png" alt="ホールトーンスケール">
+                        </div>
+                        <div class="t-o-scale">
+                            <div class="t-o-scale-name">Comb. Diminished</div>
+                            <img src="./images/comb-dimi.png" alt="コンディミスケール">
+                        </div>
+                        <div class="t-o-scale">
+                            <div class="t-o-scale-name">Altered</div>
+                            <img src="./images/altered.png" alt="オルタードスケール">
+                        </div>
+                    </div>
+                    <div class="t-o-col-right">
+                        <div class="t-o-meter-high">マイルド</div>
+                        <div class="t-o-meter"></div>
+                        <div class="t-o-meter-low">ハード</div>
+                    </div>
+                </div>
 
             </section>
 
@@ -193,22 +233,22 @@
                     <dfn title="ドミナントセブンスを トライトーンで反転させ、ルートを解決先の短二度上に 移動させたコード">裏コード</dfn>に<wbr>乗せるコードですが...
                 </p>
                 <p>
-                    例えば、<dfn title="Fメジャーコードもしくは Fメジャーセブンスコード ジャズでは主に後者に解釈される">F∆</dfn>に向かうのは<br>
-                    オルタードコードであれば<abbr title="Cオルタードコード">C7alt.</abbr> -> <u>C Altered Scale</u><br>
-                    裏コードであればGb7 -> <u>Gb Lydian Dominant Scale</u><br>
+                    例えば、<dfn title="Cメジャーコードもしくは Cメジャーセブンスコード ジャズでは主に後者に解釈される">C∆</dfn>に向かうのは<br>
+                    オルタードコードであれば<abbr title="Gオルタードコード">G7alt.</abbr> -> <u>G Altered Scale</u><br>
+                    裏コードであればDb7 -> <u>Db Lydian Dominant Scale</u><br>
                     これらのスケールを<wbr>比較してみると...
                 </p>
-                <h5 style="text-align:center;margin-bottom:4px;">:C Altered Scale:</h5>
+                <h5 style="text-align:center;margin-bottom:4px;">:G Altered Scale:</h5>
                 <div class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
                     data-key-height="108px" data-volume="0.3" data-osc-type="sine"
-                    data-highlight="60 61 63 64 66 68 70 72" data-highlight-color="#E0E0FF"
-                    data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C, 65 F">
+                    data-highlight="61 63 65 67 68 70 71" data-highlight-color="#E0E0FF"
+                    data-custom-notename="61 Db, 63 Eb, 65 F, 67 G, 68 Ab, 70 Bb, 71 Cb, 60 C4, 72 C5">
                 </div>
-                <h5 style="text-align:center;margin-bottom:4px;">:Gb Lydian Dominant Scale:</h5>
+                <h5 style="text-align:center;margin-bottom:4px;">:Db Lydian Dominant Scale:</h5>
                 <div class="piano-play piano-align" data-first="60" data-last="72" data-key-width="36px"
                     data-key-height="108px" data-volume="0.3" data-osc-type="sine"
-                    data-highlight="60 61 63 64 66 68 70 72" data-highlight-color="#E0E0FF"
-                    data-custom-notename="60 C, 61 Db, 63 Eb, 64 Fb, 66 Gb, 68 Ab, 70 Bb, 72 C, 65 F">
+                    data-highlight="61 63 65 67 68 70 71" data-highlight-color="#E0E0FF"
+                    data-custom-notename="61 Db, 63 Eb, 65 F, 67 G, 68 Ab, 70 Bb, 71 Cb, 60 C4, 72 C5">
                 </div>
                 <p>
                     面白いでしょう。<br>
