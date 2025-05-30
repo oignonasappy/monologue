@@ -249,7 +249,7 @@ function pageInfo(pages) {
         return;
     }
 
-    const TOCBox = document.createElement('section');
+    const TOCBox = document.createElement('nav');
     TOCBox.className = "toc-box";
     const TOCTitle = document.createElement('div');
     TOCTitle.className = "toc-title";

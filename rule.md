@@ -216,7 +216,7 @@ URLに検索する内容を含める。
 この属性はこの`<script>`がESモジュールであることを表す。  
 そのため**CORS制約**を考慮する必要がある。
 ### ROOT調整
-ローカル環境ではルートが`/`、github pages環境ではルートが`/monologue/`になるため、`<head>`内の`<meta name="local-env">`を読み取り、その存在によってルートを置き換える。
+ローカル環境ではコンテキストパスのルートが`/`、github pages環境ではルートが`/monologue/`になるため、`<head>`内の`<meta name="local-env">`を読み取り、その存在によってルートを置き換える。
 ### header・footer・sidebarを表示
 `fetch`してそれぞれ、  
 header : `<body>`の開始直後  

@@ -361,15 +361,20 @@
                             <h5>引数</h5>
                             <dl class="ordered-dl">
                                 <dt>midi</dt>
-                                <dd>{number} 再生する<wbr>midi番号です。<wbr>実は小数も指定する<wbr>ことができます。これにより<wbr>微分音を再生することが<wbr>可能です。</dd>
+                                <dd><span class="code">{number}</span><br>
+                                    再生する<wbr>midi番号です。<wbr>実は小数も指定する<wbr>ことができます。これにより<wbr>微分音を再生することが<wbr>可能です。</dd>
                                 <dt>volume</dt>
-                                <dd>{number} <span class="code">data-volume</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">0.25</span><br>
+                                    <span class="code">data-volume</span>と<wbr>同等です。</dd>
                                 <dt>duration</dt>
-                                <dd>{number} <span class="code">data-duration</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">2</span><br>
+                                    <span class="code">data-duration</span>と<wbr>同等です。</dd>
                                 <dt>oscType</dt>
-                                <dd>{string} <span class="code">data-osc-type</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{string}</span> 既定=<span class="code">"triangle"</span><br>
+                                    <span class="code">data-osc-type</span>と<wbr>同等です。</dd>
                                 <dt>tuning</dt>
-                                <dd>{number} <span class="code">data-tuning</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">440</span><br>
+                                    <span class="code">data-tuning</span>と<wbr>同等です。</dd>
                             </dl>
                             <p>
                                 デフォルトを呼び出す際は引数に<code class="lang-js">undefined</code>を設定します。
@@ -389,15 +394,20 @@
                             <h5>引数</h5>
                             <dl class="ordered-dl">
                                 <dt>midiArray</dt>
-                                <dd>{Array} 再生するmidi番号を<wbr>列挙した配列です。</dd>
+                                <dd><span class="code">{Array}</span><br>
+                                    再生するmidi番号を<wbr>列挙した配列です。</dd>
                                 <dt>volume</dt>
-                                <dd>{number} <span class="code">data-volume</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">0.25</span><br>
+                                    <span class="code">data-volume</span>と<wbr>同等です。</dd>
                                 <dt>duration</dt>
-                                <dd>{number} <span class="code">data-duration</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">2</span><br>
+                                    <span class="code">data-duration</span>と<wbr>同等です。</dd>
                                 <dt>oscType</dt>
-                                <dd>{string} <span class="code">data-osc-type</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{string}</span> 既定=<span class="code">"triangle"</span><br>
+                                    <span class="code">data-osc-type</span>と<wbr>同等です。</dd>
                                 <dt>tuning</dt>
-                                <dd>{number} <span class="code">data-tuning</span>と<wbr>同等です。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">440</span><br>
+                                    <span class="code">data-tuning</span>と<wbr>同等です。</dd>
                             </dl>
                             <h5>記述例</h5>
                             <pre><code class="lang-js">
@@ -421,9 +431,11 @@
                             <h5>引数</h5>
                             <dl class="ordered-dl">
                                 <dt>id</dt>
-                                <dd>{string} 紐づける<wbr>ピアノのidです。</dd>
+                                <dd><span class="code">{string}</span><br>
+                                    紐づける<wbr>ピアノのidです。</dd>
                                 <dt>midiArray</dt>
-                                <dd>{Array} 再生する鍵盤(midi番号)を<wbr>列挙した配列です。</dd>
+                                <dd><span class="code">{Array}</span><br>
+                                    再生する鍵盤(midi番号)を<wbr>列挙した配列です。</dd>
                             </dl>
                             <h5>記述例</h5>
                             <pre><code class="lang-js">
@@ -439,7 +451,8 @@
                             <h5>引数</h5>
                             <dl class="ordered-dl">
                                 <dt>id</dt>
-                                <dd>{string} 紐づける<wbr>ピアノのidです。</dd>
+                                <dd><span class="code">{string}</span><br>
+                                    紐づける<wbr>ピアノのidです。</dd>
                             </dl>
                             <h5>記述例</h5>
                             <pre><code class="lang-js">
@@ -466,15 +479,20 @@
                             <h5>引数</h5>
                             <dl class="ordered-dl">
                                 <dt>callback</dt>
-                                <dd>{Function} 指定された<wbr>タイミングに<wbr>呼び出される関数です。ラムダ推奨</dd>
+                                <dd><span class="code">{Function}</span><br>
+                                    指定された<wbr>タイミングに<wbr>呼び出される関数です。ラムダ推奨</dd>
                                 <dt>sequence</dt>
-                                <dd>{number} 次の関数呼び出しの際に<wbr>待機させる秒数です。</dd>
+                                <dd><span class="code">{number}</span><br>
+                                    次の関数呼び出しの際に<wbr>待機させる秒数です。</dd>
                                 <dt>values</dt>
-                                <dd>{Array} <span class="code">callback</span>に渡す<wbr>任意の値をもつ<wbr>配列です。</dd>
+                                <dd><span class="code">{Array}</span><br>
+                                    <span class="code">callback</span>に渡す<wbr>任意の値をもつ<wbr>配列です。</dd>
                                 <dt>bpm</dt>
-                                <dd>{number} <span class="code">sequence</span>に設定されている値の<wbr>1を全音符、1/4を1拍とした時の<wbr>BPMです。</dd>
+                                <dd><span class="code">{number}</span> 既定=<span class="code">240</span><br>
+                                    <span class="code">sequence</span>に設定されている値の<wbr>1を全音符、1/4を1拍とした時の<wbr>BPMです。</dd>
                                 <dt>seqId</dt>
-                                <dd>{any} 同一Idの処理を<wbr>ロックします。<wbr>未設定の場合は<wbr>ロックしません。</dd>
+                                <dd><span class="code">{any}</span> 既定=<span class="code">undefined</span><br>
+                                    同一Idの処理を<wbr>ロックします。<wbr>未設定の場合は<wbr>ロックしません。</dd>
                             </dl>
                             <h5>記述例 (PLAY SONGボタン)</h5>
                             <pre><code class="lang-js">

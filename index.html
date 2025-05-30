@@ -20,26 +20,74 @@
     <meta property="og:title" content="Monologue - ホーム">
     <meta name="description" content="">
     <meta property="og:description" content="">
+
+    <script src="https://oignonasappy.github.io/pianojs/v1.1.1/piano.js" defer></script>
 </head>
 
 <body>
     <div id="container">
         <main>
-            <h1>👷工事中...</h1>
+            <h1 class="use-wbr">Monologue - ホーム<br>(👷工事中...)</h1>
             <article>
-                <p>hello</p>
-                <p>技術や、音楽のことを<wbr>よくつぶやきます</p>
-                <p><small>ページに飛んだ際<wbr>大量の404が<wbr>表示されてしまった場合、<wbr>
-                    それは書きかけの記事を<wbr>私が誤って公開しています。<wbr>どうか大目に見てください。</small></p>
-                <p><small>注※このサイトは<wbr>静的サイトであり、<wbr>
-                    いかなる情報も<wbr>閲覧者から<wbr>求めることはありません</small></p>
-                <p><small>ここの記事群は<wbr>AIを使用して<wbr>執筆されないため、<wbr>
-                    独特の言葉遣いが<wbr>残されたままです。<wbr>それでもよいという方は、ゆっくりしていってね</small></p>
-                <p><small>今のところ<wbr>広告はないですよ。<wbr>安心してちょ</small></p>
+                <span style="font-size: 1.5rem; opacity: 0;">コンニチハ</span>
+                <p>
+                    hello~
+                    <script>
+                        function helloChord() {
+                            const huge = document.querySelector('#huge-hello-chord');
+                            huge.innerHTML = "";
+                            sequencer((value) => {
+                                playNote(value - 0.5, 0.04, 8, 'sawtooth', 440 * Math.pow(2, -1 / 12 / 2));
+                                huge.innerHTML += `<span style="color:rgb(${Math.round(Math.random()) * 255},${Math.round(Math.random()) * 255},${Math.round(Math.random()) * 255});background-color:#808080;">${midiToNoteName(value)}&thinsp;</span>`;
+                            },
+                                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 92],
+                                [0, 4, 7, 11, 14, 18, 21, 25, 28, 32, 35, 39, 42, 46, 49, 53, 56, 60, 63, 67, 70, 74, 77, 81, 84, 88, 91, 95, 98],
+                                240 * 15,
+                                'hello-chord'
+                            );
+                        }
+                    </script>
+                    <button type="button" id="hello-chord" onclick="helloChord()"
+                        style="padding:5px;border-radius:50%;">あいさつのコード</button><br>
+                    <span id="huge-hello-chord"></span>
+                </p>
+                <p>このブログでは、<wbr>技術や<wbr>音楽のことを<wbr>よくつぶやきます</p>
+                <p class="small-p">
+                    ページに飛んだ際<wbr>大量の<wbr>404が<wbr>表示されてしまった場合、<wbr>
+                    それは<wbr>書きかけの記事を<wbr>私が誤って<wbr>公開しています。<wbr>どうか大目に見てください。
+                </p>
+                <p class="small-p">
+                    注※このサイトは<wbr>静的サイトであり、<wbr>
+                    いかなる情報も<wbr>閲覧者から<wbr>求めることはありません
+                </p>
+                <p class="small-p">
+                    ここの記事群は<wbr>AIを使用して<wbr>執筆されないため、<wbr>
+                    独特の<wbr>言葉遣いが<wbr>残された<wbr>ままです。<wbr>
+                    それでも<wbr>よいという方は、<wbr>ゆっくりしていってね
+                </p>
+                <p class="small-p">
+                    今のところ<wbr>広告はないですよ。<wbr>安心してちょ
+                </p>
             </article>
             <article>
                 <h2>Introduction</h2>
-                <p>よく言われる話ですが、<wbr>アウトプットをすれば<wbr>知識の抜け漏れを<wbr>探すことができる<wbr>というものですよね！？</p>
+                <p>はじめましてたまねぎと呼んでください！</p>
+                <p>
+                    よく言われる話ですが、<wbr>アウトプットを<wbr>すれば<wbr>
+                    知識の<wbr>抜け漏れを<wbr>探すことが<wbr>できる<wbr>というもの<wbr>ですよね！？
+                </p>
+                <p>
+                    機能も、<wbr>デザインも、<wbr>記事の執筆も、<wbr>
+                    何もかも<wbr>全てを<wbr>自分だけで<wbr>やることに<wbr>ロマンが<wbr>あったんです。<br>
+                    自分の我儘は<wbr>全て効くし、<wbr>
+                    <a href="./pages/piano-js-lib/" target="_blank" rel="noopener noreferrer"
+                        title="JavaScriptでね">普通のブログの<wbr>範疇を<wbr>超えたことだって</a><wbr>できる。
+                </p>
+                <p>
+                    あまり<wbr>ユーザーフレンドリーな<wbr>役立つ<wbr>記事には<wbr>ならないかも<wbr>しれないけど、<wbr>
+                    個人ブログだからこそ<wbr>できる<wbr>ニッチな<wbr>話題を<wbr>発信してきたいですね。
+                </p>
+                <h3></h3>
             </article>
         </main>
     </div>
