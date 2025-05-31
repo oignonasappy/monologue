@@ -3,7 +3,7 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-    <meta name="local-env">
+    <!--<meta name="local-env">-->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,23 +19,123 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
 
-    <title>TemplateTemplateTemplate</title>
-    <meta property="og:title" content="TemplateTemplateTemplate">
-    <meta name="description" content="Lorem, ipsum.">
-    <meta property="og:description" content="Lorem, ipsum.">
+    <title>ランダムに構成音を決めてコードを作ったらどんな音がするかな？</title>
+    <meta property="og:title" content="ランダムに構成音を決めてコードを作ったらどんな音がするかな？">
+    <meta name="description" content="設定の中から無作為に音を選び、コードを作る試みをしてみます。どうなるでしょうか... ツールとして実際に体験できます。">
+    <meta property="og:description" content="設定の中から無作為に音を選び、コードを作る試みをしてみます。どうなるでしょうか... ツールとして実際に体験できます。">
 
-    <script src="https://oignonasappy.github.io/pianojs/v1.1.0/piano.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+
+    <script src="https://oignonasappy.github.io/pianojs/v1.1.1/piano.js" defer></script>
 </head>
 
 <body>
     <div id="container">
         <main>
-            <!--
-            最初のmidi(ランダム範囲),
-            音数
-            インターバル(ランダム範囲)
-            -->
-            <div class="piano-play" data-first="36" data-last="96" data-key-width="24px" data-key-height="100px" data-notename="true" data-osc-type="square"></div>
+
+            <h1>Random Chord Generator</h1>
+            <p>
+                私、気になります。<br>
+                さっそく<wbr>試してみましょう。
+            </p>
+
+            <section>
+                <h2>コード生成キ</h2>
+
+                <div class="setting">
+                    <label>
+                        <span>ルート音[max]　　:</span>
+                        <input type="number" id="root-max" value="48" min="24" max="96">
+                    </label>
+                    <label>
+                        <span>ルート音[min]　　:</span>
+                        <input type="number" id="root-min" value="24" min="24" max="96">
+                    </label>
+                    <label>
+                        <span>音数[max]　　　　:</span>
+                        <input type="number" id="count-max" value="7" min="1" max="32">
+                    </label>
+                    <label>
+                        <span>音数[min]　　　　:</span>
+                        <input type="number" id="count-min" value="3" min="1" max="32">
+                    </label>
+                    <label>
+                        <span>インターバル[max]:</span>
+                        <input type="number" id="interval-max" value="10" min="1" max="32">
+                    </label>
+                    <label>
+                        <span>インターバル[min]:</span>
+                        <input type="number" id="interval-min" value="2" min="1" max="32">
+                    </label>
+                </div>
+
+                <button id="generate-button" onclick="generate()">生成</button>
+                
+                <div class="piano-play piano-align" id="piano-chord" data-first="24" data-last="96" data-key-width="16px" data-key-height="80px" data-notename="true" data-duration="2.5" data-osc-type="square"></div>
+                <div id="out">ここに出力...</div>
+            </section>
+
+            <section>
+                <h3>設定</h3>
+
+                <ol>
+                    <li>
+                        <h4>ルート音[mix]</h4>
+                        <p>
+                            コードの最も低い音のランダムに選ばれる範囲の始点をmidi番号で指定
+                        </p>
+                    </li>
+                    <li>
+                        <h4>ルート音[max]</h4>
+                        <p>
+                            コードの最も低い音のランダムに選ばれる範囲の終点をmidi番号で指定
+                        </p>
+                    </li>
+                    <li>
+                        <h4>音数[min]</h4>
+                        <p>
+                            コードを構成する音の数のランダムな範囲の始点
+                        </p>
+                    </li>
+                    <li>
+                        <h4>音数[max]</h4>
+                        <p>
+                            コードを構成する音の数のランダムな範囲の終点
+                            最高音を超える場合は再生されない
+                        </p>
+                    </li>
+                    <li>
+                        <h4>インターバル[min]</h4>
+                        <p>
+                            それぞれの音の距離のランダムな範囲の始点
+                        </p>
+                    </li>
+                    <li>
+                        <h4>インターバル[max]</h4>
+                        <p>
+                            それぞれの音の距離のランダムな範囲の終点
+                        </p>
+                    </li>
+                </ol>
+
+                <h3>情報</h3>
+                <ul>
+                    <li>この鍵盤の最も低い音'C1'のmidi番号は'32'</li>
+                    <li>この鍵盤の最も低い音'C7'のmidi番号は'96'</li>
+                </ul>
+
+            </section>
+
+            <section>
+                <h3>感想</h3>
+                <p>
+                    正直に言うと、微妙でした。<br>
+                    まあ、ものは試しですし...<br>
+                    コードというものは丹精込めて自分の意思を付加して作り上げていかなければならないようですね。
+                    そのコード一つには魂を込めましょう。
+                </p>
+            </section>
 
         </main>
     </div>

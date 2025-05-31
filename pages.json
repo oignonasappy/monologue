@@ -3,7 +3,7 @@
         "title": "Monologue - ホーム",
         "url": "",
         "create-date": "2025-05-10",
-        "update-date": "2025-05-13",
+        "update-date": "2025-05-31",
         "category": null,
         "tag": []
     },
@@ -38,5 +38,13 @@
         "update-date": "2025-05-30",
         "category": "音楽",
         "tag": ["音楽理論", "スケール"]
+    },
+    {
+        "title": "ランダムに構成音を決めてコードを作ったらどんな音がするかな？",
+        "url": "pages/random-chord-generator/",
+        "create-date": "2025-05-30",
+        "update-date": "2025-06-01",
+        "category": "音楽",
+        "tag": ["コード", "JavaScript", "クリエイティブ"]
     }
 ]

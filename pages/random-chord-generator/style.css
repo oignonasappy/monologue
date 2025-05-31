@@ -1,0 +1,28 @@
+.setting {
+    label {
+        display: block;
+    }
+}
+
+#generate-button {
+    display: block;
+    margin: 8px auto;
+    padding: 4px 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#out {
+    color: #E0E0E0;
+    background-color: #202020;
+    text-align: center;
+    padding: 10px 5px;
+}
+
+#out.error {
+    color: red;
+}
+
+.piano-wrapper:has(.piano-align) {
+    margin: 0 auto;
+}

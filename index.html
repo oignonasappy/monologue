@@ -16,17 +16,43 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
 
+    <!--Prism.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!--Prism.js plugins-->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
     <title>Monologue - ホーム</title>
     <meta property="og:title" content="Monologue - ホーム">
     <meta name="description" content="">
     <meta property="og:description" content="">
 
     <script src="https://oignonasappy.github.io/pianojs/v1.1.1/piano.js" defer></script>
+    <style>
+        #intro-code {
+            font-size: 0.8em;
+            width: fit-content;
+            box-shadow: 0 0 4px 8px #2d2d2d;
+            line-height: 1.3;
+
+            code {
+                line-height: inherit;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div id="container">
         <main>
+
             <h1 class="use-wbr">Monologue - ホーム<br>(👷工事中...)</h1>
             <article>
                 <span style="font-size: 1.5rem; opacity: 0;">コンニチハ</span>
@@ -37,13 +63,13 @@
                             const huge = document.querySelector('#huge-hello-chord');
                             huge.innerHTML = "";
                             sequencer((value) => {
-                                playNote(value - 0.5, 0.04, 8, 'sawtooth', 440 * Math.pow(2, -1 / 12 / 2));
+                                playNote(value - 0.5, 0.03, 8, 'sawtooth', 440 * Math.pow(2, -1 / 12 / 2));
                                 huge.innerHTML += `<span style="color:rgb(${Math.round(Math.random()) * 255},${Math.round(Math.random()) * 255},${Math.round(Math.random()) * 255});background-color:#808080;">${midiToNoteName(value)}&thinsp;</span>`;
                             },
                                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 92],
                                 [0, 4, 7, 11, 14, 18, 21, 25, 28, 32, 35, 39, 42, 46, 49, 53, 56, 60, 63, 67, 70, 74, 77, 81, 84, 88, 91, 95, 98],
                                 240 * 15,
-                                'hello-chord'
+                                /*'hello-chord'*/
                             );
                         }
                     </script>
@@ -69,26 +95,69 @@
                     今のところ<wbr>広告はないですよ。<wbr>安心してちょ
                 </p>
             </article>
+
             <article>
                 <h2>Introduction</h2>
-                <p>はじめましてたまねぎと呼んでください！</p>
-                <p>
-                    よく言われる話ですが、<wbr>アウトプットを<wbr>すれば<wbr>
-                    知識の<wbr>抜け漏れを<wbr>探すことが<wbr>できる<wbr>というもの<wbr>ですよね！？
-                </p>
-                <p>
-                    機能も、<wbr>デザインも、<wbr>記事の執筆も、<wbr>
-                    何もかも<wbr>全てを<wbr>自分だけで<wbr>やることに<wbr>ロマンが<wbr>あったんです。<br>
-                    自分の我儘は<wbr>全て効くし、<wbr>
-                    <a href="./pages/piano-js-lib/" target="_blank" rel="noopener noreferrer"
-                        title="JavaScriptでね">普通のブログの<wbr>範疇を<wbr>超えたことだって</a><wbr>できる。
-                </p>
-                <p>
-                    あまり<wbr>ユーザーフレンドリーな<wbr>役立つ<wbr>記事には<wbr>ならないかも<wbr>しれないけど、<wbr>
-                    個人ブログだからこそ<wbr>できる<wbr>ニッチな<wbr>話題を<wbr>発信してきたいですね。
-                </p>
-                <h3></h3>
+                
+                <section>
+
+                    <p>
+                        はじめましてたまねぎと呼んでください！<br>
+                    <pre id="intro-code"><code class="lang-java">
+                        Oignon oignon = new Oignon("設計もできるプログラマ");
+                        oignon.setPlayableInstruments(
+                            new Instrument[] {
+                                new Instrument("Key"),
+                                new Instrument("Gt"),
+                                new Instrument("Ba")
+                            }
+                        );
+                        oignon.setViableLanguages(
+                            new ArrayList&lt;Language&gt;(){
+                                {
+                                    add(new HTML());
+                                    add(new CSS());
+                                    add(new JavaScript());
+                                    add(new Java());
+                                    add(new CS());
+                                    add(new PHP());
+                                    add(new SQL());
+                                }
+                            }
+                        );
+                    </code></pre>
+                    </p>
+                    <p>
+                        よく言われる話ですが、<wbr>アウトプットを<wbr>すれば<wbr>
+                        知識の<wbr>抜け漏れを<wbr>探すことが<wbr>できる<wbr>というもの<wbr>ですよね！？
+                    </p>
+                    <p>
+                        機能も、<wbr>デザインも、<wbr>記事の執筆も、<wbr>
+                        何もかも<wbr>全てを<wbr>自分だけで<wbr>やることに<wbr>ロマンが<wbr>あったんです。<br>
+                        自分の我儘は<wbr>全て効くし、<wbr>
+                        <a href="./pages/piano-js-lib/" target="_blank" rel="noopener noreferrer"
+                            title="JavaScriptでね">普通のブログの<wbr>範疇を<wbr>超えたことだって</a><wbr>できる。
+                    </p>
+                    <p>
+                        あまり<wbr>ユーザーフレンドリーな<wbr>役立つ<wbr>記事には<wbr>ならないかも<wbr>しれないけど、<wbr>
+                        個人ブログだからこそ<wbr>できる<wbr>ニッチな<wbr>話題を<wbr>発信してきたいですね。
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3>スキル肩書PR自慢</h3>
+
+                    <ul>
+                        <li>基本情報技術者</li>
+                        <li title="試験結果の公開待ちです。自己採点では合格ですが、このリストから消えたら察してください">応用情報技術者?(結果待ち)</li>
+                        <li>第二十回 若年者ものづくり競技大会 業務用ITソフトウェア・ソリューションズ職種 出場予定</li>
+                    </ul>
+
+                </section>
+
             </article>
+
         </main>
     </div>
 </body>
