@@ -46,5 +46,13 @@
         "update-date": "2025-06-01",
         "category": "音楽",
         "tag": ["コード", "JavaScript", "クリエイティブ"]
+    },
+    {
+        "title": "DX7で純粋な矩形波/Squareを作る方法(ついでにのこぎり波/Sawtooth)",
+        "url": "pages/dx7-square/",
+        "create-date": "2025-06-03",
+        "update-date": null,
+        "category": "音楽",
+        "tag": []
     }
 ]

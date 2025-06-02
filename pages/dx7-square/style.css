@@ -1,0 +1,15 @@
+.dx7-images{
+    display: block;
+    width: 270px;
+    margin: 20px auto;
+    background-color: #D8D8D8;
+    border-radius: 20px;
+}
+
+.mini-image {
+    display: block;
+    width: 120px;
+    margin: 10px;
+    background: #C8C8C8;
+    border-radius: 20px;
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <meta name="local-env">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+
+    <title>DX7で純粋な矩形波/Squareを作る方法(ついでにのこぎり波/Sawtooth)</title>
+    <meta property="og:title" content="DX7で純粋な矩形波/Squareを作る方法(ついでにのこぎり波)">
+    <meta name="description"
+        content="DX7 および DX7ii で純粋な矩形波・のこぎり波/Square wave・Sawtooth waveを再現する方法を解説します。詳しい用語の解説はせず、すぐに実践">
+    <meta property="og:description"
+        content="DX7 および DX7ii で純粋な矩形波・のこぎり波/Square wave・Sawtooth waveを再現する方法を解説します。詳しい用語の解説はせず、すぐに実践">
+
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1>DX7で純粋な矩形波/Squareを作る方法(ついでにのこぎり波)</h1>
+            <p>
+                既出かも<wbr>しれませんが、<wbr>
+                備忘録の<wbr>ためにも<wbr>ここに<wbr>
+                まとめ<wbr><a href="https://oignonasappy.github.io/muscle/muscle/" target="_blank"
+                    rel="noopener noreferrer">マッスル</a>。
+            </p>
+            <p>
+                ここでは<wbr>方法のみ<wbr>語り、<wbr>内部の<wbr>詳しい<wbr>話は<wbr>避けますね。<wbr>
+                私だって<wbr>わかってないし。<br>
+                DX7とDX7iiの<wbr>どちらでも<wbr>作成<wbr>できると<wbr>思います。<wbr>
+                (でも、<wbr>DX7無印の<wbr>ほうでは<wbr>確認<wbr>できて<wbr>いません。<wbr>申し訳ないです)
+            </p>
+            <img class="dx7-images" src="./images/square.png" alt="矩形波/square" title="矩形波/square">
+
+            <section>
+                <h2>前提知識</h2>
+
+                <p>
+                    この後に出てくる<wbr>DX7用語を<wbr>超ざっくり<wbr>おさらい<wbr>します。<br>
+                    これらを<wbr>理解するまでは、<wbr>作業に<wbr>着手<wbr>できません。<wbr>
+                    DX7って<wbr>むずかしいですね。<br>
+                    DX7そのものの<wbr>操作に<wbr>ついては<wbr>
+                    説明すると<wbr>キリが<wbr>ないので<wbr>割愛させて<wbr>いただきます。
+                </p>
+
+                <dl>
+                    <dt>オペレータ</dt>
+                    <dd class="use-wbr">
+                        波形(正弦波)を<wbr>出力する<wbr>個々の<wbr>音源信号。
+                    </dd>
+
+                    <dt>キャリア</dt>
+                    <dd class="use-wbr">
+                        変調信号を受け<wbr>最終的に<wbr>音声信号として<wbr>
+                        外部に<wbr>出力される<wbr>オペレータ。
+                    </dd>
+
+                    <dt>モジュレータ</dt>
+                    <dd class="use-wbr">
+                        次のオペレータに<wbr>変調信号を<wbr>渡す<wbr>オペレータ。
+                    </dd>
+
+                    <img class="dx7-images" src="./images/dx7-operators.png"
+                        alt="オペレータはモジュレータとキャリアを包含する。モジュレータはキャリアに変調信号を渡し、キャリアは音声信号を出力する。" title="わかりやすい図">
+
+                    <dt>アルゴリズム</dt>
+                    <dd class="use-wbr">
+                        モジュレータ、キャリアの<wbr>組み合わせ方の<wbr>パターン。
+                    </dd>
+
+                    <dt>フィードバック</dt>
+                    <dd class="use-wbr">
+                        自分自身に<wbr>信号を<wbr>再帰的に<wbr>渡す<wbr>ような<wbr>モジュレータ。<br>
+                        Feedback levelで<wbr>回す強度を<wbr>設定できる。
+                    </dd>
+
+                    <img class="dx7-images" src="./images/dx7-feedback.png" alt="Feedbackは信号を自分自身に送る" title="わかりやすーい図">
+                </dl>
+
+            </section>
+
+            <section>
+                <h2>実践</h2>
+
+                <h3>初期化する</h3>
+                <p>
+                    ボイスデータを<wbr>イニシャライズし(VOICE INIT)、<wbr>
+                    ただの<wbr>正弦波のみが<wbr>鳴る<wbr>状態にします。
+                </p>
+
+                <h3>アルゴリズムを選択する</h3>
+                <p>
+                    キャリアが<wbr>一つであり、<wbr>
+                    フィードバック付きの<wbr>モジュレータの<wbr>ある<wbr>アルゴリズムを<wbr>選びます。<br>
+                    まさにこれ↓
+                    <img class="mini-image" src="./images/dx7-feedback.png" alt="フィードバックのあるモジュレータ一つの直後にキャリア一つ"
+                        title="先ほどと同じ図">
+                </p>
+                <p>
+                    まず構成は↑の<wbr>図のように<wbr>2つにし、<wbr>
+                    他の<wbr>オペレータは<wbr>全て<wbr>OUTPUT LEVELを<wbr>0にしましょう。
+                </p>
+
+                <h3>フィードバックを最大にする</h3>
+                <p>
+                    FEEDBACK LEVELを<wbr>最大の<wbr>7に<wbr>します。<wbr>
+                    これが<wbr>あることで、<wbr>矩形波の<wbr>角を<wbr>最大限<wbr>立たせることが<wbr>できます。
+                </p>
+
+                <h3>出力レベルを調整する</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam voluptatem officia fuga. Doloremque
+                    sunt quibusdam enim nisi repudiandae itaque dolorem magnam distinctio aspernatur numquam. Alias
+                    vitae magni placeat velit cupiditate?
+                </p>
+
+                <h3>周波数比を変更する</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad vero fuga animi exercitationem qui,
+                    natus perferendis asperiores quaerat odio dignissimos praesentium beatae mollitia officiis quod
+                    illum. Beatae molestiae distinctio dicta?
+                </p>
+
+            </section>
+
+            <section>
+                <h3>あとがき</h3>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum minima a blanditiis numquam sequi
+                    veritatis laudantium distinctio enim cumque officiis eaque totam voluptatibus nisi vitae alias, ex
+                    facilis. Animi, sapiente.
+                </p>
+                
+            </section>
+
+            <section>
+                <h4>元の私の投稿</h4>
+                <!--Bluesky Embed code-->
+                <blockquote class="bluesky-embed"
+                    data-bluesky-uri="at://did:plc:fxfy76ybhl47pqyjvx2tgdfr/app.bsky.feed.post/3lpe6ejnlzc2w"
+                    data-bluesky-cid="bafyreihtmlrwexb2dvuzscsc2eab3b2wgclwm5w4yjkoi64bfdzfofnpam"
+                    data-bluesky-embed-color-mode="light">
+                    <p lang="ja">DX7でほぼ純粋な矩形波を作る方法を編み出した！！！(まあ、既出でしょうけど)
+
+                        余計な設定はせず、INITから始める。
+                        まずキャリアを1つに絞り、それに変調をかけていく流れ。
+                        キャリアに対するモジュレータはFeedbackのあるものを選ぶ。(まずは構成を[FeedBack付きのモジュレータ -&gt; キャリア]の2つにし、他は全部OFFで始めましょう)
+                        Feedback Levelは最大にする。
+                        次に、モジュレータのOUTPUT
+                        LEVELを&quot;オーバーフローする直前の値&quot;(私の場合は85)に調整する。オーバーフローを超えると音は砂嵐になり、足りないとただの正弦波になる。
+
+                        ↓つづきます↓</p>&mdash; たまねぎ_たまねぎ (<a
+                        href="https://bsky.app/profile/did:plc:fxfy76ybhl47pqyjvx2tgdfr?ref_src=embed">@oignonasappy.bsky.social</a>)
+                    <a
+                        href="https://bsky.app/profile/did:plc:fxfy76ybhl47pqyjvx2tgdfr/post/3lpe6ejnlzc2w?ref_src=embed">2025年5月17日
+                        17:57</a>
+                </blockquote>
+                <blockquote class="bluesky-embed"
+                    data-bluesky-uri="at://did:plc:fxfy76ybhl47pqyjvx2tgdfr/app.bsky.feed.post/3lpe6ejnrus2w"
+                    data-bluesky-cid="bafyreibwegeoi5tu4q6mane5zf2lw5qzbibscyaqz72bisjokpkdtxekoa"
+                    data-bluesky-embed-color-mode="light">
+                    <p lang="ja">キャリアのOUTPUT LEVELはただ音量に直結するだけなので、好みの値に。
+                        次に、このままではのこぎり波になってしまっているので、[キャリアの周波数 : モジュレータの周波数]を[1 : 2]にする。
+                        これでキレイな矩形波が出力されたはずです！
+                        (わからない用語があったら、調べてみてくださいね。)
+
+                        レッツChiptune!!
+
+                        Feedbackを最大までかけることで、矩形波のあの角を最大限まで立てています。ここでモジュレータの直列接続(串刺し)数を増やしてみると、より近くなるかも。
+                        FM変調の代表例を見ているみたいで、なんだか感動しますね。
+                        図解してみたいけど、数弱なので私には重い。</p>&mdash; たまねぎ_たまねぎ (<a
+                        href="https://bsky.app/profile/did:plc:fxfy76ybhl47pqyjvx2tgdfr?ref_src=embed">@oignonasappy.bsky.social</a>)
+                    <a
+                        href="https://bsky.app/profile/did:plc:fxfy76ybhl47pqyjvx2tgdfr/post/3lpe6ejnrus2w?ref_src=embed">2025年5月17日
+                        17:57</a>
+                </blockquote>
+                <blockquote class="bluesky-embed"
+                    data-bluesky-uri="at://did:plc:fxfy76ybhl47pqyjvx2tgdfr/app.bsky.feed.post/3lpe7hcu7ts2w"
+                    data-bluesky-cid="bafyreidd64o6y5sn3dxltzopl3j3alf4wqib4uavehckusjm3ji2wic2em"
+                    data-bluesky-embed-color-mode="light">
+                    <p lang="ja">これ、見つけるまでけっこう苦労したんですよ。初心者だから。
+                        机上の空論と思ってたものが実現できたときほど、嬉しいことはないよね。
+                        FM音源というものは予測不可能で狂ったものですが、これで君のことがちょっと解った気がします。基礎の基礎だけね。
+
+                        FM変調というものは、キャリアの波形の時間変化に変形を加えるもの
+                        特にDX7は正弦波しか扱わないしホントにフーリエ変換。数学。しかもそれが複雑に横に縦に再帰的に組み合わさるときた。そりゃ難しいわけだ。
+                        こんなに扱いにくいものでも、その時代、一世を風靡するほど画期的で魅力的だったわけですね～。
+                        まあ&quot;その時代&quot;は私の生まれる20年前なわけですが。私って若い</p>&mdash; たまねぎ_たまねぎ (<a
+                        href="https://bsky.app/profile/did:plc:fxfy76ybhl47pqyjvx2tgdfr?ref_src=embed">@oignonasappy.bsky.social</a>)
+                    <a
+                        href="https://bsky.app/profile/did:plc:fxfy76ybhl47pqyjvx2tgdfr/post/3lpe7hcu7ts2w?ref_src=embed">2025年5月17日
+                        18:16</a>
+                </blockquote>
+                <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

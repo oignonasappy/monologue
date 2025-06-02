@@ -207,6 +207,7 @@ URLに検索する内容を含める。
 - `box-sizing`は`border-box`を既定とする。
 - `font-family`は`'Moralerspace Neon'`を既定とする。(等幅フォントはナンセンスかも)
 - `<wbr>`を正常に機能させるには`.use-wbr`を使う。
+    - `<wbr>`を使うときは、文章の中盤ほど高密度で配置するといいかも。
 - Prism.jsのスタイルをオーバーライドする。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
