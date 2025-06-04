@@ -61,6 +61,10 @@ export const pagesReady = new Promise((resolve, reject) => {
                 const getDate = page => {
                     return new Date(page['update-date'] || page['create-date'] || "0000-00-00");
                 };
+                // Send backward NaN
+                if (isNaN(getDate(b))) {
+                    return -1;
+                }
                 // Compare dates
                 return getDate(b) - getDate(a);
             });
@@ -71,6 +75,7 @@ export const pagesReady = new Promise((resolve, reject) => {
                 const getDate = page => {
                     return new Date(page['create-date'] || "0000-00-00");
                 };
+                // Send backward NaN
                 if (isNaN(getDate(b))) {
                     return -1;
                 }
