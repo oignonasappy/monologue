@@ -272,6 +272,10 @@ main {
         width: 100%;
     }
 
+    button {
+        cursor:pointer;
+    }
+
     :where(button, input, select, textarea) {
         font-family: inherit;
         font-size: inherit;

@@ -322,7 +322,6 @@ chatGPTの性格を変えると、トークンの効率が大きく落ちると�
 ###### メモ TODO:
 - `<del> <ins>`のスタイリング
 - `<blockquote> <cite>`のスタイリング
-- カテゴリ検索　タグ検索　時系列順全記事検索(category.html, tag.html, allPages.html)
 - プルダウン
 - 目次のアンカー範囲を横幅最大にする
 - `<h1>`を特別扱い
