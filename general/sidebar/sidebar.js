@@ -1,49 +1,32 @@
 "use strict";
+import { ROOT, pages, pagesReady, sortedPagesByUpdate } from '../js/common.js';
 
-/* Local env check */
-const ROOT = (() => {
-    const isLocal = !!document.querySelector('meta[name="local-env"]');
-    // If current environment is local env, Root is `/`
-    // Else if deploy environment, Root is `/monologue/`
-    return isLocal ? '/' : '/monologue/';
-})();
-
-/* Loading pages.json -> Next process */
-let pages = [];
 (async () => {
+    await pagesReady;
+
     try {
-        const res = await fetch(ROOT + "pages.json");
-        if (!res.ok) throw new Error("Response was not ok");
-
-        const data = await res.json();
-        pages = data;
-
-        // Methods that use json
-        try {
-            recent(pages);
-        } catch (error) {
-            console.error("Error: ", error);
-        }
-
+        generateRecent();
     } catch (error) {
-        console.error("Error fetching JSON: ", error);
+        console.error("Error: ", error);
+    }
+
+    try {
+        generateCategorys();
+    } catch (error) {
+        console.error("Error: ", error);
+    }
+
+    try {
+        generateTags();
+    } catch (error) {
+        console.error("Error: ", error);
     }
 })();
 
-function recent(pages) {
-    /* Sort pages by date */
-    const sortedPages = pages.slice().sort((a, b) => {
-        // Return a create-date if update-date is null
-        const getDate = page => {
-            return new Date(page['update-date'] || page['create-date'] || "0000-00-00");
-        };
-        // Compare dates
-        return getDate(b) - getDate(a);
-    });
-
+function generateRecent() {
     /* Grouping pages by same date */
     const groupedPages = {};
-    for (const page of sortedPages) {
+    for (const page of sortedPagesByUpdate) {
         // create-date if update-date is null
         const rawDate = page['update-date'] || page['create-date'] || "~~~~-~~-~~";
         // Replace all '-' to '/'
@@ -54,7 +37,7 @@ function recent(pages) {
     }
 
     /* Create recent list */
-    const recent = document.getElementById('sidebar-recent');
+    const sidebarRecent = document.getElementById('sidebar-recent');
     const recentList = document.createElement('ul');
     recentList.setAttribute('class', 'sidebar-datelist');
     // Adding content until total is 10
@@ -83,5 +66,66 @@ function recent(pages) {
         if (total >= 10) break;
     }
 
-    recent.appendChild(recentList);
+    sidebarRecent.appendChild(recentList);
+}
+
+function generateCategorys() {
+    const sidebarCategorys = document.querySelector('#sidebar-categorys');
+
+    const categorys = [];
+    pages.forEach((page) => {
+        if (page.category != null && !categorys.includes(page.category)) {
+            categorys.push(page.category);
+        }
+    });
+
+    const categoryList = document.createElement('ul');
+
+    categorys.forEach((category) => {
+        const li = document.createElement('li');
+
+        const a = document.createElement('a');
+        a.textContent = category;
+        a.href = ROOT + 'general/page-search/category.html?' + category;
+
+        li.appendChild(a);
+        categoryList.appendChild(li);
+    });
+
+    sidebarCategorys.appendChild(categoryList);
+}
+
+function generateTags() {
+    const sidebarTags = document.querySelector('#sidebar-tags');
+
+    const tags = [];
+    pages.forEach((page) => {
+
+        if (page.tag.length !== 0) {
+
+            page.tag.forEach(tagScala => {
+
+                if (!tags.includes(tagScala)) {
+
+                    tags.push(tagScala);
+
+                }
+            });
+        }
+    });
+
+    const tagList = document.createElement('ul');
+
+    tags.forEach((tag) => {
+        const li = document.createElement('li');
+
+        const a = document.createElement('a');
+        a.textContent = tag;
+        a.href = ROOT + 'general/page-search/tag.html?' + tag;
+
+        li.appendChild(a);
+        tagList.appendChild(li);
+    });
+
+    sidebarTags.appendChild(tagList);
 }

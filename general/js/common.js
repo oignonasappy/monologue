@@ -1,7 +1,7 @@
 "use strict";
 
 /* Local env check */
-const ROOT = (() => {
+export const ROOT = (() => {
     const isLocal = !!document.querySelector('meta[name="local-env"]');
     // If current environment is local env, Root is `/`
     // Else if deploy environment, Root is `/monologue/`
@@ -9,51 +9,91 @@ const ROOT = (() => {
 })();
 
 /* Basic structure */
-(() => {
-    fetch(ROOT + "general/html/header.html")
-        .then(res => res.text())
-        .then(html => {
-            document.body.insertAdjacentHTML('afterbegin', html);
-        });
+export const contentReady = new Promise(async (resolve) => {
 
-    fetch(ROOT + "general/html/footer.html")
-        .then(res => res.text())
-        .then(html => {
-            document.body.insertAdjacentHTML('beforeend', html);
-        });
+    const fetchContents = [
+        fetch(ROOT + "general/html/header.html")
+            .then(res => res.text())
+            .then(html => {
+                document.body.insertAdjacentHTML('afterbegin', html);
+            }),
 
-    fetch(ROOT + "general/sidebar/sidebar.html")
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('container').insertAdjacentHTML('beforeend', html);
+        fetch(ROOT + "general/html/footer.html")
+            .then(res => res.text())
+            .then(html => {
+                document.body.insertAdjacentHTML('beforeend', html);
+            }),
 
-            // Call sidebar.js
-            const sidebarScript = document.createElement('script');
-            sidebarScript.type = 'module';
-            sidebarScript.src = ROOT + 'general/sidebar/sidebar.js';
-            document.body.appendChild(sidebarScript);
+        fetch(ROOT + "general/sidebar/sidebar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('container').insertAdjacentHTML('beforeend', html);
+
+                // Call sidebar.js
+                const sidebarScript = document.createElement('script');
+                sidebarScript.type = 'module';
+                sidebarScript.src = ROOT + 'general/sidebar/sidebar.js';
+                document.body.appendChild(sidebarScript);
+            })
+    ];
+
+    await Promise.all(fetchContents);
+    resolve();
+});
+
+/* Load pages.json*/
+export let pages = [];
+export let sortedPagesByUpdate = [];
+export let sortedPagesByCreate = [];
+export const pagesReady = new Promise((resolve, reject) => {
+    fetch(ROOT + 'pages.json')
+        .then(res => {
+            if (!res.ok) throw new Error("Response was not ok");
+            return res.json();
+        })
+        .then(data => {
+            pages = data;
+
+            /* Sort pages by update date */
+            sortedPagesByUpdate = pages.slice().sort((a, b) => {
+                // Return a update-date
+                // or Return a create-date if update-date is null
+                const getDate = page => {
+                    return new Date(page['update-date'] || page['create-date'] || "0000-00-00");
+                };
+                // Compare dates
+                return getDate(b) - getDate(a);
+            });
+
+            /* Sort pages by create date */
+            sortedPagesByCreate = pages.slice().sort((a, b) => {
+                // Return a create-date
+                const getDate = page => {
+                    return new Date(page['create-date'] || "0000-00-00");
+                };
+                if (isNaN(getDate(b))) {
+                    return -1;
+                }
+                // Compare dates
+                return getDate(b) - getDate(a);
+            });
+
+            resolve();
+
+        }).catch(error => {
+            console.error("Error fetching JSON: ", error);
+            reject();
         });
-})();
+});
 
 /* Load pages.json -> Next process */
 (async () => {
-    let pages = [];
+    await pagesReady;
+    // Methods that use json
     try {
-        const res = await fetch(ROOT + "pages.json");
-        if (!res.ok) throw new Error("Response was not ok");
-
-        const data = await res.json();
-        pages = data;
-
-        // Methods that use json
-        try {
-            pageInfo(pages);
-        } catch (error) {
-            console.error("Error creating page info: ", error);
-        }
-
+        pageInfo(pages);
     } catch (error) {
-        console.error("Error fetching JSON: ", error);
+        console.error("Error creating page info: ", error);
     }
 })();
 

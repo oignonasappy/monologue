@@ -12,8 +12,8 @@
         "url": "pages/test/",
         "create-date": "0000-00-00",
         "update-date": "1111-11-11",
-        "category": "テストカテゴリ",
-        "tag": ["テストタグ1", "testTag2"]
+        "category": null,
+        "tag": []
     },
     {
         "title": "あなたのページに鍵盤を表示する[piano.js]",

@@ -33,13 +33,17 @@
               - common.css
           - js/
               - common.js
+              - search.js
+              - search-allpages.js
+              - search-category.js
+              - search-tag.js
           - images/
               - [画像ファイル]
           - sidebar/
               - sidebar.html
               - sidebar.js
           - page-search/
-              - allPages.html
+              - allpages.html
               - category.html
               - tag.html
 ## monologue(root)/
@@ -92,6 +96,18 @@ github用のREADME。
 全ページ共通のスクリプト。  
 これによりサイドバーの読み込みをする。  
 ESM
+#### search.js
+検索処理の共通処理。
+ESM
+#### search-allpages.js
+全検索の個別処理。
+ESM
+#### search-category.js
+カテゴリ検索の個別処理。
+ESM
+#### search-tag.js
+タグ検索の個別処理。
+ESM
 ### images/[画像ファイル]
 頻繁に使う画像のフォルダ。
 ### sidebar/
@@ -102,15 +118,19 @@ ESM
 #### sidebar.js
 サイドバーに表示する内容を`pages.json`から取得する。  
 ESM
-### page-search
+### page-search/
 様々な方法のページ検索ページ。並び替えができたら美しい。  
 URLに検索する内容を含める。
-#### allPages.html
+#### allpages.html
 全ページを検索する。
 #### category.html
-カテゴリ内で検索する。
+カテゴリ内で検索する。  
+url末尾は`?search=[検索カテゴリ]`  
+urlが無効の場合は全てのカテゴリを列挙する。
 #### tag.html
 タグ内で検索する。
+url末尾は`?search=[検索タグ]`  
+urlが無効の場合は全てのタグを列挙する。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
@@ -245,6 +265,8 @@ sidebar : `#container`の終了直前
 ### 最新の更新をリストする
 最も新しい更新日(でなければ作成日)の10件をリスト  
 同一の日付はグルーピングする。表示される中で最も古いグループが2つ以上の記事を持ち、それを含めると10件を超えてしまう場合は、そのまま10件を超えて表示する。
+
+# search.js
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
