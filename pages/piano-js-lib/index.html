@@ -36,8 +36,8 @@
     <meta property="og:description" content="サイト上でピアノが弾けます！やったね！">
 
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
-    <script src="https://oignonasappy.github.io/pianojs/v1.1.0/piano.js" defer></script>
+    <script src="./script.js" type="module"></script>
+    <script src="https://oignonasappy.github.io/pianojs/v1.1.2/piano.js" defer></script>
 </head>
 
 <body>
@@ -49,6 +49,10 @@
 
             <section>
                 <h3>プレビュー</h3>
+                <p style="font-size: 0.9em;">
+                    コード表示が<wbr>崩れてしまう<wbr>場合が<wbr>あります。<wbr>その場合は<wbr>ページを<wbr>再読み込み<wbr>してください。<br>
+                    ご迷惑を<wbr>お掛けして<wbr>おります<wbr>ことを<wbr>お詫び<wbr>申し上げます。
+                </p>
                 <h5 class="use-wbr" style="text-align:center;margin-bottom:1em;">2オクターブ分の通常のピアノ / C-コードをハイライト / 音名をGフリジアンとして表示</h5>
                 <p style="text-align:center;margin-bottom:10px;font-size:0.8em;"><code class="lang-html">
                     &lt;div class="piano" data-first="60" data-last="84" data-key-width="20px" data-key-height="60px" data-highlight="72 75 79" data-highlight-color="#FFE0FF" data-notename="true" data-key-signature="G phr"&gt;&lt;/div&gt;
@@ -117,8 +121,8 @@
                                 </p>
                                 <h4>github.ioからの読み込み(疑似<abbr title="Content Delivery Network">CDN</abbr>)</h4>
                                 <p>
-                                    以下コードを<span class="code">&lt;head&gt;</span>内にコピー [version : v1.1.0]<br>
-                                    <code class="lang-html">&lt;script src="https://oignonasappy.github.io/pianojs/v1.1.0/piano.js" defer&gt;&lt;/script&gt;</code>
+                                    以下コードを<span class="code">&lt;head&gt;</span>内にコピー [version : v1.1.2]<br>
+                                    <code class="lang-html">&lt;script src="https://oignonasappy.github.io/pianojs/v1.1.2/piano.js" defer&gt;&lt;/script&gt;</code>
                                 </p>
                             </section>
                         </li>
@@ -539,7 +543,7 @@
             </section>
 
             <section>
-                以下、piano.jsソースコードです。[version : v1.1.0]
+                以下、piano.jsソースコードです。[version : v1.1.2]
                 <pre style="height: 600px;"><code class="lang-js line-numbers" id="piano-js-src"></code></pre>
             </section>
             

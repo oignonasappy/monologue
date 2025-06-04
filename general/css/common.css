@@ -273,7 +273,7 @@ main {
     }
 
     button {
-        cursor:pointer;
+        cursor: pointer;
     }
 
     :where(button, input, select, textarea) {
