@@ -1,11 +1,11 @@
-.setting {
+.setting, .edo-setting {
     label {
         display: block;
         width: fit-content;
     }
 }
 
-#generate-button {
+#generate-button, #edo-generate-button {
     display: block;
     margin: 8px auto;
     padding: 4px 8px;
@@ -13,14 +13,14 @@
     font-weight: bold;
 }
 
-#out {
+#out, #edo-out {
     color: #E0E0E0;
     background-color: #202020;
     text-align: center;
     padding: 10px 5px;
 }
 
-#out.error {
+#out.error, #edo-out.error {
     color: red;
 }
 

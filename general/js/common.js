@@ -171,7 +171,7 @@ function pageInfo(pages) {
         createText += createDateTextArray[2] + "日";
         createDate.textContent = createText;
 
-        // add pageinfo to main adterbegin
+        // add pageinfo to main afterbegin
         if (pages[pageIndex]['category'] !== null) {
             info.appendChild(category);
         }

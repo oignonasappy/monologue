@@ -70,10 +70,11 @@
                     </label>
                 </div>
 
-                <button id="generate-button" onclick="generate()">生成</button>
+                <button type="button" id="generate-button" onclick="generate()">生成</button>
 
                 <div class="piano-play piano-align" id="piano-chord" data-first="24" data-last="96" data-key-width="16px" data-key-height="80px" data-notename="true" data-duration="2.5" data-osc-type="square"></div>
                 <div id="out">ここに出力...</div>
+
             </section>
 
             <section>
@@ -144,6 +145,48 @@
                     作り上げて<wbr>いかなければ<wbr>ならない<wbr>ようですね。<br>
                     そのコード<wbr>一つには<wbr>魂を<wbr>込めましょう。(?)
                 </p>
+            </section>
+
+            <section>
+                <h2>おまけ</h2>
+                <h2>n平均律コード生成キ</h2>
+
+                <div class="edo-setting">
+                    <label>
+                        <span>ルート音[max]　　:</span>
+                        <input type="number" id="edo-root-max" value="48" min="24" max="96" step="0.1">
+                    </label>
+                    <label>
+                        <span>ルート音[min]　　:</span>
+                        <input type="number" id="edo-root-min" value="24" min="24" max="96" step="0.1">
+                    </label>
+                    <label>
+                        <span>音数[max]　　　　:</span>
+                        <input type="number" id="edo-count-max" value="10" min="1" max="32">
+                    </label>
+                    <label>
+                        <span>音数[min]　　　　:</span>
+                        <input type="number" id="edo-count-min" value="3" min="1" max="32">
+                    </label>
+                    <label>
+                        <span>インターバル[max]:</span>
+                        <input type="number" id="edo-interval-max" value="10" min="0.1" max="32" step="0.1">
+                    </label>
+                    <label>
+                        <span>インターバル[mix]:</span>
+                        <input type="number" id="edo-interval-min" value="2" min="0.1" max="32" step="0.1">
+                    </label>
+                    <label>
+                        <span>音律[分割数]&ensp;&ensp;&ensp;　:</span>
+                        <input type="number" id="edo-temperament" value="24" min="1" max="53">
+                    </label>
+                </div>
+
+                <button type="button" id="edo-generate-button" onclick="edoGenerate()">生成</button>
+
+                <div class="piano-play piano-align" id="edo-piano-chord" data-first="24" data-last="96" data-key-width="16px" data-key-height="80px" data-notename="true" data-duration="2.5" data-osc-type="square"></div>
+                <div id="edo-out">ここに出力...</div>
+                
             </section>
 
         </main>
