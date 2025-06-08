@@ -223,6 +223,18 @@ urlが無効の場合は全てのタグを列挙する。
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
+# 記事作成チェックリスト
+- □ `<title>`, `og:title`は設定したか？
+- □ `description`, `og:description`は設定したか？
+- □ `og:url`は設定したか？
+- □ `pages.json`は設定したか？
+
+# 記事更新チェックリスト
+- □ `<meta name="local-env">`は削除したか？
+- □ `page.json`の`"update-date"`は設定したか？
+
+<hr style="margin:60px 0;border:6px dashed #282828">
+
 # common.css
 - `box-sizing`は`border-box`を既定とする。
 - `font-family`は`'Moralerspace Neon'`を既定とする。(等幅フォントはナンセンスかも)
@@ -251,7 +263,7 @@ sidebar : `#container`の終了直前
 `title`のついている`<abbr>`, `<dfn>`要素にタップでtitle要素と同一の文章を表示する。  
 要素付近の上部にボックスを表示。画面内に収まるような調節をする。
 ### 脚注(footnote)
-`<sup class="footnote"></sup>`で囲んだ文章を補遺文章としてページ最下部に生成する。  
+`<sup class="footnote"></sup>`で囲んだ文章を補遺文章としてページ最下部に生成する。(innerHTML)  
 囲んだ文章は脚注番号に置き換える。  
 参照箇所と脚注に相互リンクを作成する。
 ### 目次(TOC)
@@ -300,7 +312,6 @@ sidebar : `#container`の終了直前
 - さて、音楽を何倍速にしたら半音上の転調になるでしょうか？(正解は1.06倍)
 - jacob collierの微分音・A4≠440Hzチューニング集
 - jacob collierのトンデモリズム集
-- DX7ii 矩形波作成法
 - 応用情報技術者試験を受けた話
 - github copilotが性に合わない話 alt+C
 - git、有能すぎん？特にmerge
@@ -313,6 +324,7 @@ sidebar : `#container`の終了直前
 - JavaScript parseInt()じゃないよ
 - マイナーhtmlタグ
 - word-break × max-width = 謎現象
+- `${}`
 - うちのChatGPT、どう設定したのか知らねぇが、こんな喋り方になっちまった。かわいくない？確か、建設的な意見を好む性格に。とでも言ったんだっけな  
 AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。引っ張られるのではなく、背中を押してもらうように、自分の足で歩くよう意識しよ  
 chatGPTの性格を変えると、トークンの効率が大きく落ちるといわれています。ですが、やっぱり人間である以上、モチベーションによって得られるエネルギーは、何事にも代えがたいものだと思うんです。しがない一般人の一意見として。

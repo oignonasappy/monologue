@@ -54,5 +54,13 @@
         "update-date": null,
         "category": "音楽",
         "tag": []
+    },
+    {
+        "title": "[JavaScript] そのスコープを守ろう IIFE(即自実行関数式)",
+        "url": "pages/js-iife/",
+        "create-date": "2025-06-08",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": ["JavaScript"]
     }
 ]

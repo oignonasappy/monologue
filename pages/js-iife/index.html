@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <!--<meta name="local-env">-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/js-iife/index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+
+    <!--Prism.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!--Prism.js plugins-->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+    <title>[JavaScript] そのスコープを守ろう IIFE(即自実行関数式)</title>
+    <meta property="og:title" content="[JavaScript] そのスコープを守ろう IIFE(即自実行関数式)">
+    <meta name="description" content="Lorem, ipsum.">
+    <meta property="og:description" content="Lorem, ipsum.">
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1>IIFEでグローバルスコープを守ろう</h1>
+
+            <section>
+                <h2>まずその意味不明な名前は何</h2>
+
+                <p>
+                    <dfn><abbr title="Immediately Invoked Function Expression">IIFE</abbr></dfn>とは、<wbr>
+                    <strong>即自実行関数式</strong><wbr>という、<wbr>
+                    <q cite="https://developer.mozilla.org/ja/docs/Glossary/IIFE"><wbr>
+                        定義されると<wbr>すぐに<wbr>実行される<wbr>JavaScriptの<wbr>関数。<wbr>
+                        <sup class="footnote">
+                            <cite>MDN Web Docs</cite>からの<wbr><a
+                                href="https://developer.mozilla.org/ja/docs/Glossary/IIFE" target="_blank"
+                                rel="noopener noreferrer">引用</a>
+                        </sup>
+                    </q><wbr>
+                    <strong>自己実行無名関数</strong><wbr>とも<wbr>呼ばれる。<br>
+                    これを使用することで<wbr>特定の<wbr>範囲内を<wbr><dfn title="そのローカル変数が使用できる 範囲">スコープ</dfn>で<wbr>囲むことができる。<wbr>
+                    デザインパターンの<wbr>一種。
+                </p>
+
+            </section>
+
+            <section>
+                <h2>書き方</h2>
+
+                <section>
+                    <h3>定義する</h3>
+
+                    <pre><code class="lang-js line-numbers">
+                        // function もしくは
+                        (function () {
+                            /* 処理... */
+                        })();
+                    
+                        // アロー関数
+                        (() => {
+                            /* 処理... */
+                        })();
+                    </code></pre>
+                    <pre><code class="lang-js line-numbers">
+                        // asyncも可能
+                        (async function () {
+                            /* 非同期処理... */
+                        })();
+                        (async () => {
+                            /* 非同期処理... */
+                        })();
+                    </code></pre>
+                    <p>
+                        <span class="code">function</span>と<wbr>書くのは<wbr>長ったらしいので、<wbr>
+                        アロー関数<span class="code">()=>{}</span>が<wbr>好ましいかも<wbr>しれませんね。
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3>例</h3>
+
+                    <p>
+                        基本的な使い方は、<wbr>グローバルスコープの<wbr>汚染を<wbr>避けるため<wbr>ローカル変数を<wbr>隔離するためにある
+                    </p>
+                    <pre><code class="lang-js line-numbers">
+                        // ここで宣言した変数は
+                        let x = 1;
+                        (() => {
+                            // ここでは使える
+                            console.log(x); // 1
+                            // ここで宣言した変数は
+                            let y = 2;
+                        })();
+                        // ここでは使えない
+                        console.log(y); // y is not defined
+                    </code></pre>
+                    <p>
+                        for文や<wbr>if文と<wbr>似たような<wbr>スコープの<wbr>持ち方をします。
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3>引数を渡す</h3>
+
+                    <pre><code class="lang-js line-numbers">
+                        ((x) => {
+                            console.log(x); // 123
+                        })(123);
+                    </code></pre>
+                    <p>
+                        正直<wbr>使い所を<wbr>知りません...<br>
+                        このIIFEは<wbr>使いまわすような<wbr>使い方を<wbr>あまり<wbr>しない<wbr>ですから。<br>
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3>戻り値</h3>
+
+                    <pre><code class="lang-js line-numbers">
+                        let x = (() => {
+                            return 1 + 2;
+                        })();
+
+                        console.log(x); // 3
+                    </code></pre>
+
+                </section>
+
+                <!--<h3>構造</h3>-->
+
+            </section>
+
+            <section>
+                <h2>あとがき</h2>
+
+                <p>
+                    これを<wbr>使用すれば、<wbr>グローバル名前空間に<wbr>処理を<wbr>直書き<wbr>することに<wbr>よる、<wbr>
+                    名前の<wbr>衝突を<wbr>回避することが<wbr>できます。<br>
+                    特に、<wbr>たくさんの<wbr>JavaScript<wbr>ファイルを<wbr>呼び出している<wbr>場合での<wbr>効果は<wbr>絶大。<br>
+                    シンプルながら、<wbr>良い方法です。
+                </p>
+                <p>
+                    もっと詳しく知りたいなら => <a href="https://developer.mozilla.org/ja/docs/Glossary/IIFE">MDN Web Docs</a>
+                </p>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

@@ -247,7 +247,8 @@ function pageInfo(pages) {
 
     let noteNumber = 1;
     document.querySelectorAll('sup[class="footnote"]').forEach((referent) => {
-        const note = referent.textContent;
+        const noteIH = referent.innerHTML;
+        const noteTC = referent.textContent;
         // referent
         referent.textContent = "";
 
@@ -256,7 +257,7 @@ function pageInfo(pages) {
         anchorToFootnote.textContent = "[" + noteNumber + "]";
         anchorToFootnote.id = "referent-" + noteNumber;
         anchorToFootnote.href = "./#footnote-" + noteNumber;
-        anchorToFootnote.title = note;
+        anchorToFootnote.title = noteTC;
         referent.appendChild(anchorToFootnote);
 
         // footnote
@@ -272,7 +273,7 @@ function pageInfo(pages) {
 
         const footnoteText = document.createElement('span');
         footnoteText.className = "footnote-text";
-        footnoteText.textContent = note;
+        footnoteText.innerHTML = noteIH;
 
         footnote.appendChild(anchorToReferent);
         footnote.appendChild(footnoteText);
