@@ -21,7 +21,11 @@
         "create-date": "2025-05-11",
         "update-date": "2025-05-28",
         "category": "プログラミング",
-        "tag": ["JavaScript", "クリエイティブ", "音楽理論"]
+        "tag": [
+            "JavaScript",
+            "クリエイティブ",
+            "音楽理論"
+        ]
     },
     {
         "title": "Emmet Wrapにショートカットキーを付けろという話",
@@ -29,7 +33,9 @@
         "create-date": "2025-05-26",
         "update-date": "2025-05-27",
         "category": "プログラミング",
-        "tag": ["HTML"]
+        "tag": [
+            "HTML"
+        ]
     },
     {
         "title": "Dominant7thに頻繁に載せるスケールの相関について",
@@ -37,7 +43,10 @@
         "create-date": "2025-05-27",
         "update-date": "2025-05-30",
         "category": "音楽",
-        "tag": ["音楽理論", "スケール"]
+        "tag": [
+            "音楽理論",
+            "スケール"
+        ]
     },
     {
         "title": "ランダムに構成音を決めてコードを作ったらどんな音がするかな？",
@@ -45,7 +54,11 @@
         "create-date": "2025-05-30",
         "update-date": "2025-06-08",
         "category": "音楽",
-        "tag": ["コード", "JavaScript", "クリエイティブ"]
+        "tag": [
+            "コード",
+            "JavaScript",
+            "クリエイティブ"
+        ]
     },
     {
         "title": "DX7で純粋な矩形波/Squareを作る方法(ついでにのこぎり波/Sawtooth)",
@@ -61,6 +74,16 @@
         "create-date": "2025-06-08",
         "update-date": null,
         "category": "プログラミング",
-        "tag": ["JavaScript"]
+        "tag": [
+            "JavaScript"
+        ]
+    },
+    {
+        "title": "ChatGPTと性格診断をした記録",
+        "url": "pages/personality-with-chatgpt/",
+        "create-date": "2025-06-10",
+        "update-date": null,
+        "category": null,
+        "tag": []
     }
 ]
