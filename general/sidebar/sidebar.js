@@ -86,7 +86,7 @@ function generateCategorys() {
 
         const a = document.createElement('a');
         a.textContent = category;
-        a.href = ROOT + 'general/page-search/category.html?' + category;
+        a.href = ROOT + 'general/page-search/category.html?search=' + category;
 
         li.appendChild(a);
         categoryList.appendChild(li);
@@ -121,7 +121,7 @@ function generateTags() {
 
         const a = document.createElement('a');
         a.textContent = tag;
-        a.href = ROOT + 'general/page-search/tag.html?' + tag;
+        a.href = ROOT + 'general/page-search/tag.html?search=' + tag;
 
         li.appendChild(a);
         tagList.appendChild(li);
