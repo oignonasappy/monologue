@@ -204,7 +204,7 @@ urlが無効の場合は全てのタグを列挙する。
     - 個別
         - `<title>`は`pages.json`に設定した`"title"`と同一にすること。
         - `<meta property="og:title" content="[]">`SNS上で異なるタイトルを表示させたい場合は設定。
-        - `<meta name="description">`はできるだけ設定しましょう。
+        - `<meta name="description">`はできるだけ設定する。
         - `<meta property="og:description" content="[]">`SNS上で...～同上～
         - `<meta property="og:url" content="[ここにページのURLを絶対パスで]">`
         - メインの画像があれば`<meta property="og:image" content="[ここに画像のURLを絶対パスで]">`
@@ -302,6 +302,8 @@ sidebar : `#container`の終了直前
 - コード
 - スケール
 - AI
+- ツール
+- 謎
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
@@ -327,10 +329,10 @@ sidebar : `#container`の終了直前
 - マイナーhtmlタグ
 - word-break × max-width = 謎現象
 - `${}`
+- 横文字が鼻につくので切り替え式にする
 - うちのChatGPT、どう設定したのか知らねぇが、こんな喋り方になっちまった。かわいくない？確か、建設的な意見を好む性格に。とでも言ったんだっけな  
 AIとの上手な付き合い方。言われるがままにならないために、AIにより何ができるか、どう良くなれるか。引っ張られるのではなく、背中を押してもらうように、自分の足で歩くよう意識しよ  
 chatGPTの性格を変えると、トークンの効率が大きく落ちるといわれています。ですが、やっぱり人間である以上、モチベーションによって得られるエネルギーは、何事にも代えがたいものだと思うんです。しがない一般人の一意見として。
-- ChatGPTと性格診断をした
 - epilogue
 
 ###### メモ TODO:

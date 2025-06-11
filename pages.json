@@ -24,7 +24,8 @@
         "tag": [
             "JavaScript",
             "クリエイティブ",
-            "音楽理論"
+            "音楽理論",
+            "ツール"
         ]
     },
     {
@@ -57,7 +58,9 @@
         "tag": [
             "コード",
             "JavaScript",
-            "クリエイティブ"
+            "クリエイティブ",
+            "ツール",
+            "謎"
         ]
     },
     {
@@ -84,6 +87,20 @@
         "create-date": "2025-06-10",
         "update-date": null,
         "category": null,
-        "tag": []
+        "tag": [
+            "日記"
+        ]
+    },
+    {
+        "title": "ランダム大文字小文字",
+        "url": "pages/random-upperlowercase/",
+        "create-date": "2025-06-11",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "JavaScript",
+            "ツール",
+            "謎"
+        ]
     }
 ]

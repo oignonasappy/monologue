@@ -1,0 +1,18 @@
+label[for="input"]{
+    display: block;
+    width: 90%;
+    margin: 32px auto 8px;
+}
+
+#input {
+    display: block;
+    width: 90%;
+    height: 10em;
+    margin: 0 auto;
+    resize: vertical;
+}
+
+#copy {
+    display: block;
+    margin: 8px auto 32px;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <!--<meta name="local-env">-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/random-upperlowercase/index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+
+    <title>ランダム大文字小文字</title>
+    <meta property="og:title" content="ランダム大文字小文字">
+    <meta name="description" content="Lorem, ipsum.">
+    <meta property="og:description" content="Lorem, ipsum.">
+
+    <!--Prism.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!--Prism.js plugins-->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1>ランダム大文字小文字</h1>
+            
+            <p>
+                アルファベットの大文字と小文字をシャッフルして<br>
+                文章の調子をおかしくします
+            </p>
+
+            <section>
+                <label for="input">入力エリア</label>
+                <textarea id="input" placeholder="EnTeR tExT hErE"></textarea>
+                <button id="copy">copy</button>
+            </section>
+
+            <p>
+                以上です
+            </p>
+
+            <section>
+                <h3>なんの捻りもない実装</h3>
+
+                <pre><code class="lang-js line-numbers">
+                    const input = document.querySelector('#input');
+                    
+                    (() =&gt; {
+
+                        input.addEventListener('change', update);
+                        input.addEventListener('keypress', update);
+
+                        document.querySelector('#copy').addEventListener('click', () =&gt; {
+                            navigator.clipboard.writeText(input.value);
+                        });
+                        
+                    })();
+
+                    function update() {
+                        const arr = Array.from(input.value);
+                        for (let i = 0; i &lt; arr.length; i++) {
+                            if (Math.random() &lt; 0.5) {
+                                arr[i] = arr[i].toLowerCase();
+                            } else {
+                                arr[i] = arr[i].toUpperCase();
+                            }
+                        }
+                        input.value = arr.join('');
+                    }
+                </code></pre>
+                <p>
+                    以上です
+                </p>
+
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>
