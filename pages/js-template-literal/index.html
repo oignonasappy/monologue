@@ -109,6 +109,7 @@
             <section>
                 <h2>つかいかた</h2>
 
+                <h3>記述</h3>
                 <p>
                     <dfn title="逆引用符">バッククオート</dfn><span class="code">``</span>で<wbr>
                     囲んだ<wbr>文字列の<wbr>中で、<wbr>
@@ -123,13 +124,14 @@
                     <span class="code">console.log(`文字列${式}文字列`);</span>
                 </p>
 
+                <h3>文字列内の改行</h3>
                 <p>
                     テンプレートリテラル内での<wbr>改行は、<wbr>改行文字として<wbr>反映されます。<wbr>
                     <span class="code">`\n`</span>
                 </p>
                 <p>
                     例:
-                <pre><code class="lang-js">
+                    <pre><code class="lang-js">
                         `1行目-
                         -2行目`
 
@@ -140,6 +142,7 @@
                     </code></pre>
                 </p>
 
+                <h3>ソースコード内で改行して続けて記述</h3>
                 <p>
                     ソースコードの<wbr>複数行に<wbr>わたって<wbr>1行の<wbr>文字列を<wbr>記述したい<wbr>場合は、<wbr>
                     改行の<wbr>直前に<wbr>バックスラッシュ<span class="code">\</span>を<wbr>
@@ -149,7 +152,7 @@
                 </p>
                 <p>
                     例:
-                <pre><code class="lang-js">
+                    <pre><code class="lang-js">
                         `1行目-\
                         -引き続き1行目`
 
@@ -159,9 +162,22 @@
                     </code></pre>
                 </p>
 
+                <h3>`'シングルクォート'と"ダブルクォート"`</h3>
+                <p>
+                    テンプレート<wbr>リテラル内<wbr>では、<wbr>
+                    シングル<wbr>クォーテーション<span class="code">''</span>と<wbr>
+                    ダブルクォーテーション<span class="code">""</span>は<wbr>
+                    自由に<wbr>使用<wbr>できます。
+                </p>
+                <p>
+                    例:<br>
+                    <span class="code">`onclick="window.location.href='../index.html'"`</span>
+                </p>
+
             </section>
 
             <section>
+                <h2>おわり</h2>
 
                 <strong><a
                         href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88"
@@ -169,7 +185,7 @@
                 もっと<wbr>多くの<wbr>機能を<wbr>知りたい<wbr>ときは、<wbr>
                 <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals"
                     target="_blank" rel="noopener noreferrer">MDN Web Docs</a>へ
-                
+
             </section>
 
 
