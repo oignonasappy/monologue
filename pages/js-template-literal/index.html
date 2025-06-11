@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <!--<meta name="local-env">-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/js-template-literal/index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+
+    <!--Prism.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!--Prism.js plugins-->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+    <title>[JavaScript] `${}` &lt;- テンプレートリテラルのすすめ</title>
+    <meta property="og:title" content="[JavaScript] `${}` &lt;- テンプレートリテラルのすすめ">
+    <meta name="description" content="Lorem, ipsum.">
+    <meta property="og:description" content="Lorem, ipsum.">
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1>便利な `${}` テンプレートリテラル</h1>
+            <p>
+                ここでは<wbr><strong>JavaScript</strong>での<wbr>
+                テンプレートリテラルに<wbr>ついて<wbr>解説します。
+            </p>
+
+            <section>
+
+                <hr>
+
+                <small><span class="code">x = 1; y = 2;</span></small>
+                <p>
+                    テンプレートリテラルを<wbr>知らない<wbr>者は、<wbr>変数を<wbr>含む<wbr>文字列を<br>
+                    <span class="code">"変数x : " + x + ", 変数y : " + y</span><br>
+                    <small>// "変数x : 1, 変数y : 2"</small><br>
+                    と<wbr>記述する<wbr>しかない。
+                </p>
+                <p>
+                    しかし！<br>
+                    テンプレートリテラルを<wbr>知る<wbr>者は、<wbr>変数を<wbr>含む<wbr>文字列を<br>
+                    <span class="code">`変数x : ${x}, 変数y : ${y}`</span><br>
+                    <small>// "変数x : 1, 変数y : 2"</small><br>
+                    こう<wbr>記述する。
+                </p>
+                <p>
+                    ご存知でしょうか？
+                </p>
+
+                <hr>
+
+                <small><span class="code">x = 100; y = 20;</span></small>
+                <p>
+                    これが、<br>
+                    <span class="code">"calc(" + x + "% - " + y + "px)"</span><br>
+                    <small>// "calc(100% - 20px)"</small>
+                </p>
+                <p>
+                    こう。<br>
+                    <span class="code">`calc(${x}% - ${y}px)`</span><br>
+                    <small>// "calc(100% - 20px)"</small>
+                </p>
+                <p>
+                    見やすいでしょ～
+                </p>
+
+                <hr>
+
+                <small><span class="code">s = 80; l = 50;</span></small>
+                <p>
+                    これが、<br>
+                    <span class="code">"rgb(" + (Math.random() * 360) + "deg, " + s + "%, " + l + "%)"</span><br>
+                    <small>// "rgb([ランダム]deg, 80%, 50%)"</small>
+                </p>
+                <p>
+                    こう。<br>
+                    <span class="code">`rgb(${Math.random() * 360}deg, ${s}%, ${l}%)`</span><br>
+                    <small>// "rgb([ランダム]deg, 80%, 50%)"</small>
+                </p>
+                <p>
+                    便利でしょ～
+                </p>
+
+            </section>
+
+            <section>
+                <h2>つかいかた</h2>
+
+                <p>
+                    <dfn title="逆引用符">バッククオート</dfn><span class="code">``</span>で<wbr>
+                    囲んだ<wbr>文字列の<wbr>中で、<wbr>
+                    ドル記号<span class="code">$</span>に<wbr>
+                    波括弧<span class="code">{}</span>を<wbr>つけたもの<wbr>
+                    <span class="code">${}</span>の中に<wbr><dfn title="評価し、値を返すもの">式</dfn>を<wbr>記述することで、<wbr>
+                    文字列の<wbr>中に<wbr>その<dfn title="式によって生成された値">評価値</dfn>を<wbr>埋め込む<wbr>ことができる。
+                </p>
+                <p>
+                    例:<br>
+                    <span class="code">let str = `文字列${式}文字列`;</span><br>
+                    <span class="code">console.log(`文字列${式}文字列`);</span>
+                </p>
+
+                <p>
+                    テンプレートリテラル内での<wbr>改行は、<wbr>改行文字として<wbr>反映されます。<wbr>
+                    <span class="code">`\n`</span>
+                </p>
+                <p>
+                    例:
+                <pre><code class="lang-js">
+                        `1行目-
+                        -2行目`
+
+                        /*
+                         * 1行目-
+                         * -2行目
+                         */
+                    </code></pre>
+                </p>
+
+                <p>
+                    ソースコードの<wbr>複数行に<wbr>わたって<wbr>1行の<wbr>文字列を<wbr>記述したい<wbr>場合は、<wbr>
+                    改行の<wbr>直前に<wbr>バックスラッシュ<span class="code">\</span>を<wbr>
+                    挿入<wbr>することで、<wbr>リテラル中で<wbr>改行できます。<wbr>
+                    (テンプレートリテラル<wbr>のみでなく、<wbr>通常の<wbr>文字列リテラル<wbr>
+                    <span class="code">''</span><span class="code">""</span>でも<wbr>可能です)
+                </p>
+                <p>
+                    例:
+                <pre><code class="lang-js">
+                        `1行目-\
+                        -引き続き1行目`
+
+                        /*
+                         * 1行目- -引き続き1行目
+                         */
+                    </code></pre>
+                </p>
+
+            </section>
+
+            <section>
+
+                <strong><a
+                        href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88"
+                        target="_blank" rel="noopener noreferrer">タグ付きテンプレート</a></strong>など、<wbr>
+                もっと<wbr>多くの<wbr>機能を<wbr>知りたい<wbr>ときは、<wbr>
+                <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals"
+                    target="_blank" rel="noopener noreferrer">MDN Web Docs</a>へ
+                
+            </section>
+
+
+        </main>
+    </div>
+</body>
+
+</html>

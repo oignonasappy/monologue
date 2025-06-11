@@ -35,7 +35,8 @@
         "update-date": "2025-05-27",
         "category": "プログラミング",
         "tag": [
-            "HTML"
+            "HTML",
+            "初心者向け"
         ]
     },
     {
@@ -78,7 +79,8 @@
         "update-date": null,
         "category": "プログラミング",
         "tag": [
-            "JavaScript"
+            "JavaScript",
+            "初心者向け"
         ]
     },
     {
@@ -101,6 +103,17 @@
             "JavaScript",
             "ツール",
             "謎"
+        ]
+    },
+    {
+        "title": "[JavaScript] `${}` &lt;- テンプレートリテラルのすすめ",
+        "url": "pages/js-template-literal/",
+        "create-date": "2025-06-11",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "JavaScript",
+            "初心者向け"
         ]
     }
 ]
