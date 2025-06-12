@@ -48,7 +48,7 @@ body {
     margin: 0;
     position: relative;
     background-color: var(--body-bg-color);
-    font-family: 'Moralerspace Neon';
+    font-family: 'Moralerspace Neon', serif;
 }
 
 /* Basic structure */
