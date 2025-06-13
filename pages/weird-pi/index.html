@@ -58,16 +58,16 @@
 
             <section>
 
-                <p>
+                <h2>
                     突然だが、(チュドノフスキー級数で)
                     <math display="inline" class="big">
                         <mi class="big">&pi;</mi>
                     </math>
                     を計算したくなった！
-                </p>
+                </h2>
 
                 <section>
-                    <h4>Chudnovsky Formula</h4>
+                    <h4><dfn>Chudnovsky Formula</dfn></h4>
 
                     <math display="block">
                         <mfrac>
@@ -151,6 +151,130 @@
 
                 </section>
 
+                <section>
+                    <h3>再帰的無名関数</h3>
+
+                    <p>
+                        そこで<wbr>階乗の<wbr>計算を<wbr>するんですが、<wbr>
+                        「美しい」<wbr>階乗の<wbr>プログラムを<wbr>書きたく<wbr>なったのです。<wbr>
+                        <strong>ラムダ式</strong>で。
+                    </p>
+
+                    <p>
+                        そこで、<wbr>この<wbr>プログラム。
+                    </p>
+                    <pre><code class="lang-java line-numbers">
+                        UnaryOperator&lt;Integer&gt; fact = new UnaryOperator&lt;&gt;() {
+                            public Integer apply(Integer n) {
+                                return ((Function&lt;UnaryOperator&lt;Integer&gt;, UnaryOperator&lt;Integer&gt;&gt;) self -&gt; x -&gt;
+                                    (x &lt;= 1) ? 1 : x * self.apply(x - 1)).apply(this).apply(n);
+                            }
+                        };
+                    </code></pre>
+                    <p>
+                        これは、<wbr>整数を<wbr>1つ<wbr>引数に<wbr>とり、<wbr>
+                        その<wbr>階乗の<wbr>値を<wbr>再帰を<wbr>用いて<wbr>計算する<wbr>関数<span class="code">fact()</span>。<br>
+                        再帰関数は<wbr>通常、<wbr>ラムダ式で<wbr>書くことは<wbr>出来ないの<wbr>ですが、<br>
+                        <span id="reduce">ここで、Yコンビネータ或は固定点コンビネータの考え方を...</span><br>
+                        <!-- JOJOに小さくする -->
+                        <script>
+                            (() => {
+                                const reduce = document.querySelector('#reduce');
+                                const FROM = 1.1;
+                                const TO = 0.55;
+                                const textArray = Array.from(reduce.innerText);
+                                reduce.innerHTML = "";
+                                const newArray = [];
+                                for (let i = 0; i < textArray.length; i++) {
+                                    const span = document.createElement('span');
+                                    span.innerText = textArray[i];
+                                    span.style.fontSize = `${FROM - (FROM - TO) / textArray.length * i}em`;
+                                    reduce.appendChild(span);
+                                }
+                            })();
+                        </script>
+                        <q style="font-family:serif;font-size:1.2em;">おい。一体何を言っているんだ、この話はやめだ。</q>
+                    </p>
+                    <section>
+                        <h6>Yコンビネータ</h6>
+                        <p class="small-p">
+                            Yコンビネータ、<wbr>もしくは<wbr>固定点コンビネータ<wbr>とは、<br>
+                            関数&alpha;を<wbr>引数にとり、<wbr>その関数&alpha;を<wbr>再帰的に<wbr>呼び出す<wbr>関数&beta;を<wbr>返す関数です。<br>
+                            詳しいことは<wbr>私には<wbr>とても<wbr>書けないので、<wbr>なんとか<wbr>ご自身で<wbr>調べてください。
+                        </p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h3>そんなこんなで実行</h3>
+
+                    <p>
+                        はい、<wbr>ということで、<wbr>
+                        ただの<wbr>&pi;計算プログラムは<wbr>こちらです。
+                    </p>
+                    <pre><code class="lang-java line-numbers">
+                        import java.util.function.Function;
+                        import java.util.function.UnaryOperator;
+
+                        class CalculatePi {
+                            public static void main(String[] args) {
+
+                                UnaryOperator&lt;Integer&gt; fact = new UnaryOperator&lt;&gt;() {
+                                    public Integer apply(Integer n) {
+                                        return ((Function&lt;UnaryOperator&lt;Integer&gt;, UnaryOperator&lt;Integer&gt;&gt;) self -&gt; x -&gt;
+                                            (x &lt;= 1) ? 1 : x * self.apply(x - 1)).apply(this).apply(n);
+                                    }
+                                };
+
+                                Function&lt;Integer, Double&gt; chudnovsky = (n) -&gt; {
+                                    double summa = 0.0;
+                                    for (int i = 0; i &lt; n; i++) {
+                                        summa += (Math.pow(-1, i) * fact.apply(6 * i)) / (fact.apply(3 * i) * Math.pow(fact.apply(i), 3)) *
+                                                ((13591409.0 + 545140134.0 * i) / Math.pow(Math.pow(640320, 3), i + 0.5));
+                                    }
+                                    return 1.0 / (12.0 * summa);
+                                };
+
+                                System.out.println("π≒ " + Math.PI + "\n");
+
+                                System.out.println("1. " + chudnovsky.apply(1));
+                                System.out.println("2. " + chudnovsky.apply(2));
+                                System.out.println("3. " + chudnovsky.apply(3));
+                                System.out.println("4. " + chudnovsky.apply(4));
+                                System.out.println("5. " + chudnovsky.apply(5));
+
+                            }
+                        }
+                    </code></pre>
+                    <p>
+                        チェドノフスキー級数本来の<wbr>高速な<wbr>計算は<wbr>ありません。<wbr>
+                        範囲は<wbr>doubleの<wbr>範囲内までです。<br>
+                        愚直～
+                    </p>
+                    <pre><code class="lang-java">
+                        /* 
+                         * π≒ 3.141592653589793
+                         * 
+                         * 1. 3.1415926535897345
+                         * 2. 3.1415926535897936
+                         * 3. 3.1415926535897936
+                         * 4. 3.1415926535897936
+                         * 5. 3.1415926535897936
+                         */
+                    </code></pre>
+                    <p>
+                        速攻で<wbr>情報落ち<wbr>してますね。<s>ポンコツ</s><br>
+                        それもそのはず、<wbr>チェドノフスキー級数の<wbr>収束速度は<wbr>一項ごとに<wbr>約14桁です。<wbr>
+                        doubleの有効桁数約16桁程度では<dfn title="感知できない程の一瞬">須臾</dfn>の間に終わります。
+                    </p>
+                    <p>
+                        ちゃんと<wbr>もっと<wbr>任意精度で<wbr>計算しないのか<wbr>って？<br>
+                        日が暮れます。
+                    </p>
+
+                </section>
+
             </section>
 
             <section>
@@ -160,7 +284,7 @@
                     Chudnovsky Formulaの<wbr>
                     <dfn title="数式を表記するためのマークアップ言語">Math ML</dfn>
                 </p>
-                <pre><code class="lang-js line-numbers">
+                <pre><code class="lang-html line-numbers">
                     &lt;math display="block"&gt;
                         &lt;mfrac&gt;
                             &lt;mn&gt;1&lt;/mn&gt;
