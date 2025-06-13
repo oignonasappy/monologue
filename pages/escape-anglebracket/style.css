@@ -1,0 +1,24 @@
+label[for="input"]{
+    display: block;
+    width: 90%;
+    margin: 32px auto 8px;
+}
+
+#input {
+    display: block;
+    width: 90%;
+    height: 10em;
+    margin: 0 auto;
+    resize: vertical;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0;
+
+    button {
+        display: block;
+    }
+}

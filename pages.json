@@ -36,7 +36,8 @@
         "category": "プログラミング",
         "tag": [
             "HTML",
-            "初心者向け"
+            "初心者向け",
+            "解説"
         ]
     },
     {
@@ -47,7 +48,8 @@
         "category": "音楽",
         "tag": [
             "音楽理論",
-            "スケール"
+            "スケール",
+            "解説"
         ]
     },
     {
@@ -70,7 +72,9 @@
         "create-date": "2025-06-03",
         "update-date": null,
         "category": "音楽",
-        "tag": []
+        "tag": [
+            "解説"
+        ]
     },
     {
         "title": "[JavaScript] そのスコープを守ろう IIFE(即自実行関数式)",
@@ -80,7 +84,8 @@
         "category": "プログラミング",
         "tag": [
             "JavaScript",
-            "初心者向け"
+            "初心者向け",
+            "解説"
         ]
     },
     {
@@ -113,7 +118,30 @@
         "category": "プログラミング",
         "tag": [
             "JavaScript",
-            "初心者向け"
+            "初心者向け",
+            "解説"
+        ]
+    },
+    {
+        "title": "[Java]謎プログラムでπを計算する(Chudnovskyの公式)",
+        "url": "pages/weird-pi/",
+        "create-date": "2025-06-13",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "Java",
+            "謎"
+        ]
+    },
+    {
+        "title": "'<' '>'を'&lt;' '&gt;'にするツール",
+        "url": "pages/escape-anglebracket/",
+        "create-date": "2025-06-13",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "ツール",
+            "JavaScript"
         ]
     }
 ]

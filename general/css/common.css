@@ -263,9 +263,23 @@ main {
         border-radius: 4px;
     }
 
+    .big {
+        font-size: larger;
+    }
+
     .attention {
         color: #E00000;
         font-weight: bold;
+    }
+
+    .attention::before {
+        content: "[attention]";
+        clip-path: inset(100%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
     }
 
     .wide-img {

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <!--<meta name="local-env">-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/weird-pi/index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+
+    <!--Prism.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!--Prism.js plugins-->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+    <title>[Java]謎プログラムでπを計算する(Chudnovskyの公式)</title>
+    <meta property="og:title" content="[Java]謎プログラムでπを計算する(Chudnovskyの公式)">
+    <meta name="description" content="Lorem, ipsum.">
+    <meta property="og:description" content="Lorem, ipsum.">
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1>謎プログラムでπを計算する(Chudnovskyの公式)</h1>
+
+            <section>
+                <h3>はじめに</h3>
+
+                <p>
+                    この記事では<wbr><b>まじめに</b><wbr>プログラムで<wbr>
+                    計算を<wbr>する<wbr>わけでは<wbr><b>ありません</b>。<br>
+                    どちらかと<wbr>言えば<wbr>特殊な<wbr>Java<wbr>プログラムに<wbr>ついてが<wbr>メインです。<wbr>
+                    (再帰的<wbr>無名関数に<wbr>ついて。<wbr>任意精度の<wbr>演算は<wbr>今回は<wbr>見送り)
+                </p>
+
+            </section>
+
+            <section>
+
+                <p>
+                    突然だが、(チュドノフスキー級数で)
+                    <math display="inline" class="big">
+                        <mi class="big">&pi;</mi>
+                    </math>
+                    を計算したくなった！
+                </p>
+
+                <section>
+                    <h4>Chudnovsky Formula</h4>
+
+                    <math display="block">
+                        <mfrac>
+                            <mn>1</mn>
+                            <mi>&pi;</mi>
+                        </mfrac>
+
+                        <mo>&equals;</mo>
+
+                        <mn>12</mn>
+                        <mo>&InvisibleTimes;</mo>
+                        <munderover>
+                            <mo>&sum;</mo>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>&equals;</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <mi>&infin;</mi>
+                        </munderover>
+                        <mfrac>
+                            <mrow>
+                                <msup>
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mn>&minus;1</mn>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <mi>n</mi>
+                                </msup>
+                                <mo>&InvisibleTimes;</mo>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mn>6</mn>
+                                    <mi>n</mi>
+                                    <mo>)</mo>
+                                </mrow>
+                                <mo>&excl;</mo>
+                            </mrow>
+                            <mrow>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mn>3</mn>
+                                    <mi>n</mi>
+                                    <mo>)</mo>
+                                    <mo>&excl;</mo>
+                                </mrow>
+                                <mo>&InvisibleTimes;</mo>
+                                <msup>
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mi>n</mi>
+                                        <mo>&excl;</mo>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <mn>3</mn>
+                                </msup>
+                            </mrow>
+                        </mfrac>
+                        <mo>&InvisibleTimes;</mo>
+                        <mfrac>
+                            <mrow>
+                                <mn>13591409</mn>
+                                <mo>+</mo>
+                                <mn>545140134</mn>
+                                <mi>n</mi>
+                            </mrow>
+                            <msup>
+                                <mn>640320</mn>
+                                <mrow>
+                                    <mn>3</mn>
+                                    <mi>n</mi>
+                                    <mo>+</mo>
+                                    <mn>3</mn>
+                                    <mo>/</mo>
+                                    <mn>2</mn>
+                                </mrow>
+                            </msup>
+                        </mfrac>
+                    </math>
+
+                </section>
+
+            </section>
+
+            <section>
+                <h3>おまけ</h3>
+
+                <p>
+                    
+                </p>
+                <pre><code class="lang-js line-numbers">
+                    &lt;math display="block"&gt;
+                        &lt;mfrac&gt;
+                            &lt;mn&gt;1&lt;/mn&gt;
+                            &lt;mi&gt;&pi;&lt;/mi&gt;
+                        &lt;/mfrac&gt;
+
+                        &lt;mo&gt;&equals;&lt;/mo&gt;
+
+                        &lt;mn&gt;12&lt;/mn&gt;
+                        &lt;mo&gt;&InvisibleTimes;&lt;/mo&gt;
+                        &lt;munderover&gt;
+                            &lt;mo&gt;&sum;&lt;/mo&gt;
+                            &lt;mrow&gt;
+                                &lt;mi&gt;n&lt;/mi&gt;
+                                &lt;mo&gt;&equals;&lt;/mo&gt;
+                                &lt;mn&gt;0&lt;/mn&gt;
+                            &lt;/mrow&gt;
+                            &lt;mi&gt;&infin;&lt;/mi&gt;
+                        &lt;/munderover&gt;
+                        &lt;mfrac&gt;
+                            &lt;mrow&gt;
+                                &lt;msup&gt;
+                                    &lt;mrow&gt;
+                                        &lt;mo&gt;(&lt;/mo&gt;
+                                        &lt;mn&gt;&minus;1&lt;/mn&gt;
+                                        &lt;mo&gt;)&lt;/mo&gt;
+                                    &lt;/mrow&gt;
+                                    &lt;mi&gt;n&lt;/mi&gt;
+                                &lt;/msup&gt;
+                                &lt;mo&gt;&InvisibleTimes;&lt;/mo&gt;
+                                &lt;mrow&gt;
+                                    &lt;mo&gt;(&lt;/mo&gt;
+                                    &lt;mn&gt;6&lt;/mn&gt;
+                                    &lt;mi&gt;n&lt;/mi&gt;
+                                    &lt;mo&gt;)&lt;/mo&gt;
+                                &lt;/mrow&gt;
+                                &lt;mo&gt;&excl;&lt;/mo&gt;
+                            &lt;/mrow&gt;
+                            &lt;mrow&gt;
+                                &lt;mrow&gt;
+                                    &lt;mo&gt;(&lt;/mo&gt;
+                                    &lt;mn&gt;3&lt;/mn&gt;
+                                    &lt;mi&gt;n&lt;/mi&gt;
+                                    &lt;mo&gt;)&lt;/mo&gt;
+                                    &lt;mo&gt;&excl;&lt;/mo&gt;
+                                &lt;/mrow&gt;
+                                &lt;mo&gt;&InvisibleTimes;&lt;/mo&gt;
+                                &lt;msup&gt;
+                                    &lt;mrow&gt;
+                                        &lt;mo&gt;(&lt;/mo&gt;
+                                        &lt;mi&gt;n&lt;/mi&gt;
+                                        &lt;mo&gt;&excl;&lt;/mo&gt;
+                                        &lt;mo&gt;)&lt;/mo&gt;
+                                    &lt;/mrow&gt;
+                                    &lt;mn&gt;3&lt;/mn&gt;
+                                &lt;/msup&gt;
+                            &lt;/mrow&gt;
+                        &lt;/mfrac&gt;
+                        &lt;mo&gt;&InvisibleTimes;&lt;/mo&gt;
+                        &lt;mfrac&gt;
+                            &lt;mrow&gt;
+                                &lt;mn&gt;13591409&lt;/mn&gt;
+                                &lt;mo&gt;+&lt;/mo&gt;
+                                &lt;mn&gt;545140134&lt;/mn&gt;
+                                &lt;mi&gt;n&lt;/mi&gt;
+                            &lt;/mrow&gt;
+                            &lt;msup&gt;
+                                &lt;mn&gt;640320&lt;/mn&gt;
+                                &lt;mrow&gt;
+                                    &lt;mn&gt;3&lt;/mn&gt;
+                                    &lt;mi&gt;n&lt;/mi&gt;
+                                    &lt;mo&gt;+&lt;/mo&gt;
+                                    &lt;mn&gt;3&lt;/mn&gt;
+                                    &lt;mo&gt;/&lt;/mo&gt;
+                                    &lt;mn&gt;2&lt;/mn&gt;
+                                &lt;/mrow&gt;
+                            &lt;/msup&gt;
+                        &lt;/mfrac&gt;
+                    &lt;/math&gt;
+                </code></pre>
+
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>
