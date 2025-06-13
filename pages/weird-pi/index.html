@@ -165,6 +165,7 @@
                     </p>
                     <pre><code class="lang-java line-numbers">
                         UnaryOperator&lt;Integer&gt; fact = new UnaryOperator&lt;&gt;() {
+                            @Override
                             public Integer apply(Integer n) {
                                 return ((Function&lt;UnaryOperator&lt;Integer&gt;, UnaryOperator&lt;Integer&gt;&gt;) self -&gt; x -&gt;
                                     (x &lt;= 1) ? 1 : x * self.apply(x - 1)).apply(this).apply(n);
@@ -221,6 +222,7 @@
                             public static void main(String[] args) {
 
                                 UnaryOperator&lt;Integer&gt; fact = new UnaryOperator&lt;&gt;() {
+                                    @Override
                                     public Integer apply(Integer n) {
                                         return ((Function&lt;UnaryOperator&lt;Integer&gt;, UnaryOperator&lt;Integer&gt;&gt;) self -&gt; x -&gt;
                                             (x &lt;= 1) ? 1 : x * self.apply(x - 1)).apply(this).apply(n);
