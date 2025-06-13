@@ -1,7 +1,7 @@
+const input = document.querySelector('#input');
+
 (() => {
-
-    const input = document.querySelector('#input');
-
+    
     input.addEventListener('change', update);
     input.addEventListener('keypress', update);
 

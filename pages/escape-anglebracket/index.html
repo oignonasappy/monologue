@@ -35,12 +35,20 @@
 
             <h1>不等号記号をエスケープするツール</h1>
             <p>
-                <span class="code">&lt;</span>と<span class="code">&gt;</span>を<br><span class="code">&amp;lt;</span>と<span class="code">&amp;gt;</span>にします。
+                <span class="code">&lt;</span>と<span class="code">&gt;</span>を<br>
+                <span class="code">&amp;lt;</span>と<span class="code">&amp;gt;</span>にします。
+            </p>
+            <p>
+                <span class="code">&amp;</span>も<span class="code">&amp;amp;</span>にできます。
             </p>
 
             <section>
                 <label for="input">入力エリア</label>
                 <textarea id="input" placeholder="ここに入力"></textarea>
+                <label class="cb-amp">
+                    <input type="checkbox" id="toggle-amp">:
+                    &amp;もエスケープする
+                </label>
                 <div class="buttons">
                     <button id="copy">copy</button>
                     <button id="clear">clear</button>

@@ -1,6 +1,7 @@
-(() => {
+const input = document.querySelector('#input');
+const toggleAmp = document.querySelector('#toggle-amp');
 
-    const input = document.querySelector('#input');
+(() => {
 
     input.addEventListener('change', update);
     input.addEventListener('keypress', update);
@@ -18,6 +19,11 @@
 function update() {
     const arr = Array.from(input.value);
     for (let i = 0; i < arr.length; i++) {
+        if (toggleAmp.checked) {
+            if (arr[i] === "&") {
+                arr[i] = "&amp;";
+            }
+        }
         if (arr[i] === "<") {
             arr[i] = "&lt;";
         } else if(arr[i] === ">") {

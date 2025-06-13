@@ -12,6 +12,12 @@ label[for="input"]{
     resize: vertical;
 }
 
+.cb-amp {
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+}
+
 .buttons {
     display: flex;
     justify-content: center;
