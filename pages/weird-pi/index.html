@@ -199,8 +199,8 @@
                     <section>
                         <h6>Yコンビネータ</h6>
                         <p class="small-p">
-                            Yコンビネータ、<wbr>もしくは<wbr>固定点コンビネータ<wbr>とは、<br>
-                            関数&alpha;を<wbr>引数にとり、<wbr>その関数&alpha;を<wbr>再帰的に<wbr>呼び出す<wbr>関数&beta;を<wbr>返す関数です。<br>
+                            Yコンビネータ、<wbr>もしくは<wbr>固定点コンビネータを<wbr>もつ<wbr>関数とは、<br>
+                            関数fを<wbr>引数にとり、<wbr>その関数fを<wbr>再帰的に<wbr>呼び出すための<wbr>関数gを<wbr>返す関数です。<br>
                             詳しいことは<wbr>私には<wbr>とても<wbr>書けないので、<wbr>なんとか<wbr>ご自身で<wbr>調べてください。
                         </p>
                     </section>
@@ -233,7 +233,7 @@
                                     double summa = 0.0;
                                     for (int i = 0; i &lt; n; i++) {
                                         summa += (Math.pow(-1, i) * fact.apply(6 * i)) / (fact.apply(3 * i) * Math.pow(fact.apply(i), 3)) *
-                                                ((13591409.0 + 545140134.0 * i) / Math.pow(Math.pow(640320, 3), i + 0.5));
+                                                ((13591409.0 + 545140134.0 * i) / Math.pow(640320, 3 * i + 1.5));
                                     }
                                     return 1.0 / (12.0 * summa);
                                 };
