@@ -18,6 +18,14 @@ label[for="input"]{
     margin: 5px auto;
 }
 
+#process {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 6px;
+    margin: 0 auto 15px;
+}
+
 .buttons {
     display: flex;
     justify-content: center;

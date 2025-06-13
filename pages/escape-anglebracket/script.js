@@ -3,8 +3,7 @@ const toggleAmp = document.querySelector('#toggle-amp');
 
 (() => {
 
-    input.addEventListener('change', update);
-    input.addEventListener('keypress', update);
+    document.querySelector('#process').addEventListener('click', update);
 
     document.querySelector('#copy').addEventListener('click', () => {
         navigator.clipboard.writeText(input.value);

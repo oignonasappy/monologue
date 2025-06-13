@@ -49,6 +49,7 @@
                     <input type="checkbox" id="toggle-amp">:
                     &amp;もエスケープする
                 </label>
+                <button id="process">PROCESS</button>
                 <div class="buttons">
                     <button id="copy">copy</button>
                     <button id="clear">clear</button>
@@ -57,7 +58,12 @@
 
             <p>
                 これ以上の<wbr>機能は<wbr>ありません。<wbr>
-                これを<wbr>サニタイジングに<wbr><span class="attention">使用<wbr>しないで</span><wbr>ください。
+                これを<wbr><dfn title="XSS(クロスサイトスクリプティング)を防止するため、HTMLの解釈の際に有害な特殊記号をエスケープ処理すること">サニタイジング</dfn>に<wbr>
+                <span class="attention">使用<wbr>しないで</span><wbr>ください。
+            </p>
+
+            <p class="small-p">
+                急に必要になったので、急いで<dfn title="こしらえ">拵え</dfn>ました
             </p>
 
         </main>
