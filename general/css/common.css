@@ -295,6 +295,11 @@ main {
         font-size: inherit;
     }
 
+    :where(audio, iframe, img, svg, video) {
+        max-block-size: 100%;
+        max-inline-size: 100%;
+    }
+
     dfn[title] {
         position: relative;
         display: inline-block;
