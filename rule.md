@@ -234,6 +234,7 @@ urlが無効の場合は全てのタグを列挙する。
 # 記事更新チェックリスト
 - □ `<meta name="local-env">`は削除したか？
 - □ `page.json`の`"update-date"`は設定したか？
+- □ `og:image`はあれば
 
 <hr style="margin:60px 0;border:6px dashed #282828">
 
