@@ -78,6 +78,26 @@
     for (const hz of generateEqualTemperamentFrequency(20, 55, 14, 53)) {
         document.querySelector('#min3-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
+
+    /* 自然7度 */
+    for (const hz of generateJustIntonationFrequency(7, 55, 7, 4)) {
+        document.querySelector('#n7-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(7, 55, 10, 12)) {
+        document.querySelector('#n7-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(7, 55, 14, 17)) {
+        document.querySelector('#n7-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(7, 55, 25, 31)) {
+        document.querySelector('#n7-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(7, 55, 33, 41)) {
+        document.querySelector('#n7-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(7, 55, 43, 53)) {
+        document.querySelector('#n7-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
 })();
 
 /**
