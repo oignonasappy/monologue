@@ -153,5 +153,17 @@
         "tag": [
             "謎"
         ]
+    },
+    {
+        "title": "ソースコードのセミコロン;に著しく悪質ないたずらを仕掛けます",
+        "url": "pages/terrible-semicolon/",
+        "create-date": "2025-06-20",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "JavaScript",
+            "ツール",
+            "謎"
+        ]
     }
 ]
