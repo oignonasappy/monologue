@@ -1,121 +1,121 @@
 (() => {
     /* 完全五度 */
-    for (const hz of generateJustIntonationFrequency(9, 55, 3, 2)) {
+    for (const hz of generateJustIntonationFrequency(10, 55, 3, 2)) {
         document.querySelector('#p5-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(9, 55, 7, 12)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 7, 12)) {
         document.querySelector('#p5-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(9, 55, 10, 17)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 10, 17)) {
         document.querySelector('#p5-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(9, 55, 18, 31)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 18, 31)) {
         document.querySelector('#p5-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(9, 55, 24, 41)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 24, 41)) {
         document.querySelector('#p5-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(9, 55, 31, 53)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 31, 53)) {
         document.querySelector('#p5-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 
     /* 完全四度 */
-    for (const hz of generateJustIntonationFrequency(13, 55, 4, 3)) {
+    for (const hz of generateJustIntonationFrequency(10, 55, 4, 3)) {
         document.querySelector('#p4-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(13, 55, 5, 12)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 5, 12)) {
         document.querySelector('#p4-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(13, 55, 7, 17)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 7, 17)) {
         document.querySelector('#p4-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(13, 55, 13, 31)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 13, 31)) {
         document.querySelector('#p4-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(13, 55, 17, 41)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 17, 41)) {
         document.querySelector('#p4-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(13, 55, 22, 53)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 22, 53)) {
         document.querySelector('#p4-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 
     /* 長三度 */
-    for (const hz of generateJustIntonationFrequency(17, 55, 5, 4)) {
+    for (const hz of generateJustIntonationFrequency(10, 55, 5, 4)) {
         document.querySelector('#maj3-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(17, 55, 4, 12)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 4, 12)) {
         document.querySelector('#maj3-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(17, 55, 5, 17)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 5, 17)) {
         document.querySelector('#maj3-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(17, 55, 10, 31)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 10, 31)) {
         document.querySelector('#maj3-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(17, 55, 13, 41)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 13, 41)) {
         document.querySelector('#maj3-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(17, 55, 17, 53)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 17, 53)) {
         document.querySelector('#maj3-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 
     /* 短三度 */
-    for (const hz of generateJustIntonationFrequency(20, 55, 6, 5)) {
+    for (const hz of generateJustIntonationFrequency(10, 55, 6, 5)) {
         document.querySelector('#min3-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(20, 55, 3, 12)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 3, 12)) {
         document.querySelector('#min3-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(20, 55, 4, 17)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 4, 17)) {
         document.querySelector('#min3-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(20, 55, 8, 31)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 8, 31)) {
         document.querySelector('#min3-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(20, 55, 11, 41)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 11, 41)) {
         document.querySelector('#min3-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(20, 55, 14, 53)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 14, 53)) {
         document.querySelector('#min3-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 
     /* 自然七度 */
-    for (const hz of generateJustIntonationFrequency(7, 55, 7, 4)) {
+    for (const hz of generateJustIntonationFrequency(10, 55, 7, 4)) {
         document.querySelector('#n7-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(7, 55, 10, 12)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 10, 12)) {
         document.querySelector('#n7-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(7, 55, 14, 17)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 14, 17)) {
         document.querySelector('#n7-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(7, 55, 25, 31)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 25, 31)) {
         document.querySelector('#n7-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(7, 55, 33, 41)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 33, 41)) {
         document.querySelector('#n7-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(7, 55, 43, 53)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 43, 53)) {
         document.querySelector('#n7-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 
     /* 七限界の短三度 */
-    for (const hz of generateJustIntonationFrequency(24, 55, 7, 6)) {
+    for (const hz of generateJustIntonationFrequency(10, 55, 7, 6)) {
         document.querySelector('#nmin3-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(24, 55, 3, 12)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 3, 12)) {
         document.querySelector('#nmin3-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(24, 55, 4, 17)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 4, 17)) {
         document.querySelector('#nmin3-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(24, 55, 7, 31)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 7, 31)) {
         document.querySelector('#nmin3-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(24, 55, 9, 41)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 9, 41)) {
         document.querySelector('#nmin3-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
     }
-    for (const hz of generateEqualTemperamentFrequency(24, 55, 12, 53)) {
+    for (const hz of generateEqualTemperamentFrequency(10, 55, 12, 53)) {
         document.querySelector('#nmin3-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 })();

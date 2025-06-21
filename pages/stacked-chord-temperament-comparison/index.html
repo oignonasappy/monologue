@@ -74,7 +74,10 @@
                         比較した時の誤差<br>
                         ¢(セント)
                     </div>
-                    <button type="button" class="play-button">再生ボタン</button>
+                    <button type="button" class="play-button">
+                        再生ボタン<br>
+                        音量にご注意
+                    </button>
                     <button type="button" class="play-button small">
                         純正律と同時に<br>
                         再生してうなりを<br>
@@ -86,6 +89,9 @@
             </div>
 
             <h2>完全五度堆積 (3/2)</h2>
+            <p class="small-p">
+                三倍音
+            </p>
             <div class="box">
 
                 <div class="temperament-box">
@@ -93,57 +99,60 @@
                     <div class="step-text-box">3/2</div>
                     <div class="error-text-box">純正</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateJustIntonationFrequency(9, 55, 3, 2))">純正律 再生</button>
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(10, 55, 3, 2))">純正律 再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p5-box-12" class="hz-text-box"></div>
                     <div class="step-text-box">7 step</div>
                     <div class="error-text-box">-1.9550008¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 7, 12))">12平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(8, 82.5, 3, 2)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 7, 12))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 7, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 82.5, 3, 2)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 7, 12))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p5-box-17" class="hz-text-box"></div>
                     <div class="step-text-box">10 step</div>
                     <div class="error-text-box">+3.9273520¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 10, 17))">17平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(8, 82.5, 3, 2)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 10, 17))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 10, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 82.5, 3, 2)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 10, 17))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p5-box-31" class="hz-text-box"></div>
                     <div class="step-text-box">18 step</div>
                     <div class="error-text-box">-5.1808073¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 18, 31))">31平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(8, 82.5, 3, 2)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 18, 31))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 18, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 82.5, 3, 2)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 18, 31))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p5-box-41" class="hz-text-box"></div>
                     <div class="step-text-box">24 step</div>
                     <div class="error-text-box">+0.4840235¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 24, 41))">41平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(8, 82.5, 3, 2)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 24, 41))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 24, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 82.5, 3, 2)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 24, 41))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p5-box-53" class="hz-text-box"></div>
                     <div class="step-text-box">31 step</div>
                     <div class="error-text-box">-0.0682084¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 31, 53))">53平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(8, 82.5, 3, 2)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(9, 55, 31, 53))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 31, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 82.5, 3, 2)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 31, 53))">純正律と同時再生</button>
                 </div>
 
             </div>
 
             <h2>完全四度堆積 (4/3)</h2>
+            <p class="small-p">
+                三倍音
+            </p>
             <div class="box">
 
                 <div class="temperament-box">
@@ -151,281 +160,296 @@
                     <div class="step-text-box">4/3</div>
                     <div class="error-text-box">純正</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateJustIntonationFrequency(13, 55, 4, 3))">純正律 再生</button>
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(10, 55, 4, 3))">純正律 再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p4-box-12" class="hz-text-box"></div>
                     <div class="step-text-box">5 step</div>
                     <div class="error-text-box">+1.9550008¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 5, 12))">12平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(12, 73.333333333333333, 4, 3)), 110);
-                        sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 5, 12))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 5, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 73.333333333333333, 4, 3)), 110);
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 5, 12))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p4-box-17" class="hz-text-box"></div>
                     <div class="step-text-box">7 step</div>
                     <div class="error-text-box">-3.9273520¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 7, 17))">17平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(12, 73.333333333333333, 4, 3)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 7, 17))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 7, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 73.333333333333333, 4, 3)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 7, 17))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p4-box-31" class="hz-text-box"></div>
                     <div class="step-text-box">13 step</div>
                     <div class="error-text-box">+5.1808073¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 13, 31))">31平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(12, 73.333333333333333, 4, 3)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 13, 31))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 13, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 73.333333333333333, 4, 3)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 13, 31))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p4-box-41" class="hz-text-box"></div>
                     <div class="step-text-box">17 step</div>
                     <div class="error-text-box">-0.4840235¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 17, 41))">41平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(12, 73.333333333333333, 4, 3)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 17, 41))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 17, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 73.333333333333333, 4, 3)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 17, 41))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="p4-box-53" class="hz-text-box"></div>
                     <div class="step-text-box">22 step</div>
                     <div class="error-text-box">+0.0682084¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 22, 53))">53平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(12, 73.333333333333333, 4, 3)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(13, 55, 22, 53))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 22, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 73.333333333333333, 4, 3)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 22, 53))">純正律と同時再生</button>
                 </div>
 
             </div>
 
             <h2>長三度 (5/4)</h2>
+            <p class="small-p">
+                五倍音
+            </p>
             <div class="box">
                 <div class="temperament-box">
                     <div id="maj3-box-ji" class="hz-text-box"></div>
                     <div class="step-text-box">5/4</div>
                     <div class="error-text-box">純正</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateJustIntonationFrequency(17, 55, 5, 4))">純正律 再生</button>
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(10, 55, 5, 4))">純正律 再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="maj3-box-12" class="hz-text-box"></div>
                     <div class="step-text-box">4 step</div>
                     <div class="error-text-box">+13.686286¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 4, 12))">12平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(16, 68.75, 5, 4)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 4, 12))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 4, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 68.75, 5, 4)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 4, 12))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="maj3-box-17" class="hz-text-box"></div>
                     <div class="step-text-box">5 step</div>
                     <div class="error-text-box">-33.372537¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 5, 17))">17平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(16, 68.75, 5, 4)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 5, 17))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 5, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 68.75, 5, 4)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 5, 17))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="maj3-box-31" class="hz-text-box"></div>
                     <div class="step-text-box">10 step</div>
                     <div class="error-text-box">+0.7830603¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 10, 31))">31平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(16, 68.75, 5, 4)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 10, 31))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 10, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 68.75, 5, 4)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 10, 31))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="maj3-box-41" class="hz-text-box"></div>
                     <div class="step-text-box">13 step</div>
                     <div class="error-text-box">-5.8259089¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 13, 41))">41平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(16, 68.75, 5, 4)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 13, 41))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 13, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 68.75, 5, 4)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 13, 41))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="maj3-box-53" class="hz-text-box"></div>
                     <div class="step-text-box">17 step</div>
                     <div class="error-text-box">-1.4080534¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 17, 53))">53平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(16, 68.75, 5, 4)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(17, 55, 17, 53))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 17, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 68.75, 5, 4)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 17, 53))">純正律と同時再生</button>
                 </div>
             </div>
 
             <h2>短三度 (6/5)</h2>
+            <p class="small-p">
+                三倍音 * 五倍音
+            </p>
             <div class="box">
                 <div class="temperament-box">
                     <div id="min3-box-ji" class="hz-text-box"></div>
                     <div class="step-text-box">6/5</div>
                     <div class="error-text-box">純正</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateJustIntonationFrequency(20, 55, 6, 5))">純正律 再生</button>
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(10, 55, 6, 5))">純正律 再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="min3-box-12" class="hz-text-box"></div>
                     <div class="step-text-box">3 step</div>
                     <div class="error-text-box">-15.641287¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 3, 12))">12平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(19, 66, 6, 5)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 3, 12))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 3, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 66, 6, 5)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 3, 12))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="min3-box-17" class="hz-text-box"></div>
                     <div class="step-text-box">4 step</div>
                     <div class="error-text-box">-33.288345¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 4, 17))">17平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(19, 66, 6, 5)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 4, 17))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 4, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 66, 6, 5)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 4, 17))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="min3-box-31" class="hz-text-box"></div>
                     <div class="step-text-box">8 step</div>
                     <div class="error-text-box">-5.9638676¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 8, 31))">31平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(19, 66, 6, 5)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 8, 31))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 8, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 66, 6, 5)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 8, 31))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="min3-box-41" class="hz-text-box"></div>
                     <div class="step-text-box">11 step</div>
                     <div class="error-text-box">+6.3099325¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 11, 41))">41平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(19, 66, 6, 5)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 11, 41))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 11, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 66, 6, 5)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 11, 41))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="min3-box-53" class="hz-text-box"></div>
                     <div class="step-text-box">14 step</div>
                     <div class="error-text-box">+1.3398450¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 14, 53))">53平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(19, 66, 6, 5)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(20, 55, 14, 53))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 14, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 66, 6, 5)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 14, 53))">純正律と同時再生</button>
                 </div>
             </div>
 
             <h2>自然七度 (7/4)</h2>
+            <p class="small-p">
+                七倍音
+            </p>
             <div class="box">
                 <div class="temperament-box">
                     <div id="n7-box-ji" class="hz-text-box"></div>
                     <div class="step-text-box">7/4</div>
                     <div class="error-text-box">純正</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateJustIntonationFrequency(7, 55, 7, 4))">純正律 再生</button>
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(10, 55, 7, 4))">純正律 再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="n7-box-12" class="hz-text-box"></div>
                     <div class="step-text-box">10 step</div>
                     <div class="error-text-box">+31.174093¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 10, 12))">12平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(6, 96.25, 7, 4)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 10, 12))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 10, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 96.25, 7, 4)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 10, 12))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="n7-box-17" class="hz-text-box"></div>
                     <div class="step-text-box">14 step</div>
                     <div class="error-text-box">+19.409387¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 14, 17))">17平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(6, 96.25, 7, 4)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 14, 17))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 14, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 96.25, 7, 4)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 14, 17))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="n7-box-31" class="hz-text-box"></div>
                     <div class="step-text-box">25 step</div>
                     <div class="error-text-box">-1.0839709¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 25, 31))">31平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(6, 96.25, 7, 4)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 25, 31))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 25, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 96.25, 7, 4)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 25, 31))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="n7-box-41" class="hz-text-box"></div>
                     <div class="step-text-box">33 step</div>
                     <div class="error-text-box">-2.9722479¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 33, 41))">41平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(6, 96.25, 7, 4)), 110); 
-                        sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 33, 41))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 33, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 96.25, 7, 4)), 110); 
+                        sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 33, 41))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="n7-box-53" class="hz-text-box"></div>
                     <div class="step-text-box">43 step</div>
                     <div class="error-text-box">+4.7589991¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 43, 53))">53平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(6, 96.25, 7, 4)), 110);
-                         sequenceGenerator(generateEqualTemperamentFrequency(7, 55, 43, 53))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 43, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 96.25, 7, 4)), 110);
+                         sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 43, 53))">純正律と同時再生</button>
                 </div>
             </div>
 
             <h2>七限界の短三度 (7/6)</h2>
+            <p class="small-p">
+                三倍音 * 七倍音
+            </p>
             <div class="box">
                 <div class="temperament-box">
                     <div id="nmin3-box-ji" class="hz-text-box"></div>
                     <div class="step-text-box">7/6</div>
                     <div class="error-text-box">純正</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateJustIntonationFrequency(24, 55, 7, 6))">純正律 再生</button>
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(10, 55, 7, 6))">純正律 再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="nmin3-box-12" class="hz-text-box"></div>
                     <div class="step-text-box">3 step</div>
                     <div class="error-text-box">+33.129094¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 3, 12))">12平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
-                             sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 3, 12))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 3, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 64.166666666666666, 7, 6)), 110);
+                             sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 3, 12))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="nmin3-box-17" class="hz-text-box"></div>
                     <div class="step-text-box">4 step</div>
                     <div class="error-text-box">+15.482035¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 4, 17))">17平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
-                            sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 4, 17))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 4, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 64.166666666666666, 7, 6)), 110);
+                            sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 4, 17))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="nmin3-box-31" class="hz-text-box"></div>
                     <div class="step-text-box">7 step</div>
                     <div class="error-text-box">+4.0968363¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 7, 31))">31平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
-                            sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 7, 31))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 7, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 64.166666666666666, 7, 6)), 110);
+                            sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 7, 31))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="nmin3-box-41" class="hz-text-box"></div>
                     <div class="step-text-box">9 step</div>
                     <div class="error-text-box">-3.4562714¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 9, 41))">41平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
-                            sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 9, 41))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 9, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 64.166666666666666, 7, 6)), 110);
+                            sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 9, 41))">純正律と同時再生</button>
                 </div>
                 <div class="temperament-box">
                     <div id="nmin3-box-53" class="hz-text-box"></div>
                     <div class="step-text-box">12 step</div>
                     <div class="error-text-box">+4.8272076¢</div>
                     <button type="button" class="play-button"
-                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 12, 53))">53平均律 再生</button>
-                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
-                             sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 12, 53))">純正律と同時再生</button>
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 12, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(9, 64.166666666666666, 7, 6)), 110);
+                             sequenceGenerator(generateEqualTemperamentFrequency(10, 55, 12, 53))">純正律と同時再生</button>
                 </div>
             </div>
 
             <h2>十一限界の三全音 (11/8)</h2>
+            <p class="small-p">
+                十一倍音
+            </p>
 
             <p id="hz-test"></p>
             <script>
