@@ -267,6 +267,10 @@ main {
         font-size: larger;
     }
 
+    .small {
+        font-size: smaller;
+    }
+
     .attention {
         color: #E00000;
         font-weight: bold;
@@ -286,7 +290,7 @@ main {
         width: 100%;
     }
 
-    button {
+    :where(button) {
         cursor: pointer;
     }
 

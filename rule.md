@@ -302,6 +302,7 @@ sidebar : `#container`の終了直前
 - 音楽理論
 - コード
 - スケール
+- Xenharmonic
 - AI
 - ツール
 - 謎

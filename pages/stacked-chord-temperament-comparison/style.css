@@ -1,0 +1,45 @@
+.box {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+
+    .temperament-box {
+
+        .hz-text-box {
+            .hz-text {
+                border: 1px solid #C8C8C8;
+                padding: 4px;
+            }
+
+            .hz-text:nth-of-type(odd) {
+                background-color: #FFFFFF;
+            }
+
+            .hz-text:nth-of-type(even) {
+                background-color: #D0D0D0;
+            }
+        }
+
+        .hz-text-box[id$="-ji"] {
+            border: 1px solid #FF8080;
+        }
+
+        .step-text-box,
+        .error-text-box {
+            text-align: center;
+            margin: 10px 0;
+            padding: 2px;
+            border: 1px solid #C8C8C8;
+        }
+
+        .play-button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 4px 8px;
+            font-weight: bold;
+        }
+    }
+}

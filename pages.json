@@ -165,5 +165,17 @@
             "ツール",
             "謎"
         ]
+    },
+    {
+        "title": "音律ごとの堆積和音の周波数の比較",
+        "url": "pages/stacked-chord-temperament-comparison/",
+        "create-date": "2025-06-21",
+        "update-date": "2025-06-22",
+        "category": "音楽",
+        "tag": [
+            "音楽理論",
+            "Xenharmonic",
+            "コード"
+        ]
     }
 ]
