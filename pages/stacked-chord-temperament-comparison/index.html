@@ -313,7 +313,7 @@
                 </div>
             </div>
 
-            <h2>自然7度 (7/4)</h2>
+            <h2>自然七度 (7/4)</h2>
             <div class="box">
                 <div class="temperament-box">
                     <div id="n7-box-ji" class="hz-text-box"></div>
@@ -369,6 +369,64 @@
                 </div>
             </div>
 
+            <h2>七限界の短三度 (7/6)</h2>
+            <div class="box">
+                <div class="temperament-box">
+                    <div id="nmin3-box-ji" class="hz-text-box"></div>
+                    <div class="step-text-box">7/6</div>
+                    <div class="error-text-box">純正</div>
+                    <button type="button" class="play-button"
+                        onclick="sequenceGenerator(generateJustIntonationFrequency(24, 55, 7, 6))">純正律 再生</button>
+                </div>
+                <div class="temperament-box">
+                    <div id="nmin3-box-12" class="hz-text-box"></div>
+                    <div class="step-text-box">3 step</div>
+                    <div class="error-text-box">+33.129094¢</div>
+                    <button type="button" class="play-button"
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 3, 12))">12平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
+                             sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 3, 12))">純正律と同時再生</button>
+                </div>
+                <div class="temperament-box">
+                    <div id="nmin3-box-17" class="hz-text-box"></div>
+                    <div class="step-text-box">4 step</div>
+                    <div class="error-text-box">+15.482035¢</div>
+                    <button type="button" class="play-button"
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 4, 17))">17平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
+                            sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 4, 17))">純正律と同時再生</button>
+                </div>
+                <div class="temperament-box">
+                    <div id="nmin3-box-31" class="hz-text-box"></div>
+                    <div class="step-text-box">7 step</div>
+                    <div class="error-text-box">+4.0968363¢</div>
+                    <button type="button" class="play-button"
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 7, 31))">31平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
+                            sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 7, 31))">純正律と同時再生</button>
+                </div>
+                <div class="temperament-box">
+                    <div id="nmin3-box-41" class="hz-text-box"></div>
+                    <div class="step-text-box">9 step</div>
+                    <div class="error-text-box">-3.4562714¢</div>
+                    <button type="button" class="play-button"
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 9, 41))">41平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
+                            sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 9, 41))">純正律と同時再生</button>
+                </div>
+                <div class="temperament-box">
+                    <div id="nmin3-box-53" class="hz-text-box"></div>
+                    <div class="step-text-box">12 step</div>
+                    <div class="error-text-box">+4.8272076¢</div>
+                    <button type="button" class="play-button"
+                        onclick="sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 12, 53))">53平均律 再生</button>
+                    <button type="button" class="play-button small" onclick="setTimeout(() => sequenceGenerator(generateJustIntonationFrequency(23, 64.166666666666666, 7, 6)), 110);
+                             sequenceGenerator(generateEqualTemperamentFrequency(24, 55, 12, 53))">純正律と同時再生</button>
+                </div>
+            </div>
+
+            <h2>十一限界の三全音 (11/8)</h2>
+
             <p id="hz-test"></p>
             <script>
                 toCent = (ratio) => {
@@ -407,6 +465,12 @@
                 ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 25 / 31))} - ${toCent(7 / 4)} = ${toCent(Math.pow(2, 25 / 31) / (7 / 4))}<br>`;
                 ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 33 / 41))} - ${toCent(7 / 4)} = ${toCent(Math.pow(2, 33 / 41) / (7 / 4))}<br>`;
                 ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 43 / 53))} - ${toCent(7 / 4)} = ${toCent(Math.pow(2, 43 / 53) / (7 / 4))}<br>`;
+                ヘルツテスト.innerHTML += 'nmin3<br>'
+                ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 3 / 12))} - ${toCent(7 / 6)} = ${toCent(Math.pow(2, 3 / 12) / (7 / 6))}<br>`;
+                ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 4 / 17))} - ${toCent(7 / 6)} = ${toCent(Math.pow(2, 4 / 17) / (7 / 6))}<br>`;
+                ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 7 / 31))} - ${toCent(7 / 6)} = ${toCent(Math.pow(2, 7 / 31) / (7 / 6))}<br>`;
+                ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 9 / 41))} - ${toCent(7 / 6)} = ${toCent(Math.pow(2, 9 / 41) / (7 / 6))}<br>`;
+                ヘルツテスト.innerHTML += `${toCent(Math.pow(2, 12 / 53))} - ${toCent(7 / 6)} = ${toCent(Math.pow(2, 12 / 53) / (7 / 6))}<br>`;
 
             </script>
 

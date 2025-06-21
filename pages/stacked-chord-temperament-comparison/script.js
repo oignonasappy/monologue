@@ -79,7 +79,7 @@
         document.querySelector('#min3-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 
-    /* 自然7度 */
+    /* 自然七度 */
     for (const hz of generateJustIntonationFrequency(7, 55, 7, 4)) {
         document.querySelector('#n7-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
     }
@@ -97,6 +97,26 @@
     }
     for (const hz of generateEqualTemperamentFrequency(7, 55, 43, 53)) {
         document.querySelector('#n7-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+
+    /* 七限界の短三度 */
+    for (const hz of generateJustIntonationFrequency(24, 55, 7, 6)) {
+        document.querySelector('#nmin3-box-ji').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(24, 55, 3, 12)) {
+        document.querySelector('#nmin3-box-12').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(24, 55, 4, 17)) {
+        document.querySelector('#nmin3-box-17').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(24, 55, 7, 31)) {
+        document.querySelector('#nmin3-box-31').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(24, 55, 9, 41)) {
+        document.querySelector('#nmin3-box-41').insertAdjacentElement('afterbegin', createHzText(hz));
+    }
+    for (const hz of generateEqualTemperamentFrequency(24, 55, 12, 53)) {
+        document.querySelector('#nmin3-box-53').insertAdjacentElement('afterbegin', createHzText(hz));
     }
 })();
 
