@@ -46,6 +46,23 @@
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 7, 31), '#nmin3-box-31');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 9, 41), '#nmin3-box-41');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 12, 53), '#nmin3-box-53');
+
+    /* 自然十一度 */
+    createFrequencyTexts(generateJustIntonationFrequency(10, 55, 11, 8), '#n11-box-ji');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 6, 12), '#n11-box-12');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 8, 17), '#n11-box-17');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 14, 31), '#n11-box-31');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 19, 41), '#n11-box-41');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 24, 53), '#n11-box-53');
+
+    /* 十一限界の中立三度 */
+    createFrequencyTexts(generateJustIntonationFrequency(10, 55, 11, 9), '#n3-box-ji');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 3, 12), '#n3-box-12');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 5, 17), '#n3-box-17');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 9, 31), '#n3-box-31');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 12, 41), '#n3-box-41');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 15, 53), '#n3-box-53');
+
 })();
 
 /**
