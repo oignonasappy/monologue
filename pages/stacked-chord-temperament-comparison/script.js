@@ -47,7 +47,7 @@
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 9, 41), '#nmin3-box-41');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 12, 53), '#nmin3-box-53');
 
-    /* 自然十一度 */
+    /* 十一限界の三全音 */
     createFrequencyTexts(generateJustIntonationFrequency(10, 55, 11, 8), '#n11-box-ji');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 6, 12), '#n11-box-12');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 8, 17), '#n11-box-17');
