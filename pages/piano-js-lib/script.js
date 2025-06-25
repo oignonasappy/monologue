@@ -1,6 +1,6 @@
 import { contentReady } from '../../general/js/common.js';
 
-fetch('https://oignonasappy.github.io/pianojs/v1.2.0/piano.js')
+fetch('https://oignonasappy.github.io/pianojs/v1.2.1/piano.js')
     .then(responce => {
         return responce.text();
     })
