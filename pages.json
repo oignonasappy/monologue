@@ -177,5 +177,15 @@
             "Xenharmonic",
             "コード"
         ]
+    },
+    {
+        "title": "同じシーケンスを、時間をずらして音高をずらして重ねるとエフェクトになる",
+        "url": "pages/pianojs-overwrap-delay/",
+        "create-date": "2025-06-25",
+        "update-date": null,
+        "category": "音楽",
+        "tag": [
+            "JavaScript"
+        ]
     }
 ]

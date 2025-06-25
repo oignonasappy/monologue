@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+  <!--<meta name="local-env">-->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--general-->
+  <link rel="stylesheet" href="../../general/css/common.css">
+  <script src="../../general/js/common.js" type="module"></script>
+  <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+  <!--OGP-->
+  <meta property="og:site_name" content="Monologue">
+  <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/pianojs-overwrap-delay/index.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ja_JP">
+
+  <!--Prism.js-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!--Prism.js plugins-->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+  <title>同じシーケンスを、時間をずらして音高をずらして重ねるとエフェクトになる</title>
+  <meta property="og:title" content="同じシーケンスを、時間をずらして音高をずらして重ねるとエフェクトになる">
+  <meta name="description" content="ディレイエフェクト、コーラスエフェクトをざっくり実践してみる。">
+  <meta property="og:description" content="ディレイエフェクト、コーラスエフェクトをざっくり実践してみる。">
+
+  <script src="https://oignonasappy.github.io/pianojs/v1.2.1/piano.js" defer></script>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="container">
+    <main>
+
+      <h1>簡易的なディレイ・コーラスエフェクト</h1>
+
+      <p>
+        再生する<wbr>音の<wbr>パターンは<wbr>それぞれ<wbr>全く同じですが、<wbr>
+        同じ音を<wbr>重ねて<wbr>再生することで<wbr>音に<wbr>広がりを<wbr>与えることが<wbr>できます。
+      </p>
+
+      <script>
+        const SONG1_CALLBACK = (value) => {
+          playNoteAll(value[0], value[1], 2, 'square');
+        }
+        const SONG1_SEQUENCE = [
+          2 / 24,
+          1 / 24,
+          1 / 8,
+
+          2 / 24 + 0.02,
+          1 / 24 + 0.01,
+          1 / 24 + 0.01,
+          1.5 / 24 + 0.02,
+
+          1 / 20,
+          1 / 20,
+          1 / 20,
+          1.5 / 20,
+
+          1 / 16,
+          1 / 16,
+          1 / 16,
+
+          1 / 24,
+          2 / 24,
+          2 / 24,
+
+          3 / 28,
+          4 / 28,
+
+          0.5
+        ];
+        const SONG1_VALUES = [
+          [41, 60, 65, 69],
+          [57],
+          [72],
+
+          [46, 53.1, 56.1, 61, 65 - 0.05, 68, 72, 75, 77],
+          [75],
+          [73],
+          [72],
+
+          [53, 70],
+          [60],
+          [63, 68],
+          [70],
+
+          [48, 58, 63],
+          [55],
+          [65],
+
+          [49, 56, 60, 63],
+          [65],
+          [63],
+
+          [39, 46.1, 55, 58],
+          [63],
+
+          [41 - 0.15, 48 - 0.15, 53.05, 57, 60, 65]
+        ];
+      </script>
+
+      <section>
+        <h3>エフェクトなし</h3>
+        <button type="button" onclick="
+          sequencer(
+            (value) => {
+              playNoteAll(value, 0.25, 2, 'square');
+            },
+            SONG1_SEQUENCE,
+            SONG1_VALUES,
+            80, 'song1'
+          )
+        ">PLAIN</button>
+      </section>
+
+      <section>
+        <h3>ディレイエフェクト</h3>
+        <ul>
+          <li>120ms後に</li>
+          <li>ピッチを1/10半音上げ</li>
+          <li>ボリュームを30%から</li>
+          <li>40%ずつ減少した音を再生</li>
+          <li>それを2回繰り返す</li>
+        </ul>
+        <button type="button" onclick="
+          playNoteAllDelaySequencer(
+            SONG1_CALLBACK,
+            SONG1_SEQUENCE,
+            SONG1_VALUES,
+            80, 'song1',
+            120, 0.1, 0.3, 0.4, 2
+          )
+        ">DELAY</button>
+      </section>
+
+      <section>
+        <h3>コーラスエフェクト</h3>
+        <ul>
+          <li>即座に</li>
+          <li>ピッチを1/5半音上げ</li>
+          <li>ボリュームを30%から</li>
+          <li>50%減少した音を再生</li>
+        </ul>
+        <button type="button" onclick="
+          playNoteAllDelaySequencer(
+            SONG1_CALLBACK,
+            SONG1_SEQUENCE,
+            SONG1_VALUES,
+            80, 'song1',
+            10, 0.2, 0.3, 0.5, 1
+          )
+        ">CHORUS</button>
+      </section>
+
+      <script>
+        /**
+         * @param {*} callback 引数の配列の第二引数はvolume
+         * @param {*} sequence 通常通り
+         * @param {*} values 通常通り
+         * @param {*} bpm 通常通り
+         * @param {*} seqId 自動的にプレフィックスが付加される
+         * @param {*} delayMs 遅延する秒数(ミリ)
+         * @param {*} pitchShift 一つ前から音程をずらす値(midi)
+         * @param {*} volume 1番目の音量
+         * @param {*} decay 一つ前から変化する音量の倍率(1 := 1倍)
+         * @param {*} overwrap 重ねる回数
+         */
+        function playNoteAllDelaySequencer(
+          callback,
+          sequence,
+          values,
+          bpm = 240,
+          seqId = undefined,
+          delayMs = 0,
+          pitchShift = 0,
+          volume = 0.25,
+          decay = 1,
+          overwrap = 1
+        ) {
+          let totalTime = 0;
+          for (let i = 0; i < overwrap + 1; i++) {
+            const waitTime = delayMs;
+
+            const shiftedValues = values.map((value) => {
+              return [
+                value.map((midi) => {
+                  return midi + pitchShift * i;
+                }),
+                volume * Math.pow(decay, i)
+              ]
+            });
+
+            const prefixSeqId = seqId != undefined ? `delay${i}-${seqId}` : undefined;
+
+            setTimeout(() => {
+              sequencer(callback, sequence, shiftedValues, bpm, prefixSeqId);
+            }, totalTime);
+
+            totalTime += waitTime;
+          }
+        }
+      </script>
+
+      <h2>ソースコード</h2>
+      <h3>
+        シーケンサーメソッド
+        (<a href="../piano-js-lib/" target="_blank" rel="noopener noreferrer">piano.js</a><wbr>
+        から一部抜粋)
+      </h3>
+      <pre><code class="lang-js line-numbers">
+        const seqIdAllowFlg = new Set();
+        /**
+        * タイミング(リズム)に合わせてコールバック関数を実行する。
+        * 
+        * @param {Function} callback 1つ前の実行からsequence[i-1]の間待機して実行される関数。この関数には引数としてvalues[i]が渡される。
+        * @param {Array} sequence 次のcallbackの実行までの待機時間の配列。valuesと要素数が等しい、もしくは要素数-1である必要がある。
+        * @param {Array} values callbackに渡される値の配列。sequenceと要素数が等しい、もしくは要素数+1である必要がある。
+        * @param {number} [bpm=240] sequence[]に設定されている値の1を全音符、1/4を1拍とした時のBPM。
+        * @param {any} [seqId=undefined] 同一のIdは重ねて呼び出しができない。未設定の場合は重複した呼び出しが可能。
+        */
+        function sequencer(callback, sequence, values, bpm = 240, seqId = undefined) {
+            // sequenceとvaluesは完全に1対1で対応している必要がある
+            // sequenceの最後の値は意味をなさないため省略できる
+            if (sequence.length !== values.length && sequence.length + 1 !== values.length) {
+                throw new Error("The length of sequence and values are did not match");
+            }
+
+            // 同一Idの重複呼び出しをロック
+            if (seqId != undefined) {
+                if (seqIdAllowFlg.has(seqId)) {
+                    return;
+                }
+                seqIdAllowFlg.add(seqId);
+            }
+
+            // 全てのvalues[i]をsequence[0:i]の遅延で呼び出す
+            let totalTime = 0;
+            for (let i = 0; i &lt; values.length; i++) {
+                // 秒をミリ秒に変換し、BPMを乗する
+                // 240BPM全音符 = 60BPM4分音符 = 1000ms
+                const waitTime = sequence[i] ? sequence[i] * 1000 / (bpm / 240) : 0;
+
+                const value = values[i];
+
+                // sequence[i]以前の全てを足した分だけ待機する
+                setTimeout(() =&gt; {
+                    // 関数呼び出し
+                    callback(value);
+                }, totalTime);
+
+                totalTime += waitTime;
+            }
+
+            // ロックを解放
+            if (seqId != undefined) {
+                setTimeout(() =&gt; {
+                    seqIdAllowFlg.delete(seqId);
+                }, totalTime);
+            }
+        }
+      </code></pre>
+
+      <h3>ディレイエフェクト用メソッド</h3>
+      <pre><code class="lang-js line-numbers">
+        /**
+         * @param {*} callback 引数の配列の第二引数はvolume
+         * @param {*} sequence 通常通り
+         * @param {*} values 通常通り
+         * @param {*} bpm 通常通り
+         * @param {*} seqId 自動的にプレフィックスが付加される
+         * @param {*} delayMs 遅延する秒数(ミリ)
+         * @param {*} pitchShift 一つ前から音程をずらす値(midi)
+         * @param {*} volume 1番目の音量
+         * @param {*} decay 一つ前から変化する音量の倍率(1 := 1倍)
+         * @param {*} overwrap 重ねる回数
+         */
+        function playNoteAllDelaySequencer(
+            callback,
+            sequence,
+            values,
+            bpm = 240,
+            seqId = undefined,
+            delayMs = 0,
+            pitchShift = 0,
+            volume = 0.25,
+            decay = 1,
+            overwrap = 1
+        ) {
+            let totalTime = 0;
+            for (let i = 0; i &lt; overwrap + 1; i++) {
+                const waitTime = delayMs;
+
+                const shiftedValues = values.map((value) =&gt; {
+                    return [
+                        value.map((midi) =&gt; {
+                            return midi + pitchShift * i;
+                        }),
+                        volume * Math.pow(decay, i)
+                    ]
+                });
+
+                const prefixSeqId = seqId != undefined ? `delay${i}-${seqId}` : undefined;
+
+                setTimeout(() =&gt; {
+                    sequencer(callback, sequence, shiftedValues, bpm, prefixSeqId);
+                }, totalTime);
+
+                totalTime += waitTime;
+            }
+        }
+      </code></pre>
+
+    </main>
+  </div>
+</body>
+
+</html>
