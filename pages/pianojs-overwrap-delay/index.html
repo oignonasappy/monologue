@@ -51,6 +51,11 @@
         再生する<wbr>音の<wbr>パターンは<wbr>それぞれ<wbr>全く同じですが、<wbr>
         同じ音を<wbr>重ねて<wbr>再生することで<wbr>音に<wbr>広がりを<wbr>与えることが<wbr>できます。
       </p>
+      <p>
+        私の<wbr>
+        <a href="../piano-js-lib/" target="_blank" rel="noopener noreferrer">piano.js</a><wbr>
+        を使用！
+      </p>
 
       <script>
         const SONG1_CALLBACK = (value) => {
@@ -119,7 +124,7 @@
         <button type="button" onclick="
           sequencer(
             (value) => {
-              playNoteAll(value, 0.25, 2, 'square');
+              playNoteAll(value, 0.3, 2, 'square');
             },
             SONG1_SEQUENCE,
             SONG1_VALUES,
@@ -169,16 +174,16 @@
 
       <script>
         /**
-         * @param {*} callback 引数の配列の第二引数はvolume
-         * @param {*} sequence 通常通り
-         * @param {*} values 通常通り
-         * @param {*} bpm 通常通り
-         * @param {*} seqId 自動的にプレフィックスが付加される
-         * @param {*} delayMs 遅延する秒数(ミリ)
-         * @param {*} pitchShift 一つ前から音程をずらす値(midi)
-         * @param {*} volume 1番目の音量
-         * @param {*} decay 一つ前から変化する音量の倍率(1 := 1倍)
-         * @param {*} overwrap 重ねる回数
+         * @param {Function} callback 引数の配列の第二引数はvolume
+         * @param {Array} sequence 通常通り
+         * @param {Array} values 通常通り
+         * @param {number} bpm 通常通り
+         * @param {any} seqId 自動的にプレフィックスが付加される
+         * @param {number} delayMs 遅延する秒数(ミリ)
+         * @param {number} pitchShift 一つ前から音程をずらす値(midi)
+         * @param {number} volume 1番目の音量
+         * @param {number} decay 一つ前から変化する音量の倍率(1 := 1倍)
+         * @param {number} overwrap 重ねる回数
          */
         function playNoteAllDelaySequencer(
           callback,
@@ -275,19 +280,19 @@
         }
       </code></pre>
 
-      <h3>ディレイエフェクト用メソッド</h3>
+      <h3>ディレイエフェクト用シーケンサ</h3>
       <pre><code class="lang-js line-numbers">
         /**
-         * @param {*} callback 引数の配列の第二引数はvolume
-         * @param {*} sequence 通常通り
-         * @param {*} values 通常通り
-         * @param {*} bpm 通常通り
-         * @param {*} seqId 自動的にプレフィックスが付加される
-         * @param {*} delayMs 遅延する秒数(ミリ)
-         * @param {*} pitchShift 一つ前から音程をずらす値(midi)
-         * @param {*} volume 1番目の音量
-         * @param {*} decay 一つ前から変化する音量の倍率(1 := 1倍)
-         * @param {*} overwrap 重ねる回数
+         * @param {Function} callback 引数の配列の第二引数はvolume
+         * @param {Array} sequence 通常通り
+         * @param {Array} values 通常通り
+         * @param {number} bpm 通常通り
+         * @param {any} seqId 自動的にプレフィックスが付加される
+         * @param {number} delayMs 遅延する秒数(ミリ)
+         * @param {number} pitchShift 一つ前から音程をずらす値(midi)
+         * @param {number} volume 1番目の音量
+         * @param {number} decay 一つ前から変化する音量の倍率(1 := 1倍)
+         * @param {number} overwrap 重ねる回数
          */
         function playNoteAllDelaySequencer(
             callback,
@@ -323,6 +328,66 @@
                 totalTime += waitTime;
             }
         }
+      </code></pre>
+
+      <h3>音楽パターン</h3>
+      <pre><code class="lang-js line-numbers">
+        const SONG1_SEQUENCE = [
+            2 / 24,
+            1 / 24,
+            1 / 8,
+
+            2 / 24 + 0.02,
+            1 / 24 + 0.01,
+            1 / 24 + 0.01,
+            1.5 / 24 + 0.02,
+
+            1 / 20,
+            1 / 20,
+            1 / 20,
+            1.5 / 20,
+
+            1 / 16,
+            1 / 16,
+            1 / 16,
+
+            1 / 24,
+            2 / 24,
+            2 / 24,
+
+            3 / 28,
+            4 / 28,
+
+            0.5
+        ];
+        const SONG1_VALUES = [
+            [41, 60, 65, 69],
+            [57],
+            [72],
+
+            [46, 53.1, 56.1, 61, 65 - 0.05, 68, 72, 75, 77],
+            [75],
+            [73],
+            [72],
+
+            [53, 70],
+            [60],
+            [63, 68],
+            [70],
+
+            [48, 58, 63],
+            [55],
+            [65],
+
+            [49, 56, 60, 63],
+            [65],
+            [63],
+
+            [39, 46.1, 55, 58],
+            [63],
+
+            [41 - 0.15, 48 - 0.15, 53.05, 57, 60, 65]
+        ];
       </code></pre>
 
     </main>
