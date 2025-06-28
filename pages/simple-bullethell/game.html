@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+  <meta property="og:site_name" content="Monologue">
+  <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/simple-bullethell/game.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ja_JP">
+
+  <title>-弾幕-</title>
+
+  <style>
+    body {
+      font-family: 'Moralerspace Radon', monospace;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      border: 2px solid #333;
+      display: block;
+      background-color: #000;
+      touch-action: none;
+      border-radius: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <canvas id="game-canvas"></canvas>
+
+  <script src="./Player.js"></script>
+  <script src="./Bullet.js"></script>
+  <script src="./BulletPatternGenerator.js"></script>
+  
+  <script src="./main.js"></script>
+
+</body>
+
+</html>
