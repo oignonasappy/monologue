@@ -45,6 +45,7 @@ class BulletPatternGenerator {
             straight: 1000,
             curve: 3000,
             ring: 2000,
+            waveParticle: 5000,
         };
 
         /**
@@ -57,7 +58,8 @@ class BulletPatternGenerator {
             //{ name: 'radial', func: this.generateRadialPattern.bind(this), cooldown: this.patternCooldowns.radial },
             //{ name: 'straightLine', func: this.generateStraightLinePattern.bind(this), cooldown: this.patternCooldowns.straight },
             //{ name: 'curvingSpiral', func: this.generateCurvingSpiralPattern.bind(this), cooldown: this.patternCooldowns.curve },
-            { name: 'ring', func: this.generateCurvingSpiralPattern.bind(this), cooldown: this.patternCooldowns.ring },
+            { name: 'ring', func: this.generateRingPattern.bind(this), cooldown: this.patternCooldowns.ring },
+            { name: 'waveParticle', func: this.generateWaveParticlePattern.bind(this), cooldown: this.patternCooldowns.waveParticle },
         ];
 
         /**
@@ -328,8 +330,8 @@ class BulletPatternGenerator {
     /**
      * 複数の速さの異なるリングを生成
      */
-    generateCurvingSpiralPattern() {
-        const numRing = 5 + Math.floor(this.difficultyLevel * 0.5);
+    generateRingPattern() {
+        const numRing = 6 + Math.floor(this.difficultyLevel * 0.6);
 
         this.delayRepeatCount(() => {
 
@@ -338,7 +340,7 @@ class BulletPatternGenerator {
             const spawnY = this.game.baseGameHeight / 5 + (Math.random() - 0.5) * this.game.baseGameHeight * 0.2;
 
             // リング1あたりの弾数
-            const numBullets = Math.floor((20 + this.difficultyLevel * 2) * (0.5 + Math.random()));
+            const numBullets = Math.floor((15 + this.difficultyLevel * 1.5) * (0.5 + Math.random()));
             // 1弾あたりの角度
             const angleStep = (Math.PI * 2) / numBullets;
             // 角度の初期値
@@ -358,7 +360,41 @@ class BulletPatternGenerator {
             this.game.bullets.push(...newBullets);
 
         }, 500 / numRing, numRing);
-        // 画面上部のランダムな範囲から
+    }
+
+    /**
+     * 幾何的な波を生成
+     */
+    generateWaveParticlePattern() {
+        const numAxis = 3 + Math.floor(this.difficultyLevel * 0.5);
+
+        // 生成位置(固定)
+        const spawnX = this.game.baseGameWidth / 2;
+        const spawnY = this.game.baseGameHeight / 6;
+
+        const bulletSpeed = this.baseBulletSpeed * 1.2 + this.difficultyLevel * this.baseBulletSpeed * 0.1;
+
+        let angle = (Math.PI * 2) * Math.random();
+        let angleStep = (Math.PI * 2) * Math.random();
+        const angleIncrement = 0.0025 + Math.random() * 0.001;
+
+        this.delayRepeatCount(() => {
+
+            const newBullets = [];
+
+            for (let i = 0; i < numAxis; i++) {
+                const axisAngle = angle + i * Math.PI / numAxis * 2;
+                const vx = Math.cos(axisAngle) * bulletSpeed;
+                const vy = Math.sin(axisAngle) * bulletSpeed;
+                newBullets.push(new StraightBullet(spawnX, spawnY, this.currentBulletRadius, vx, vy));
+            }
+
+            this.game.bullets.push(...newBullets);
+
+            angle += angleStep;
+            angleStep += angleIncrement;
+
+        }, 50, 60);
     }
 
 }

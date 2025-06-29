@@ -57,6 +57,10 @@ class Game {
          */
         this.highScore = this.loadHighScore();
         /**
+         * @type {number} LocalStorageに保存されている累計スコア
+         */
+        this.totalScore = this.loadTotalScore();
+        /**
          * @type {string} 現在のゲーム画面
          */
         this.state = GameState.START;
@@ -144,11 +148,9 @@ class Game {
         // scaleFactorを計算
         this.scaleFactor = this.canvas.width / this.baseGameWidth;
 
-        // プレイヤーが既に存在する場合は位置を調整
+        // プレイヤーが既に存在する場合はプレイヤーのスケールプロパティを更新
         if (this.player) {
-            this.player.x = (this.baseGameWidth / 2) * this.scaleFactor;
-            this.player.y = (this.baseGameHeight - this.player.baseRadius - 20) * this.scaleFactor;
-            this.player.updateScaledProperties(this.scaleFactor); // プレイヤーのスケールプロパティも更新
+            this.player.updateScaledProperties(this.scaleFactor); // 
         }
         // 弾のスケールプロパティも更新 (既存の弾の描画に影響)
         this.bullets.forEach(bullet => bullet.updateScaledProperties(this.scaleFactor));
@@ -416,6 +418,9 @@ class Game {
 
         this.ctx.font = `${25 * this.scaleFactor}px 'Moralerspace Radon'`;
         this.ctx.fillText(`ハイスコア: ${this.highScore}`, (this.baseGameWidth / 2) * this.scaleFactor, (this.baseGameHeight * 9 / 12) * this.scaleFactor);
+
+        this.ctx.font = `${15 * this.scaleFactor}px 'Moralerspace Radon'`;
+        this.ctx.fillText(`累計スコア: ${this.totalScore}`, (this.baseGameWidth / 2) * this.scaleFactor, (this.baseGameHeight * 10 / 12) * this.scaleFactor);
     }
 
     /**
@@ -475,11 +480,14 @@ class Game {
      * ゲームオーバー処理を実行します。
      */
     gameOver() {
-        this.state = GameState.START;
         if (this.score > this.highScore) {
             this.highScore = this.score;
             this.saveHighScore(this.highScore);
         }
+        this.totalScore += this.score;
+        this.saveTotalScore(this.score);
+
+        this.state = GameState.START;
     }
 
     /**
@@ -503,6 +511,31 @@ class Game {
             return parseInt(localStorage.getItem('bulletHellHighScore') || '0', 10);
         } catch (e) {
             console.error('Failed to load high score from localStorage:', e);
+            return 0;
+        }
+    }
+
+    /**
+     * 累計スコアをローカルストレージに保存します。
+     * @param {number} score - 追加するスコア。
+     */
+    saveTotalScore(score) {
+        try {
+            localStorage.setItem('bulletHellTotalScore', score + this.loadTotalScore());
+        } catch (e) {
+            console.error('Failed to save total score to localStorage:', e);
+        }
+    }
+
+    /**
+     * ローカルストレージからハイスコアを読み込みます。
+     * @returns {number} 読み込まれたハイスコア、または0。
+     */
+    loadTotalScore() {
+        try {
+            return parseInt(localStorage.getItem('bulletHellTotalScore') || '0', 10);
+        } catch (e) {
+            console.error('Failed to load total score from localStorage:', e);
             return 0;
         }
     }
