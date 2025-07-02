@@ -404,6 +404,7 @@ class BulletPatternGenerator {
             const leftHomingVector = this.calcHoming(leftSpawnX, spawnY);
             const rightSpawnX = this.game.baseGameWidth * 0.5 + this.game.baseGameWidth * 0.4 / numShots * (numShots - i)
             const rightHomingVector = this.calcHoming(rightSpawnX, spawnY);
+            // TODO: 疑似遅延方式からタイムアウト方式にする
             for (let j = 0; j < numBullets; j++) {
                 newBullets.push(new StraightBullet(
                     leftSpawnX,
@@ -427,6 +428,7 @@ class BulletPatternGenerator {
         }
 
         // 中心から発射するランダムに拡散する自機狙い
+        // TODO: 疑似遅延方式からタイムアウト方式にする
         const numSpreadBullets = 20 * (1 + this.difficultyLevel * 0.1);
         const spawnX = this.game.baseGameWidth * 0.5;
         const spawnY = 0;
@@ -437,7 +439,7 @@ class BulletPatternGenerator {
         const newBullets = [];
         for (let i = 0; i < numSpreadBullets; i++) {
             const bulletSpeed = this.baseBulletSpeed * (1 + Math.random() * Math.pow(1.2, numBullets) * 0.5);
-            const angle = homingAngle + maxSpreadAngle * (Math.random() - 0.5);
+            const angle = homingAngle + maxSpreadAngle * this.getRandomNormalish(4, -0.5, 0.5);
             const vx = Math.cos(angle) * bulletSpeed;
             const vy = Math.sin(angle) * bulletSpeed;
             newBullets.push(new StraightBullet(
@@ -504,6 +506,20 @@ class BulletPatternGenerator {
             homingVector.vy = 1;
         }
         return homingVector;
+    }
+
+    /**
+     * 中心極限定理を用いた、やや正規分布に近い乱数を生成します。
+     * @param {number} [min=0] - 乱数の一様分布の下限（Math.random()のデフォルトは0）。
+     * @param {number} [max=1] - 乱数の一様分布の上限（Math.random()のデフォルトは1）。
+     * @returns {number} 正規分布に近い乱数。
+     */
+    getRandomNormalish(numSamples = 12, min = 0, max = 1) {
+        let sum = 0;
+        for (let i = 0; i < numSamples; i++) {
+            sum += Math.random() * (max - min) + min;
+        }
+        return sum / numSamples;
     }
 
 }
