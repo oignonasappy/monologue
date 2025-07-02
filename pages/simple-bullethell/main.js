@@ -173,7 +173,7 @@ class Game {
         this.score = 0;
         this.state = GameState.PLAY;
         this.lastBulletSpawnTime = 0;
-        this.difficultyLevel = 5; // 難易度をリセット
+        this.difficultyLevel = 1; // 難易度をリセット
         this.lastDifficultyIncreaseTime = performance.now(); // 難易度上昇タイマーをリセット
         this.bulletPatternGenerator.updateDifficulty(this.difficultyLevel); // 難易度を初期化
         this.isGeneratingMessage = false;
@@ -255,19 +255,13 @@ class Game {
             return;
         }
 
-        let touchX = 0;
-        let touchY = 0;
-        for (let i = 0; i < touches.length; i++) {
-            touchX += touches[i].clientX;
-            touchY += touches[i].clientY;
-        }
-        touchX /= touches.length;
-        touchY /= touches.length;
+        // 複数のタッチがある場合は最初のタッチを基準とする
+        const touch = touches[0];
 
         const rect = this.canvas.getBoundingClientRect();
         // タッチ座標を基準ゲーム座標に変換
-        const canvasX = (touchX - rect.left) / this.scaleFactor;
-        const canvasY = (touchY - rect.top) / this.scaleFactor;
+        const canvasX = (touch.clientX - rect.left) / this.scaleFactor;
+        const canvasY = (touch.clientY - rect.top) / this.scaleFactor;
 
         // プレイヤーの現在位置からタッチ位置へのベクトルを計算
         let dx = canvasX - this.player.x;
@@ -283,7 +277,9 @@ class Game {
             this.touchMovements.active = true;
         } else {
             // タッチがプレイヤーに近すぎる場合、移動を停止
-            this.resetTouchControls();
+            this.touchMovements.dirX = 0;
+            this.touchMovements.dirY = 0;
+            this.touchMovements.active = false;
         }
     }
 
@@ -291,10 +287,9 @@ class Game {
      * タッチコントロールの移動状態をリセットします。
      */
     resetTouchControls() {
-        this.touchMovements.up = false;
-        this.touchMovements.down = false;
-        this.touchMovements.left = false;
-        this.touchMovements.right = false;
+        this.touchMovements.dirX = 0;
+        this.touchMovements.dirY = 0;
+        this.touchMovements.active = false;
     }
 
     /**
