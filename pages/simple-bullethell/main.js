@@ -273,7 +273,7 @@ class Game {
         let dy = canvasY - this.player.y;
 
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const minMoveThreshold = this.player.baseRadius * 0.5; // プレイヤーの半径の半分より外側をタッチした場合に移動
+        const minMoveThreshold = this.player.baseRadius; // プレイヤーの半径より外側をタッチした場合に移動
 
         if (distance > minMoveThreshold) {
             // ベクトルを正規化して方向成分を格納
