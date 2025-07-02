@@ -117,7 +117,7 @@ class Game {
         /**
          * @type {number} タッチがこのピクセル数以下しか動いていない場合、静止とみなす (基準座標)
          */
-        this.touchStationaryThreshold = 5;
+        this.touchStationaryThreshold = 1;
         /**
          * @type {number} 最後のフレームのタイムスタンプ
          */
