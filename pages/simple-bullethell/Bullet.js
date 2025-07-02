@@ -10,8 +10,9 @@ class Bullet {
      * @param {number} y - 弾の初期Y座標（基準座標）。
      * @param {number} baseRadius - 弾の見た目の半径（基準値）。
      * @param {string} [color='white'] - 弾の色。
+     * @param {number} [activationDelay=0] - 弾が移動を開始するまでの遅延時間ms。
      */
-    constructor(x, y, baseRadius, color = 'white') {
+    constructor(x, y, baseRadius, color = 'white', activationDelay = 0) {
         /**
          * @type {number} 弾の基準座標x
          */
@@ -56,6 +57,10 @@ class Bullet {
          */
         this.creationTime = performance.now();
         /**
+         * @type {number} 弾の活動開始時間
+         */
+        this.activationTime = this.creationTime + activationDelay;
+        /**
          * @type {number} 無敵時間ms
          */
         this.invincibilityDuration = 400;
@@ -63,6 +68,11 @@ class Bullet {
          * @type {number} 画面外と判定する余裕 (基準値 pixel)
          */
         this.offScreenBaseMargin = 100;
+
+        /**
+         * @type {boolean} 弾が動き出した最初のフレームで、そのフレームの残りの時間だけ動くようにするためのフラグ
+         */
+        this.hasActivatedMovement = false;
     }
 
     /**
@@ -91,21 +101,44 @@ class Bullet {
 
     /**
      * 弾の状態を更新します（移動とフェードイン）。
-     * このメソッドはサブクラスで必ずオーバーライドするべきです。
-     * super.update()を呼ぶことでフェードイン処理をします。
-     * @abstract
      * @param {number} deltaTime - 前のフレームからの経過時間（ミリ秒）。
      * @param {DOMHighResTimeStamp} currentTime - 現在のタイムスタンプ。
      */
     update(deltaTime, currentTime) {
         // フェードイン処理
-        const timeElapsed = currentTime - this.creationTime;
-        if (timeElapsed < this.fadeInDuration) {
-            this.alpha = timeElapsed / this.fadeInDuration;
+        const timeSinceCreation = currentTime - this.creationTime;
+        const timeSinceActivation = currentTime - this.activationTime;
+        if (timeSinceActivation < 0) {
+            this.alpha = 0;
+        } else if (timeSinceActivation < this.fadeInDuration) {
+            this.alpha = timeSinceActivation / this.fadeInDuration;
         } else {
             this.alpha = 1; // フェードイン完了
         }
-        // このメソッドは継承先でオーバーライドされるが、super.update()を呼ぶことでフェードインも処理される
+
+        if (timeSinceActivation < 0) {
+            return;
+        }
+
+        let effectiveMovementDeltaTime = deltaTime;
+        if (!this.hasActivatedMovement) {
+            // 活動開始時刻から現在のフレームの描画時刻までの正確な経過時間
+            effectiveMovementDeltaTime = Math.max(0, currentTime - this.activationTime);
+            this.hasActivatedMovement = true;
+        }
+
+        // applyMovementメソッドを呼び出して移動処理を行う (子クラスで実装)
+        this.applyMovement(effectiveMovementDeltaTime);
+    }
+
+    /**
+     * 弾の実際の移動処理を適用します。
+     * このメソッドはサブクラスで必ずオーバーライドするべきです。
+     * @abstract
+     * @param {number} moveDelta - このフレームで移動に使うべき時間（ミリ秒）。
+     */
+    applyMovement(moveDelta) {
+        // 基本クラスでは何もしない
     }
 
     /**
@@ -140,29 +173,30 @@ class StraightBullet extends Bullet {
      * @param {number} baseRadius - 弾の見た目の半径（基準値）。
      * @param {number} baseVx - X方向の速度（基準値）。
      * @param {number} baseVy - Y方向の速度（基準値）。
+     * @param {number} [activationDelay=0] - 弾が移動を開始するまでの遅延時間ms。
      */
-    constructor(x, y, baseRadius, baseVx, baseVy) {
-        super(x, y, baseRadius, 'white');
+    constructor(x, y, baseRadius, baseVx, baseVy, activationDelay) {
+        super(x, y, baseRadius, 'white', activationDelay);
         this.baseVx = baseVx; // 基準速度
         this.baseVy = baseVy; // 基準速度
     }
 
     /**
-     * 弾の状態を更新します（移動）。
+     * 弾の移動処理を適用します。
      * @override
-     * @param {number} deltaTime - 前のフレームからの経過時間（ミリ秒）。
-     * @param {DOMHighResTimeStamp} currentTime - 現在のタイムスタンプ。
+     * @param {number} moveDelta - このフレームで移動に使うべき時間（ミリ秒）。
      */
-    update(deltaTime, currentTime) {
-        super.update(deltaTime, currentTime); // 親クラスのupdateを呼び出す
-        this.x += this.baseVx; // 基準座標で更新
-        this.y += this.baseVy; // 基準座標で更新
+    applyMovement(moveDelta) {
+        // 速度をピクセル/秒からピクセル/ミリ秒に変換してmoveDeltaを適用
+        this.x += (this.baseVx / 1000) * moveDelta; // 基準座標で更新
+        this.y += (this.baseVy / 1000) * moveDelta; // 基準座標で更新
     }
 
 }
 
 
 /**
+ * @deprecated
  * カーブしながら移動する弾のクラス。Bulletを継承します。
  */
 class CurvingBullet extends Bullet {
@@ -233,7 +267,6 @@ class CurvingBullet extends Bullet {
  * 波打つように移動する弾のクラス。Bulletを継承します。
  */
 class WaveBullet extends Bullet {
-
     /**
      * WaveBulletクラスのコンストラクタ。
      * @param {number} x - 弾の初期X座標（基準座標）。
@@ -243,31 +276,29 @@ class WaveBullet extends Bullet {
      * @param {number} baseWaveAmplitude - 波の振幅（基準値）。
      * @param {number} baseWaveFrequency - 波の周波数（基準値）。
      * @param {number} initialPhase - 波の初期位相。
+     * @param {number} [activationDelay=0] - 弾が移動を開始するまでの遅延時間（ms）。
      */
-    constructor(x, y, baseRadius, baseVy, baseWaveAmplitude, baseWaveFrequency, initialPhase) {
-        super(x, y, baseRadius, 'white');
-        // 多めに余裕をとる
-        this.offScreenBaseMargin = 200;
-
+    constructor(x, y, baseRadius, baseVy, baseWaveAmplitude, baseWaveFrequency, initialPhase, activationDelay = 0) {
+        super(x, y, baseRadius, 'white', activationDelay);
         this.initialX = x; // 初期X座標を保存 (基準座標)
         this.baseVy = baseVy; // 基準速度
         this.baseWaveAmplitude = baseWaveAmplitude; // 基準振幅
         this.baseWaveFrequency = baseWaveFrequency; // 基準周波数
         this.initialPhase = initialPhase; // 初期位相
-        this.age = 0;
+        this.age = 0; // 経過時間 (秒単位で蓄積)
+
+        this.offScreenBaseMargin = 300;
     }
 
     /**
-     * 弾の状態を更新します（移動と波打ち）。
-     * @param {number} deltaTime - 前のフレームからの経過時間（ミリ秒）。
-     * @param {DOMHighResTimeStamp} currentTime - 現在のタイムスタンプ。
+     * 弾の実際の移動処理を適用します。
+     * @override
+     * @param {number} moveDelta - このフレームで移動に使うべき時間（ミリ秒）。
      */
-    update(deltaTime, currentTime) {
-        super.update(deltaTime, currentTime); // 親クラスのupdateを呼び出す
-        this.age++;
+    applyMovement(moveDelta) {
+        this.age += moveDelta / 1000; // ageを秒単位で蓄積
         // 初期X座標から波打つようにX座標を更新 (基準座標で計算)
         this.x = this.initialX + Math.sin(this.age * this.baseWaveFrequency + this.initialPhase) * this.baseWaveAmplitude;
-        this.y += this.baseVy; // 基準速度でY座標を更新
+        this.y += (this.baseVy / 1000) * moveDelta; // 基準速度でY座標を更新
     }
-
 }

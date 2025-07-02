@@ -80,7 +80,7 @@ class Game {
         /**
          * @type {number} 現在の難易度レベル (1~maxDIfficultyLevel)
          */
-        this.difficultyLevel = 1;
+        this.difficultyLevel = 0;
         /**
          * @type {number} 難易度の上昇間隔ms
          */
@@ -92,7 +92,7 @@ class Game {
         /**
          * @type {number} 最大難易度レベル
          */
-        this.maxDifficultyLevel = 10;
+        this.maxDifficultyLevel = 20;
 
         /**
          * @type {BulletPatternGenerator} 弾幕パターン生成機
@@ -165,7 +165,7 @@ class Game {
             (this.baseGameHeight - 50), // 基準座標
             8, // 基準半径
             'red',
-            5, // 基準速度
+            300, // 基準速度
             this.canvas,
             this.scaleFactor // 初期スケールファクターを渡す
         );
@@ -173,7 +173,7 @@ class Game {
         this.score = 0;
         this.state = GameState.PLAY;
         this.lastBulletSpawnTime = 0;
-        this.difficultyLevel = 1; // 難易度をリセット
+        this.difficultyLevel = 5; // 難易度をリセット
         this.lastDifficultyIncreaseTime = performance.now(); // 難易度上昇タイマーをリセット
         this.bulletPatternGenerator.updateDifficulty(this.difficultyLevel); // 難易度を初期化
         this.isGeneratingMessage = false;
@@ -249,7 +249,11 @@ class Game {
      * @param {TouchList} touches - 発生したタッチイベントのリスト。
      */
     handleTouch(touches) {
-        if (touches.length === 0) return;
+        // タッチがない場合、移動をリセット
+        if (touches.length === 0) {
+            this.resetTouchControls();
+            return;
+        }
 
         let touchX = 0;
         let touchY = 0;
@@ -261,27 +265,25 @@ class Game {
         touchY /= touches.length;
 
         const rect = this.canvas.getBoundingClientRect();
-        // タッチ座標もスケールファクターで調整して、基準座標に変換
+        // タッチ座標を基準ゲーム座標に変換
         const canvasX = (touchX - rect.left) / this.scaleFactor;
         const canvasY = (touchY - rect.top) / this.scaleFactor;
 
-        // プレイヤーの内部座標 (基準座標) と比較
-        const dx = canvasX - this.player.x;
-        const dy = canvasY - this.player.y;
+        // プレイヤーの現在位置からタッチ位置へのベクトルを計算
+        let dx = canvasX - this.player.x;
+        let dy = canvasY - this.player.y;
 
-        this.resetTouchControls();
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const minMoveThreshold = this.player.baseRadius * 0.5; // プレイヤーの半径の半分より外側をタッチした場合に移動
 
-        // 半径は基準半径で比較
-        if (dy < -this.player.baseRadius * 2) {
-            this.touchMovements.up = true;
-        } else if (dy > this.player.baseRadius * 2) {
-            this.touchMovements.down = true;
-        }
-
-        if (dx < -this.player.baseRadius * 2) {
-            this.touchMovements.left = true;
-        } else if (dx > this.player.baseRadius * 2) {
-            this.touchMovements.right = true;
+        if (distance > minMoveThreshold) {
+            // ベクトルを正規化して方向成分を格納
+            this.touchMovements.dirX = dx / distance;
+            this.touchMovements.dirY = dy / distance;
+            this.touchMovements.active = true;
+        } else {
+            // タッチがプレイヤーに近すぎる場合、移動を停止
+            this.resetTouchControls();
         }
     }
 
@@ -320,7 +322,7 @@ class Game {
      */
     update(deltaTime, currentTime) {
         if (this.state === GameState.PLAY) {
-            this.player.update(this.keys, this.touchMovements);
+            this.player.update(this.keys, this.touchMovements, deltaTime);
 
             // 難易度上昇のチェック
             if (currentTime - this.lastDifficultyIncreaseTime >= this.difficultyIncreaseInterval) {
@@ -469,7 +471,7 @@ class Game {
             // 距離がプレイヤーのhitboxRadiusと弾のhitboxRadiusの合計より小さい場合、衝突
             if (distance < this.player.hitboxRadius + bullet.hitboxRadius) {
                 console.warn("ピチューンしました");
-                
+
                 this.gameOver();
                 return;
             }
@@ -486,6 +488,8 @@ class Game {
         }
         this.totalScore += this.score;
         this.saveTotalScore(this.score);
+
+        this.bulletPatternGenerator.currentPatternCooldown = 1000;
 
         this.state = GameState.START;
     }

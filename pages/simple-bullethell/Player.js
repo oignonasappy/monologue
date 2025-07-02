@@ -87,40 +87,51 @@ class Player {
      * @param {Object.<string, boolean>} keys - 現在押されているキーの状態。
      * @param {Object.<string, boolean>} touchMovements - タッチ操作による移動方向。
      */
-    update(keys, touchMovements) {
+    update(keys, touchMovements, deltaTime) {
         let moveX = 0;
         let moveY = 0;
 
-        if (keys['ArrowLeft'] || touchMovements.left) {
-            moveX -= 1;
-        }
-        if (keys['ArrowRight'] || touchMovements.right) {
-            moveX += 1;
-        }
-        if (keys['ArrowUp'] || touchMovements.up) {
-            moveY -= 1;
-        }
-        if (keys['ArrowDown'] || touchMovements.down) {
-            moveY += 1;
-        }
-
-        // 基準速度を元に計算し、後で現在のスケールに合わせる
+        // 基準速度を元に計算し、deltaTimeを適用
         let currentBaseSpeed = this.baseSpeed;
         if (keys['Shift']) {
             currentBaseSpeed /= 2;
         }
 
+        // 速度をピクセル/秒からピクセル/ミリ秒に変換
+        const speedPerMs = currentBaseSpeed / 1000;
+
         // 移動量を基準座標で計算
         let dx = 0;
         let dy = 0;
 
-        if (moveX !== 0 && moveY !== 0) {
-            const diagonalBaseSpeed = currentBaseSpeed / Math.sqrt(2);
-            dx = moveX * diagonalBaseSpeed;
-            dy = moveY * diagonalBaseSpeed;
+        if (touchMovements.active) {
+            // タッチ操作
+            dx = touchMovements.dirX * speedPerMs * deltaTime;
+            dy = touchMovements.dirY * speedPerMs * deltaTime;
         } else {
-            dx = moveX * currentBaseSpeed;
-            dy = moveY * currentBaseSpeed;
+            // キーボード操作
+            if (keys['ArrowLeft']) {
+                moveX -= 1;
+            }
+            if (keys['ArrowRight']) {
+                moveX += 1;
+            }
+            if (keys['ArrowUp']) {
+                moveY -= 1;
+            }
+            if (keys['ArrowDown']) {
+                moveY += 1;
+            }
+
+            if (moveX !== 0 && moveY !== 0) {
+                // 斜め方向の速度補正
+                const diagonalSpeedPerMs = speedPerMs / Math.sqrt(2);
+                dx = moveX * diagonalSpeedPerMs * deltaTime;
+                dy = moveY * diagonalSpeedPerMs * deltaTime;
+            } else {
+                dx = moveX * speedPerMs * deltaTime;
+                dy = moveY * speedPerMs * deltaTime;
+            }
         }
 
         this.x += dx;
