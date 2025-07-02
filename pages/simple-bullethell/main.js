@@ -105,7 +105,19 @@ class Game {
         /**
          * @type {{any: boolean}} タッチ移動状態
          */
-        this.touchMovements = { up: false, down: false, left: false, right: false };
+        this.touchMovements = { dirX: 0, dirY: 0, active: false, touchTargetX: 0, touchTargetY: 0 };
+        /**
+         * @type {number} 最後に処理したタッチの基準X座標
+         */
+        this.lastProcessedTouchX = 0;
+        /**
+         * @type {number} 最後に処理したタッチの基準Y座標
+         */
+        this.lastProcessedTouchY = 0;
+        /**
+         * @type {number} タッチがこのピクセル数以下しか動いていない場合、静止とみなす (基準座標)
+         */
+        this.touchStationaryThreshold = 5;
         /**
          * @type {number} 最後のフレームのタイムスタンプ
          */
@@ -223,7 +235,11 @@ class Game {
         touchArea.addEventListener('touchstart', (e) => {
             if (this.state === GameState.PLAY) {
                 e.preventDefault();
-                this.handleTouch(e.touches, true);
+                // タッチ開始時に現在のタッチ位置を記録して、移動量計測の基準とする
+                const rect = this.canvas.getBoundingClientRect();
+                this.lastProcessedTouchX = (e.touches[0].clientX - rect.left) / this.scaleFactor;
+                this.lastProcessedTouchY = (e.touches[0].clientY - rect.top) / this.scaleFactor;
+                this.handleTouch(e.touches);
             }
         });
         touchArea.addEventListener('touchmove', (e) => {
@@ -232,6 +248,7 @@ class Game {
                 this.handleTouch(e.touches, false);
             }
         });
+        // 指を離した時、またはタッチがキャンセルされた時に移動を停止
         touchArea.addEventListener('touchend', () => {
             if (this.state === GameState.PLAY) {
                 this.resetTouchControls();
@@ -263,20 +280,43 @@ class Game {
         const canvasX = (touch.clientX - rect.left) / this.scaleFactor;
         const canvasY = (touch.clientY - rect.top) / this.scaleFactor;
 
+        // タッチポイントが最後に処理された位置からどれだけ動いたか
+        const movedDistance = Math.sqrt(
+            Math.pow(canvasX - this.lastProcessedTouchX, 2) +
+            Math.pow(canvasY - this.lastProcessedTouchY, 2)
+        );
+
+        // 最後に処理したタッチ位置を更新
+        this.lastProcessedTouchX = canvasX;
+        this.lastProcessedTouchY = canvasY;
+
+        // タッチが静止しているとみなす閾値
+        // (ゲームの基準座標系でのピクセル数)
+        const touchStationaryThreshold = this.touchStationaryThreshold;
+
+        if (movedDistance < touchStationaryThreshold) {
+            // 指が静止している、またはほとんど動いていない場合
+            this.touchMovements.dirX = 0;
+            this.touchMovements.dirY = 0;
+            this.touchMovements.active = false;
+            return; // 以降の移動計算は不要
+        }
+
         // プレイヤーの現在位置からタッチ位置へのベクトルを計算
         let dx = canvasX - this.player.x;
         let dy = canvasY - this.player.y;
 
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        const distanceToPlayer = Math.sqrt(dx * dx + dy * dy);
         const minMoveThreshold = this.player.baseRadius * 0.5; // プレイヤーの半径の半分より外側をタッチした場合に移動
 
-        if (distance > minMoveThreshold) {
+        if (distanceToPlayer > minMoveThreshold) {
             // ベクトルを正規化して方向成分を格納
-            this.touchMovements.dirX = dx / distance;
-            this.touchMovements.dirY = dy / distance;
+            this.touchMovements.dirX = dx / distanceToPlayer;
+            this.touchMovements.dirY = dy / distanceToPlayer;
             this.touchMovements.active = true;
         } else {
-            // タッチがプレイヤーに近すぎる場合、移動を停止
+            // タッチがプレイヤーに近すぎるが、指は動いている場合
+            // この場合もプレイヤーは動かないようにする
             this.touchMovements.dirX = 0;
             this.touchMovements.dirY = 0;
             this.touchMovements.active = false;
