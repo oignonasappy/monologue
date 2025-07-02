@@ -59,9 +59,9 @@ class BulletPatternGenerator {
             //{ name: 'straightLine', func: this.generateStraightLinePattern.bind(this), cooldown: this.patternCooldowns.straight },
             //{ name: 'curvingSpiral', func: this.generateCurvingSpiralPattern.bind(this), cooldown: this.patternCooldowns.curve },
 
-            //{ name: 'wave', func: this.generateWavePattern.bind(this), cooldown: this.patternCooldowns.wave },
-            //{ name: 'ring', func: this.generateRingPattern.bind(this), cooldown: this.patternCooldowns.ring },
-            //{ name: 'waveParticle', func: this.generateWaveParticlePattern.bind(this), cooldown: this.patternCooldowns.waveParticle },
+            { name: 'wave', func: this.generateWavePattern.bind(this), cooldown: this.patternCooldowns.wave },
+            { name: 'ring', func: this.generateRingPattern.bind(this), cooldown: this.patternCooldowns.ring },
+            { name: 'waveParticle', func: this.generateWaveParticlePattern.bind(this), cooldown: this.patternCooldowns.waveParticle },
             { name: 'convergence', func: this.generateConvergencePattern.bind(this), cooldown: this.patternCooldowns.convergence },
         ];
 
