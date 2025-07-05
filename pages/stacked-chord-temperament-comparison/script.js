@@ -62,6 +62,14 @@
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 9, 31), '#n3-box-31');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 12, 41), '#n3-box-41');
     createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 15, 53), '#n3-box-53');
+    
+    /* 十三限界の短六度 */
+    createFrequencyTexts(generateJustIntonationFrequency(10, 55, 13, 8), '#nmin6-box-ji');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 8, 12), '#nmin6-box-12');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 12, 17), '#nmin6-box-17');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 22, 31), '#nmin6-box-31');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 29, 41), '#nmin6-box-41');
+    createFrequencyTexts(generateEqualTemperamentFrequency(10, 55, 37, 53), '#nmin6-box-53');
 
 })();
 
