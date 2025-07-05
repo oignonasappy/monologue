@@ -189,10 +189,10 @@
         ]
     },
     {
-        "title": "[遊べる]シンプルな弾幕シューティングゲーム",
+        "title": "[スマホでも遊べる]シンプルな弾幕シューティングゲーム",
         "url": "pages/simple-bullethell/",
         "create-date": "2025-06-28",
-        "update-date": "2025-07/05",
+        "update-date": "2025-07-05",
         "category": "プログラミング",
         "tag": [
             "JavaScript",

@@ -225,7 +225,7 @@ class Game {
         const touchArea = this.canvas;
 
         touchArea.addEventListener('touchstart', (e) => {
-            if (this.state === GameState.PLAYING) {
+            if (this.state === GameState.PLAY) {
                 e.preventDefault();
                 // タッチ開始時に目標座標を記録
                 const rect = this.canvas.getBoundingClientRect();
@@ -359,7 +359,7 @@ class Game {
      * 現在のスコアを描画します。
      */
     drawScore() {
-        this.ctx.fillStyle = 'white';
+        this.ctx.fillStyle = 'lightgray';
         this.ctx.font = `${20 * this.scaleFactor}px 'Moralerspace Radon'`; // フォントサイズもスケール
         this.ctx.textAlign = 'left';
         this.ctx.fillText(`よけた弾幕: ${this.score}`, 10 * this.scaleFactor, 30 * this.scaleFactor); // 位置もスケール
@@ -369,7 +369,7 @@ class Game {
      * 現在の難易度レベルを描写します。
      */
     drawDifficulty() {
-        this.ctx.fillStyle = 'white';
+        this.ctx.fillStyle = 'lightgray';
         this.ctx.font = `${20 * this.scaleFactor}px 'Moralerspace Radon'`; // フォントサイズもスケール
         this.ctx.textAlign = 'right';
         this.ctx.fillText(`Level: ${this.difficultyLevel}`, (this.baseGameWidth - 10) * this.scaleFactor, 30 * this.scaleFactor); // 位置もスケール

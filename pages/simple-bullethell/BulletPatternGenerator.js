@@ -44,8 +44,8 @@ class BulletPatternGenerator {
             radial: 2000,
             straight: 1000,
             curve: 3000,
-            ring: 2000,
-            waveParticle: 5000,
+            ring: 3500,
+            waveParticle: 3500,
             convergence: 1500,
         };
 
@@ -99,9 +99,9 @@ class BulletPatternGenerator {
         this.currentNumBulletsMultiplier = 1 + (this.difficultyLevel * 0.15);
 
         // クールダウン時間を難易度に応じて短縮 (最低500ms)
-        for (const key in this.patternCooldowns) {
-            this.patternCooldowns[key] = Math.max(500, this.patternCooldowns[key] * (1 - this.difficultyLevel * 0.04));
-        }
+        //for (const key in this.patternCooldowns) {
+        //    this.patternCooldowns[key] = Math.max(500, this.patternCooldowns[key] * (1 - this.difficultyLevel * 0.04));
+        //}
     }
 
     /**
@@ -295,7 +295,7 @@ class BulletPatternGenerator {
         const margin = 100;
 
         for (let i = 0; i < numWaves; i++) {
-            const numBullets = 6 + Math.floor(this.difficultyLevel * 0.4 * (1 + Math.random() * 1.2));
+            const numBullets = 5 + Math.floor(this.difficultyLevel * 0.2 * (1 + Math.random() * 1.2));
             // ランダムな初期位相
             const randomInitialPhase = Math.random() * Math.PI;
             // 基準座標での弾の間隔
@@ -367,8 +367,9 @@ class BulletPatternGenerator {
         let angleStep = (Math.PI * 2) * Math.random();
         const angleIncrement = 0.0025 + Math.random() * 0.001;
 
-        const delayMs = 50;
-        const repeat = 60;
+        // total3000ms
+        const delayMs = 40;
+        const repeat = 75;
 
         for (let i = 0; i < repeat; i++) {
             const newBullets = [];
@@ -392,7 +393,7 @@ class BulletPatternGenerator {
         const numBullets = 5 + Math.floor(this.difficultyLevel * 0.5);
         const patternTime = 500;
 
-        const initialBulletSpeed = this.baseBulletSpeed * 0.5;
+        const initialBulletSpeed = this.baseBulletSpeed * 0.6;
 
         // 中心に収束していく自機狙い
         for (let i = 0; i < numShots; i++) {
