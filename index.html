@@ -2,6 +2,9 @@
 <html lang="ja">
 
 <head prefix="og: https://ogp.me/ns#">
+
+  <!--<meta name="local-env">-->
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -52,7 +55,7 @@
   <div id="container">
     <main>
 
-      <h1 class="use-wbr">Monologue - ホーム<br>(👷工事中...)</h1>
+      <h1 class="use-wbr">Monologue - ホーム</h1>
 
       <section>
         <h3><a href="./general/page-search/allpages.html">全記事から探す</a></h3>
@@ -72,7 +75,7 @@
               huge.innerHTML = "";
               sequencer((value) => {
                 playNote(value - 0.5, 0.03, 8, 'sawtooth', 440 * Math.pow(2, -1 / 12 / 2));
-                huge.innerHTML += `<span style="color:rgb(${Math.round(Math.random()) * 255},${Math.round(Math.random()) * 255},${Math.round(Math.random()) * 255});background-color:#808080;">${midiToNoteName(value)}&thinsp;</span>`;
+                huge.innerHTML += `<span style="color:hsl(${Math.round(Math.random() * 360)}deg 100% 50%);background-color:#808080;">${midiToNoteName(value)}&thinsp;</span>`;
               },
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 92],
                 [0, 4, 7, 11, 14, 18, 21, 25, 28, 32, 35, 39, 42, 46, 49, 53, 56, 60, 63, 67, 70, 74, 77, 81, 84, 88, 91, 95, 98],
@@ -159,9 +162,13 @@
           <p>
             機能も、<wbr>デザインも、<wbr>記事の執筆も、<wbr>
             何もかも<wbr>全てを<wbr>自分だけで<wbr>やることに<wbr>ロマンが<wbr>あったんです。<br>
-            自分の我儘は<wbr>全て効くし、<wbr>
-            <a href="./pages/piano-js-lib/" target="_blank" rel="noopener noreferrer"
-              title="JavaScriptでね">普通のブログの<wbr>範疇を<wbr>超えたことだって</a><wbr>できる。
+            自分の我儘は<wbr>全て効くし、<wbr>普通のブログの<wbr>範疇を<wbr>
+            <a href="./pages/piano-js-lib/" target="_blank" rel="noopener noreferrer" title="JavaScriptでね">
+              超えた<wbr>
+            </a>
+            <a href="./pages/simple-bullethell/" target="_blank" rel="noopener noreferrer" title="JavaScriptでね">
+              こと<wbr>
+            </a><wbr>だってできる。
           </p>
 
           <p>
@@ -176,7 +183,7 @@
 
           <ul>
             <li>基本情報技術者</li>
-            <li title="試験結果の公開待ちです。自己採点では合格ですが、このリストから消えたら察してください">応用情報技術者?(結果待ち)</li>
+            <li>応用情報技術者</li>
             <li>第二十回 若年者ものづくり競技大会 業務用ITソフトウェア・ソリューションズ職種 出場予定</li>
           </ul>
 
