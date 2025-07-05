@@ -86,30 +86,55 @@ class Player {
      * プレイヤーの状態を更新します（移動）。
      * @param {Object.<string, boolean>} keys - 現在押されているキーの状態。
      * @param {Object.<string, boolean>} touchMovements - タッチ操作による移動方向。
+     * @param {number} deltaTime - 前のフレームからの経過時間ms。
      */
     update(keys, touchMovements, deltaTime) {
         let moveX = 0;
         let moveY = 0;
 
-        // 基準速度を元に計算し、deltaTimeを適用
-        let currentBaseSpeed = this.baseSpeed;
+        // 基準速度を元に計算
+        let currentBaseSpeed = this.baseSpeed; // this.baseSpeedはpixel/sec単位
         if (keys['Shift']) {
             currentBaseSpeed /= 2;
         }
-
         // 速度をピクセル/秒からピクセル/ミリ秒に変換
         const speedPerMs = currentBaseSpeed / 1000;
 
-        // 移動量を基準座標で計算
         let dx = 0;
         let dy = 0;
 
         if (touchMovements.active) {
-            // タッチ操作
-            dx = touchMovements.dirX * speedPerMs * deltaTime;
-            dy = touchMovements.dirY * speedPerMs * deltaTime;
+            // タッチ操作がアクティブな場合
+            const targetX = touchMovements.touchTargetX;
+            const targetY = touchMovements.touchTargetY;
+
+            const diffX = targetX - this.x;
+            const diffY = targetY - this.y;
+            const distanceToTarget = Math.sqrt(diffX * diffX + diffY * diffY);
+
+            const decelerationThreshold = this.baseRadius * 2; // 減速を開始する距離
+
+            let effectiveSpeedPerMs;
+            if (distanceToTarget <= decelerationThreshold) {
+                // 目標に近づくにつれて速度を線形に減速
+                effectiveSpeedPerMs = speedPerMs * (distanceToTarget / decelerationThreshold);
+            } else {
+                // 目標から離れている場合は最大速度
+                effectiveSpeedPerMs = speedPerMs;
+            }
+
+            // 移動量を計算
+            if (distanceToTarget > 0) { // ゼロ除算を避ける
+                dx = (diffX / distanceToTarget) * effectiveSpeedPerMs * deltaTime;
+                dy = (diffY / distanceToTarget) * effectiveSpeedPerMs * deltaTime;
+            }
+
+            // 目標地点を通り過ぎないように補正
+            if (Math.abs(diffX) < Math.abs(dx)) dx = diffX;
+            if (Math.abs(diffY) < Math.abs(dy)) dy = diffY;
+
         } else {
-            // キーボード操作
+            // キーボード操作の場合
             if (keys['ArrowLeft']) {
                 moveX -= 1;
             }
@@ -124,7 +149,7 @@ class Player {
             }
 
             if (moveX !== 0 && moveY !== 0) {
-                // 斜め方向の速度補正
+                // 斜め移動の速度補正
                 const diagonalSpeedPerMs = speedPerMs / Math.sqrt(2);
                 dx = moveX * diagonalSpeedPerMs * deltaTime;
                 dy = moveY * diagonalSpeedPerMs * deltaTime;

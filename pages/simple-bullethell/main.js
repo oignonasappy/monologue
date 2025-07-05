@@ -105,7 +105,7 @@ class Game {
         /**
          * @type {{any: boolean}} タッチ移動状態
          */
-        this.touchMovements = { dirX: 0, dirY: 0, active: false };
+        this.touchMovements = { dirX: 0, dirY: 0, active: false, touchTargetX: 0, touchTargetY: 0 };
         /**
          * @type {number} タッチがこのピクセル数以下しか動いていない場合、静止とみなす (基準座標)
          */
@@ -154,7 +154,7 @@ class Game {
 
         // プレイヤーが既に存在する場合はプレイヤーのスケールプロパティを更新
         if (this.player) {
-            this.player.updateScaledProperties(this.scaleFactor); // 
+            this.player.updateScaledProperties(this.scaleFactor);
         }
         // 弾のスケールプロパティも更新 (既存の弾の描画に影響)
         this.bullets.forEach(bullet => bullet.updateScaledProperties(this.scaleFactor));
@@ -177,7 +177,7 @@ class Game {
         this.score = 0;
         this.state = GameState.PLAY;
         this.lastBulletSpawnTime = 0;
-        this.difficultyLevel = 1; // 難易度をリセット
+        this.difficultyLevel = 1; // 難易度をリセット 標準1
         this.lastDifficultyIncreaseTime = performance.now(); // 難易度上昇タイマーをリセット
         this.bulletPatternGenerator.updateDifficulty(this.difficultyLevel); // 難易度を初期化
         this.isGeneratingMessage = false;
@@ -227,13 +227,21 @@ class Game {
         touchArea.addEventListener('touchstart', (e) => {
             if (this.state === GameState.PLAYING) {
                 e.preventDefault();
-                this.handleTouch(e.touches);
+                // タッチ開始時に目標座標を記録
+                const rect = this.canvas.getBoundingClientRect();
+                this.touchMovements.touchTargetX = (e.touches[0].clientX - rect.left) / this.scaleFactor;
+                this.touchMovements.touchTargetY = (e.touches[0].clientY - rect.top) / this.scaleFactor;
+                this.touchMovements.active = true;
             }
         });
         touchArea.addEventListener('touchmove', (e) => {
             if (this.state === GameState.PLAY) {
                 e.preventDefault();
-                this.handleTouch(e.touches, false);
+                // タッチ移動中に目標座標を更新
+                const rect = this.canvas.getBoundingClientRect();
+                this.touchMovements.touchTargetX = (e.touches[0].clientX - rect.left) / this.scaleFactor;
+                this.touchMovements.touchTargetY = (e.touches[0].clientY - rect.top) / this.scaleFactor;
+                this.touchMovements.active = true;
             }
         });
         // 指を離した時、またはタッチがキャンセルされた時に移動を停止
@@ -250,51 +258,15 @@ class Game {
     }
 
     /**
-     * タッチイベントを処理し、プレイヤーの移動方向を決定します。
-     * @param {TouchList} touches - 発生したタッチイベントのリスト。
-     */
-    handleTouch(touches) {
-        // タッチがない場合（指が離れた場合など）は移動を停止
-        if (touches.length === 0) {
-            this.resetTouchControls();
-            return;
-        }
-
-        // 複数のタッチがある場合は最初のタッチを基準とする
-        const touch = touches[0];
-
-        const rect = this.canvas.getBoundingClientRect();
-        // タッチ座標を基準ゲーム座標に変換
-        const canvasX = (touch.clientX - rect.left) / this.scaleFactor;
-        const canvasY = (touch.clientY - rect.top) / this.scaleFactor;
-
-        // プレイヤーの現在位置からタッチ位置へのベクトルを計算
-        let dx = canvasX - this.player.x;
-        let dy = canvasY - this.player.y;
-
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const minMoveThreshold = this.player.baseRadius; // プレイヤーの半径より外側をタッチした場合に移動
-
-        if (distance > minMoveThreshold) {
-            // ベクトルを正規化して方向成分を格納
-            this.touchMovements.dirX = dx / distance;
-            this.touchMovements.dirY = dy / distance;
-            this.touchMovements.active = true;
-        } else {
-            // タッチがプレイヤーに近すぎる場合、移動を停止
-            this.touchMovements.dirX = 0;
-            this.touchMovements.dirY = 0;
-            this.touchMovements.active = false;
-        }
-    }
-
-    /**
      * タッチコントロールの移動状態をリセットします。
      */
     resetTouchControls() {
         this.touchMovements.dirX = 0;
         this.touchMovements.dirY = 0;
         this.touchMovements.active = false;
+        // 目標座標もリセット
+        this.touchMovements.touchTargetX = 0;
+        this.touchMovements.touchTargetY = 0;
     }
 
     /**
@@ -458,7 +430,9 @@ class Game {
             const bullet = this.bullets[i];
 
             // 透明の間は当たり判定なし
-            if (currentTime - bullet.creationTime < bullet.invincibilityDuration) {
+            if (currentTime < bullet.activationTime ||
+                (currentTime - bullet.activationTime < bullet.invincibilityDuration)
+            ) {
                 continue;
             }
 
@@ -470,7 +444,7 @@ class Game {
 
             // 距離がプレイヤーのhitboxRadiusと弾のhitboxRadiusの合計より小さい場合、衝突
             if (distance < this.player.hitboxRadius + bullet.hitboxRadius) {
-                console.warn("ピチューンしました");
+                console.info("ピチューンしました");
 
                 this.gameOver();
                 return;
