@@ -390,68 +390,73 @@ class BulletPatternGenerator {
 
     generateConvergencePattern() {
         const numShots = 3 + Math.floor(this.difficultyLevel * 0.4);
-        const numBullets = 5 + Math.floor(this.difficultyLevel * 0.5);
+        const numBullets = 10 + Math.floor(this.difficultyLevel * 0.8);
         const patternTime = 500;
 
-        const initialBulletSpeed = this.baseBulletSpeed * 0.6;
+        const initialBulletSpeedMultiplier = 0.8;
+        const initialBulletSpeed = this.baseBulletSpeed * initialBulletSpeedMultiplier;
+        const bulletSpeedAcceleration = 1.10;
 
         // 中心に収束していく自機狙い
-        for (let i = 0; i < numShots; i++) {
-            let bulletSpeed = initialBulletSpeed;
-            const spawnY = 0;
-            const newBullets = [];
+        this.delayRepeatValues(
+            (i) => {
+                let bulletSpeed = initialBulletSpeed;
+                const spawnY = 0;
+                const newBullets = [];
 
-            const leftSpawnX = this.game.baseGameWidth * 0.1 + this.game.baseGameWidth * 0.4 / numShots * i;
-            const leftHomingVector = this.calcHoming(leftSpawnX, spawnY);
-            const rightSpawnX = this.game.baseGameWidth * 0.5 + this.game.baseGameWidth * 0.4 / numShots * (numShots - i)
-            const rightHomingVector = this.calcHoming(rightSpawnX, spawnY);
-            // TODO: 疑似遅延方式からタイムアウト方式にする
-            for (let j = 0; j < numBullets; j++) {
-                newBullets.push(new StraightBullet(
-                    leftSpawnX,
-                    spawnY,
-                    this.currentBulletRadius,
-                    leftHomingVector.vx * bulletSpeed,
-                    leftHomingVector.vy * bulletSpeed,
-                    patternTime / numShots * i));
-                newBullets.push(new StraightBullet(
-                    rightSpawnX,
-                    spawnY,
-                    this.currentBulletRadius,
-                    rightHomingVector.vx * bulletSpeed,
-                    rightHomingVector.vy * bulletSpeed,
-                    patternTime / numShots * i));
+                const leftSpawnX = this.game.baseGameWidth * 0.1 + this.game.baseGameWidth * 0.4 / numShots * i;
+                const leftHomingVector = this.calcHoming(leftSpawnX, spawnY);
+                const rightSpawnX = this.game.baseGameWidth * 0.5 + this.game.baseGameWidth * 0.4 / numShots * (numShots - i)
+                const rightHomingVector = this.calcHoming(rightSpawnX, spawnY);
+                for (let j = 0; j < numBullets; j++) {
+                    newBullets.push(new StraightBullet(
+                        leftSpawnX,
+                        spawnY,
+                        this.currentBulletRadius,
+                        leftHomingVector.vx * bulletSpeed,
+                        leftHomingVector.vy * bulletSpeed,
+                        0));
+                    newBullets.push(new StraightBullet(
+                        rightSpawnX,
+                        spawnY,
+                        this.currentBulletRadius,
+                        rightHomingVector.vx * bulletSpeed,
+                        rightHomingVector.vy * bulletSpeed,
+                        0));
 
-                bulletSpeed *= 1.2;
-            }
+                    bulletSpeed *= bulletSpeedAcceleration;
+                }
 
-            this.game.bullets.push(...newBullets);
-        }
+                this.game.bullets.push(...newBullets);
+            }, patternTime / numShots,
+            [...Array(numShots)].map((_, i) => i)
+        );
 
         // 中心から発射するランダムに拡散する自機狙い
-        // TODO: 疑似遅延方式からタイムアウト方式にする
-        const numSpreadBullets = 20 * (1 + this.difficultyLevel * 0.1);
-        const spawnX = this.game.baseGameWidth * 0.5;
-        const spawnY = 0;
-        // 30度～
-        const maxSpreadAngle = Math.PI / 6 * (1 + this.difficultyLevel * 0.05);
-        const homingVector = this.calcHoming(spawnX, spawnY);
-        const homingAngle = Math.atan2(homingVector.vy, homingVector.vx);
-        const newBullets = [];
-        for (let i = 0; i < numSpreadBullets; i++) {
-            const bulletSpeed = this.baseBulletSpeed * (1 + Math.random() * Math.pow(1.2, numBullets) * 0.5);
-            const angle = homingAngle + maxSpreadAngle * this.getRandomNormalish(4, -0.5, 0.5);
-            const vx = Math.cos(angle) * bulletSpeed;
-            const vy = Math.sin(angle) * bulletSpeed;
-            newBullets.push(new StraightBullet(
-                spawnX,
-                spawnY,
-                this.currentBulletRadius,
-                vx,
-                vy,
-                patternTime));
-        }
-        this.game.bullets.push(...newBullets);
+        setTimeout(() => {
+            const numSpreadBullets = 20 * (1 + this.difficultyLevel * 0.1);
+            const spawnX = this.game.baseGameWidth * 0.5;
+            const spawnY = 0;
+            // 30度～
+            const maxSpreadAngle = Math.PI / 6 * (1 + this.difficultyLevel * 0.05);
+            const homingVector = this.calcHoming(spawnX, spawnY);
+            const homingAngle = Math.atan2(homingVector.vy, homingVector.vx);
+            const newBullets = [];
+            for (let i = 0; i < numSpreadBullets; i++) {
+                const bulletSpeed = this.baseBulletSpeed * (1 + Math.random() * Math.pow(bulletSpeedAcceleration, numBullets) * initialBulletSpeedMultiplier);
+                const angle = homingAngle + maxSpreadAngle * this.getRandomNormalish(4, -0.5, 0.5);
+                const vx = Math.cos(angle) * bulletSpeed;
+                const vy = Math.sin(angle) * bulletSpeed;
+                newBullets.push(new StraightBullet(
+                    spawnX,
+                    spawnY,
+                    this.currentBulletRadius,
+                    vx,
+                    vy,
+                    0));
+            }
+            this.game.bullets.push(...newBullets);
+        }, patternTime);
     }
 
     /**
