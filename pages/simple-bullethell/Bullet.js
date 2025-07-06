@@ -28,7 +28,7 @@ class Bullet {
         /**
          * @type {number} 弾の当たり判定の比率
          */
-        this.hitboxRatio = 0.8;
+        this.hitboxRatio = 0.6;
         /**
          * @type {number} 当たり判定
          */
