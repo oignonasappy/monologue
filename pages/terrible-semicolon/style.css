@@ -36,3 +36,8 @@ div[class^="cb-"] {
         display: block;
     }
 }
+
+img {
+    display: block;
+    margin: 0 auto;
+}
