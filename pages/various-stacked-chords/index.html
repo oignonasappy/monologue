@@ -47,10 +47,11 @@
         <button type="button" onclick="playStackedChord([4, 3])">M3, m3</button>
         <button type="button" onclick="playStackedChord([3, 4])">m3, M3</button>
         <button type="button" onclick="playStackedChord([7, 3])">P5, m3</button>
+        <button type="button" onclick="playStackedChord([7, 3])">P5, m3</button>
       </div>
 
       <section>
-        <h3>P5</h3>
+        <h2>P5</h2>
         <h6>Cから堆積させた例</h6>
         <p>
           C → G → D → A → E → B → F# → C# → G# → D# → A# → E# → <span class="no-wrap">B#(C)</span>
@@ -63,7 +64,7 @@
       </section>
 
       <section>
-        <h3>P4</h3>
+        <h2>P4</h2>
         <h6>Cから堆積させた例</h6>
         <p>
           C → F → Bb → Eb → Ab → Db → Gb → Cb → Fb → Bbb → Ebb → Abb → <span class="no-wrap">Dbb(C)</span>
@@ -76,47 +77,62 @@
       </section>
 
       <section>
-        <h3>M3, m3</h3>
+        <h2>M3, m3</h2>
         <h6>Cから堆積させた例</h6>
         <p>
-          C → E → G → B → D → F# → A → C# → E → G# → B → D# →
-          F# → A# → C# → E# → G# → B# → D# → Fx → A# → Cx → E# → Gx → <span class="no-wrap">B#(C)</span>
+          <i>(M3, m3)</i><br>
+          C → E → G → B → D → F# → A → C# → E → G# → B → D# → F# → A# → C# → E# →
+          G# → B# → D# → Fx → A# → Cx → E# → Gx → <span class="no-wrap">B#(C)</span>
+        </p>
+        <p>
+          <i>(m3, M3)</i><br>
+          C → Eb → G → Bb → D → F → A → C → E → G → B → D → F# → A → C# → E →
+          G# → B → D# → F# → A# → C# → E# → G# → <span class="no-wrap">B#(C)</span>
         </p>
         <h6>構築されるスケール</h6>
-        <h5>Lydian Scale</h5>
+        <h5><i>(M3, m3)</i> Lydian Scale</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
           data-osc-type="sawtooth" data-key-signature="C Lyd" data-highlight="60 62 64 66 67 69 71 72"></div>
-      </section>
-
-      <section>
-        <h3>m3, M3</h3>
-        <h6>Cから堆積させた例</h6>
-        <p>
-          C → Eb → G → Bb → D → F → A → C → E → G → B → D →
-          F# → A → C# → E → G# → B → D# → F# → A# → C# → E# → G# → <span class="no-wrap">B#(C)</span>
-        </p>
-        <h6>構築されるスケール</h6>
-        <h5>Dorian Scale</h5>
+        <h5><i>(m3, M3)</i> Dorian Scale</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
           data-osc-type="sawtooth" data-key-signature="C Dor" data-highlight="60 62 63 65 67 69 70 72"></div>
-        <p>
-          前述の"M3, m3"と同じです。
-        </p>
       </section>
 
       <section>
-        <h3>P5, m3</h3>
+        <h2>P5, m3</h2>
         <h6>Cから堆積させた例</h6>
         <p>
           C → G → Bb → Eb → Ab → Db → Gb → Cb → Fb → Bbb → Ebb → Abb → <span class="no-wrap">Dbb(C)</span>
         </p>
         <h6>構築されるスケール</h6>
-        <h5>Phrygian Scale? (omit 4)</h5>
+        <h5>Phrygian Scale(omit 4)?</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
           data-osc-type="sawtooth" data-key-signature="C Phr" data-highlight="60 61 63 67 68 70 72"></div>
+      </section>
+
+      <section>
+        <h2>m3, M2</h2>
+        <h6>Cから堆積させた例</h6>
+        <p>
+          <i>(m3, M2)</i><br>
+          C → Eb → F → Ab → Bb → Db → Eb → Gb → Ab → Cb → Db → Fb → Gb → Bbb → Cb → Ebb →
+          Fb → Abb → Bbb → Dbb → Ebb → Gbb → Abb → Cbb → <span class="no-wrap">Dbb(C)</span>
+        </p>
+        <p>
+          <i>(M2, m3)</i><br>
+        </p>
+        <h6>構築されるスケール</h6>
+        <h5><i>(m3, M2)</i> Locrian Scale</h5>
+        <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
+          data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
+          data-osc-type="sawtooth" data-key-signature="C Loc" data-highlight="60 61 63 65 66 68 70 72"></div>
+        <h5><i>(M2, m3)</i> Aeolian Scale</h5>
+        <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
+          data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
+          data-osc-type="sawtooth" data-key-signature="C Aeo" data-highlight="60 62 63 65 67 68 70 72"></div>
       </section>
 
     </main>
