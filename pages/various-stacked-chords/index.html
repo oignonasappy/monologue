@@ -38,19 +38,23 @@
 
       <h1>不思議な無限堆積和音集</h1>
 
-      <div class="piano-hover" data-first="12" data-last="100" data-key-width="24px" data-key-height="80px"
-        data-notename="true" data-volume="0.2" data-duration="2.5" data-osc-type="square"></div>
+      <div class="piano-hover" id="main-piano" data-first="12" data-last="91" data-key-width="24px"
+        data-key-height="80px" data-notename="true" data-volume="0.2" data-duration="2.5" data-osc-type="square"></div>
 
       <div class="">
-        <button type="button" onclick="play_P5()">P5</button>
-        <button type="button" onclick="play_P4()">P4</button>
-        <button type="button" onclick="play_M3m3()">M3, m3</button>
-        <button type="button" onclick="play_m3M3()">m3, M3</button>
-        <button type="button" onclick="play_P5m3()">P5, m3</button>
+        <button type="button" onclick="playStackedChord([7])">P5</button>
+        <button type="button" onclick="playStackedChord([5])">P4</button>
+        <button type="button" onclick="playStackedChord([4, 3])">M3, m3</button>
+        <button type="button" onclick="playStackedChord([3, 4])">m3, M3</button>
+        <button type="button" onclick="playStackedChord([7, 3])">P5, m3</button>
       </div>
 
       <section>
         <h3>P5</h3>
+        <h6>Cから堆積させた例</h6>
+        <p>
+          C → G → D → A → E → B → F# → C# → G# → D# → A# → E# → <span class="no-wrap">B#(C)</span>
+        </p>
         <h6>構築されるスケール</h6>
         <h5>Lydian Scale</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
@@ -60,41 +64,59 @@
 
       <section>
         <h3>P4</h3>
+        <h6>Cから堆積させた例</h6>
+        <p>
+          C → F → Bb → Eb → Ab → Db → Gb → Cb → Fb → Bbb → Ebb → Abb → <span class="no-wrap">Dbb(C)</span>
+        </p>
         <h6>構築されるスケール</h6>
-        <h5>x Scale</h5>
+        <h5>Locrian Scale</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
-          data-osc-type="sawtooth" data-key-signature="C" data-highlight="60 72"></div>
+          data-osc-type="sawtooth" data-key-signature="C Loc" data-highlight="60 61 63 65 66 68 70 72"></div>
       </section>
 
       <section>
         <h3>M3, m3</h3>
+        <h6>Cから堆積させた例</h6>
+        <p>
+          C → E → G → B → D → F# → A → C# → E → G# → B → D# →
+          F# → A# → C# → E# → G# → B# → D# → Fx → A# → Cx → E# → Gx → <span class="no-wrap">B#(C)</span>
+        </p>
         <h6>構築されるスケール</h6>
-        <h5>x Scale</h5>
+        <h5>Lydian Scale</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
-          data-osc-type="sawtooth" data-key-signature="C" data-highlight="60 72"></div>
+          data-osc-type="sawtooth" data-key-signature="C Lyd" data-highlight="60 62 64 66 67 69 71 72"></div>
       </section>
 
       <section>
         <h3>m3, M3</h3>
+        <h6>Cから堆積させた例</h6>
+        <p>
+          C → Eb → G → Bb → D → F → A → C → E → G → B → D →
+          F# → A → C# → E → G# → B → D# → F# → A# → C# → E# → G# → <span class="no-wrap">B#(C)</span>
+        </p>
         <h6>構築されるスケール</h6>
-        <h5>x Scale</h5>
+        <h5>Dorian Scale</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
-          data-osc-type="sawtooth" data-key-signature="C" data-highlight="60 72"></div>
+          data-osc-type="sawtooth" data-key-signature="C Dor" data-highlight="60 62 63 65 67 69 70 72"></div>
         <p>
-          前述の"M3, m3"とほとんど同じですね。
+          前述の"M3, m3"と同じです。
         </p>
       </section>
-      
+
       <section>
         <h3>P5, m3</h3>
+        <h6>Cから堆積させた例</h6>
+        <p>
+          C → G → Bb → Eb → Ab → Db → Gb → Cb → Fb → Bbb → Ebb → Abb → <span class="no-wrap">Dbb(C)</span>
+        </p>
         <h6>構築されるスケール</h6>
-        <h5>x Scale</h5>
+        <h5>Phrygian Scale? (omit 4)</h5>
         <div class="piano-play" data-first="60" data-last="72" data-key-width="40px" data-key-height="120px"
           data-notename="true" data-highlight-color="#E0FFFF" data-volume="0.25" data-duration="2"
-          data-osc-type="sawtooth" data-key-signature="C" data-highlight="60 72"></div>
+          data-osc-type="sawtooth" data-key-signature="C Phr" data-highlight="60 61 63 67 68 70 72"></div>
       </section>
 
     </main>
