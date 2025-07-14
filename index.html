@@ -4,7 +4,7 @@
 <head prefix="og: https://ogp.me/ns#">
 
   <!--<meta name="local-env">-->
-  
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -48,6 +48,15 @@
         line-height: inherit;
       }
     }
+
+    .countdown-text {
+      font-size: 1.5em;
+
+      #countdown-remain {
+        font-size: 3em;
+        color: #FF4040;
+      }
+    }
   </style>
 
   <meta name="google-site-verification" content="Ti97xTVl4W1MXU4miXf-2N1Iu4PXlT6pSR2e5CbhPtk" />
@@ -63,6 +72,21 @@
         <h3><a href="./general/page-search/allpages.html">全記事から探す</a></h3>
         <h3><a href="./general/page-search/category.html">カテゴリから記事を探す</a></h3>
         <h3><a href="./general/page-search/tag.html">タグから記事を探す</a></h3>
+      </section>
+
+      <section>
+        <p>
+          自分用カウントダウン<br>
+          <br>
+          <span class="countdown-text">あと<span id="countdown-remain">x</span>日</span>
+        </p>
+        <script>
+          document.getElementById('countdown-remain').textContent = Math.floor(
+            (new Date("2025-08-03 10:55:00").getTime() - new Date().getTime())
+            /
+            (1000 * 60 * 60 * 24)
+          );
+        </script>
       </section>
 
       <article>
