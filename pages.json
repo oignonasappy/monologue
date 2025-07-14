@@ -198,5 +198,16 @@
             "JavaScript",
             "クリエイティブ"
         ]
+    },
+    {
+        "title": "不思議な無限堆積和音集",
+        "url": "pages/various-stacked-chords/",
+        "create-date": "2025-07-14",
+        "update-date": null,
+        "category": "音楽",
+        "tag": [
+            "コード",
+            "音楽理論"
+        ]
     }
 ]
