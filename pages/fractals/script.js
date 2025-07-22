@@ -151,6 +151,9 @@ const graphic = {
 
     fractal.forEach(radio => radio.addEventListener("change", e => {
         animater.animateFractal = radio.value;
+        
+        //
+        animater.selectFractal();
     }));
 
     //animater.update();
