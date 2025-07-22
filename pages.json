@@ -203,11 +203,22 @@
         "title": "不思議な無限堆積和音集",
         "url": "pages/various-stacked-chords/",
         "create-date": "2025-07-14",
-        "update-date": null,
+        "update-date": "2025-07-18",
         "category": "音楽",
         "tag": [
             "コード",
             "音楽理論"
+        ]
+    },
+    {
+        "title": "ブロックコメントの` *`を削除する",
+        "url": "pages/delete-blockcomment-asterisk/",
+        "create-date": "2025-07-22",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "ツール",
+            "JavaScript"
         ]
     }
 ]
