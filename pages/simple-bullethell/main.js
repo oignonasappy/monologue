@@ -180,8 +180,6 @@ class Game {
         this.difficultyLevel = 1; // 難易度をリセット 標準1
         this.lastDifficultyIncreaseTime = performance.now(); // 難易度上昇タイマーをリセット
         this.bulletPatternGenerator.updateDifficulty(this.difficultyLevel); // 難易度を初期化
-        this.isGeneratingMessage = false;
-        this.showGeminiMessageOverlay = false;
     }
 
     /**
