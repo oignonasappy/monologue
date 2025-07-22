@@ -220,5 +220,16 @@
             "ツール",
             "JavaScript"
         ]
+    },
+    {
+        "title": "Fractals",
+        "url": "pages/fractals/",
+        "create-date": "2025-07-22",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "JavaScript",
+            "クリエイティブ"
+        ]
     }
 ]
