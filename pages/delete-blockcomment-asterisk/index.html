@@ -16,7 +16,8 @@
 
     <!--OGP-->
     <meta property="og:site_name" content="Monologue">
-    <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/delete-blockcomment-asterisk/index.html">
+    <meta property="og:url"
+        content="https://oignonasappy.github.io/monologue/pages/delete-blockcomment-asterisk/index.html">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="ja_JP">
 
@@ -35,7 +36,8 @@
 
             <h1>ブロックコメントの` *`を削除するツール</h1>
             <p>
-                ブロックコメントをまるまるコピペしたときにアスタリスクまでくっついてきてしまう問題に対処します。
+                ブロックコメントを<wbr>まるまるコピペしたときに<wbr>
+                アスタリスクまで<wbr>くっついてきてしまう<wbr>問題に対処します。
             </p>
 
             <section>
@@ -50,6 +52,37 @@
                     <button id="copy">copy</button>
                     <button id="clear">clear</button>
                 </div>
+            </section>
+
+            <section>
+                <h3>今回の正規表現(JavaScript)</h3>
+
+                <p>
+                    <span class="code">/^\s*\*/gm</span><br>
+                    <span class="code">/^\s*\*\s*/gm</span>:(アスタリスク直後の空白除去)<br>
+                    これに一致する文字列を削除する
+                </p>
+
+                <h5>ちょっと整理がてら解説</h5>
+                <p>
+                    <span class="code">/</span>から<span class="code">/</span>までが正規表現パターンの範囲<br>
+                    末尾の<span class="code">g</span>は<dfn
+                        title="対象の文字列の中からパターンに一致するものを全て検索することを表す。(このフラグを付加しない場合は最初の一致のみを返す)">グローバルフラグ</dfn>、<wbr>
+                    末尾の<span class="code">m</span>は<dfn title="対象の文字列が複数行であることを表す。`^`(先頭)および`$`(末尾)の扱いが変化する。">複数行フラグ</dfn>
+                </p>
+                <p>
+                    <span class="code">^\s*\*<span class="light-text">\s*</span></span><br>
+                    <span class="code">^</span>&Tab;:行の最初から<br>
+                    <span class="code">\s*</span>&Tab;:任意の数の空白<br>
+                    <span class="code">\*</span>&Tab;:アスタリスク1つ<br>
+                    <span class="light-text"><span class="code">\s*</span>&Tab;:任意の数の空白</span>
+                </p>
+
+                <p>
+                    なんと私、<wbr>正規表現を<wbr>未履修だったので<wbr>この際に<wbr>勉強します。<br>
+                    中々<wbr>暗号にしか<wbr>見えないですが、<wbr>そういうもんですね。<wbr>保守性は悪いみたいで。
+                </p>
+
             </section>
 
         </main>

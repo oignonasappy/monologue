@@ -16,8 +16,7 @@ const toggle = document.querySelector('#toggle');
 })();
 
 function update() {
-    const arr = new Array();
-    return toggle.checked
-        ? input.value.replaceAll(/^\s*\*\s*/, '')
-        : input.value.replaceAll(/^\s*\*/, '');
+    input.value = toggle.checked
+        ? input.value.replaceAll(/^\s*\*\s*/gm, '')
+        : input.value.replaceAll(/^\s*\*/gm, '');
 }
