@@ -15,17 +15,18 @@
 
   <!--OGP-->
   <meta property="og:site_name" content="Monologue">
-  <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/index.html">
+  <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/fractals/index.html">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:image"
-    content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/images/[IMAGE]">
+    content="https://oignonasappy.github.io/monologue/pages/fractals/images/image.png">
 
-  <title>TemplateTemplateTemplate</title>
-  <meta property="og:title" content="TemplateTemplateTemplate">
-  <meta name="description" content="Lorem, ipsum.">
-  <meta property="og:description" content="Lorem, ipsum.">
+  <title>Fractals</title>
+  <meta property="og:title" content="Fractals">
+  <meta name="description" content="Fractals drawn by JavaScript Canvas API">
+  <meta property="og:description" content="Fractals drawn by JavaScript Canvas API">
 
+  <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
 </head>
 
@@ -33,12 +34,16 @@
   <div id="container">
     <main>
 
+      <h1>Fractals</h1>
+
       <canvas id="canvas">
 
       </canvas>
       <div id="block-stretch-width" style="width: 100%;"></div>
 
-      <input type="radio" name="fractal" value="koch">
+      <label><input type="radio" name="fractal" value="koch">Koch Curve</label>
+      <label><input type="radio" name="fractal" value="sierpinski">Sierpinski Gasket</label>
+      <label><input type="radio" name="fractal" value="cantor">Cantor Set</label>
 
     </main>
   </div>
