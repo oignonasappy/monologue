@@ -32,11 +32,7 @@ const animater = {
             return;
         }
 
-        // リサイズ
-        if (blockStretchWidth.getBoundingClientRect().width !== canvas.width) {
-            canvas.width = blockStretchWidth.getBoundingClientRect().width;
-            canvas.height = blockStretchWidth.getBoundingClientRect().width * (2 / 3);
-        }
+        this.updateCanvasWidth();
 
         this.selectFractal();
     },
@@ -82,23 +78,20 @@ const graphic = {
             return;
         }
 
-        // 線分の長さと角度を計算
         const dx = x2 - x1;
         const dy = y2 - y1;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const angle = Math.atan2(dy, dx);
 
-        // 4つの新しい点の座標を計算
         const xA = x1 + dx / 3;
         const yA = y1 + dy / 3;
 
         const xC = x2 - dx / 3;
         const yC = y2 - dy / 3;
 
-        const xB = xA + dist / 3 * Math.cos(angle + Math.PI / 3); // 60度回転
+        const xB = xA + dist / 3 * Math.cos(angle + Math.PI / 3);
         const yB = yA + dist / 3 * Math.sin(angle + Math.PI / 3);
 
-        // 4つの新しい線分に対して再帰呼び出し
         this.drawKochCurve(x1, y1, xA, yA, depth - 1);
         this.drawKochCurve(xA, yA, xB, yB, depth - 1);
         this.drawKochCurve(xB, yB, xC, yC, depth - 1);
@@ -112,11 +105,10 @@ const graphic = {
             ctx.lineTo(x2, y2);
             ctx.lineTo(x3, y3);
             ctx.closePath();
-            ctx.stroke(); // または fill()
+            ctx.stroke();
             return;
         }
 
-        // 各辺の中点を計算
         const mid12x = (x1 + x2) / 2;
         const mid12y = (y1 + y2) / 2;
         const mid23x = (x2 + x3) / 2;
@@ -124,7 +116,6 @@ const graphic = {
         const mid31x = (x3 + x1) / 2;
         const mid31y = (y3 + y1) / 2;
 
-        // 3つの外側の小さな三角形に対して再帰呼び出し
         this.drawSierpinski(x1, y1, mid12x, mid12y, mid31x, mid31y, depth - 1);
         this.drawSierpinski(mid12x, mid12y, x2, y2, mid23x, mid23y, depth - 1);
         this.drawSierpinski(mid31x, mid31y, mid23x, mid23y, x3, y3, depth - 1);
@@ -140,10 +131,9 @@ const graphic = {
             return;
         }
 
-        const len = (x2 - x1) / 2.5; // 1/3の長さ
-        this.drawCantorSet(x1, x1 + len, y + 20, depth - 1); // 左1/3の線分
-        // 中央1/3は描画しない
-        this.drawCantorSet(x2 - len, x2, y + 20, depth - 1); // 右1/3の線分
+        const len = (x2 - x1) / 2.5;
+        this.drawCantorSet(x1, x1 + len, y + 20, depth - 1);
+        this.drawCantorSet(x2 - len, x2, y + 20, depth - 1);
     },
 };
 
@@ -152,7 +142,7 @@ const graphic = {
     fractal.forEach(radio => radio.addEventListener("change", e => {
         animater.animateFractal = radio.value;
         
-        //
+        // TODO:
         animater.selectFractal();
     }));
 
