@@ -313,26 +313,7 @@ function pageInfo(pages) {
         // TOC contents
         const content = document.createElement('li');
 
-        switch (elem.tagName) {
-            case "H1":
-                content.className = "toc-content-h1";
-                break;
-            case "H2":
-                content.className = "toc-content-h2";
-                break;
-            case "H3":
-                content.className = "toc-content-h3";
-                break;
-            case "H4":
-                content.className = "toc-content-h4";
-                break;
-            case "H5":
-                content.className = "toc-content-h5";
-                break;
-            case "H6":
-                content.className = "toc-content-h6";
-                break;
-        }
+        content.className = `toc.content-${elem.tagName.toLowerCase()}`;
 
         const toHeadingAnchor = document.createElement('a');
         toHeadingAnchor.href = "./#h-index-" + hIndex;
