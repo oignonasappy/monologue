@@ -313,7 +313,8 @@ function pageInfo(pages) {
         // TOC contents
         const content = document.createElement('li');
 
-        content.className = `toc.content-${elem.tagName.toLowerCase()}`;
+        // toc-content-h*
+        content.className = `toc-content-${elem.tagName.toLowerCase()}`;
 
         const toHeadingAnchor = document.createElement('a');
         toHeadingAnchor.href = "./#h-index-" + hIndex;
