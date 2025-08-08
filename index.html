@@ -185,7 +185,7 @@
                     note.style.opacity = 0.0;
                     ring.style.opacity = 0.0;
                     line.style.opacity = 0.0;
-                  })
+                  });
                 });
                 setTimeout(() => {
                   anchor.removeChild(note);
@@ -202,14 +202,14 @@
             }
           </script>
 
-          <button type="button" id="hello-chord" onclick="helloChord()"
+          <button type="button" id="hello-chord" onclick="helloChord()" title="orbit"
             style="padding:5px;border-radius:50%;">あいさつのコード</button>
-            <span class="small">連打して酷いことになっても私知らない</span>
+          <span class="small">連打して酷いことになっても私知らない</span>
+        </p>
+
         <div id="huge-hello-chord">
           <div id="anchor"></div>
         </div>
-        
-        </p>
 
         <p>
           このブログでは、<wbr>技術や<wbr>音楽のことを<wbr>よくつぶやきます
