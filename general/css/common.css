@@ -455,6 +455,10 @@ main {
     span[id^="h-index"] {
         visibility: hidden;
     }
+
+    del.h {
+        text-decoration: none;
+    }
 }
 
 footer {

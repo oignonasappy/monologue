@@ -338,3 +338,10 @@ function pageInfo(pages) {
         document.querySelector('main').insertAdjacentElement('afterbegin', TOCBox);
     }
 })();
+
+/* ^H */
+(() => {
+    document.querySelectorAll("del.h").forEach((elem => {
+        elem.insertAdjacentText("afterend", '^H'.repeat(elem.textContent.length));
+    }));
+})();
