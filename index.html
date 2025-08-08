@@ -57,6 +57,51 @@
         color: #FF4040;
       }
     }
+
+    #huge-hello-chord {
+      position: relative;
+      margin: 0 auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, orange, yellow, lightgreen);
+    }
+
+    #anchor {
+      position: relative;
+      top: 12px;
+      left: 12px;
+    }
+
+    .chord-note {
+      position: absolute;
+      padding: 4px;
+      background-color: #808080;
+      border-radius: 12px;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 5s linear;
+      translate: -50% -50%;
+      pointer-events: none;
+    }
+
+    .note-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px dotted #A0A0A0;
+      opacity: 0.8;
+      transition: opacity 5s linear;
+      translate: -50% -50%;
+      pointer-events: none;
+    }
+
+    .note-line {
+      position: absolute;
+      opacity: 0.6;
+      transition: opacity 5s linear;
+      translate: -50% -50%;
+      pointer-events: none;
+    }
   </style>
 
   <meta name="google-site-verification" content="Ti97xTVl4W1MXU4miXf-2N1Iu4PXlT6pSR2e5CbhPtk" />
@@ -97,11 +142,57 @@
 
           <script>
             function helloChord() {
-              const huge = document.querySelector('#huge-hello-chord');
-              huge.innerHTML = "";
+              const mainWidth = document.querySelector('main').clientWidth;
+              const anchor = document.querySelector('#anchor');
+              let step = 1;
+              const numOfNotes = 30;
+              const midiOffset = Math.floor((Math.random() - 0.5) * 12);
               sequencer((value) => {
-                playNote(value - 0.5, 0.03, 8, 'sawtooth', 440 * Math.pow(2, -1 / 12 / 2));
-                huge.innerHTML += `<span style="color:hsl(${Math.round(Math.random() * 360)}deg 100% 50%);background-color:#808080;">${midiToNoteName(value)}&thinsp;</span>`;
+                playNote(value - 0.5 + midiOffset, 0.03, 8, 'sawtooth', 440 * Math.pow(2, -1 / 12 / 2));
+
+                const dir = Math.random() * Math.PI * 2;
+                const colorHsl = `hsl(${Math.round(Math.random() * 360)}deg 100% 50%)`;
+
+                const note = document.createElement('div');
+                note.textContent = midiToNoteName(value);
+                note.classList.add('chord-note');
+                note.style.color = colorHsl;
+                note.style.left = `${Math.cos(dir) * (mainWidth * 0.5 - 10) * (step / numOfNotes)}px`;
+                note.style.top = `${Math.sin(dir) * (mainWidth * 0.5 - 10) * (step / numOfNotes)}px`;
+                note.style.fontSize = `${(1.0 + Math.random() * 0.8) * (1 + 1.0 * (step / numOfNotes))}em`;
+
+                const ring = document.createElement('div');
+                ring.classList.add('note-ring');
+                ring.style.borderColor = colorHsl;
+                ring.style.width = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
+                ring.style.height = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
+
+                const line = document.createElement('div');
+                line.classList.add('note-line');
+                line.style.backgroundColor = colorHsl;
+                line.style.width = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
+                line.style.height = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
+                line.style.clipPath = `polygon(
+                  50% 50%,
+                  ${50 + Math.cos(dir) * 50 - Math.sin(dir) * 2}% ${50 + Math.sin(dir) * 50 + Math.cos(dir) * 2}%,
+                  ${50 + Math.cos(dir) * 50 + Math.sin(dir) * 2}% ${50 + Math.sin(dir) * 50 - Math.cos(dir) * 2}%)`; // 音名へ伸びる三角形を描く
+
+                anchor.appendChild(note);
+                anchor.appendChild(ring);
+                anchor.appendChild(line);
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    note.style.opacity = 0.0;
+                    ring.style.opacity = 0.0;
+                    line.style.opacity = 0.0;
+                  })
+                });
+                setTimeout(() => {
+                  anchor.removeChild(note);
+                  anchor.removeChild(ring);
+                  anchor.removeChild(line);
+                }, 5000);
+                step++;
               },
                 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 92],
                 [0, 4, 7, 11, 14, 18, 21, 25, 28, 32, 35, 39, 42, 46, 49, 53, 56, 60, 63, 67, 70, 74, 77, 81, 84, 88, 91, 95, 98],
@@ -112,8 +203,12 @@
           </script>
 
           <button type="button" id="hello-chord" onclick="helloChord()"
-            style="padding:5px;border-radius:50%;">あいさつのコード</button><br>
-          <span id="huge-hello-chord"></span>
+            style="padding:5px;border-radius:50%;">あいさつのコード</button>
+            <span class="small">連打して酷いことになっても私知らない</span>
+        <div id="huge-hello-chord">
+          <div id="anchor"></div>
+        </div>
+        
         </p>
 
         <p>
