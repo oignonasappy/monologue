@@ -157,21 +157,21 @@
                 note.textContent = midiToNoteName(value);
                 note.classList.add('chord-note');
                 note.style.color = colorHsl;
-                note.style.left = `${Math.cos(dir) * (mainWidth * 0.5 - 10) * (step / numOfNotes)}px`;
-                note.style.top = `${Math.sin(dir) * (mainWidth * 0.5 - 10) * (step / numOfNotes)}px`;
+                note.style.left = `${Math.cos(dir) * ((mainWidth * 0.5 - 30) * (step / numOfNotes) + 25)}px`;
+                note.style.top = `${Math.sin(dir) * ((mainWidth * 0.5 - 30) * (step / numOfNotes) + 25)}px`;
                 note.style.fontSize = `${(1.0 + Math.random() * 0.8) * (1 + 1.0 * (step / numOfNotes))}em`;
 
                 const ring = document.createElement('div');
                 ring.classList.add('note-ring');
                 ring.style.borderColor = colorHsl;
-                ring.style.width = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
-                ring.style.height = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
+                ring.style.width = `${(mainWidth * 1 - 60) * (step / numOfNotes)}px`;
+                ring.style.height = `${(mainWidth * 1 - 60) * (step / numOfNotes)}px`;
 
                 const line = document.createElement('div');
                 line.classList.add('note-line');
                 line.style.backgroundColor = colorHsl;
-                line.style.width = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
-                line.style.height = `${(mainWidth * 1 - 10) * (step / numOfNotes)}px`;
+                line.style.width = `${(mainWidth * 1 - 60) * (step / numOfNotes)}px`;
+                line.style.height = `${(mainWidth * 1 - 60) * (step / numOfNotes)}px`;
                 line.style.clipPath = `polygon(
                   50% 50%,
                   ${50 + Math.cos(dir) * 50 - Math.sin(dir) * 2}% ${50 + Math.sin(dir) * 50 + Math.cos(dir) * 2}%,
