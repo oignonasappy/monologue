@@ -120,7 +120,11 @@ a:visited {
     color: #5050A0;
 }
 
-.icon {}
+.icon {
+    position: relative;
+    top: 4px;
+    height: 20px;
+}
 
 @keyframes tightenSpacing {
     from {
@@ -172,11 +176,11 @@ main {
         column-gap: 20px;
         row-gap: 5px;
 
-        .info-category {}
+        /*.info-category {}*/
 
-        .info-tags {}
+        /*.info-tags {}*/
 
-        .info-date {}
+        /*.info-date {}*/
     }
 
     /* Making <wbr> work in Japanese contents*/
