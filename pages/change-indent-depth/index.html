@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+    <!--<meta name="local-env">-->
+    <meta name="no-toc">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--general-->
+    <link rel="stylesheet" href="../../general/css/common.css">
+    <script src="../../general/js/common.js" type="module"></script>
+    <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+    <!--OGP-->
+    <meta property="og:site_name" content="Monologue">
+    <meta property="og:url"
+        content="https://oignonasappy.github.io/monologue/pages/change-indent-depth/index.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+
+    <title>インデント幅を変更するツール</title>
+    <meta property="og:title" content="インデント幅を変更するツール">
+    <meta name="description" content="インデント幅を変更します。どうしてもIDE等が使えないときにお使いください">
+    <meta property="og:description" content="インデント幅を変更します。どうしてもIDE等が使えないときにお使いください">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <div id="container">
+        <main>
+
+            <h1>インデント幅を変更するツール(スペース式)</h1>
+            <p>
+                インデント幅を変更します。<wbr>タブ式のインデントは変更できません。
+            </p>
+
+            <section>
+                <label for="input">入力エリア</label>
+                <textarea id="input" placeholder="ここに入力"></textarea>
+                <div class="opt">
+                    幅 : <input type="number" id="depth" min="0" max="16" value="2">
+                </div>
+                <button id="process">PROCESS</button>
+                <div class="buttons">
+                    <button id="copy">copy</button>
+                    <button id="clear">clear</button>
+                </div>
+            </section>
+
+            <p>
+                IDEを使ってください。
+            </p>
+
+        </main>
+    </div>
+</body>
+
+</html>

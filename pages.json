@@ -231,5 +231,16 @@
             "JavaScript",
             "クリエイティブ"
         ]
+    },
+    {
+        "title": "インデント幅を変更するツール",
+        "url": "pages/change-indent-depth/",
+        "create-date": "2025-08-09",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "ツール",
+            "JavaScript"
+        ]
     }
 ]
