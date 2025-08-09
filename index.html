@@ -58,9 +58,26 @@
       }
     }
 
+    #hello-chord {
+      font-size: 1.2em;
+      border-radius: 50%;
+      padding: 16px 12px;
+      background: linear-gradient(225deg, orange, yellow, lightgreen);
+      transition: translate 1s ease-out, filter 1s ease, transform .5s ease-out;
+    }
+
+    #hello-chord:hover {
+      translate: 10px -15px;
+      filter: invert(100%);
+    }
+
+    #hello-chord:active {
+      transform: rotateY(360deg);
+    }
+
     #huge-hello-chord {
       position: relative;
-      margin: 0 auto;
+      margin: 40px auto;
       width: 24px;
       height: 24px;
       border-radius: 50%;
@@ -202,8 +219,7 @@
             }
           </script>
 
-          <button type="button" id="hello-chord" onclick="helloChord()" title="orbit"
-            style="padding:5px;border-radius:50%;">あいさつのコード</button>
+          <button type="button" id="hello-chord" onclick="helloChord()" title="orbit">あいさつのコード</button>
           <span class="small">連打して酷いことになっても私知らない</span>
         </p>
 
