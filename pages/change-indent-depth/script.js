@@ -47,5 +47,5 @@ function update() {
             + '\n';
     }
 
-    input.value = returnString;
+    input.value = returnString.replace(/\n$/, '');
 }
