@@ -242,5 +242,17 @@
             "ツール",
             "JavaScript"
         ]
+    },
+    {
+        "title": "日時でソートする[JavaScript]",
+        "url": "pages/compare-date-js/",
+        "create-date": "2025-08-11",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "JavaScript",
+            "初心者向け",
+            "解説"
+        ]
     }
 ]

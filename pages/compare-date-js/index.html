@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+  <!--<meta name="local-env">-->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--general-->
+  <link rel="stylesheet" href="../../general/css/common.css">
+  <script src="../../general/js/common.js" type="module"></script>
+  <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+  <!--OGP-->
+  <meta property="og:site_name" content="Monologue">
+  <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/compare-date-js/index.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ja_JP">
+
+  <!--Prism.js-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!--Prism.js plugins-->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+  <title>日時でソートする[JavaScript]</title>
+  <meta property="og:title" content="日時を比較する[JavaScript]">
+  <meta name="description" content="JavaScriptで日時(Date)を比較・ソートする方法">
+  <meta property="og:description" content="JavaScriptで日時(Date)を比較・ソートする方法">
+</head>
+
+<body>
+  <div id="container">
+    <main>
+
+      <h1>日時でソートする[JavaScript]</h1>
+
+      <p>
+        日時(Date)での比較・ソートの方法について。
+      </p>
+
+      <section>
+        <h2>Date型の仕様について</h2>
+
+        <p>
+          JavaScriptにおける<span class="code">Date</span>は、<wbr>
+          それどうしでの<b>減算</b><span class="code">-</span>や、<wbr>
+          <b>比較</b><span class="code">&lt;, &gt;</span>が可能です。
+        </p>
+        <p>
+          これらの演算は内部でミリ秒での計算が行われます。
+        </p>
+        <pre><code class="lang-js">
+          console.log(new Date("2025-08-11 15:00:01")
+                    - new Date("2025-08-11 15:00:00")); // 1000
+
+          console.log(new Date("2025-08-11 15:00:01")
+                    > new Date("2025-08-11 15:00:00")); // true
+        </code></pre>
+
+      </section>
+
+      <section>
+        <h2>日付の配列をソートする</h2>
+
+        <p>
+          Dateオブジェクトの入った配列を新しい順にソートするには、このようにします。
+        </p>
+        <pre><code class="code lang-js line-numbers">
+          const dateArray = [
+            new Date("2025/01/05"),
+            new Date("2025/01/02"),
+            new Date("2025/01/01"),
+            new Date("2025/01/03"),
+            new Date("2025/01/04"),
+          ];
+
+          // 新しい順
+          const sortedDateArray = dateArray.toSorted((a, b) => {
+            return b - a;
+          });
+          /*
+           * 2025/01/05
+           * 2025/01/04
+           * 2025/01/03
+           * 2025/01/02
+           * 2025/01/01
+           */
+          
+          // Array.prototype.toSorted()メソッドは少々新しい機能のため、
+          // 使用できない場合は`[...dateArray].sort()`を使用します
+        </code></pre>
+
+        <p>
+          古い順にソートするには、このようにします。
+        </p>
+        <pre><code class="lang-js line-numbers">
+          // 古い順
+          const sortedDateArray = dateArray.toSorted((a, b) => {
+            return a - b;
+          });
+          /*
+           * 2025/01/01
+           * 2025/01/02
+           * 2025/01/03
+           * 2025/01/04
+           * 2025/01/05
+           */
+        </code></pre>
+
+        <section>
+          <h3>NaNも扱う</h3>
+
+          <p>
+            無効な日付<span class="code">NaN</span>が配列に含まれる場合は、<wbr>ソートが適切に行われないため、<wbr>
+            <span class="code">isNaN()</span>を使用して適切に処理します。
+          </p>
+          <pre><code class="lang-js line-numbers">
+            const dateArray = [
+              new Date("0000/00/00"), // NaN
+              new Date("2025/01/02"),
+              new Date("2025/01/01"),
+              new Date("0000/00/00"), // NaN
+              new Date("2025/01/03"),
+              new Date("2025/01/04"),
+              new Date("0000/00/00"), // NaN
+            ];
+
+            // 新しい順、NaNを後方に送る
+            const newestBackwardNaN = dateArray.toSorted((a, b) => {
+              if (isNaN(b)) return -1;
+              return b - a;
+            });
+            // [01/04, 01/03, 01/02, 01/01, NaN, NaN, NaN]
+
+            // 新しい順、NaNを前方に送る
+            const newestForwardNaN = dateArray.toSorted((a, b) => {
+              if (isNaN(a)) return -1;
+              return b - a;
+            });
+            // [NaN, NaN, NaN, 01/04, 01/03, 01/02, 01/01]
+
+            // 古い順、NaNを後方に送る
+            const oldestBackwardNaN = dateArray.toSorted((a, b) => {
+              if (isNaN(b)) return -1;
+              return a - b;
+            });
+            // [01/01, 01/02, 01/03, 01/04, NaN, NaN, NaN]
+
+            // 古い順、NaNを前方に送る
+            const oldestForwardNaN = dateArray.toSorted((a, b) => {
+              if (isNaN(a)) return -1;
+              return a - b;
+            });
+            // [NaN, NaN, NaN, 01/01, 01/02, 01/03, 01/04]
+          </code></pre>
+
+        </section>
+
+      </section>
+
+      参考: <cite><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date"
+          target="_blank" rel="noopener noreferrer">MDN Web Docs</a></cite>
+
+    </main>
+  </div>
+</body>
+
+</html>
