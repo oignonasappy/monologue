@@ -58,6 +58,15 @@
       }
     }
 
+    #dice {
+      display: inline-block;
+      font-size: 5rem;
+      margin-left: 10px;
+      position: relative;
+      top: 23px;
+      /*user-select: none;*/
+    }
+
     #hello-chord {
       font-size: 1.2em;
       border-radius: 50%;
@@ -148,6 +157,22 @@
             /
             (1000 * 60 * 60 * 24)
           );
+        </script>
+      </section>
+
+      <section>
+        <p class="small-p">
+          サイコロ置いとくね<span id="dice" title="click me">⚅</span>
+        </p>
+        <script>
+          document.getElementById('dice').addEventListener("click", function (e) {
+            for (let i = 0; i < 10; i++)
+              setTimeout((a) => {
+                this.innerHTML = `&#${9856 + Math.floor(Math.random() * 6)};`;
+                this.style.transform = `scale(${28 + 8 * i}%) rotateZ(${198 + i * 18}deg)`
+                //this.style.fontSize = `${1.4 + i * 0.4}rem`;
+              }, 50 * i);
+          });
         </script>
       </section>
 
