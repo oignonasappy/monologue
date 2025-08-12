@@ -1,0 +1,98 @@
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+    gap: 5px 20px;
+    
+    .btn {
+        display: flex;
+        font-size: 1.2em;
+
+        .btn-text {
+            border: 2px solid transparent;
+        }
+
+        .btn-element {
+            border: 2px solid #808080;
+            padding: 0 4px;
+            background-color: #E0F0FF;
+        }
+
+        .btn-button,
+        .btn-button-left,
+        .btn-button-right {
+            border: 2px solid #000000;
+            background-color: #FFFFFF;
+            padding: 0 4px;
+        }
+        
+        .btn-button-left {
+            border-radius: 6px 0 0 6px;
+        }
+
+        .btn-button-right {
+            border-radius: 0 6px 6px 0;
+        }
+    }
+}
+
+#art {
+    width: 100%;
+    aspect-ratio: 1/1;
+    padding: 6px;
+
+    background-color: #D0D0D0;
+    border: 2px solid #606060;
+    border-radius: 8px;
+
+    overflow: auto;
+
+    .row {
+        width: 100%;
+        display: flex;
+
+        input[type="checkbox"] {
+            flex: 1;
+            min-width: 24px;
+            aspect-ratio: 1/1;
+            margin: 0;
+        }
+    }
+}
+
+.size {
+    text-align: right;
+}
+
+label[class^="unicode-"] {
+    display: block;
+}
+
+#generate {
+    display: block;
+    margin: 20px auto;
+    padding: 6px 24px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    background-color: #E0FFD0;
+}
+
+#output {
+    width: 100%;
+    height: 300px;
+    resize: vertical;
+    font-size: 1.5em;
+    white-space: nowrap;
+}
+
+#copy {
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+.monospace {
+    font-family: monospace !important;
+    * {
+        font-family: monospace !important;
+    }
+}
