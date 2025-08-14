@@ -58,6 +58,13 @@ function fillArtByBit(bitMap) {
     }
 }
 
+function updateSizeText() {
+    document.getElementById('size').textContent =
+        document.getElementById('height-number').textContent
+        + "x"
+        + document.getElementById('width-number').textContent;
+}
+
 /**
  * [塗りつぶし文字種]のラジオボタンから選択された`value`(文字種)を返します。
  * @returns {string} 塗りつぶす文字の種類を表す文字列
@@ -305,6 +312,7 @@ const fillPattern = {
             if (heightNumber > 1) {
                 heightNumberElement.textContent = heightNumber - 1;
                 fillArtByBit(matrixToBit(getMatrix()));
+                updateSizeText();
             }
         })
 
@@ -315,6 +323,7 @@ const fillPattern = {
             const heightNumber = parseInt(heightNumberElement.textContent);
             heightNumberElement.textContent = heightNumber + 1;
             fillArtByBit(matrixToBit(getMatrix()));
+            updateSizeText();
         })
 
     // 横幅減少
@@ -325,6 +334,7 @@ const fillPattern = {
             if (widthNumber > 1) {
                 widthNumberElement.textContent = widthNumber - 1;
                 fillArtByBit(matrixToBit(getMatrix()));
+                updateSizeText();
             }
         })
 
@@ -335,6 +345,7 @@ const fillPattern = {
             const widthNumber = parseInt(widthNumberElement.textContent);
             widthNumberElement.textContent = widthNumber + 1;
             fillArtByBit(matrixToBit(getMatrix()));
+            updateSizeText();
         })
 
     // 左スライド
@@ -425,6 +436,7 @@ const fillPattern = {
                     }
 
                     fillArtByBit(json.art);
+                    updateSizeText();
                 } catch (error) {
                     window.alert("ファイルインポートに失敗しました\n" + error);
                 }
