@@ -124,21 +124,19 @@ const fillPattern = {
             getBlankChar(), "\u2580", "\u2584", "\u2588",
         ];
         const HOR_BLOCK_MAP = [
-            [1],
-            [2]
+            1,
+            2
         ];
 
         const charMatrix = [];
         for (let i1 = 0; i1 < bitMap.length / 2; i1++) {
             charMatrix.push([]);
-            for (let j1 = 0; j1 < bitMap[i1].length / 1; j1++) {
+            for (let j1 = 0; j1 < bitMap[i1].length; j1++) {
                 let sum = 0;
                 for (let i2 = 0; i2 < 2; i2++) {
-                    for (let j2 = 0; j2 < 1; j2++) {
-                        sum += bitMap[i1 * 2 + i2] != undefined && bitMap[i1 * 2 + i2][j1 * 1 + j2]
-                            ? HOR_BLOCK_MAP[i2][j2]
-                            : 0;
-                    }
+                    sum += bitMap[i1 * 2 + i2] != undefined && bitMap[i1 * 2 + i2][j1]
+                        ? HOR_BLOCK_MAP[i2]
+                        : 0;
                 }
 
                 charMatrix[i1].push(HOR_BLOCK_VALUES[sum]);
