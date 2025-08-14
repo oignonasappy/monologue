@@ -15,7 +15,7 @@ function getMatrix() {
  * @param {Array<Array<HTMLInputElement>>} matrix
  * @returns {Array<Array<boolean>>} bitMap
  */
-function toBit(matrix) {
+function matrixToBit(matrix) {
     return matrix
         .map(row =>
             row.map(elem => elem.checked)
@@ -28,6 +28,34 @@ function toBit(matrix) {
  */
 function logBit(bitMap) {
     console.log(bitMap.map(row => row.map(elem => elem ? '䷀' : '䷁').join('')).join('\n'));
+}
+
+/**
+ * bitMapから#artのHTML要素を埋めます。
+ * 縦幅・横幅はページに指定された幅に準拠します。
+ * @param {Array<Array<boolean>>} bitMap
+ */
+function fillArtByBit(bitMap) {
+    const art = document.getElementById('art');
+
+    const height = parseInt(document.getElementById('height-number').textContent);
+    const width = parseInt(document.getElementById('width-number').textContent);
+
+    art.innerHTML = "";
+
+    for (let i = 0; i < height; i++) {
+        const row = document.createElement('div');
+        row.classList.add('row');
+        for (let j = 0; j < width; j++) {
+            const checkBox = document.createElement('input');
+            checkBox.type = "checkbox";
+            checkBox.checked = bitMap[i] != undefined && bitMap[i][j]
+                ? true
+                : false;
+            row.appendChild(checkBox);
+        }
+        art.appendChild(row);
+    }
 }
 
 /**
@@ -124,19 +152,65 @@ const fillPattern = {
     },
 };
 
-document.getElementById('generate')
-    .addEventListener('click', () => {
-        document.getElementById('output')
-            .value = typeof fillPattern[getFillType()] === "function"
-                ? fillPattern[getFillType()](toBit(getMatrix()))
-                : "申し訳ないエラー";
-    });
+/**
+ * メインの手続き
+ */
+(() => {
+    document.getElementById('height-decrement')
+        .addEventListener('click', () => {
+            const heightNumberElement = document.getElementById('height-number');
+            const heightNumber = parseInt(heightNumberElement.textContent);
+            if (heightNumber > 1) {
+                heightNumberElement.textContent = heightNumber - 1;
+                fillArtByBit(matrixToBit(getMatrix()));
+            }
+        })
 
-document.getElementById('copy')
-    .addEventListener('click', () => {
-        navigator.clipboard.writeText(
-            document.getElementById('output').value
-        );
-    });
+    document.getElementById('height-increment')
+        .addEventListener('click', () => {
+            const heightNumberElement = document.getElementById('height-number');
+            const heightNumber = parseInt(heightNumberElement.textContent);
+            heightNumberElement.textContent = heightNumber + 1;
+            fillArtByBit(matrixToBit(getMatrix()));
+        })
 
-logBit(toBit(getMatrix()));
+    document.getElementById('width-decrement')
+        .addEventListener('click', () => {
+            const widthNumberElement = document.getElementById('width-number');
+            const widthNumber = parseInt(widthNumberElement.textContent);
+            if (widthNumber > 1) {
+                widthNumberElement.textContent = widthNumber - 1;
+                fillArtByBit(matrixToBit(getMatrix()));
+            }
+        })
+
+    document.getElementById('width-increment')
+        .addEventListener('click', () => {
+            const widthNumberElement = document.getElementById('width-number');
+            const widthNumber = parseInt(widthNumberElement.textContent);
+            widthNumberElement.textContent = widthNumber + 1;
+            fillArtByBit(matrixToBit(getMatrix()));
+        })
+
+    document.getElementById('clear')
+        .addEventListener('click', () => {
+            fillArtByBit([[]]);
+        });
+
+    document.getElementById('generate')
+        .addEventListener('click', () => {
+            document.getElementById('output')
+                .value = typeof fillPattern[getFillType()] === "function"
+                    ? fillPattern[getFillType()](matrixToBit(getMatrix()))
+                    : "申し訳ないエラー";
+        });
+
+    document.getElementById('copy')
+        .addEventListener('click', () => {
+            navigator.clipboard.writeText(
+                document.getElementById('output').value
+            );
+        });
+
+    logBit(matrixToBit(getMatrix()));
+})();
