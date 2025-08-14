@@ -91,7 +91,7 @@ const fillPattern = {
         return bitMap.map(row =>
             row.map(pixel =>
                 pixel
-                    ? document.getElementsByName('any-blank')[0].value
+                    ? document.getElementsByName('any-fill')[0].value
                     : getBlankChar()
             ).join('')
         ).join('\n');
