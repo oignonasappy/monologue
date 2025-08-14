@@ -297,6 +297,7 @@ const fillPattern = {
  * メインの手続き
  */
 (() => {
+    // 縦幅減少
     document.getElementById('height-decrement')
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
@@ -307,6 +308,7 @@ const fillPattern = {
             }
         })
 
+    // 縦幅増加
     document.getElementById('height-increment')
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
@@ -315,6 +317,7 @@ const fillPattern = {
             fillArtByBit(matrixToBit(getMatrix()));
         })
 
+    // 横幅減少
     document.getElementById('width-decrement')
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
@@ -325,6 +328,7 @@ const fillPattern = {
             }
         })
 
+    // 横幅増加
     document.getElementById('width-increment')
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
@@ -333,6 +337,7 @@ const fillPattern = {
             fillArtByBit(matrixToBit(getMatrix()));
         })
 
+    // 左スライド
     document.getElementById('slide-left')
         .addEventListener('click', () => {
             fillArtByBit(
@@ -341,6 +346,7 @@ const fillPattern = {
             );
         });
 
+    // 下スライド
     document.getElementById('slide-down')
         .addEventListener('click', () => {
             fillArtByBit(
@@ -348,6 +354,7 @@ const fillPattern = {
             );
         });
 
+    // 上スライド
     document.getElementById('slide-up')
         .addEventListener('click', () => {
             let rowIndex = 0;
@@ -356,7 +363,8 @@ const fillPattern = {
                     .slice(1)
             );
         });
-    
+
+    // 右スライド
     document.getElementById('slide-right')
         .addEventListener('click', () => {
             fillArtByBit(
@@ -365,11 +373,13 @@ const fillPattern = {
             );
         });
 
+    // 全消去
     document.getElementById('clear')
         .addEventListener('click', () => {
             fillArtByBit([[]]);
         });
 
+    // 生成
     document.getElementById('generate')
         .addEventListener('click', () => {
             document.getElementById('output')
@@ -378,6 +388,7 @@ const fillPattern = {
                     : "申し訳ないエラー";
         });
 
+    // コピー
     document.getElementById('copy')
         .addEventListener('click', () => {
             navigator.clipboard.writeText(
