@@ -3,7 +3,11 @@
  * @returns {Array<Array<HTMLInputElement>>} matrix
  */
 function getMatrix() {
-    return [...document.getElementById('art').children].map(row => [...row.children]);
+    return [...document.getElementById('art').children]
+        .map(row =>
+            [...row.children]
+                .filter(elem => elem.nodeName === "INPUT")
+        );
 }
 
 /**
@@ -12,7 +16,10 @@ function getMatrix() {
  * @returns {Array<Array<boolean>>} bitMap
  */
 function toBit(matrix) {
-    return matrix.map(row => row.map(elem => elem.checked))
+    return matrix
+        .map(row =>
+            row.map(elem => elem.checked)
+        )
 }
 
 /**
@@ -21,7 +28,46 @@ function toBit(matrix) {
  */
 function logBit(bitMap) {
     console.log(bitMap.map(row => row.map(elem => elem ? '䷀' : '䷁').join('')).join('\n'));
-    
 }
 
+/**
+ * [塗りつぶし文字種]のラジオボタンから選択された`value`(文字種)を返します。
+ * @returns {string} 塗りつぶす文字の種類を表す文字列
+ */
+function getFillType() {
+    return [...document.getElementsByName('fill')].filter(radio => radio.checked)[0].value;
+}
+
+/**
+ * [空白文字種]のラジオボタンから選択された空白文字を返します。
+ * @returns {string} 空白文字として使用する文字
+ */
+function getBlankChar() {
+    const checkedValue = [...document.getElementsByName('blank')].filter(radio => radio.checked)[0].value;
+    return checkedValue === "any"
+        ? document.getElementsByName('any-blank')[0].value
+        : checkedValue;
+}
+
+const fillPattern = {
+    /**
+     * 1x1
+     * ブロック
+     * @param {Array<Array<boolean>>} bitMap
+     * @return {string} pixelArt
+     */
+    "block": (bitMap) => {
+        return bitMap.map(row => row.map(pixel => pixel ? '\u2588' : "k").join('')).join('\n');
+    },
+};
+
+document.getElementById('generate')
+    .addEventListener('click', function (e) {
+        document.getElementById('output')
+            .value = typeof fillPattern[getFillType()] === "function"
+                ? fillPattern[getFillType()](toBit(getMatrix()))
+                : "申し訳ないエラー";
+    });
+
 logBit(toBit(getMatrix()));
+
