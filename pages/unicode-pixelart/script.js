@@ -114,6 +114,44 @@ const fillPattern = {
     },
 
     /**
+     * 2x2
+     * 4分割ブロック
+     * @param {Array<Array<boolean>>} bitMap
+     * @return {string} pixelArt
+     */
+    "four-block": (bitMap) => {
+        const FOUR_BLOCK_VALUES = [
+            getBlankChar(), "\u2598", "\u259d", "\u2580",
+            "\u2596", "\u258c", "\u259e", "\u259b",
+            "\u2597", "\u259a", "\u2590", "\u259c",
+            "\u2584", "\u2599", "\u259f", "\u2588"
+        ];
+        const FOUR_BLOCK_MAP = [
+            [1, 2],
+            [4, 8],
+        ];
+
+        const charMatrix = [];
+        for (let i1 = 0; i1 < bitMap.length / 2; i1++) {
+            charMatrix.push([]);
+            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) {
+                let sum = 0;
+                for (let i2 = 0; i2 < 2; i2++) {
+                    for (let j2 = 0; j2 < 2; j2++) {
+                        sum += bitMap[i1 * 2 + i2] != undefined && bitMap[i1 * 2 + i2][j1 * 2 + j2]
+                            ? FOUR_BLOCK_MAP[i2][j2]
+                            : 0;
+                    }
+                }
+
+                charMatrix[i1].push(FOUR_BLOCK_VALUES[sum]);
+            }
+        }
+
+        return charMatrix.map(row => row.join('')).join('\n');
+    },
+
+    /**
      * 3x2
      * 点字
      * @param {Array<Array<boolean>>} bitMap
