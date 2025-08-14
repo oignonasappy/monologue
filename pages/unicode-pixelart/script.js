@@ -147,6 +147,38 @@ const fillPattern = {
     },
 
     /**
+     * 1x2
+     * 左右ブロック
+     * @param {Array<Array<boolean>>} bitMap
+     * @return {string} pixelArt
+     */
+    "ver-block": (bitMap) => {
+        const VER_BLOCK_VALUES = [
+            getBlankChar(), "\u258c", "\u2590", "\u2588",
+        ];
+        const VER_BLOCK_MAP = [
+            1, 2
+        ];
+
+        const charMatrix = [];
+        for (let i1 = 0; i1 < bitMap.length; i1++) {
+            charMatrix.push([]);
+            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) {
+                let sum = 0;
+                for (let j2 = 0; j2 < 2; j2++) {
+                    sum += bitMap[i1] != undefined && bitMap[i1][j1 * 2 + j2]
+                        ? VER_BLOCK_MAP[j2]
+                        : 0;
+                }
+
+                charMatrix[i1].push(VER_BLOCK_VALUES[sum]);
+            }
+        }
+
+        return charMatrix.map(row => row.join('')).join('\n');
+    },
+
+    /**
      * 2x2
      * 4分割ブロック
      * @param {Array<Array<boolean>>} bitMap
