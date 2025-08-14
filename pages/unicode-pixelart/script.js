@@ -333,6 +333,38 @@ const fillPattern = {
             fillArtByBit(matrixToBit(getMatrix()));
         })
 
+    document.getElementById('slide-left')
+        .addEventListener('click', () => {
+            fillArtByBit(
+                matrixToBit(getMatrix())
+                    .map(row => row.slice(1))
+            );
+        });
+
+    document.getElementById('slide-down')
+        .addEventListener('click', () => {
+            fillArtByBit(
+                [[]].concat(matrixToBit(getMatrix()))
+            );
+        });
+
+    document.getElementById('slide-up')
+        .addEventListener('click', () => {
+            let rowIndex = 0;
+            fillArtByBit(
+                matrixToBit(getMatrix())
+                    .slice(1)
+            );
+        });
+    
+    document.getElementById('slide-right')
+        .addEventListener('click', () => {
+            fillArtByBit(
+                matrixToBit(getMatrix())
+                    .map(row => [false].concat(row))
+            );
+        });
+
     document.getElementById('clear')
         .addEventListener('click', () => {
             fillArtByBit([[]]);
