@@ -49,6 +49,9 @@ function getBlankChar() {
         : checkedValue;
 }
 
+/**
+ * bitMapをpixelArt文字列に変換する関数群を定義します
+ */
 const fillPattern = {
     /**
      * 1x1
@@ -56,8 +59,23 @@ const fillPattern = {
      * @param {Array<Array<boolean>>} bitMap
      * @return {string} pixelArt
      */
+    "any": (bitMap) => {
+        return bitMap.map(row =>
+            row.map(pixel =>
+                pixel
+                    ? document.getElementsByName('any-blank')[0].value
+                    : getBlankChar()
+            ).join('')
+        ).join('\n');
+    },
     "block": (bitMap) => {
-        return bitMap.map(row => row.map(pixel => pixel ? '\u2588' : "k").join('')).join('\n');
+        return bitMap.map(row =>
+            row.map(pixel =>
+                pixel
+                    ? '\u2588'
+                    : getBlankChar()
+            ).join('')
+        ).join('\n');
     },
 };
 
