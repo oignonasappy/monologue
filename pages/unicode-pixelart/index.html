@@ -79,6 +79,11 @@
             <button id="slide-right" class="btn-button" type="button">→</button>
           </div>
 
+          <div class="btn">
+            <div class="btn-text">クリア</div>
+            <button id="clear" class="btn-button small" type="button">🆑</button>
+          </div>
+
           <!--<div class="btn">
             <div class="btn-text">🔙</div>
             <button id="undo" class="btn-button" type="button">←</button>
@@ -229,7 +234,7 @@
 
             <label class="unicode-fill">
               <input type="radio" name="fill" value="braille">
-              <span class="fill-size">6x2</span>
+              <span class="fill-size">3x2</span>
               <span class="unicode-name">点字</span>
               <span class="code">&#x2801;</span> ~ <span class="code">&#x283f;</span>
               <span class="small no-wrap">(U+2801 ~ U+283F)</span>
@@ -237,7 +242,7 @@
 
             <label class="unicode-fill">
               <input type="radio" name="fill" value="c-braille" checked>
-              <span class="fill-size">8x2</span>
+              <span class="fill-size">4x2</span>
               <span class="unicode-name">漢点字</span>
               <span class="code">&#x2840;</span> ~ <span class="code">&#x28ff;</span>
               <span class="small no-wrap">(U+2840 ~ U+28FF)</span>
@@ -300,9 +305,23 @@
 
             <label class="unicode-blank">
               <input type="radio" name="blank" value="&#x2800;" checked>
-              <span class="unicode-name">点字</span>
+              <span class="unicode-name">点字(空白)</span>
               <span class="code">&#x2800;</span>
               <span class="small">(U+2800)</span>
+            </label>
+
+            <label class="unicode-blank">
+              <input type="radio" name="blank" value="&#x2840;" checked>
+              <span class="unicode-name">点字(左下一点)</span>
+              <span class="code">&#x2840;</span>
+              <span class="small">(U+2840)</span>
+            </label>
+
+            <label class="unicode-blank">
+              <input type="radio" name="blank" value="&#x2423;" checked>
+              <span class="unicode-name">オープンボックス</span>
+              <span class="code">&#x2423;</span>
+              <span class="small">(U+2423)</span>
             </label>
 
             <label class="unicode-blank">
@@ -329,6 +348,15 @@
         この画面では等幅フォントとして表示されているため、<wbr>
         別の場所で<wbr>表示された場合は<wbr>文字幅が変化し、<wbr>表示が<wbr>崩れる場合があります。
       </p>
+
+      <dl>
+        <dt>Tips</dt>
+        <dd>
+          Discordのメッセージでは、空白文字を<dfn title="メッセージの始め・行の終わりに入力された空白文字`\u0020`や`\u3000`など">文章の前後</dfn>に入力してもトリムされてしまいます。<br>
+          それを防ぐには、最初の文字目をアンダースコア<span class="code">_</span>で囲むことで、<wbr>
+          空白文字も含めて表示させることができます。<span class="code">_　_</span>
+        </dd>
+      </dl>
 
     </main>
   </div>
