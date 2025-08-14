@@ -87,5 +87,11 @@ document.getElementById('generate')
                 : "申し訳ないエラー";
     });
 
-logBit(toBit(getMatrix()));
+document.getElementById('copy')
+    .addEventListener('click', () => {
+        navigator.clipboard.writeText(
+            document.getElementById('output').value
+        );
+    });
 
+logBit(toBit(getMatrix()));
