@@ -381,26 +381,67 @@ const fillPattern = {
     // インポートボタン、インポートファイル選択
     document.getElementById('import')
         .addEventListener('click', () => {
-            // TODO:
+            document.getElementById('file-import').click();
         });
 
     // インポートファイル選択後、インポート処理
     document.getElementById('file-import')
-        .addEventListener('change', () => {
-            // TODO:
-        });
+        .addEventListener('change', (fileEvent) => {
+            /**
+             * @type {File}
+             */
+            const file = fileEvent.target.files[0];
 
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (readerEvent) => {
+                try {
+                    const jsonString = readerEvent.target.result;
+                    const json = JSON.parse(jsonString);
+                    console.log("IMPORTED JSON:", json);
+
+                    if (json.art == undefined) throw new Error('"art" property does not exist');
+
+                    if (json.height != undefined && typeof json.height === "number") {
+                        document.getElementById('height-number').textContent = json.height;
+                    }
+                    if (json.width != undefined && typeof json.width === "number") {
+                        document.getElementById('width-number').textContent = json.width;
+                    }
+                    if (json.fill != undefined) {
+                        [...document.getElementsByName('fill')]
+                            .filter(radio => radio.value === json.fill)[0].checked = true;
+                    }
+                    if (json["any-fill"] != undefined) {
+                        document.getElementsByName('any-fill')[0].value = json["any-fill"];
+                    }
+                    if (json.blank != undefined) {
+                        [...document.getElementsByName('blank')]
+                            .filter(radio => radio.value === json.blank)[0].checked = true;
+                    }
+                    if (json["any-blank"] != undefined) {
+                        document.getElementsByName('any-blank')[0].value = json["any-blank"];
+                    }
+
+                    fillArtByBit(json.art);
+                } catch (error) {
+                    window.alert("ファイルインポートに失敗しました\n" + error);
+                }
+            };
+            reader.readAsText(file);
+        });
 
     // エクスポート
     document.getElementById('export')
         .addEventListener('click', () => {
             const json = {
-                "height": parseInt(document.getElementById('height-number').textContent),
+                height: parseInt(document.getElementById('height-number').textContent),
                 "width": parseInt(document.getElementById('width-number').textContent),
                 "fill": [...document.getElementsByName('fill')].filter(radio => radio.checked)[0].value,
-                "any-fill": [...document.getElementsByName('any-fill')][0].value,
+                "any-fill": document.getElementsByName('any-fill')[0].value,
                 "blank": [...document.getElementsByName('blank')].filter(radio => radio.checked)[0].value,
-                "any-blank": [...document.getElementsByName('any-blank')][0].value,
+                "any-blank": document.getElementsByName('any-blank')[0].value,
                 "art": matrixToBit(getMatrix())
             };
             const jsonString = JSON.stringify(json/*, undefined, 4*/);
