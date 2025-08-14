@@ -357,7 +357,6 @@ const fillPattern = {
     // 上スライド
     document.getElementById('slide-up')
         .addEventListener('click', () => {
-            let rowIndex = 0;
             fillArtByBit(
                 matrixToBit(getMatrix())
                     .slice(1)
@@ -379,6 +378,46 @@ const fillPattern = {
             fillArtByBit([[]]);
         });
 
+    // インポートボタン、インポートファイル選択
+    document.getElementById('import')
+        .addEventListener('click', () => {
+            // TODO:
+        });
+
+    // インポートファイル選択後、インポート処理
+    document.getElementById('file-import')
+        .addEventListener('change', () => {
+            // TODO:
+        });
+
+
+    // エクスポート
+    document.getElementById('export')
+        .addEventListener('click', () => {
+            const json = {
+                "height": parseInt(document.getElementById('height-number').textContent),
+                "width": parseInt(document.getElementById('width-number').textContent),
+                "fill": [...document.getElementsByName('fill')].filter(radio => radio.checked)[0].value,
+                "any-fill": [...document.getElementsByName('any-fill')][0].value,
+                "blank": [...document.getElementsByName('blank')].filter(radio => radio.checked)[0].value,
+                "any-blank": [...document.getElementsByName('any-blank')][0].value,
+                "art": matrixToBit(getMatrix())
+            };
+            const jsonString = JSON.stringify(json/*, undefined, 4*/);
+            const blob = new Blob(
+                [jsonString],
+                { type: "application/json" }
+            );
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "unicode-pixelart.json";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        })
+
     // 生成
     document.getElementById('generate')
         .addEventListener('click', () => {
@@ -395,6 +434,4 @@ const fillPattern = {
                 document.getElementById('output').value
             );
         });
-
-    logBit(matrixToBit(getMatrix()));
 })();
