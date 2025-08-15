@@ -50,6 +50,7 @@
     .row {
         width: 100%;
         display: flex;
+        min-width: 0;
         align-items: stretch;
 
         input[type="checkbox"] {
