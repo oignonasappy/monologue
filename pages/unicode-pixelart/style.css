@@ -50,11 +50,11 @@
     .row {
         width: 100%;
         display: flex;
-        min-height: 0;
         
         input[type="checkbox"] {
             display: block;
-            flex: 1;
+            flex-grow: 1;
+            flex-basis: 0;
             min-width: 24px;
             aspect-ratio: 1/1;
             margin: 0;
