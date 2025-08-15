@@ -382,6 +382,30 @@ const fillPattern = {
                     .map(row => [false].concat(row))
             );
         });
+    
+    // 縦に縮める
+    document.getElementById('ver-shrink')
+        .addEventListener('click', () => {
+            
+        });
+
+    // 縦に伸ばす
+    document.getElementById('ver-stretch')
+        .addEventListener('click', () => {
+
+        });
+
+    // 横に縮める
+    document.getElementById('hor-shrink')
+        .addEventListener('click', () => {
+
+        });
+
+    // 横に伸ばす
+    document.getElementById('hor-stretch')
+        .addEventListener('click', () => {
+
+        });
 
     // 全消去
     document.getElementById('clear')
