@@ -470,6 +470,7 @@ const fillPattern = {
     document.getElementById('ver-stretch')
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
+            if (parseInt(heightNumberElement.textContent) * 2 > 256) return; // 連打すると大変なので
             heightNumberElement.textContent = parseInt(heightNumberElement.textContent) * 2; // 行数を倍にする
             fillArtByBit(
                 matrixToBit(getMatrix()).flatMap(row => [row, row]) // 行をその位置で複製する
@@ -492,6 +493,7 @@ const fillPattern = {
     document.getElementById('hor-stretch')
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
+            if (parseInt(widthNumberElement.textContent) * 2 > 256) return; // 連打すると大変なので
             widthNumberElement.textContent = parseInt(widthNumberElement.textContent) * 2; // 列数を倍にする
             fillArtByBit(
                 matrixToBit(getMatrix()).map(row => row.flatMap(col => [col, col])) // 列をその位置で複製する
