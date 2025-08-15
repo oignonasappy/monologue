@@ -56,6 +56,7 @@ function fillArtByBit(bitMap) {
         }
         art.appendChild(row);
     }
+    updateSizeText();
 }
 
 function updateSizeText() {
@@ -312,7 +313,6 @@ const fillPattern = {
             if (heightNumber > 1) {
                 heightNumberElement.textContent = heightNumber - 1;
                 fillArtByBit(matrixToBit(getMatrix()));
-                updateSizeText();
             }
         })
 
@@ -323,7 +323,6 @@ const fillPattern = {
             const heightNumber = parseInt(heightNumberElement.textContent);
             heightNumberElement.textContent = heightNumber + 1;
             fillArtByBit(matrixToBit(getMatrix()));
-            updateSizeText();
         })
 
     // 横幅減少
@@ -334,7 +333,6 @@ const fillPattern = {
             if (widthNumber > 1) {
                 widthNumberElement.textContent = widthNumber - 1;
                 fillArtByBit(matrixToBit(getMatrix()));
-                updateSizeText();
             }
         })
 
@@ -345,7 +343,6 @@ const fillPattern = {
             const widthNumber = parseInt(widthNumberElement.textContent);
             widthNumberElement.textContent = widthNumber + 1;
             fillArtByBit(matrixToBit(getMatrix()));
-            updateSizeText();
         })
 
     // 左スライド
@@ -382,29 +379,49 @@ const fillPattern = {
                     .map(row => [false].concat(row))
             );
         });
-    
+
     // 縦に縮める
     document.getElementById('ver-shrink')
         .addEventListener('click', () => {
-            
+            const heightNumberElement = document.getElementById('height-number');
+            heightNumberElement.textContent = Math.ceil(
+                parseInt(heightNumberElement.textContent) / 2
+            );
+            fillArtByBit(
+                matrixToBit(getMatrix()).filter((_, idx) => idx % 2 === 0)
+            );
         });
 
     // 縦に伸ばす
     document.getElementById('ver-stretch')
         .addEventListener('click', () => {
-
+            const heightNumberElement = document.getElementById('height-number');
+            heightNumberElement.textContent = parseInt(heightNumberElement.textContent) * 2;
+            fillArtByBit(
+                matrixToBit(getMatrix()).flatMap(row => [row, row])
+            );
         });
 
     // 横に縮める
     document.getElementById('hor-shrink')
         .addEventListener('click', () => {
-
+            const widthNumberElement = document.getElementById('width-number');
+            widthNumberElement.textContent = Math.ceil(
+                parseInt(widthNumberElement.textContent) / 2
+            );
+            fillArtByBit(
+                matrixToBit(getMatrix()).map(row => row.filter((_, idx) => idx % 2 === 0))
+            );
         });
 
     // 横に伸ばす
     document.getElementById('hor-stretch')
         .addEventListener('click', () => {
-
+            const widthNumberElement = document.getElementById('width-number');
+            widthNumberElement.textContent = parseInt(widthNumberElement.textContent) * 2;
+            fillArtByBit(
+                matrixToBit(getMatrix()).map(row => row.flatMap(col => [col, col]))
+            );
         });
 
     // 全消去
@@ -460,7 +477,6 @@ const fillPattern = {
                     }
 
                     fillArtByBit(json.art);
-                    updateSizeText();
                 } catch (error) {
                     window.alert("ファイルインポートに失敗しました\n" + error);
                 }
