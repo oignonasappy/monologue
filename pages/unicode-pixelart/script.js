@@ -474,10 +474,18 @@ const fillPattern = {
     // 生成
     document.getElementById('generate')
         .addEventListener('click', () => {
-            document.getElementById('output')
-                .value = typeof fillPattern[getFillType()] === "function"
-                    ? fillPattern[getFillType()](matrixToBit(getMatrix()))
-                    : "申し訳ないエラー";
+            if (document.getElementById('trim').checked) {
+                document.getElementById('output')
+                    .value = typeof fillPattern[getFillType()] === "function"
+                        ? fillPattern[getFillType()](matrixToBit(getMatrix()))
+                            .replaceAll(new RegExp(`${RegExp.escape(getBlankChar())}*$`, 'gm'), '')
+                        : "申し訳ないエラー";
+            } else {
+                document.getElementById('output')
+                    .value = typeof fillPattern[getFillType()] === "function"
+                        ? fillPattern[getFillType()](matrixToBit(getMatrix()))
+                        : "申し訳ないエラー";
+            }
         });
 
     // コピー
