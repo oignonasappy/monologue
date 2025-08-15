@@ -3,10 +3,10 @@
  * @returns {Array<Array<HTMLInputElement>>} matrix
  */
 function getMatrix() {
-    return [...document.getElementById('art').children]
+    return [...document.getElementById('art').children] // 全ての.rowをArrayに展開
         .map(row =>
-            [...row.children]
-                .filter(elem => elem.nodeName === "INPUT")
+            [...row.children] // 全てのcheckboxをArrayに展開
+                .filter(elem => elem.nodeName === "INPUT") // <input>要素のみを取得
         );
 }
 
@@ -18,7 +18,7 @@ function getMatrix() {
 function matrixToBit(matrix) {
     return matrix
         .map(row =>
-            row.map(elem => elem.checked)
+            row.map(elem => elem.checked) // checked属性を読み、booleanに変換
         )
 }
 
@@ -38,28 +38,40 @@ function logBit(bitMap) {
 function fillArtByBit(bitMap) {
     const art = document.getElementById('art');
 
+    // HTMLとして表示している数値を取得する
     const height = parseInt(document.getElementById('height-number').textContent);
     const width = parseInt(document.getElementById('width-number').textContent);
 
+    // 中身を空にする
     art.innerHTML = "";
 
     for (let i = 0; i < height; i++) {
+        // .rowを生成
         const row = document.createElement('div');
         row.classList.add('row');
+
         for (let j = 0; j < width; j++) {
+            // checkboxを生成
             const checkBox = document.createElement('input');
             checkBox.type = "checkbox";
+            // bitMapからchecked属性を設定
             checkBox.checked = bitMap[i] != undefined && bitMap[i][j]
                 ? true
                 : false;
             row.appendChild(checkBox);
         }
+
         art.appendChild(row);
     }
+    // サイズを表示
     updateSizeText();
 }
 
+/**
+ * "n x n" 形式でサイズをHTMLに表示します。
+ */
 function updateSizeText() {
+    // HTMLに表示されている値を実の値とする
     document.getElementById('size').textContent =
         document.getElementById('height-number').textContent
         + "x"
@@ -71,6 +83,7 @@ function updateSizeText() {
  * @returns {string} 塗りつぶす文字の種類を表す文字列
  */
 function getFillType() {
+    // checked属性のあるラジオボタンのvalueを取得 
     return [...document.getElementsByName('fill')].filter(radio => radio.checked)[0].value;
 }
 
@@ -79,8 +92,9 @@ function getFillType() {
  * @returns {string} 空白文字として使用する文字
  */
 function getBlankChar() {
+    // checked属性のあるラジオボタンのvalueを取得
     const checkedValue = [...document.getElementsByName('blank')].filter(radio => radio.checked)[0].value;
-    return checkedValue === "any"
+    return checkedValue === "any" // valueがanyの場合は、テキストを取得する
         ? document.getElementsByName('any-blank')[0].value
         : checkedValue;
 }
@@ -96,6 +110,8 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "any": (bitMap) => {
+        // bitMapのtrueを入力されたテキストに、
+        // falseを選択した空白文字に
         return bitMap.map(row =>
             row.map(pixel =>
                 pixel
@@ -112,6 +128,8 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "block": (bitMap) => {
+        // bitMapのtrueをブロックに、
+        // falseを選択した空白文字に
         return bitMap.map(row =>
             row.map(pixel =>
                 pixel
@@ -128,29 +146,39 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "hor-block": (bitMap) => {
+        /**
+         * ビットフラグに対応する文字
+         */
         const HOR_BLOCK_VALUES = [
             getBlankChar(), "\u2580", "\u2584", "\u2588",
         ];
+        /**
+         * 1文字中の位置に対するビットフラグ
+         */
         const HOR_BLOCK_MAP = [
             1,
             2
         ];
 
         const charMatrix = [];
-        for (let i1 = 0; i1 < bitMap.length / 2; i1++) {
-            charMatrix.push([]);
-            for (let j1 = 0; j1 < bitMap[i1].length; j1++) {
-                let sum = 0;
-                for (let i2 = 0; i2 < 2; i2++) {
+        for (let i1 = 0; i1 < bitMap.length / 2; i1++) { // 1文字分の領域だけ行を進める
+            charMatrix.push([]); // 1行分の配列を初期化
+            for (let j1 = 0; j1 < bitMap[i1].length; j1++) { // 1文字分の領域だけ列を進める(1列)
+                let sum = 0; // ビットフラグを合計する
+                for (let i2 = 0; i2 < 2; i2++) { // 1文字中の行を進める。列数は1なので進めない
+                    // bitMapがtrueであればビットフラグを立てる
+                    // 範囲外もしくはfalseであれば何もしない
                     sum += bitMap[i1 * 2 + i2] != undefined && bitMap[i1 * 2 + i2][j1]
                         ? HOR_BLOCK_MAP[i2]
                         : 0;
                 }
 
+                // ビットフラグが立っている形状が、そのUnicode文字の形となる
                 charMatrix[i1].push(HOR_BLOCK_VALUES[sum]);
             }
         }
 
+        // 列、行を結合する
         return charMatrix.map(row => row.join('')).join('\n');
     },
 
@@ -161,28 +189,38 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "ver-block": (bitMap) => {
+        /**
+         * ビットフラグに対応する文字
+         */
         const VER_BLOCK_VALUES = [
             getBlankChar(), "\u258c", "\u2590", "\u2588",
         ];
+        /**
+         * 1文字中の位置に対するビットフラグ
+         */
         const VER_BLOCK_MAP = [
             1, 2
         ];
 
         const charMatrix = [];
-        for (let i1 = 0; i1 < bitMap.length; i1++) {
-            charMatrix.push([]);
-            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) {
-                let sum = 0;
-                for (let j2 = 0; j2 < 2; j2++) {
+        for (let i1 = 0; i1 < bitMap.length; i1++) { // 1文字分の領域だけ行を進める(1行)
+            charMatrix.push([]); // 1行分の配列を初期化
+            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) { // 1文字分の領域だけ列を進める
+                let sum = 0; // ビットフラグを合計する
+                for (let j2 = 0; j2 < 2; j2++) { // 1文字中の列を進める。行数は1なので進めない
+                    // bitMapがtrueであればビットフラグを立てる
+                    // 範囲外もしくはfalseであれば何もしない
                     sum += bitMap[i1] != undefined && bitMap[i1][j1 * 2 + j2]
                         ? VER_BLOCK_MAP[j2]
                         : 0;
                 }
 
+                // ビットフラグが立っている形状が、そのUnicode文字の形となる
                 charMatrix[i1].push(VER_BLOCK_VALUES[sum]);
             }
         }
 
+        // 列、行を結合する
         return charMatrix.map(row => row.join('')).join('\n');
     },
 
@@ -193,34 +231,44 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "four-block": (bitMap) => {
+        /**
+         * ビットフラグに対応する文字
+         */
         const FOUR_BLOCK_VALUES = [
             getBlankChar(), "\u2598", "\u259d", "\u2580",
             "\u2596", "\u258c", "\u259e", "\u259b",
             "\u2597", "\u259a", "\u2590", "\u259c",
             "\u2584", "\u2599", "\u259f", "\u2588"
         ];
+        /**
+         * 1文字中の位置に対するビットフラグ
+         */
         const FOUR_BLOCK_MAP = [
             [1, 2],
             [4, 8],
         ];
 
         const charMatrix = [];
-        for (let i1 = 0; i1 < bitMap.length / 2; i1++) {
-            charMatrix.push([]);
-            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) {
-                let sum = 0;
-                for (let i2 = 0; i2 < 2; i2++) {
-                    for (let j2 = 0; j2 < 2; j2++) {
+        for (let i1 = 0; i1 < bitMap.length / 2; i1++) { // 1文字分の領域だけ行を進める
+            charMatrix.push([]); // 1行分の配列を初期化
+            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) { // 1文字分の領域だけ列を進める
+                let sum = 0; // ビットフラグを合計する
+                for (let i2 = 0; i2 < 2; i2++) { // 1文字中の行を進める
+                    for (let j2 = 0; j2 < 2; j2++) { // 1文字中の列を進める
+                        // bitMapがtrueであればビットフラグを立てる
+                        // 範囲外もしくはfalseであれば何もしない
                         sum += bitMap[i1 * 2 + i2] != undefined && bitMap[i1 * 2 + i2][j1 * 2 + j2]
                             ? FOUR_BLOCK_MAP[i2][j2]
                             : 0;
                     }
                 }
 
+                // ビットフラグが立っている形状が、そのUnicode文字の形となる
                 charMatrix[i1].push(FOUR_BLOCK_VALUES[sum]);
             }
         }
 
+        // 列、行を結合する
         return charMatrix.map(row => row.join('')).join('\n');
     },
 
@@ -231,7 +279,14 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "braille": (bitMap) => {
+        /**
+         * 点字文字のUnicodeコードポイントの開始位置
+         * 点字文字は2進数の規則的な配置になっているため、ビット対応表は不要である
+         */
         const BRAILLE_OFFSET = 0x2800;
+        /**
+         * 1文字中の位置に対するビットフラグ
+         */
         const BRAILLE_MAP = [
             [1, 8],
             [2, 16],
@@ -239,26 +294,32 @@ const fillPattern = {
         ];
 
         const charMatrix = [];
-        for (let i1 = 0; i1 < bitMap.length / 3; i1++) {
-            charMatrix.push([]);
-            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) {
-                let sum = 0;
-                for (let i2 = 0; i2 < 3; i2++) {
-                    for (let j2 = 0; j2 < 2; j2++) {
+        for (let i1 = 0; i1 < bitMap.length / 3; i1++) { // 1文字分の領域だけ行を進める
+            charMatrix.push([]); // 1行分の配列を初期化
+            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) { // 1文字分の領域だけ列を進める
+                let sum = 0; // ビットフラグを合計する
+                for (let i2 = 0; i2 < 3; i2++) { // 1文字中の行を進める
+                    for (let j2 = 0; j2 < 2; j2++) { // 1文字中の列を進める
+                        // bitMapがtrueであればビットフラグを立てる
+                        // 範囲外もしくはfalseであれば何もしない
                         sum += bitMap[i1 * 3 + i2] != undefined && bitMap[i1 * 3 + i2][j1 * 2 + j2]
                             ? BRAILLE_MAP[i2][j2]
                             : 0;
                     }
                 }
 
+                // すべてのビットフラグが空である⇒空白である
                 if (sum != 0) {
+                    // ビットフラグが立っている形状が、そのUnicode文字の形となる
                     charMatrix[i1].push(String.fromCodePoint(BRAILLE_OFFSET + sum));
                 } else {
+                    // 空白文字を挿入
                     charMatrix[i1].push(getBlankChar());
                 }
             }
         }
 
+        // 列、行を結合する
         return charMatrix.map(row => row.join('')).join('\n');
     },
     /**
@@ -268,7 +329,14 @@ const fillPattern = {
      * @return {string} pixelArt
      */
     "c-braille": (bitMap) => {
+        /**
+         * 点字文字のUnicodeコードポイントの開始位置
+         * 点字文字は2進数の規則的な配置になっているため、ビット対応表は不要である
+         */
         const BRAILLE_OFFSET = 0x2800;
+        /**
+         * 1文字中の位置に対するビットフラグ
+         */
         const C_BRAILLE_MAP = [
             [1, 8],
             [2, 16],
@@ -277,26 +345,32 @@ const fillPattern = {
         ];
 
         const charMatrix = [];
-        for (let i1 = 0; i1 < bitMap.length / 4; i1++) {
-            charMatrix.push([]);
-            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) {
-                let sum = 0;
-                for (let i2 = 0; i2 < 4; i2++) {
-                    for (let j2 = 0; j2 < 2; j2++) {
+        for (let i1 = 0; i1 < bitMap.length / 4; i1++) { // 1文字分の領域だけ行を進める
+            charMatrix.push([]); // 1行分の配列を初期化
+            for (let j1 = 0; j1 < bitMap[i1].length / 2; j1++) { // 1文字分の領域だけ列を進める
+                let sum = 0; // ビットフラグを合計する
+                for (let i2 = 0; i2 < 4; i2++) { // 1文字中の行を進める
+                    for (let j2 = 0; j2 < 2; j2++) { // 1文字中の列を進める
+                        // bitMapがtrueであればビットフラグを立てる
+                        // 範囲外もしくはfalseであれば何もしない
                         sum += bitMap[i1 * 4 + i2] != undefined && bitMap[i1 * 4 + i2][j1 * 2 + j2]
                             ? C_BRAILLE_MAP[i2][j2]
                             : 0;
                     }
                 }
 
+                // すべてのビットフラグが空である⇒空白である
                 if (sum != 0) {
+                    // ビットフラグが立っている形状が、そのUnicode文字の形となる
                     charMatrix[i1].push(String.fromCodePoint(BRAILLE_OFFSET + sum));
                 } else {
+                    // 空白文字を挿入
                     charMatrix[i1].push(getBlankChar());
                 }
             }
         }
 
+        // 列、行を結合する
         return charMatrix.map(row => row.join('')).join('\n');
     },
 };
@@ -310,8 +384,8 @@ const fillPattern = {
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
             const heightNumber = parseInt(heightNumberElement.textContent);
-            if (heightNumber > 1) {
-                heightNumberElement.textContent = heightNumber - 1;
+            if (heightNumber > 1) { // 0以下にはならない
+                heightNumberElement.textContent = heightNumber - 1; // 行数を減らす
                 fillArtByBit(matrixToBit(getMatrix()));
             }
         })
@@ -321,7 +395,7 @@ const fillPattern = {
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
             const heightNumber = parseInt(heightNumberElement.textContent);
-            heightNumberElement.textContent = heightNumber + 1;
+            heightNumberElement.textContent = heightNumber + 1; // 行数を増やす
             fillArtByBit(matrixToBit(getMatrix()));
         })
 
@@ -330,8 +404,8 @@ const fillPattern = {
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
             const widthNumber = parseInt(widthNumberElement.textContent);
-            if (widthNumber > 1) {
-                widthNumberElement.textContent = widthNumber - 1;
+            if (widthNumber > 1) { // 0以下にはならない
+                widthNumberElement.textContent = widthNumber - 1; // 列数を減らす
                 fillArtByBit(matrixToBit(getMatrix()));
             }
         })
@@ -341,7 +415,7 @@ const fillPattern = {
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
             const widthNumber = parseInt(widthNumberElement.textContent);
-            widthNumberElement.textContent = widthNumber + 1;
+            widthNumberElement.textContent = widthNumber + 1; // 列数を増やす
             fillArtByBit(matrixToBit(getMatrix()));
         })
 
@@ -350,7 +424,7 @@ const fillPattern = {
         .addEventListener('click', () => {
             fillArtByBit(
                 matrixToBit(getMatrix())
-                    .map(row => row.slice(1))
+                    .map(row => row.slice(1)) // 最左列を削除
             );
         });
 
@@ -358,7 +432,7 @@ const fillPattern = {
     document.getElementById('slide-down')
         .addEventListener('click', () => {
             fillArtByBit(
-                [[]].concat(matrixToBit(getMatrix()))
+                [[]].concat(matrixToBit(getMatrix())) // 空行を最上行に挿入
             );
         });
 
@@ -367,7 +441,7 @@ const fillPattern = {
         .addEventListener('click', () => {
             fillArtByBit(
                 matrixToBit(getMatrix())
-                    .slice(1)
+                    .slice(1) // 最上行を削除
             );
         });
 
@@ -376,7 +450,7 @@ const fillPattern = {
         .addEventListener('click', () => {
             fillArtByBit(
                 matrixToBit(getMatrix())
-                    .map(row => [false].concat(row))
+                    .map(row => [false].concat(row)) // 空行を最左列に挿入
             );
         });
 
@@ -384,11 +458,11 @@ const fillPattern = {
     document.getElementById('ver-shrink')
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
-            heightNumberElement.textContent = Math.ceil(
+            heightNumberElement.textContent = Math.ceil(// 行数を半分にし切り上げ
                 parseInt(heightNumberElement.textContent) / 2
             );
             fillArtByBit(
-                matrixToBit(getMatrix()).filter((_, idx) => idx % 2 === 0)
+                matrixToBit(getMatrix()).filter((_, idx) => idx % 2 === 0) // 奇数行を削除
             );
         });
 
@@ -396,9 +470,9 @@ const fillPattern = {
     document.getElementById('ver-stretch')
         .addEventListener('click', () => {
             const heightNumberElement = document.getElementById('height-number');
-            heightNumberElement.textContent = parseInt(heightNumberElement.textContent) * 2;
+            heightNumberElement.textContent = parseInt(heightNumberElement.textContent) * 2; // 行数を倍にする
             fillArtByBit(
-                matrixToBit(getMatrix()).flatMap(row => [row, row])
+                matrixToBit(getMatrix()).flatMap(row => [row, row]) // 行をその位置で複製する
             );
         });
 
@@ -406,11 +480,11 @@ const fillPattern = {
     document.getElementById('hor-shrink')
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
-            widthNumberElement.textContent = Math.ceil(
+            widthNumberElement.textContent = Math.ceil(// 列数を半分にし切り上げ
                 parseInt(widthNumberElement.textContent) / 2
             );
             fillArtByBit(
-                matrixToBit(getMatrix()).map(row => row.filter((_, idx) => idx % 2 === 0))
+                matrixToBit(getMatrix()).map(row => row.filter((_, idx) => idx % 2 === 0)) // 奇数列を削除
             );
         });
 
@@ -418,42 +492,43 @@ const fillPattern = {
     document.getElementById('hor-stretch')
         .addEventListener('click', () => {
             const widthNumberElement = document.getElementById('width-number');
-            widthNumberElement.textContent = parseInt(widthNumberElement.textContent) * 2;
+            widthNumberElement.textContent = parseInt(widthNumberElement.textContent) * 2; // 列数を倍にする
             fillArtByBit(
-                matrixToBit(getMatrix()).map(row => row.flatMap(col => [col, col]))
+                matrixToBit(getMatrix()).map(row => row.flatMap(col => [col, col])) // 列をその位置で複製する
             );
         });
 
     // 全消去
     document.getElementById('clear')
         .addEventListener('click', () => {
-            fillArtByBit([[]]);
+            fillArtByBit([[]]); // 空二次元配列
         });
 
     // インポートボタン、インポートファイル選択
     document.getElementById('import')
         .addEventListener('click', () => {
-            document.getElementById('file-import').click();
+            document.getElementById('file-import').click(); // 機械的に<a>をクリック
         });
 
     // インポートファイル選択後、インポート処理
     document.getElementById('file-import')
         .addEventListener('change', (fileEvent) => {
             /**
-             * @type {File}
+             * @type {File} 選択されたファイル
              */
             const file = fileEvent.target.files[0];
 
-            if (!file) return;
+            if (!file) return; // ファイルが存在するか
 
             const reader = new FileReader();
-            reader.onload = (readerEvent) => {
+            reader.onload = (readerEvent) => { // ファイル解読処理
                 try {
+                    // jsonとして取得
                     const jsonString = readerEvent.target.result;
                     const json = JSON.parse(jsonString);
                     console.log("IMPORTED JSON:", json);
 
-                    if (json.art == undefined) throw new Error('"art" property does not exist');
+                    if (json.art == undefined) throw new Error('"art" property does not exist'); // 必須項目
 
                     if (json.height != undefined && typeof json.height === "number") {
                         document.getElementById('height-number').textContent = json.height;
@@ -476,19 +551,22 @@ const fillPattern = {
                         document.getElementsByName('any-blank')[0].value = json["any-blank"];
                     }
 
+                    // 結果を描写
                     fillArtByBit(json.art);
                 } catch (error) {
                     window.alert("ファイルインポートに失敗しました\n" + error);
                 }
             };
+            // ファイル解読開始
             reader.readAsText(file);
         });
 
     // エクスポート
     document.getElementById('export')
         .addEventListener('click', () => {
+            // 出力するJSONのデータを用意
             const json = {
-                height: parseInt(document.getElementById('height-number').textContent),
+                "height": parseInt(document.getElementById('height-number').textContent),
                 "width": parseInt(document.getElementById('width-number').textContent),
                 "fill": [...document.getElementsByName('fill')].filter(radio => radio.checked)[0].value,
                 "any-fill": document.getElementsByName('any-fill')[0].value,
@@ -496,17 +574,20 @@ const fillPattern = {
                 "any-blank": document.getElementsByName('any-blank')[0].value,
                 "art": matrixToBit(getMatrix())
             };
-            const jsonString = JSON.stringify(json/*, undefined, 4*/);
-            const blob = new Blob(
+            const jsonString = JSON.stringify(json/*, undefined, 4*/); // オブジェクトを文字列に変換
+            const blob = new Blob( // バイナリオブジェクトを生成
                 [jsonString],
                 { type: "application/json" }
             );
+            // <a>にJSONをセット
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = "unicode-pixelart.json";
             document.body.appendChild(a);
+            // ダウンロードさせる
             a.click();
+            // データを削除する
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         })
@@ -514,12 +595,13 @@ const fillPattern = {
     // 生成
     document.getElementById('generate')
         .addEventListener('click', () => {
+            // 行末の空白文字を削除するか
             if (document.getElementById('trim').checked) {
                 document.getElementById('output')
-                    .value = typeof fillPattern[getFillType()] === "function"
-                        ? fillPattern[getFillType()](matrixToBit(getMatrix()))
-                            .replaceAll(new RegExp(`${RegExp.escape(getBlankChar())}*$`, 'gm'), '')
-                        : "申し訳ないエラー";
+                    .value = typeof fillPattern[getFillType()] === "function" // パターン生成関数が存在するか
+                        ? fillPattern[getFillType()](matrixToBit(getMatrix())) // ラジオボタンで指定されたパターン生成関数にbitMapを渡す
+                            .replaceAll(new RegExp(`${RegExp.escape(getBlankChar())}*$`, 'gm'), '') // 行末の指定された空白文字を除去
+                        : "申し訳ないエラー"; // 関数が存在しなかった場合
             } else {
                 document.getElementById('output')
                     .value = typeof fillPattern[getFillType()] === "function"
@@ -531,6 +613,7 @@ const fillPattern = {
     // コピー
     document.getElementById('copy')
         .addEventListener('click', () => {
+            // クリップボードに書き込み
             navigator.clipboard.writeText(
                 document.getElementById('output').value
             );
