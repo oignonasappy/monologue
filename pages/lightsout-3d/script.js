@@ -189,8 +189,27 @@ document.getElementById('button-left').addEventListener('click', () => {
  * 破壊的に変更します。
  */
 function invertVoxel(voxelZ, voxelY, voxelX) {
-    // TODO: 実装
-
+    const DIRECTION = [
+        [0, 0, 0],
+        [1, 0, 0],
+        [-1, 0, 0],
+        [0, 1, 0],
+        [0, -1, 0],
+        [0, 0, 1],
+        [0, 0, -1]
+    ];
+    for (const dir of DIRECTION) {
+        if (
+            tensor[voxelZ + dir[0]] != undefined &&
+            tensor[voxelZ + dir[0]][voxelY + dir[1]] != undefined &&
+            tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] != undefined
+        ) {
+            tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] =
+                tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]]
+                    ? false
+                    : true;
+        }
+    }
 }
 
 // TODO: 中心も触れられるか？
