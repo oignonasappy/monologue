@@ -241,41 +241,41 @@
 
 #button-top {
     .triangle-arrow {
-        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+        clip-path: polygon(50% 100%, 0 0, 100% 0);
     }
 
     .triangle-arrow-in {
-        clip-path: polygon(50% 10%, 5% 100%, 95% 100%);
+        clip-path: polygon(50% 90%, 5% 0, 95% 0);
     }
 }
 
 #button-right {
     .triangle-arrow {
-        clip-path: polygon(100% 50%, 0 0, 0 100%);
+        clip-path: polygon(0 50%, 100% 0, 100% 100%);
     }
 
     .triangle-arrow-in {
-        clip-path: polygon(90% 50%, 0 5%, 0 95%);
+        clip-path: polygon(10% 50%, 100% 5%, 100% 95%);
     }
 }
 
 #button-bottom {
     .triangle-arrow {
-        clip-path: polygon(50% 100%, 100% 0, 0 0);
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
     }
 
     .triangle-arrow-in {
-        clip-path: polygon(50% 90%, 95% 0, 5% 0);
+        clip-path: polygon(50% 10%, 95% 100%, 5% 100%);
     }
 }
 
 #button-left {
     .triangle-arrow {
-        clip-path: polygon(0 50%, 100% 100%, 100% 0);
+        clip-path: polygon(100% 50%, 0 100%, 0 0);
     }
 
     .triangle-arrow-in {
-        clip-path: polygon(10% 50%, 100% 95%, 100% 5%);
+        clip-path: polygon(90% 50%, 0 95%, 0 5%);
     }
 }
 
