@@ -9,10 +9,6 @@ const SIZE = 3;
  * @type {Array<Array<Array<boolean>>>}
  */
 let tensor = new Array(SIZE).fill(new Array(SIZE).fill(new Array(SIZE).fill(true)));
-randomizeTensor();
-console.log(tensor);
-displayTensorToPuzzle();
-displayTensorToSubview();
 
 /**
  * 現在の`tensor`の状態を#puzzleに表示します。
@@ -101,7 +97,7 @@ function displayTensorToSubview() {
                 }
             });
         });
-    
+
     // bottom
     document
         .getElementById('subview-bottom')
@@ -118,7 +114,7 @@ function displayTensorToSubview() {
                 }
             });
         });
-    
+
     // back
     document
         .getElementById('subview-back')
@@ -138,11 +134,12 @@ function displayTensorToSubview() {
 }
 
 /**
- * グローバル変数`tensor`の点灯状態をランダムにします。
+ * `tensor`の点灯状態をランダムにします。
  * 破壊的に変更します。
  */
 function randomizeTensor() {
     tensor = tensor.map(plane => plane.map(row => row.map(voxel => Math.random() < 0.5)));
+    // TODO: クリア可能な状態のランダムにする
 }
 
 document.getElementById('subview-size').addEventListener('change', () => {
@@ -151,18 +148,74 @@ document.getElementById('subview-size').addEventListener('change', () => {
     /* subviewのサイズ変更 */
 });
 
+/*
+ * `tensor`の上面を正面にします。
+ * 破壊的に変更します。
+ */
 document.getElementById('button-top').addEventListener('click', () => {
-    console.log("top");
-})
+    tensor = tensor[0].map((y, i) => tensor.map(z => z[i])) // zとyを転置
+        .map(z => z.reverse()); // zを反転
 
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+});
+
+/*
+ * `tensor`の右面を正面にします。
+ * 破壊的に変更します。
+ */
 document.getElementById('button-right').addEventListener('click', () => {
-    console.log("right");
-})
+    // TODO: 実装
+});
 
+/*
+ * `tensor`の下面を正面にします。
+ * 破壊的に変更します。
+ */
 document.getElementById('button-bottom').addEventListener('click', () => {
-    console.log("bottom");
-})
+    // TODO: 実装
+});
 
+/*
+ * `tensor`の左面を正面にします。
+ * 破壊的に変更します。
+ */
 document.getElementById('button-left').addEventListener('click', () => {
-    console.log("left");
-})
+    // TODO: 実装
+});
+
+/**
+ * `tensor`の指定されたvoxelおよびその隣接したvoxelを反転します。
+ * 破壊的に変更します。
+ */
+function invertVoxel(voxelZ, voxelY, voxelX) {
+    // TODO: 実装
+
+}
+
+// TODO: 中心も触れられるか？
+/*
+ * #puzzle(前面)のパネルをクリックしたときの処理。
+ * クリックしたvoxelとその隣接したvoxelを反転させる。
+ */
+document
+    .getElementById('puzzle')
+    .querySelectorAll('.puzzle-row').forEach((row, i) => {
+        row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
+            voxel.addEventListener('click', () => {
+                invertVoxel(0, i, j);
+                displayTensorToPuzzle();
+                displayTensorToSubview();
+                // TODO: 全てがfalseなら成功
+            });
+        });
+    });
+
+
+(() => {
+    randomizeTensor();//
+
+    console.log(tensor);
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+})();
