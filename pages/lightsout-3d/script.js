@@ -153,8 +153,8 @@ document.getElementById('subview-size').addEventListener('change', () => {
  * 破壊的に変更します。
  */
 document.getElementById('button-top').addEventListener('click', () => {
-    tensor = tensor[0].map((y, i) => tensor.map(z => z[i])) // zとyを転置
-        .map(z => z.reverse()); // zを反転
+    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+        .map(plane => plane.reverse()); // y軸で反転
 
     displayTensorToPuzzle();
     displayTensorToSubview();
@@ -165,7 +165,11 @@ document.getElementById('button-top').addEventListener('click', () => {
  * 破壊的に変更します。
  */
 document.getElementById('button-right').addEventListener('click', () => {
-    // TODO: 実装
+    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+        .reverse(); // x軸で反転
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
 });
 
 /*
@@ -173,7 +177,11 @@ document.getElementById('button-right').addEventListener('click', () => {
  * 破壊的に変更します。
  */
 document.getElementById('button-bottom').addEventListener('click', () => {
-    // TODO: 実装
+    tensor = tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+        .reverse(); // z軸で反転
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
 });
 
 /*
@@ -181,7 +189,11 @@ document.getElementById('button-bottom').addEventListener('click', () => {
  * 破壊的に変更します。
  */
 document.getElementById('button-left').addEventListener('click', () => {
-    // TODO: 実装
+    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+        .map(plane => plane.map(row => row.reverse())); // z, y軸で反転
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
 });
 
 /**
@@ -232,7 +244,7 @@ document
 
 
 (() => {
-    randomizeTensor();//
+    //randomizeTensor();
 
     console.log(tensor);
     displayTensorToPuzzle();
