@@ -195,21 +195,110 @@
     }
 }
 
+.move-button {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border: 5px solid #666;
+}
+
+.move-button.button-ver {
+    height: 9vw;
+    /* 12vw * 0.75 */
+    max-height: 75px;
+    /* 100 * 0.75 */
+    width: calc(36vw + 10px);
+    /* 12vw*0.75*3 + 10px */
+    max-width: 310px;
+    /* 100*3 + 10 */
+    margin: 0 auto;
+}
+
+.move-button.button-hor {
+    height: calc(36vw + 10px);
+    /* 12vw*0.75*3 + 10px */
+    max-height: 310px;
+    /* 100*3 + 10 */
+    width: 9vw;
+    /* 12vw * 0.75 */
+    max-width: 75px;
+    /* 100 * 0.75 */
+}
+
+.move-button .triangle-arrow {
+    position: absolute;
+    background-color: #666;
+    width: 100%;
+    height: 100%;
+}
+
+.move-button .triangle-arrow-in {
+    position: absolute;
+    background-color: #BBB;
+    width: 100%;
+    height: 100%;
+}
+
+#button-top {
+    .triangle-arrow {
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    }
+
+    .triangle-arrow-in {
+        clip-path: polygon(50% 10%, 5% 100%, 95% 100%);
+    }
+}
+
+#button-right {
+    .triangle-arrow {
+        clip-path: polygon(100% 50%, 0 0, 0 100%);
+    }
+
+    .triangle-arrow-in {
+        clip-path: polygon(90% 50%, 0 5%, 0 95%);
+    }
+}
+
+#button-bottom {
+    .triangle-arrow {
+        clip-path: polygon(50% 100%, 100% 0, 0 0);
+    }
+
+    .triangle-arrow-in {
+        clip-path: polygon(50% 90%, 95% 0, 5% 0);
+    }
+}
+
+#button-left {
+    .triangle-arrow {
+        clip-path: polygon(0 50%, 100% 100%, 100% 0);
+    }
+
+    .triangle-arrow-in {
+        clip-path: polygon(10% 50%, 100% 95%, 100% 5%);
+    }
+}
+
+.puzzle-container {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+}
+
 #puzzle {
     display: flex;
     flex-direction: column;
     width: fit-content;
-    margin: 10px auto;
     border: 5px solid #666;
 
     .puzzle-row {
         display: flex;
 
         .puzzle-voxel {
-            height: 25vw;
-            max-height: 120px;
-            width: 25vw;
-            max-width: 120px;
+            height: 12vw;
+            max-height: 100px;
+            width: 12vw;
+            max-width: 100px;
             border: 5px solid #888;
             background-color: #F00;
             /* もしこの色が表示されたらエラー*/

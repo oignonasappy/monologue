@@ -3,7 +3,7 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-  <!--<meta name="local-env">-->
+  <meta name="local-env">
   <meta name="no-toc">
 
   <meta charset="UTF-8">
@@ -19,8 +19,7 @@
   <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/lightsout-3d/index.html">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:image"
-    content="https://oignonasappy.github.io/monologue/pages/lightsout-3d/images/[IMAGE]">
+  <meta property="og:image" content="https://oignonasappy.github.io/monologue/pages/lightsout-3d/images/[IMAGE]">
 
   <!--Prism.js-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
@@ -194,25 +193,43 @@
         </div>
       </div>
 
-      <div id="puzzle">
-        <div class="puzzle-row">
-          <div class="puzzle-voxel off"></div>
-          <div class="puzzle-voxel off"></div>
-          <div class="puzzle-voxel off"></div>
+      <div class="move-button button-ver" id="button-top">
+        <div class="triangle-arrow"></div>
+        <div class="triangle-arrow-in"></div>
+      </div>
+      <div class="puzzle-container">
+        <div class="move-button button-hor" id="button-left">
+          <div class="triangle-arrow"></div>
+          <div class="triangle-arrow-in"></div>
         </div>
-        <div class="puzzle-row">
-          <div class="puzzle-voxel on"></div>
-          <div class="puzzle-voxel on"></div>
-          <div class="puzzle-voxel on"></div>
+        <div id="puzzle">
+          <div class="puzzle-row">
+            <div class="puzzle-voxel off"></div>
+            <div class="puzzle-voxel off"></div>
+            <div class="puzzle-voxel off"></div>
+          </div>
+          <div class="puzzle-row">
+            <div class="puzzle-voxel on"></div>
+            <div class="puzzle-voxel on"></div>
+            <div class="puzzle-voxel on"></div>
+          </div>
+          <div class="puzzle-row">
+            <div class="puzzle-voxel on"></div>
+            <div class="puzzle-voxel off"></div>
+            <div class="puzzle-voxel on"></div>
+          </div>
         </div>
-        <div class="puzzle-row">
-          <div class="puzzle-voxel on"></div>
-          <div class="puzzle-voxel off"></div>
-          <div class="puzzle-voxel on"></div>
+        <div class="move-button button-hor" id="button-right">
+          <div class="triangle-arrow"></div>
+          <div class="triangle-arrow-in"></div>
         </div>
       </div>
+      <div class="move-button button-ver" id="button-bottom">
+        <div class="triangle-arrow"></div>
+        <div class="triangle-arrow-in"></div>
+      </div>
       <!-- #puzzle>.puzzle-row*3>.puzzle-voxel -->
-
+<div class="test"></div>
     </main>
   </div>
 </body>
