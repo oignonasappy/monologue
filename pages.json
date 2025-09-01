@@ -3,7 +3,7 @@
         "title": "Monologue - ホーム",
         "url": "",
         "create-date": "2025-05-10",
-        "update-date": "2025-07-05",
+        "update-date": "2025-08-29",
         "category": null,
         "tag": []
     },
@@ -265,6 +265,17 @@
             "JavaScript",
             "ツール",
             "クリエイティブ"
+        ]
+    },
+    {
+        "title": "ライツアウト 3D",
+        "url": "pages/lightsout-3d/",
+        "create-date": "2025-09-01",
+        "update-date": "2025-09-02",
+        "category": "プログラミング",
+        "tag": [
+            "クリエイティブ",
+            "JavaScript"
         ]
     }
 ]
