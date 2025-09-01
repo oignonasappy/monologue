@@ -1,6 +1,7 @@
 .subview-container {
     display: flex;
-    justify-content: end;
+    width: fit-content;
+    margin: 0 0 10px auto;
 
     .subview-size {
         display: flex;
@@ -46,22 +47,22 @@
                     flex: 1;
                     display: flex;
 
-                    .subview-pixel {
+                    .subview-voxel {
                         flex: 1;
                         border: 1px solid #CCC;
                         background-color: #F00;
-                        /* もしこの色が表示されたらエラー 使わないpixelの場合は.noneを使うこと */
+                        /* もしこの色が表示されたらエラー 使わないvoxelの場合は.noneを使うこと */
                     }
 
-                    .subview-pixel.on {
+                    .subview-voxel.on {
                         background-color: #FF0;
                     }
 
-                    .subview-pixel.off {
+                    .subview-voxel.off {
                         background-color: #EEE;
                     }
 
-                    .subview-pixel.none {
+                    .subview-voxel.none {
                         background: #666;
                     }
                 }
@@ -71,6 +72,35 @@
                 width: 60px;
                 height: 60px;
             }
+        }
+    }
+}
+
+#puzzle {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 10px auto;
+
+    .puzzle-row {
+        display: flex;
+
+        .puzzle-voxel {
+            height: 25vw;
+            max-height: 120px;
+            width: 25vw;
+            max-width: 120px;
+            border: 5px solid #888;
+            background-color: #F00;
+            /* もしこの色が表示されたらエラー*/
+        }
+
+        .puzzle-voxel.on {
+            background-color: #FF0;
+        }
+
+        .puzzle-voxel.off {
+            background-color: #EEE;
         }
     }
 }
