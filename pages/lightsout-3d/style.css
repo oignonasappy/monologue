@@ -24,7 +24,7 @@
         }
     }
 
-    .subview {
+    #subview {
         display: flex;
         flex-direction: column;
         width: fit-content;
@@ -55,7 +55,7 @@
                     }
 
                     .subview-voxel.on {
-                        background-color: #FF0;
+                        background-color: #FC0;
                     }
 
                     .subview-voxel.off {
@@ -234,7 +234,7 @@
 
 .move-button .triangle-arrow-in {
     position: absolute;
-    background-color: #BBB;
+    background-color: #DDD;
     width: 100%;
     height: 100%;
 }
@@ -305,7 +305,7 @@
         }
 
         .puzzle-voxel.on {
-            background-color: #FF0;
+            background-color: #FC0;
         }
 
         .puzzle-voxel.off {

@@ -52,28 +52,28 @@
       <!--中心voxelが触れられるか-->
 
       <div class="subview-container">
-        <div class="subview">
+        <div id="subview">
           <div class="subview-row">
             <div class="subview-arc-top-left">
               <div class="arc1"></div>
               <div class="arc2"></div>
               <div class="arc3"></div>
             </div>
-            <div class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-              </div>
+            <div id="subview-top" class="subview-plane">
               <div class="subview-plane-row">
                 <div class="subview-voxel off"></div>
                 <div class="subview-voxel off"></div>
                 <div class="subview-voxel off"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
                 <div class="subview-voxel off"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+              </div>
+              <div class="subview-plane-row">
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
             </div>
             <div class="subview-arc-top-right">
@@ -83,55 +83,55 @@
             </div>
           </div>
           <div class="subview-row">
-            <div class="subview-plane">
+            <div id="subview-left" class="subview-plane">
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-              </div>
-            </div>
-            <div class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel none"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
             </div>
-            <div class="subview-plane">
+            <div id="subview-centroid" class="subview-plane">
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel none"></div>
+                <div class="subview-voxel none"></div>
+                <div class="subview-voxel none"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel none"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel none"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel none"></div>
+                <div class="subview-voxel none"></div>
+                <div class="subview-voxel none"></div>
+              </div>
+            </div>
+            <div id="subview-right" class="subview-plane">
+              <div class="subview-plane-row">
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+              </div>
+              <div class="subview-plane-row">
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+              </div>
+              <div class="subview-plane-row">
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
             </div>
           </div>
@@ -141,21 +141,21 @@
               <div class="arc2"></div>
               <div class="arc3"></div>
             </div>
-            <div class="subview-plane">
+            <div id="subview-bottom" class="subview-plane">
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
               <div class="subview-plane-row">
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
-                <div class="subview-voxel on"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
+                <div class="subview-voxel off"></div>
               </div>
             </div>
             <div class="subview-arc-bottom-right">
@@ -165,7 +165,7 @@
             </div>
           </div>
           <div class="subview-row">
-            <div class="subview-plane">
+            <div id="subview-back" class="subview-plane">
               <div class="subview-plane-row">
                 <div class="subview-voxel off"></div>
                 <div class="subview-voxel off"></div>
