@@ -202,6 +202,14 @@
     border: 5px solid #666;
 }
 
+.move-button:hover {
+    opacity: 0.5;
+}
+
+.move-button:active {
+    opacity: 0.3;
+}
+
 .move-button.button-ver {
     height: 9vw;
     /* 12vw * 0.75 */
@@ -302,6 +310,13 @@
             border: 5px solid #888;
             background-color: #F00;
             /* もしこの色が表示されたらエラー*/
+        }
+
+        .puzzle-voxel:hover {
+            opacity: 0.7;
+        }
+        .puzzle-voxel:active {
+            opacity: 0.3;
         }
 
         .puzzle-voxel.on {
