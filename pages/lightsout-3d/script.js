@@ -8,7 +8,13 @@ const SIZE = 3;
  * `[z(正面から見た奥行の深さ)][y(行)][x(列)]`
  * @type {Array<Array<Array<boolean>>>}
  */
-let tensor = new Array(SIZE).fill(new Array(SIZE).fill(new Array(SIZE).fill(true)));
+let tensor = Array.from(
+    {length: SIZE},
+    () => Array.from(
+        {length: SIZE},
+        () => Array(SIZE).fill(true)
+    )
+);
 
 /**
  * 現在の`tensor`の状態を#puzzleに表示します。
