@@ -67,6 +67,130 @@
                     }
                 }
             }
+
+            .subview-arc-top-left {
+                position: relative;
+                /* height, widthは可変 */
+                height: 60px;
+                width: 60px;
+
+                [class^="arc"] {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    border-top: 2px dotted #BBB;
+                    border-left: 2px dotted #BBB;
+                    border-radius: 100% 0 0 0;
+                }
+
+                .arc1 {
+                    height: 16.67%;
+                    width: 16.67%;
+                }
+
+                .arc2 {
+                    height: 50%;
+                    width: 50%;
+                }
+
+                .arc3 {
+                    height: 83.33%;
+                    width: 83.33%;
+                }
+            }
+
+            .subview-arc-top-right {
+                position: relative;
+                /* height, widthは可変 */
+                height: 60px;
+                width: 60px;
+
+                [class^="arc"] {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    border-top: 2px dotted #BBB;
+                    border-right: 2px dotted #BBB;
+                    border-radius: 0 100% 0 0;
+                }
+
+                .arc1 {
+                    height: 16.67%;
+                    width: 16.67%;
+                }
+
+                .arc2 {
+                    height: 50%;
+                    width: 50%;
+                }
+
+                .arc3 {
+                    height: 83.33%;
+                    width: 83.33%;
+                }
+            }
+
+            .subview-arc-bottom-left {
+                position: relative;
+                /* height, widthは可変 */
+                height: 60px;
+                width: 60px;
+
+                [class^="arc"] {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    border-bottom: 2px dotted #BBB;
+                    border-left: 2px dotted #BBB;
+                    border-radius: 0 0 0 100%;
+                }
+
+                .arc1 {
+                    height: 16.67%;
+                    width: 16.67%;
+                }
+
+                .arc2 {
+                    height: 50%;
+                    width: 50%;
+                }
+
+                .arc3 {
+                    height: 83.33%;
+                    width: 83.33%;
+                }
+            }
+
+            .subview-arc-bottom-right {
+                position: relative;
+                /* height, widthは可変 */
+                height: 60px;
+                width: 60px;
+
+                [class^="arc"] {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border-bottom: 2px dotted #BBB;
+                    border-right: 2px dotted #BBB;
+                    border-radius: 0 0 100% 0;
+                }
+
+                .arc1 {
+                    height: 16.67%;
+                    width: 16.67%;
+                }
+
+                .arc2 {
+                    height: 50%;
+                    width: 50%;
+                }
+
+                .arc3 {
+                    height: 83.33%;
+                    width: 83.33%;
+                }
+            }
         }
     }
 }
@@ -76,6 +200,7 @@
     flex-direction: column;
     width: fit-content;
     margin: 10px auto;
+    border: 5px solid #666;
 
     .puzzle-row {
         display: flex;
