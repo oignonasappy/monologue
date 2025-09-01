@@ -1,0 +1,71 @@
+.subview-container {
+    display: flex;
+    justify-content: end;
+
+    .subview-size {
+        display: flex;
+        flex-direction: column;
+        margin-right: 5px;
+
+        .subview-size-label {
+            font-size: 1.5em;
+            text-align: right;
+        }
+
+        input[type="range"] {
+            transform: rotate(270deg) translateY(50%);
+            margin-right: 3px;
+            height: 120px;
+        }
+    }
+
+    .subview {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        /*margin: 0 0 0 auto;*/
+        border: 3px dotted #444;
+
+        .subview-row {
+            display: flex;
+            justify-content: center;
+
+            .subview-plane {
+                display: flex;
+                flex-direction: column;
+                width: 60px;
+                height: 60px;
+                border: 2px solid #888;
+
+                .subview-plane-row {
+                    flex: 1;
+                    display: flex;
+
+                    .subview-pixel {
+                        flex: 1;
+                        border: 1px solid #CCC;
+                        background-color: #F00;
+                        /* もしこの色が表示されたらエラー 使わないpixelの場合は.noneを使うこと */
+                    }
+
+                    .subview-pixel.on {
+                        background-color: #FF0;
+                    }
+
+                    .subview-pixel.off {
+                        background-color: #EEE;
+                    }
+
+                    .subview-pixel.none {
+                        background: #666;
+                    }
+                }
+            }
+
+            .subview-centroid {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}
