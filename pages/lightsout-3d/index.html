@@ -50,13 +50,6 @@
       <!--中心voxelが触れられるか-->
 
       <div class="subview-container">
-        <div class="subview-size">
-          <label>
-            <div class="subview-size-label">+</div>
-            <input type="range" id="subview-size">
-            <div class="subview-size-label">-</div>
-          </label>
-        </div>
         <div class="subview">
           <div class="subview-row">
             <div class="subview-plane">
@@ -168,6 +161,12 @@
               </div>
             </div>
           </div>
+        </div>
+        <!-- .subview>.subview-row*n>.subview-plane*n>.subview-plane-row*3>.subview-pixel*3 -->
+        <div class="subview-size">
+          <div class="subview-size-label">+</div>
+          <input type="range" id="subview-size">
+          <div class="subview-size-label">-</div>
         </div>
       </div>
 
