@@ -1,4 +1,13 @@
 /**
+ * centroidが触れられるか。
+ * GETパラメータから取得
+ * @type {boolean}
+ */
+const isSwitchableCentroid = new URL(window.location.href).searchParams.get('centroid') !== 'false';
+
+const isRandomInitialization = new URL(window.location.href).searchParams.get('random') === 'true';
+
+/**
  * パズルのサイズ。今回は**3**に固定
  */
 const SIZE = 3;
@@ -9,9 +18,9 @@ const SIZE = 3;
  * @type {Array<Array<Array<boolean>>>}
  */
 let tensor = Array.from(
-    {length: SIZE},
+    { length: SIZE },
     () => Array.from(
-        {length: SIZE},
+        { length: SIZE },
         () => Array(SIZE).fill(true)
     )
 );
@@ -158,7 +167,7 @@ document.getElementById('subview-size').addEventListener('change', () => {
             '--subview-plane-size',
             `${document.getElementById('subview-size').value}px`
         );
-    
+
 });
 
 // TODO: 以下可読性うんちぶりぶり！書き直せ！！
@@ -231,9 +240,7 @@ function invertVoxel(voxelZ, voxelY, voxelX) {
             tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] != undefined
         ) {
             tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] =
-                tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]]
-                    ? false
-                    : true;
+                !tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]];
         }
     }
 }
@@ -256,9 +263,29 @@ document
         });
     });
 
+/*
+ * subviewのcentroidをクリックした際にその位置のvoxelを切り替えます。
+ * isSwitchableCentroidがtrueの時のみ有効
+ */
+if (isSwitchableCentroid) {
+    document
+        .getElementById('subview-centroid')
+        .addEventListener('click', () => {
+            invertVoxel(1, 1, 1);
+            displayTensorToPuzzle();
+            displayTensorToSubview();
+            console.log(tensor);
+        });
+}
+
 
 (() => {
-    //randomizeTensor();
+    if (isRandomInitialization) {
+        randomizeTensor()
+    }
+    if (!isSwitchableCentroid) {
+        document.getElementById('subview-centroid-unavailable').style.display = 'block';
+    }
 
     console.log(tensor);
     displayTensorToPuzzle();

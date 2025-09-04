@@ -74,11 +74,21 @@
             }
 
             /* バツ印 */
-            #subview-centroid::before,
-            #subview-centroid::after {
+            #subview-centroid-unavailable {
+                display: none;
+                /* 通常は表示しない */
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+
+            #subview-centroid-unavailable::before,
+            #subview-centroid-unavailable::after {
                 content: "";
                 position: absolute;
-                display: none; /* 通常は表示しない */
+                display: block;
                 top: 50%;
                 left: 50%;
                 width: 141.421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764%;
@@ -87,7 +97,7 @@
                 transform: translate(-50%, -50%) rotate(45deg);
             }
 
-            #subview-centroid::after {
+            #subview-centroid-unavailable::after {
                 transform: translate(-50%, -50%) rotate(-45deg);
             }
 
