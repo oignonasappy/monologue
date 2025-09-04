@@ -2,6 +2,10 @@
     --subview-plane-size: 60px;
 }
 
+.reset {
+    font-size: 1.2em;
+}
+
 .subview-container {
     display: flex;
     width: fit-content;
