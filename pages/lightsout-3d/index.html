@@ -19,19 +19,7 @@
   <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/lightsout-3d/index.html">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:image" content="https://oignonasappy.github.io/monologue/pages/lightsout-3d/images/[IMAGE]">
-
-  <!--Prism.js-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
-  <!--Prism.js plugins-->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+  <meta property="og:image" content="https://oignonasappy.github.io/monologue/pages/lightsout-3d/images/image1.png">
 
   <title>ライツアウト 3D</title>
   <meta property="og:title" content="ライツアウト 3D">
@@ -48,190 +36,221 @@
 
       <h1>ライツアウト 3D</h1>
 
-      <p>
-        <span class="count">手数 : <span id="count">0</span>手</span>
-        <a href="" class="reset">リセット</a>
-      </p>
+      <section>
 
-      <div class="subview-container">
-        <div id="subview">
-          <div class="subview-row">
-            <div class="subview-arc-top-left">
-              <div class="arc1"></div>
-              <div class="arc2"></div>
-              <div class="arc3"></div>
+        <p>
+          <span class="count">手数 : <span id="count">0</span>手</span>
+          <a href="" class="reset">リセット</a>
+        </p>
+        <div class="subview-container">
+          <div id="subview">
+            <div class="subview-row">
+              <div class="subview-arc-top-left">
+                <div class="arc1"></div>
+                <div class="arc2"></div>
+                <div class="arc3"></div>
+              </div>
+              <div id="subview-top" class="subview-plane">
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+              </div>
+              <div class="subview-arc-top-right">
+                <div class="arc1"></div>
+                <div class="arc2"></div>
+                <div class="arc3"></div>
+              </div>
             </div>
-            <div id="subview-top" class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
+            <div class="subview-row">
+              <div id="subview-left" class="subview-plane">
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
               </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
+              <div id="subview-centroid" class="subview-plane">
+                <div class="subview-plane-row">
+                  <div class="subview-voxel none"></div>
+                  <div class="subview-voxel none"></div>
+                  <div class="subview-voxel none"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel none"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel none"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel none"></div>
+                  <div class="subview-voxel none"></div>
+                  <div class="subview-voxel none"></div>
+                </div>
+                <div id="subview-centroid-unavailable"></div>
               </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
+              <div id="subview-right" class="subview-plane">
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
               </div>
             </div>
-            <div class="subview-arc-top-right">
-              <div class="arc1"></div>
-              <div class="arc2"></div>
-              <div class="arc3"></div>
+            <div class="subview-row">
+              <div class="subview-arc-bottom-left">
+                <div class="arc1"></div>
+                <div class="arc2"></div>
+                <div class="arc3"></div>
+              </div>
+              <div id="subview-bottom" class="subview-plane">
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+              </div>
+              <div class="subview-arc-bottom-right">
+                <div class="arc1"></div>
+                <div class="arc2"></div>
+                <div class="arc3"></div>
+              </div>
+            </div>
+            <div class="subview-row">
+              <div id="subview-back" class="subview-plane">
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+                <div class="subview-plane-row">
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                  <div class="subview-voxel off"></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="subview-row">
-            <div id="subview-left" class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-            </div>
-            <div id="subview-centroid" class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel none"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-                <div class="subview-voxel none"></div>
-              </div>
-              <div id="subview-centroid-unavailable"></div>
-            </div>
-            <div id="subview-right" class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-            </div>
-          </div>
-          <div class="subview-row">
-            <div class="subview-arc-bottom-left">
-              <div class="arc1"></div>
-              <div class="arc2"></div>
-              <div class="arc3"></div>
-            </div>
-            <div id="subview-bottom" class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-            </div>
-            <div class="subview-arc-bottom-right">
-              <div class="arc1"></div>
-              <div class="arc2"></div>
-              <div class="arc3"></div>
-            </div>
-          </div>
-          <div class="subview-row">
-            <div id="subview-back" class="subview-plane">
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-              <div class="subview-plane-row">
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-                <div class="subview-voxel off"></div>
-              </div>
-            </div>
+          <!-- .subview>.subview-row*n>.subview-plane*n>.subview-plane-row*3>.subview-voxel*3 -->
+          <div class="subview-size">
+            <div class="subview-size-label">+</div>
+            <!-- .subview-planeあたりの幅高さのpxサイズ -->
+            <input type="range" id="subview-size" value="60" min="40" max="90">
+            <div class="subview-size-label">-</div>
           </div>
         </div>
-        <!-- .subview>.subview-row*n>.subview-plane*n>.subview-plane-row*3>.subview-voxel*3 -->
-        <div class="subview-size">
-          <div class="subview-size-label">+</div>
-          <!-- .subview-planeあたりの幅高さのpxサイズ -->
-          <input type="range" id="subview-size" value="60" min="40" max="90">
-          <div class="subview-size-label">-</div>
-        </div>
-      </div>
-
-      <div class="move-button button-ver" id="button-top">
-        <div class="triangle-arrow"></div>
-        <div class="triangle-arrow-in"></div>
-      </div>
-      <div class="puzzle-container">
-        <div class="move-button button-hor" id="button-left">
+        <div class="move-button button-ver" id="button-top">
           <div class="triangle-arrow"></div>
           <div class="triangle-arrow-in"></div>
         </div>
-        <div id="puzzle">
-          <div class="puzzle-row">
-            <div class="puzzle-voxel off"></div>
-            <div class="puzzle-voxel off"></div>
-            <div class="puzzle-voxel off"></div>
+        <div class="puzzle-container">
+          <div class="move-button button-hor" id="button-left">
+            <div class="triangle-arrow"></div>
+            <div class="triangle-arrow-in"></div>
           </div>
-          <div class="puzzle-row">
-            <div class="puzzle-voxel on"></div>
-            <div class="puzzle-voxel on"></div>
-            <div class="puzzle-voxel on"></div>
+          <div id="puzzle">
+            <div class="puzzle-row">
+              <div class="puzzle-voxel off"></div>
+              <div class="puzzle-voxel off"></div>
+              <div class="puzzle-voxel off"></div>
+            </div>
+            <div class="puzzle-row">
+              <div class="puzzle-voxel on"></div>
+              <div class="puzzle-voxel on"></div>
+              <div class="puzzle-voxel on"></div>
+            </div>
+            <div class="puzzle-row">
+              <div class="puzzle-voxel on"></div>
+              <div class="puzzle-voxel off"></div>
+              <div class="puzzle-voxel on"></div>
+            </div>
           </div>
-          <div class="puzzle-row">
-            <div class="puzzle-voxel on"></div>
-            <div class="puzzle-voxel off"></div>
-            <div class="puzzle-voxel on"></div>
+          <div class="move-button button-hor" id="button-right">
+            <div class="triangle-arrow"></div>
+            <div class="triangle-arrow-in"></div>
           </div>
         </div>
-        <div class="move-button button-hor" id="button-right">
+        <div class="move-button button-ver" id="button-bottom">
           <div class="triangle-arrow"></div>
           <div class="triangle-arrow-in"></div>
         </div>
-      </div>
-      <div class="move-button button-ver" id="button-bottom">
-        <div class="triangle-arrow"></div>
-        <div class="triangle-arrow-in"></div>
-      </div>
-      <!-- #puzzle>.puzzle-row*3>.puzzle-voxel -->
+        <!-- #puzzle>.puzzle-row*3>.puzzle-voxel -->
+
+      </section>
+
+      <section>
+        <h2>操作方法</h2>
+
+        <section>
+          <h3>「ライツアウト」とは？</h3>
+
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptatum nesciunt itaque officia hic
+            debitis cupiditate, quaerat eveniet tempora quo odit quis? Amet eos necessitatibus adipisci est voluptatibus
+            itaque cumque.
+          </p>
+
+        </section>
+
+        <section>
+          <h3>画像付き取説</h3>
+
+          <img src="./images/image2.png" alt="" class="wide-img" style="max-width: 400px;">
+          <img src="./images/image3.png" alt="" class="wide-img" style="max-width: 400px;">
+
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos quo, explicabo eum corporis itaque,
+            obcaecati unde earum tenetur quos sint inventore ea natus sit! Minima itaque aliquid modi odio hic.
+          </p>
+
+        </section>
+
+      </section>
 
       <a href="">reset</a>
       <a href="./index.html">index.html</a>
