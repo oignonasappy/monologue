@@ -242,7 +242,8 @@ function isClear() {
  * クリア時の処理を行います。
  */
 function clear() {
-    // TODO:
+    alert("クリア！！(クリア画面WIP)");
+    // TODO: クリア画面を表示する
 }
 
 /**
