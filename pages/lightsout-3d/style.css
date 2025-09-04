@@ -2,6 +2,10 @@
     --subview-plane-size: 60px;
 }
 
+.count {
+    font-size: 1.4em;
+}
+
 .reset {
     font-size: 1.2em;
 }

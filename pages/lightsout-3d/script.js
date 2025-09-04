@@ -192,6 +192,14 @@ function clear() {
     // TODO:
 }
 
+/**
+ * 手数を進めます。
+ */
+function incrementCount() {
+    count++;
+    document.getElementById('count').textContent = count;
+}
+
 /*
  * subviewのplaneあたりのサイズを変更します。
  * :root内の`--subview-plane-size`を書き換えます。
@@ -202,7 +210,6 @@ document.getElementById('subview-size').addEventListener('change', () => {
             '--subview-plane-size',
             `${document.getElementById('subview-size').value}px`
         );
-
 });
 
 // TODO: 以下可読性うんちぶりぶり！書き直せ！！
@@ -289,6 +296,7 @@ document
     .querySelectorAll('.puzzle-row').forEach((row, i) => {
         row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
             voxel.addEventListener('click', () => {
+                incrementCount();
                 invertVoxel(0, i, j);
                 displayTensorToPuzzle();
                 displayTensorToSubview();
@@ -305,6 +313,7 @@ if (isSwitchableCentroid) {
     document
         .getElementById('subview-centroid')
         .addEventListener('click', () => {
+            incrementCount();
             invertVoxel(1, 1, 1);
             displayTensorToPuzzle();
             displayTensorToSubview();
@@ -315,7 +324,7 @@ if (isSwitchableCentroid) {
 
 (() => {
     if (isRandomInitialization) {
-        randomizeTensor()
+        randomizeTensor();
     }
     if (!isSwitchableCentroid) {
         document.getElementById('subview-centroid-unavailable').style.display = 'block';
