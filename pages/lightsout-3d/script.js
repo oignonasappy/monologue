@@ -157,6 +157,27 @@ function randomizeTensor() {
     // TODO: クリア可能な状態のランダムにする
 }
 
+/**
+ * `tensor`のすべてのvoxelがfalseならtrueを返します。
+ */
+function isClear() {
+    for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < SIZE; j++) {
+            for (let k = 0; k < SIZE; k++) {
+                if (tensor[i][j][k]) return false;
+            }
+        }
+    }
+    return true;
+}
+
+/**
+ * クリア時の処理を行います。
+ */
+function clear() {
+
+}
+
 /*
  * subviewのplaneあたりのサイズを変更します。
  * :root内の`--subview-plane-size`を書き換えます。
@@ -245,7 +266,6 @@ function invertVoxel(voxelZ, voxelY, voxelX) {
     }
 }
 
-// TODO: 中心も触れられるか？
 /*
  * #puzzle(前面)のパネルをクリックしたときの処理。
  * クリックしたvoxelとその隣接したvoxelを反転させる。
@@ -258,7 +278,7 @@ document
                 invertVoxel(0, i, j);
                 displayTensorToPuzzle();
                 displayTensorToSubview();
-                // TODO: 全てがfalseなら成功
+                if (isClear()) clear();
             });
         });
     });
@@ -274,7 +294,7 @@ if (isSwitchableCentroid) {
             invertVoxel(1, 1, 1);
             displayTensorToPuzzle();
             displayTensorToSubview();
-            console.log(tensor);
+            if (isClear()) clear();
         });
 }
 
@@ -287,7 +307,6 @@ if (isSwitchableCentroid) {
         document.getElementById('subview-centroid-unavailable').style.display = 'block';
     }
 
-    console.log(tensor);
     displayTensorToPuzzle();
     displayTensorToSubview();
 })();
