@@ -78,10 +78,10 @@
             #subview-centroid::after {
                 content: "";
                 position: absolute;
-                display: block;
+                display: none; /* 通常は表示しない */
                 top: 50%;
                 left: 50%;
-                width: 100%;
+                width: 141.421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764%;
                 height: 2px;
                 background-color: #A66;
                 transform: translate(-50%, -50%) rotate(45deg);
