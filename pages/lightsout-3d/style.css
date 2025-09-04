@@ -81,6 +81,14 @@
                 }
             }
 
+            .subview-plane:hover {
+                opacity: 0.8;
+            }
+
+            .subview-plane:active {
+                opacity: 0.6;
+            }
+
             /* バツ印 */
             #subview-centroid-unavailable {
                 display: none;
