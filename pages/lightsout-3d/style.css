@@ -1,3 +1,7 @@
+:root {
+    --subview-plane-size: 60px;
+}
+
 .subview-container {
     display: flex;
     width: fit-content;
@@ -36,12 +40,13 @@
             justify-content: center;
 
             .subview-plane {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 border: 2px solid #888;
                 /* height, widthは可変 */
-                height: 60px;
-                width: 60px;
+                height: var(--subview-plane-size);
+                width: var(--subview-plane-size);
 
                 .subview-plane-row {
                     flex: 1;
@@ -68,11 +73,29 @@
                 }
             }
 
+            /* バツ印 */
+            #subview-centroid::before,
+            #subview-centroid::after {
+                content: "";
+                position: absolute;
+                display: block;
+                top: 50%;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                background-color: #A66;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            #subview-centroid::after {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
             .subview-arc-top-left {
                 position: relative;
                 /* height, widthは可変 */
-                height: 60px;
-                width: 60px;
+                height: var(--subview-plane-size);
+                width: var(--subview-plane-size);
 
                 [class^="arc"] {
                     position: absolute;
@@ -102,8 +125,8 @@
             .subview-arc-top-right {
                 position: relative;
                 /* height, widthは可変 */
-                height: 60px;
-                width: 60px;
+                height: var(--subview-plane-size);
+                width: var(--subview-plane-size);
 
                 [class^="arc"] {
                     position: absolute;
@@ -133,8 +156,8 @@
             .subview-arc-bottom-left {
                 position: relative;
                 /* height, widthは可変 */
-                height: 60px;
-                width: 60px;
+                height: var(--subview-plane-size);
+                width: var(--subview-plane-size);
 
                 [class^="arc"] {
                     position: absolute;
@@ -164,8 +187,8 @@
             .subview-arc-bottom-right {
                 position: relative;
                 /* height, widthは可変 */
-                height: 60px;
-                width: 60px;
+                height: var(--subview-plane-size);
+                width: var(--subview-plane-size);
 
                 [class^="arc"] {
                     position: absolute;
@@ -315,6 +338,7 @@
         .puzzle-voxel:hover {
             opacity: 0.7;
         }
+
         .puzzle-voxel:active {
             opacity: 0.3;
         }
