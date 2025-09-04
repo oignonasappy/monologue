@@ -166,8 +166,61 @@ function displayTensorToSubview() {
  * 破壊的に変更します。
  */
 function randomizeTensor() {
-    tensor = tensor.map(plane => plane.map(row => row.map(voxel => Math.random() < 0.5)));
-    // TODO: クリア可能な状態のランダムにする
+    //tensor = tensor.map(plane => plane.map(row => row.map(voxel => Math.random() < 0.5)));
+
+    // `SIZE^2*i + SIZE*j + j`の連番を、ランダムに挿入
+    const switchList = [];
+    for (let i = 0; i < SIZE; i++) { // 三重ループにする必要は必ずしもない
+        for (let j = 0; j < SIZE; j++) {
+            for (let k = 0; k < SIZE; k++) {
+                // 重心が触れられない場合スキップ
+                if (
+                    !isSwitchableCentroid &&
+                    i === 1 && j === 1 && k === 1
+                ) {
+                    break;
+                }
+
+                // ランダムな位置に挿入
+                switchList.splice(
+                    Math.floor(Math.random() * (switchList.length + 1)),
+                    0,
+                    (i * SIZE * SIZE) + (j * SIZE) + (k)
+                );
+            }
+        }
+    }
+
+    // Fisher–Yates shuffle
+    /*
+    for (let i = 0; i < switchList.length; i++) {
+        const r = Math.floor(Math.random() * switchList.length);
+        const temp = switchList[i];
+        switchList[i] = switchList[r];
+        switchList[r] = temp;
+    }
+    */
+
+    // 操作する手数 全体の50%~100%を操作
+    const switchCount = Math.floor((switchList.length * 0.5) + (Math.random() * switchList.length * 0.5));
+    for (let i = 0; i < switchCount; i++) {
+        console.log(
+            switchList[i],
+            Math.floor(switchList[i] / (SIZE * SIZE)),
+            Math.floor((switchList[i] % (SIZE * SIZE)) / SIZE),
+            Math.floor(switchList[i] % SIZE)
+        );
+        
+        switchVoxel(
+            Math.floor(switchList[i] / (SIZE * SIZE)),
+            Math.floor((switchList[i] % (SIZE * SIZE)) / SIZE),
+            switchList[i] % SIZE
+        )
+    }
+    // 重心が触れられない場合、全てがonの初期状態からはクリアできないため、重心を1度切り替える
+    if (!isSwitchableCentroid) {
+        switchVoxel(1, 1, 1);
+    }
 }
 
 /**
@@ -265,7 +318,7 @@ document.getElementById('button-left').addEventListener('click', () => {
  * `tensor`の指定されたvoxelおよびその隣接したvoxelを反転します。
  * 破壊的に変更します。
  */
-function invertVoxel(voxelZ, voxelY, voxelX) {
+function switchVoxel(voxelZ, voxelY, voxelX) {
     const DIRECTION = [
         [0, 0, 0],
         [1, 0, 0],
@@ -297,7 +350,7 @@ document
         row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
             voxel.addEventListener('click', () => {
                 incrementCount();
-                invertVoxel(0, i, j);
+                switchVoxel(0, i, j);
                 displayTensorToPuzzle();
                 displayTensorToSubview();
                 if (isClear()) clear();
@@ -314,7 +367,7 @@ if (isSwitchableCentroid) {
         .getElementById('subview-centroid')
         .addEventListener('click', () => {
             incrementCount();
-            invertVoxel(1, 1, 1);
+            switchVoxel(1, 1, 1);
             displayTensorToPuzzle();
             displayTensorToSubview();
             if (isClear()) clear();
