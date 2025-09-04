@@ -148,12 +148,20 @@ function randomizeTensor() {
     // TODO: クリア可能な状態のランダムにする
 }
 
+/*
+ * subviewのplaneあたりのサイズを変更します。
+ * :root内の`--subview-plane-size`を書き換えます。
+ */
 document.getElementById('subview-size').addEventListener('change', () => {
-    console.log("size changed");
-
-    /* subviewのサイズ変更 */
+    document.documentElement
+        .style.setProperty(
+            '--subview-plane-size',
+            `${document.getElementById('subview-size').value}px`
+        );
+    
 });
 
+// TODO: 以下可読性うんちぶりぶり！書き直せ！！
 /*
  * `tensor`の上面を正面にします。
  * 破壊的に変更します。
