@@ -5,12 +5,25 @@
  */
 const isSwitchableCentroid = new URL(window.location.href).searchParams.get('centroid') !== 'false';
 
+/**
+ * 初期状態をランダムにするか。
+ * GETパラメータから取得
+ * @type {boolean}
+ */
 const isRandomInitialization = new URL(window.location.href).searchParams.get('random') === 'true';
 
 /**
  * パズルのサイズ。今回は**3**に固定
+ * @type {number}
  */
 const SIZE = 3;
+
+/**
+ * 経過した手数
+ * @type {number}
+ */
+let count = 0;
+
 /**
  * パズルの点灯状態を表す、3x3x3の三次元配列。初期状態は全て点灯した状態である。
  * 絶対的な配置ではなく、現在の方向によって変化しうる。
@@ -159,6 +172,7 @@ function randomizeTensor() {
 
 /**
  * `tensor`のすべてのvoxelがfalseならtrueを返します。
+ * @returns {boolean}
  */
 function isClear() {
     for (let i = 0; i < SIZE; i++) {
@@ -175,7 +189,7 @@ function isClear() {
  * クリア時の処理を行います。
  */
 function clear() {
-
+    // TODO:
 }
 
 /*
