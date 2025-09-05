@@ -296,7 +296,7 @@ document.getElementById('button-right').addEventListener('click', () => {
  * 破壊的に変更します。
  */
 document.getElementById('button-bottom').addEventListener('click', () => {
-    tensor = tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
         .reverse(); // z軸で反転
 
     displayTensorToPuzzle();
@@ -320,7 +320,8 @@ document.getElementById('button-left').addEventListener('click', () => {
  * 'tensor'を破壊的に変更します。
  */
 document.getElementById('subview-top').addEventListener('click', () => {
-    // TODO: 回転処理
+    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+        .map(plane => plane.reverse()); // y軸で反転
 
     displayTensorToPuzzle();
     displayTensorToSubview();
@@ -331,7 +332,8 @@ document.getElementById('subview-top').addEventListener('click', () => {
  * 'tensor'を破壊的に変更します。
  */
 document.getElementById('subview-left').addEventListener('click', () => {
-    // TODO: 回転処理
+    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+        .map(plane => plane.map(row => row.reverse())); // z, y軸で反転
 
     displayTensorToPuzzle();
     displayTensorToSubview();
@@ -342,7 +344,8 @@ document.getElementById('subview-left').addEventListener('click', () => {
  * 'tensor'を破壊的に変更します。
  */
 document.getElementById('subview-right').addEventListener('click', () => {
-    // TODO: 回転処理
+    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+        .reverse(); // x軸で反転
 
     displayTensorToPuzzle();
     displayTensorToSubview();
@@ -353,7 +356,8 @@ document.getElementById('subview-right').addEventListener('click', () => {
  * 'tensor'を破壊的に変更します。
  */
 document.getElementById('subview-bottom').addEventListener('click', () => {
-    // TODO: 回転処理
+    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+        .reverse(); // z軸で反転
 
     displayTensorToPuzzle();
     displayTensorToSubview();
@@ -364,7 +368,7 @@ document.getElementById('subview-bottom').addEventListener('click', () => {
  * 'tensor'を破壊的に変更します。
  */
 document.getElementById('subview-back').addEventListener('click', () => {
-    // TODO: 回転処理
+    tensor = tensor.map(plane => plane.reverse()).reverse(); // y軸で反転した後、z軸で反転
 
     displayTensorToPuzzle();
     displayTensorToSubview();
