@@ -315,6 +315,61 @@ document.getElementById('button-left').addEventListener('click', () => {
     displayTensorToSubview();
 });
 
+/*
+ * subviewの上面を正面にします。
+ * 'tensor'を破壊的に変更します。
+ */
+document.getElementById('subview-top').addEventListener('click', () => {
+    // TODO: 回転処理
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+});
+
+/*
+ * subviewの左面を正面にします。
+ * 'tensor'を破壊的に変更します。
+ */
+document.getElementById('subview-left').addEventListener('click', () => {
+    // TODO: 回転処理
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+});
+
+/*
+ * subviewの右面を正面にします。
+ * 'tensor'を破壊的に変更します。
+ */
+document.getElementById('subview-right').addEventListener('click', () => {
+    // TODO: 回転処理
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+});
+
+/*
+ * subviewの下面を正面にします。
+ * 'tensor'を破壊的に変更します。
+ */
+document.getElementById('subview-bottom').addEventListener('click', () => {
+    // TODO: 回転処理
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+});
+
+/*
+ * subviewの裏面を正面にします。
+ * 'tensor'を破壊的に変更します。
+ */
+document.getElementById('subview-back').addEventListener('click', () => {
+    // TODO: 回転処理
+
+    displayTensorToPuzzle();
+    displayTensorToSubview();
+});
+
 /**
  * `tensor`の指定されたvoxelおよびその隣接したvoxelを反転します。
  * 破壊的に変更します。
