@@ -444,6 +444,11 @@
         text-align: center;
     }
 
+    #dialog-clear-mode {
+        font-size: 1.05em;
+        font-style: italic;
+    }
+
     #dialog-special-message {
         color: #F00;
     }

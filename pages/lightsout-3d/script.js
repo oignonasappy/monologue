@@ -278,6 +278,105 @@ document.getElementById('test-clear-button').addEventListener('click', clear);
 function incrementCount() {
     count++;
     document.getElementById('count').textContent = count;
+
+    // 重心禁止モード
+    if (!isRandomInitialization && !isSwitchableCentroid) {
+        if (count === 100) {
+            document.getElementById('message').innerText = `
+                苦戦してる？？
+                それもそのはず、このモードは理論上クリア不可能だからなのである！
+            `;
+        }
+        if (count === 110) {
+            document.getElementById('message').innerText = `
+                なぜクリア不可能なのか？
+                それは...
+                ちょっと説明が長くなる
+            `;
+        }
+        if (count === 120) {
+            document.getElementById('message').innerText = `
+                だいぶ端折るけど、
+                3x3x3のライツアウトをGF(2)上の行列とみなすと、その行列は正則であり
+                押すべきブロックの組み合わせはただ1通りに定まる。
+                これはどんな初期状態からでも必ず解くことができるということを意味する。
+                ただ、それは制約がない場合に限る。
+                今回は重心にあたる部分が触れられないという制約がある。
+            `;
+        }
+        if (count === 130) {
+            document.getElementById('message').innerText = `
+                今回の初期状態は全てがON状態である。そこから全てをOFFにする"唯一の"回答を考える...
+                まずこのパズルは完全な対称性を持っているため解法も対称的になる。そこで、ブロックを位置の特性によって4種に分類する。
+                {center: 重心(1個), face: 面の中心(6個), edge: 辺の中心(12個), corner: 角(8個)}
+                解法では、同じ種類のブロックは同じように扱われるはずのため、同種のブロックを全て押すか/押さないかの2択になる。
+                ここで、各種類のブロックを押すか/押さないかを
+                x[center], x[face], x[edge], x[corner](押す=1, 押さない=0)として方程式を立てる。
+                ブロックがOFF(0)になるためには、初期状態の1と、自身と自身に隣接するブロックからの切り替え（押された回数）の合計が1になればよい。(GF(2)において、1+1=0である。つまりXOR)
+                
+                centerがOFFになるには ->
+                初期状態: 1
+                切り替え回数: x[center](自分自身) + 6 * x[face](隣接する6つの面の中心)
+                方程式(mod 2):
+                1 + x[center] + 6x[face] ≡ 0
+                ⟹ 1 + x[center] ≡ 0
+                ⟹ x[center] = 1
+
+                faceがOFFになるには ->
+                初期状態: 1
+                切り替え回数: x[face](自分) + 4 * x[edge](隣) + 1 * x[center](隣)
+                方程式(mod 2):
+                    1 + x[face] + 4x[edge] + x[center] ≡ 0
+                    ⟹ 1 + x[face] + x[center] ≡ 0
+                    ⟹ 1 + x[face] + 1 ≡ 0 (x[center] = 1は示されているので、代入)
+                    ⟹ x[face] = 0
+
+                edgeがOFFになるには ->
+                初期状態: 1
+                切り替え回数: x[edge] + 2 * x[corner] + 2 * x[face]
+                方程式(mod 2):
+                1 + x[edge] + 2x[corner] + 2x[face] ≡ 0
+                ⟹ 1 + x[edge] ≡ 0
+                ⟹ x[edge] = 1
+
+                cornerがOFFになるには ->
+                初期状態: 1
+                切り替え回数: x[corner] + 3 * x[edge]
+                方程式(mod 2):
+                1 + x[corner] + 3x[edge] ≡ 0
+                ⟹ 1 + x[corner] + x[edge] ≡ 0
+                ⟹ 1 + x[corner] + 1 ≡ 0 (x[edge] = 1を代入)
+                ⟹ x[corner] = 0
+
+                この連立方程式を解いた結果、唯一の解法は
+                center(重心) : 押す (x[center]=1),
+                face(面の中心) : 押さない (x[face]=0),
+                edge(辺の中心) : 押す (x[edge]=1),
+                corner(角) : 押さない (x[corner]=0)
+                ちなみにこれはノーマルモードの回答のことも言っているね。
+            `;
+        }
+        if (count === 140) {
+            document.getElementById('message').innerText = `
+                さて、先ほどの結果を踏まえて...
+                今回の制約は重心のブロックが触れられないというものだった。
+                しかし、今回の初期状態の唯一の解法では、edge(辺の中心)とcenter(重心)を押す操作が必要であった。
+                すなわち、このモードはクリアが論理的に不可能なのである。
+            `;
+        }
+        if (count === 150) {
+            document.getElementById('message').innerText = `
+                (偉そうに書いたけど、全部全部Gemini2.5Pro先生が考えてくれた！私にはこれ考えるのはムリよ！！理系の3年ぐらいに学ぶ代数学なんてしるか！！！)
+                あなたが先ほどクリアしたであろう「重心禁止ランダムモード」は、見かけ上全てがランダムに見えるけど
+                全てのブロックがONの状態から、ランダムな操作 + 必ず1回重心ブロックを切り替えた状態へ調整してあるから、クリア可能になっている
+            `;
+        }
+        if (count === 160) {
+            document.getElementById('message').innerText = `
+                ーー以上、これにて終了。言葉はもう不要です
+            `;
+        }
+    }
 }
 
 (() => {
@@ -453,19 +552,22 @@ function incrementCount() {
 
     if (isRandomInitialization) {
         document.getElementById('dialog-button-centroid-random').style.display = 'block';
+        document.getElementById('dialog-clear-mode').textContent = 'ランダムモード クリア';
         document.getElementById('dialog-special-message').textContent = '重心禁止ランダムモードが追加されました';
     } else {
         document.getElementById('dialog-button-centroid-random').style.display = 'none';
     }
-
+    
     if (isRandomInitialization && !isSwitchableCentroid) {
         document.getElementById('dialog-button-centroid').style.display = 'block';
+        document.getElementById('dialog-clear-mode').textContent = '重心禁止ランダムモード クリア';
         document.getElementById('dialog-special-message').textContent = '重心禁止モードが追加されました';
     } else {
         document.getElementById('dialog-button-centroid').style.display = 'none';
     }
-
+    
     if (!isRandomInitialization && !isSwitchableCentroid) {
+        document.getElementById('dialog-clear-mode').textContent = '重心禁止モード クリア？';
         document.getElementById('dialog-special-message').innerText = `
             このメッセージが表示されるのはおかしい。
             正常にパズルをクリアしてこのメッセージを見ることができたなら、
