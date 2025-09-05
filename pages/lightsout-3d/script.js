@@ -39,6 +39,32 @@ let tensor = Array.from(
 );
 
 /**
+ * `tensor`の指定されたvoxelおよびその隣接したvoxelを反転します。
+ * 破壊的に変更します。
+ */
+function switchVoxel(voxelZ, voxelY, voxelX) {
+    const DIRECTION = [
+        [0, 0, 0],
+        [1, 0, 0],
+        [-1, 0, 0],
+        [0, 1, 0],
+        [0, -1, 0],
+        [0, 0, 1],
+        [0, 0, -1]
+    ];
+    for (const dir of DIRECTION) {
+        if (
+            tensor[voxelZ + dir[0]] != undefined &&
+            tensor[voxelZ + dir[0]][voxelY + dir[1]] != undefined &&
+            tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] != undefined
+        ) {
+            tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] =
+                !tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]];
+        }
+    }
+}
+
+/**
  * 現在の`tensor`の状態を#puzzleに表示します。
  * 表示する範囲は`z = 0`
  */
@@ -210,7 +236,7 @@ function randomizeTensor() {
             Math.floor((switchList[i] % (SIZE * SIZE)) / SIZE),
             Math.floor(switchList[i] % SIZE)
         );
-        
+
         switchVoxel(
             Math.floor(switchList[i] / (SIZE * SIZE)),
             Math.floor((switchList[i] % (SIZE * SIZE)) / SIZE),
@@ -254,186 +280,161 @@ function incrementCount() {
     document.getElementById('count').textContent = count;
 }
 
-/*
- * subviewのplaneあたりのサイズを変更します。
- * :root内の`--subview-plane-size`を書き換えます。
- */
-document.getElementById('subview-size').addEventListener('change', () => {
-    document.documentElement
-        .style.setProperty(
-            '--subview-plane-size',
-            `${document.getElementById('subview-size').value}px`
-        );
-});
+(() => {
+    /*
+     * subviewのplaneあたりのサイズを変更します。
+     * :root内の`--subview-plane-size`を書き換えます。
+     */
+    document.getElementById('subview-size').addEventListener('change', () => {
+        document.documentElement
+            .style.setProperty(
+                '--subview-plane-size',
+                `${document.getElementById('subview-size').value}px`
+            );
+    });
 
-// TODO: 以下可読性うんちぶりぶり！書き直せ！！
-/*
- * `tensor`の上面を正面にします。
- * 破壊的に変更します。
- */
-document.getElementById('button-top').addEventListener('click', () => {
-    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
-        .map(plane => plane.reverse()); // y軸で反転
+    // TODO: 以下可読性うんちぶりぶり！書き直せ！！
+    /*
+     * `tensor`の上面を正面にします。
+     * 破壊的に変更します。
+     */
+    document.getElementById('button-top').addEventListener('click', () => {
+        tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+            .map(plane => plane.reverse()); // y軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * `tensor`の右面を正面にします。
- * 破壊的に変更します。
- */
-document.getElementById('button-right').addEventListener('click', () => {
-    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
-        .reverse(); // x軸で反転
+    /*
+     * `tensor`の右面を正面にします。
+     * 破壊的に変更します。
+     */
+    document.getElementById('button-right').addEventListener('click', () => {
+        tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+            .reverse(); // x軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * `tensor`の下面を正面にします。
- * 破壊的に変更します。
- */
-document.getElementById('button-bottom').addEventListener('click', () => {
-    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
-        .reverse(); // z軸で反転
+    /*
+     * `tensor`の下面を正面にします。
+     * 破壊的に変更します。
+     */
+    document.getElementById('button-bottom').addEventListener('click', () => {
+        tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+            .reverse(); // z軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * `tensor`の左面を正面にします。
- * 破壊的に変更します。
- */
-document.getElementById('button-left').addEventListener('click', () => {
-    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
-        .map(plane => plane.map(row => row.reverse())); // z, y軸で反転
+    /*
+     * `tensor`の左面を正面にします。
+     * 破壊的に変更します。
+     */
+    document.getElementById('button-left').addEventListener('click', () => {
+        tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+            .map(plane => plane.map(row => row.reverse())); // z, y軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * subviewの上面を正面にします。
- * 'tensor'を破壊的に変更します。
- */
-document.getElementById('subview-top').addEventListener('click', () => {
-    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
-        .map(plane => plane.reverse()); // y軸で反転
+    /*
+     * subviewの上面を正面にします。
+     * 'tensor'を破壊的に変更します。
+     */
+    document.getElementById('subview-top').addEventListener('click', () => {
+        tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+            .map(plane => plane.reverse()); // y軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * subviewの左面を正面にします。
- * 'tensor'を破壊的に変更します。
- */
-document.getElementById('subview-left').addEventListener('click', () => {
-    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
-        .map(plane => plane.map(row => row.reverse())); // z, y軸で反転
+    /*
+     * subviewの左面を正面にします。
+     * 'tensor'を破壊的に変更します。
+     */
+    document.getElementById('subview-left').addEventListener('click', () => {
+        tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+            .map(plane => plane.map(row => row.reverse())); // z, y軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * subviewの右面を正面にします。
- * 'tensor'を破壊的に変更します。
- */
-document.getElementById('subview-right').addEventListener('click', () => {
-    tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
-        .reverse(); // x軸で反転
+    /*
+     * subviewの右面を正面にします。
+     * 'tensor'を破壊的に変更します。
+     */
+    document.getElementById('subview-right').addEventListener('click', () => {
+        tensor = tensor[0][0].map((col, i) => tensor.map((row, j) => tensor.map(plane => plane[j][i]))) // x軸を基準として転置
+            .reverse(); // x軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * subviewの下面を正面にします。
- * 'tensor'を破壊的に変更します。
- */
-document.getElementById('subview-bottom').addEventListener('click', () => {
-    tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
-        .reverse(); // z軸で反転
+    /*
+     * subviewの下面を正面にします。
+     * 'tensor'を破壊的に変更します。
+     */
+    document.getElementById('subview-bottom').addEventListener('click', () => {
+        tensor = tensor[0].map((row, i) => tensor.map(plane => plane[i])) // y軸を基準として転置
+            .reverse(); // z軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/*
- * subviewの裏面を正面にします。
- * 'tensor'を破壊的に変更します。
- */
-document.getElementById('subview-back').addEventListener('click', () => {
-    tensor = tensor.map(plane => plane.reverse()).reverse(); // y軸で反転した後、z軸で反転
+    /*
+     * subviewの裏面を正面にします。
+     * 'tensor'を破壊的に変更します。
+     */
+    document.getElementById('subview-back').addEventListener('click', () => {
+        tensor = tensor.map(plane => plane.reverse()).reverse(); // y軸で反転した後、z軸で反転
 
-    displayTensorToPuzzle();
-    displayTensorToSubview();
-});
+        displayTensorToPuzzle();
+        displayTensorToSubview();
+    });
 
-/**
- * `tensor`の指定されたvoxelおよびその隣接したvoxelを反転します。
- * 破壊的に変更します。
- */
-function switchVoxel(voxelZ, voxelY, voxelX) {
-    const DIRECTION = [
-        [0, 0, 0],
-        [1, 0, 0],
-        [-1, 0, 0],
-        [0, 1, 0],
-        [0, -1, 0],
-        [0, 0, 1],
-        [0, 0, -1]
-    ];
-    for (const dir of DIRECTION) {
-        if (
-            tensor[voxelZ + dir[0]] != undefined &&
-            tensor[voxelZ + dir[0]][voxelY + dir[1]] != undefined &&
-            tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] != undefined
-        ) {
-            tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]] =
-                !tensor[voxelZ + dir[0]][voxelY + dir[1]][voxelX + dir[2]];
-        }
-    }
-}
+    /*
+     * #puzzle(前面)のパネルをクリックしたときの処理。
+     * クリックしたvoxelとその隣接したvoxelを反転させる。
+     */
+    document
+        .getElementById('puzzle')
+        .querySelectorAll('.puzzle-row').forEach((row, i) => {
+            row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
+                voxel.addEventListener('click', () => {
+                    incrementCount();
+                    switchVoxel(0, i, j);
+                    displayTensorToPuzzle();
+                    displayTensorToSubview();
+                    if (isClear()) clear();
+                });
+            });
+        });
 
-/*
- * #puzzle(前面)のパネルをクリックしたときの処理。
- * クリックしたvoxelとその隣接したvoxelを反転させる。
- */
-document
-    .getElementById('puzzle')
-    .querySelectorAll('.puzzle-row').forEach((row, i) => {
-        row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
-            voxel.addEventListener('click', () => {
+    /*
+     * subviewのcentroidをクリックした際にその位置のvoxelを切り替えます。
+     * isSwitchableCentroidがtrueの時のみ有効
+     */
+    if (isSwitchableCentroid) {
+        document
+            .getElementById('subview-centroid')
+            .addEventListener('click', () => {
                 incrementCount();
-                switchVoxel(0, i, j);
+                switchVoxel(1, 1, 1);
                 displayTensorToPuzzle();
                 displayTensorToSubview();
                 if (isClear()) clear();
             });
-        });
-    });
-
-/*
- * subviewのcentroidをクリックした際にその位置のvoxelを切り替えます。
- * isSwitchableCentroidがtrueの時のみ有効
- */
-if (isSwitchableCentroid) {
-    document
-        .getElementById('subview-centroid')
-        .addEventListener('click', () => {
-            incrementCount();
-            switchVoxel(1, 1, 1);
-            displayTensorToPuzzle();
-            displayTensorToSubview();
-            if (isClear()) clear();
-        });
-}
-
+    }
+})();
 
 (() => {
     if (isRandomInitialization) {
