@@ -25,6 +25,12 @@ const SIZE = 3;
 let count = 0;
 
 /**
+ * クリア状態
+ * @type {boolean}
+ */
+let cleared = false;
+
+/**
  * パズルの点灯状態を表す、3x3x3の三次元配列。初期状態は全て点灯した状態である。
  * 絶対的な配置ではなく、現在の方向によって変化しうる。
  * `[z(正面から見た奥行の深さ)][y(行)][x(列)]`
@@ -230,13 +236,6 @@ function randomizeTensor() {
     // 操作する手数 全体の50%~100%を操作
     const switchCount = Math.floor((switchList.length * 0.5) + (Math.random() * switchList.length * 0.5));
     for (let i = 0; i < switchCount; i++) {
-        console.log(
-            switchList[i],
-            Math.floor(switchList[i] / (SIZE * SIZE)),
-            Math.floor((switchList[i] % (SIZE * SIZE)) / SIZE),
-            Math.floor(switchList[i] % SIZE)
-        );
-
         switchVoxel(
             Math.floor(switchList[i] / (SIZE * SIZE)),
             Math.floor((switchList[i] % (SIZE * SIZE)) / SIZE),
@@ -268,8 +267,8 @@ function isClear() {
  * クリア時の処理を行います。
  */
 function clear() {
-    alert("クリア！！(クリア画面WIP)");
-    // TODO: クリア画面を表示する
+    // クリア画面を表示
+    document.getElementById('clear-dialog').showModal();
 }
 
 /**
@@ -302,11 +301,12 @@ function incrementCount() {
         .querySelectorAll('.puzzle-row').forEach((row, i) => {
             row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
                 voxel.addEventListener('click', () => {
+                    if (cleared) return; // クリア時に無効化
                     incrementCount();
                     switchVoxel(0, i, j);
                     displayTensorToPuzzle();
                     displayTensorToSubview();
-                    if (isClear()) clear();
+                    if (isClear()) clear(); // クリアチェック
                 });
             });
         });
@@ -319,11 +319,12 @@ function incrementCount() {
         document
             .getElementById('subview-centroid')
             .addEventListener('click', () => {
+                if (cleared) return; // クリア時に無効化
                 incrementCount();
                 switchVoxel(1, 1, 1);
                 displayTensorToPuzzle();
                 displayTensorToSubview();
-                if (isClear()) clear();
+                if (isClear()) clear();  // クリアチェック
             });
     }
 
