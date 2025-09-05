@@ -437,18 +437,23 @@
     h2 {
         text-shadow: 2px 2px #FF0;
         text-align: center;
+        font-size: 3em;
     }
 
     p {
         text-align: center;
     }
 
+    #dialog-special-message {
+        color: #F00;
+    }
+
     .buttons {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        gap: 10px;
-        margin: 10px 0;
+        gap: 16px;
+        margin: 16px 0;
         max-width: 400px;
 
         .a-button {

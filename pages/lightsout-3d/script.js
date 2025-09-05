@@ -450,4 +450,28 @@ function incrementCount() {
 
     displayTensorToPuzzle();
     displayTensorToSubview();
+
+    if (isRandomInitialization) {
+        document.getElementById('dialog-button-centroid-random').style.display = 'block';
+        document.getElementById('dialog-special-message').textContent = '重心禁止ランダムモードが追加されました';
+    } else {
+        document.getElementById('dialog-button-centroid-random').style.display = 'none';
+    }
+
+    if (isRandomInitialization && !isSwitchableCentroid) {
+        document.getElementById('dialog-button-centroid').style.display = 'block';
+        document.getElementById('dialog-special-message').textContent = '重心禁止モードが追加されました';
+    } else {
+        document.getElementById('dialog-button-centroid').style.display = 'none';
+    }
+
+    if (!isRandomInitialization && !isSwitchableCentroid) {
+        document.getElementById('dialog-special-message').innerText = `
+            このメッセージが表示されるのはおかしい。
+            正常にパズルをクリアしてこのメッセージを見ることができたなら、
+            このモードがクリア不可能だという仮説は間違いだったということになる。
+            それ以外の方法でこのメッセージを見たならば、
+            私のミスか、君の好奇心の結果だ。
+        `;
+    }
 })();
