@@ -221,6 +221,37 @@
         </div>
         <!-- #puzzle>.puzzle-row*3>.puzzle-voxel -->
 
+        <dialog id="clear-dialog">
+          <button type="button" class="dialog-close" title="クリア画面を一度閉じると戻れません"
+            onclick="document.getElementById('clear-dialog').close()"></button>
+          <h2>CLEAR</h2>
+          <p>
+            プレイありがとう！<br>
+            別のモードもやってみる？
+          </p>
+          <div class="buttons">
+            <a class="a-button" href="./index.html">
+              もういちど<br>
+              (ノーマルモード)
+            </a>
+            <a class="a-button" href="./index.html?random=true">
+              もういちど<br>
+              (ランダムモード)
+            </a>
+          </div>
+          <div class="buttons">
+            <a class="a-button" href="./index.html?centroid=false&random=true">
+              もういちど<br>
+              (重心禁止ランダムモード)
+            </a>
+            <a class="a-button" href="./index.html?centroid=false">
+              もういちど<br>
+              (重心禁止モード)
+            </a>
+          </div>
+        </dialog>
+        <button type="button" id="test-clear-button" style="display: block;">クリア画面</button>
+
       </section>
 
       <section>

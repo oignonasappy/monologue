@@ -270,6 +270,7 @@ function clear() {
     // クリア画面を表示
     document.getElementById('clear-dialog').showModal();
 }
+document.getElementById('test-clear-button').addEventListener('click', clear);
 
 /**
  * 手数を進めます。
