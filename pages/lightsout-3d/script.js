@@ -293,7 +293,42 @@ function incrementCount() {
             );
     });
 
+    /*
+     * #puzzle(前面)のパネルをクリックしたときの処理。
+     * クリックしたvoxelとその隣接したvoxelを反転させる。
+     */
+    document
+        .getElementById('puzzle')
+        .querySelectorAll('.puzzle-row').forEach((row, i) => {
+            row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
+                voxel.addEventListener('click', () => {
+                    incrementCount();
+                    switchVoxel(0, i, j);
+                    displayTensorToPuzzle();
+                    displayTensorToSubview();
+                    if (isClear()) clear();
+                });
+            });
+        });
+
+    /*
+     * subviewのcentroidをクリックした際にその位置のvoxelを切り替えます。
+     * isSwitchableCentroidがtrueの時のみ有効
+     */
+    if (isSwitchableCentroid) {
+        document
+            .getElementById('subview-centroid')
+            .addEventListener('click', () => {
+                incrementCount();
+                switchVoxel(1, 1, 1);
+                displayTensorToPuzzle();
+                displayTensorToSubview();
+                if (isClear()) clear();
+            });
+    }
+
     // TODO: 以下可読性うんちぶりぶり！書き直せ！！
+    /* #puzzleの矢印による面の移動 */
     /*
      * `tensor`の上面を正面にします。
      * 破壊的に変更します。
@@ -342,6 +377,7 @@ function incrementCount() {
         displayTensorToSubview();
     });
 
+    /* subviewからの面移動 */
     /*
      * subviewの上面を正面にします。
      * 'tensor'を破壊的に変更します。
@@ -400,40 +436,6 @@ function incrementCount() {
         displayTensorToPuzzle();
         displayTensorToSubview();
     });
-
-    /*
-     * #puzzle(前面)のパネルをクリックしたときの処理。
-     * クリックしたvoxelとその隣接したvoxelを反転させる。
-     */
-    document
-        .getElementById('puzzle')
-        .querySelectorAll('.puzzle-row').forEach((row, i) => {
-            row.querySelectorAll('.puzzle-voxel').forEach((voxel, j) => {
-                voxel.addEventListener('click', () => {
-                    incrementCount();
-                    switchVoxel(0, i, j);
-                    displayTensorToPuzzle();
-                    displayTensorToSubview();
-                    if (isClear()) clear();
-                });
-            });
-        });
-
-    /*
-     * subviewのcentroidをクリックした際にその位置のvoxelを切り替えます。
-     * isSwitchableCentroidがtrueの時のみ有効
-     */
-    if (isSwitchableCentroid) {
-        document
-            .getElementById('subview-centroid')
-            .addEventListener('click', () => {
-                incrementCount();
-                switchVoxel(1, 1, 1);
-                displayTensorToPuzzle();
-                displayTensorToSubview();
-                if (isClear()) clear();
-            });
-    }
 })();
 
 (() => {
