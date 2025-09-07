@@ -326,10 +326,10 @@ function incrementCount() {
                 初期状態: 1
                 切り替え回数: x[face](自分) + 4 * x[edge](隣) + 1 * x[center](隣)
                 方程式(mod 2):
-                    1 + x[face] + 4x[edge] + x[center] ≡ 0
-                    ⟹ 1 + x[face] + x[center] ≡ 0
-                    ⟹ 1 + x[face] + 1 ≡ 0 (x[center] = 1は示されているので、代入)
-                    ⟹ x[face] = 0
+                1 + x[face] + 4x[edge] + x[center] ≡ 0
+                ⟹ 1 + x[face] + x[center] ≡ 0
+                ⟹ 1 + x[face] + 1 ≡ 0 (x[center] = 1は示されているので、代入)
+                ⟹ x[face] = 0
 
                 edgeがOFFになるには ->
                 初期状態: 1
@@ -374,6 +374,8 @@ function incrementCount() {
         if (count === 160) {
             document.getElementById('message').innerText = `
                 ーー以上、これにて終了。言葉はもう不要です
+
+                このゲームはこれにて終了です。
             `;
         }
     }
