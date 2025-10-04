@@ -277,5 +277,17 @@
             "クリエイティブ",
             "JavaScript"
         ]
+    },
+    {
+        "title": "音の出る時計がほしかっただけ",
+        "url": "pages/timepiece/",
+        "create-date": "2025-10-04",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "日記",
+            "クリエイティブ",
+            "JavaScript"
+        ]
     }
 ]
