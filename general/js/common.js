@@ -341,7 +341,7 @@ function pageInfo(pages) {
 
 /* ^H */
 (() => {
-    document.querySelectorAll("del.h").forEach((elem => {
+    document.querySelectorAll("del.h, del.h-strike").forEach((elem => {
         elem.insertAdjacentText("afterend", '^H'.repeat(elem.textContent.length));
     }));
 })();

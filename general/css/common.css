@@ -463,6 +463,10 @@ main {
     del.h {
         text-decoration: none;
     }
+
+    del.h-strike {
+        text-decoration: line-through;
+    }
 }
 
 footer {
