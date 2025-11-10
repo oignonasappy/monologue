@@ -516,6 +516,7 @@ class BulletPatternGenerator {
 
     /**
      * 中心極限定理を用いた、やや正規分布に近い乱数を生成します。
+     * @param {number} [numSamples=12] - 乱数生成の反復回数を指定します。反復回数が多いほど値は中心に偏り、計算量が増加します。
      * @param {number} [min=0] - 乱数の一様分布の下限（Math.random()のデフォルトは0）。
      * @param {number} [max=1] - 乱数の一様分布の上限（Math.random()のデフォルトは1）。
      * @returns {number} 正規分布に近い乱数。
