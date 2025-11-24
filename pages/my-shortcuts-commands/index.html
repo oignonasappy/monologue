@@ -3,7 +3,7 @@
 
 <head prefix="og: https://ogp.me/ns#">
 
-  <!--<meta name="local-env">-->
+  <meta name="local-env">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,8 @@
   <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/index.html">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ja_JP">
-  <meta property="og:image" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/images/[IMAGE]">
+  <meta property="og:image"
+    content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/images/[IMAGE]">
 
   <!--Prism.js-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
@@ -46,9 +47,11 @@
 
       <div id="md"></div>
       <script>
-	const mdText = await fetch('./shortcuts-commands.md'); 
-      	const htmlText = marked.parse(mdText);
-	document.getElementById('md').innerHTML = htmlText;
+        (async () => {
+          const mdText = await fetch('./shortcuts-commands.md').then(res => res.text());
+          const htmlText = marked.parse(mdText);
+          document.getElementById('md').innerHTML = htmlText;
+        })();
       </script>
 
     </main>
