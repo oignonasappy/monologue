@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: https://ogp.me/ns#">
+
+  <!--<meta name="local-env">-->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--general-->
+  <link rel="stylesheet" href="../../general/css/common.css">
+  <script src="../../general/js/common.js" type="module"></script>
+  <link rel="shortcut icon" href="/monologue/favicon.ico" type="image/x-icon">
+
+  <!--OGP-->
+  <meta property="og:site_name" content="Monologue">
+  <meta property="og:url" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/index.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://oignonasappy.github.io/monologue/pages/[FOLDER NAME IS HERE]/images/[IMAGE]">
+
+  <!--Prism.js-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!--Prism.js plugins-->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.2.0/lib/marked.umd.min.js"></script>
+
+  <title>自分用ubuntu環境ショートカット&コマンド集</title>
+  <meta property="og:title" content="自分用ubuntu環境ショートカット&コマンド集">
+  <meta name="description" content="Lorem, ipsum.">
+  <meta property="og:description" content="Lorem, ipsum.">
+</head>
+
+<body>
+  <div id="container">
+    <main>
+
+      <div id="md"></div>
+      <script>
+	const mdText = await fetch('./shortcuts-commands.md'); 
+      	const htmlText = marked.parse(mdText);
+	document.getElementById('md').innerHTML = htmlText;
+      </script>
+
+    </main>
+  </div>
+</body>
+
+</html>
