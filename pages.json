@@ -289,5 +289,15 @@
             "クリエイティブ",
             "JavaScript"
         ]
+    },
+    {
+        "title": "自分用ubuntu環境ショートカット&コマンド集", 
+        "url": "pages/my-shortcuts-commands/",
+        "create-date": "2025-11-25",
+        "update-date": null,
+        "category": "プログラミング",
+        "tag": [
+            "初心者向け"
+        ]
     }
 ]
