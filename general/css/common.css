@@ -2,28 +2,28 @@
     font-family: 'Moralerspace Neon';
     font-weight: normal;
     font-style: normal;
-    src: url(/monologue/general/fonts/MoralerspaceNeon-Regular.ttf);
+    src: url(/general/fonts/MoralerspaceNeon-Regular.ttf);
 }
 
 @font-face {
     font-family: 'Moralerspace Neon';
     font-weight: bold;
     font-style: normal;
-    src: url(/monologue/general/fonts/MoralerspaceNeon-Bold.ttf);
+    src: url(/general/fonts/MoralerspaceNeon-Bold.ttf);
 }
 
 @font-face {
     font-family: 'Moralerspace Neon';
     font-weight: normal;
     font-style: italic;
-    src: url(/monologue/general/fonts/MoralerspaceNeon-Italic.ttf);
+    src: url(/general/fonts/MoralerspaceNeon-Italic.ttf);
 }
 
 @font-face {
     font-family: 'Moralerspace Neon';
     font-weight: bold;
     font-style: italic;
-    src: url(/monologue/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
+    src: url(/general/fonts/MoralerspaceNeon-BoldItalic.ttf);
 }
 
 /* Variables */
